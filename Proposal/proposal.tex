@@ -1,0 +1,67 @@
+\documentclass[twocolumn,showpacs,preprintnumbers,amsmath,amssymb]{revtex4}
+%\documentclass[preprint,showpacs,preprintnumbers,amsmath,amssymb]{revtex4}
+% Additional packages needed for graphics, alignment and math fonts.
+
+\usepackage{graphicx}% Enhanced capability for dealing with figures
+\usepackage{dcolumn}% Align table columns on decimal point.
+\usepackage{bm}% bold math.
+
+% The \begin{document} command sets the start of the RevTeX commands.
+	
+	\begin{document}
+		
+		\title{A quantum algorithm for the bottleneck travelling salesman problem}
+		
+		\author{Raveel Tejani}
+		\email{raveel@student.ubc.ca}
+		\affiliation{Department of Physics and Astronomy, University of British
+			Columbia \\
+			6224 Agricultural Road, Vancouver, British Columbia, V6T 1Z1, Canada}
+		
+		\date{\today}
+		
+		\begin{abstract}
+			Provide a brief summary of the proposal here.  This should be a concise
+			statement of what will be accomplished, the methods that will be used and
+			the potential significance.  Many of you have already sent me a description
+			of your project that can be used as the basis for this.  I will only accept
+			\LaTeX\ complied files in pdf format (and we're going to specifically use
+			revtex, the style for Physical Review). They must be uploaded by midnight
+			before the oral presentation is scheduled.  Make sure your supervisor has
+			a chance to read it over before you submit it.
+		\end{abstract}
+		
+		\maketitle
+		
+		The text should be split into sections.  The example here is a guide -- you can
+		choose different section headings, or number of sections, as long as it follows
+		this general scheme.
+		
+		% The first section of the paper.
+		
+		\section{Motivation}
+		
+		
+		Recent advancements in quantum computing have opened up new frontiers in solving complex computational problems that were previously considered intractable using classical methods. The Bottleneck Traveling Salesman Problem (BTSP), a quintessential example of combinatorial optimization, stands as a formidable challenge in the field of logistics and operations research. Its practical applications range from optimizing delivery routes to circuit design, making its efficient solution a subject of paramount importance.
+		
+		This research proposal embarks on a pioneering journey at the intersection of quantum computing and combinatorial optimization by introducing a quantum algorithm tailored to address the BTSP. The BTSP requires finding the shortest closed tour through a set of cities while minimizing the largest cost (the "bottleneck") along any route. Its computational complexity grows exponentially with the number of cities, rendering classical solutions impractical for large-scale instances.
+		
+		Our approach capitalizes on the inherent quantum parallelism and superposition principles, as well as the unique feature of phase encoding in quantum computing. By exploiting these quantum phenomena, we aim to encode and manipulate the costs associated with various routes efficiently. Additionally, the utilization of generalized Grover's search algorithm as a central component of our quantum approach is poised to significantly expedite the search for the optimal solution.
+		
+		In this letter, we present a succinct yet comprehensive overview of our research proposal, highlighting the theoretical foundation of the quantum algorithm, its potential computational advantages over classical methods, and its practical implications for solving real-world instances of the BTSP. This proposal underscores our commitment to bridging the gap between quantum theory and practical optimization, offering a glimpse into the potential impact of quantum computing on route optimization, logistics, and transportation.
+		
+		The following sections will detail the key components of our quantum algorithm, its expected computational complexity, and the significance of its implementation, underscoring its potential to reshape how we approach complex combinatorial optimization problems.
+		
+		
+		\section{Theory}
+		
+		
+		We will review the bottleneck travelling salesman problem first then move on to discuss the subroutines we will use, in particular phase estimation and grover's search to build our quatum algorithm. 
+		
+		- A simple example of minimizing the bottleneck travelling salesman problem (maybe with images):
+		
+		- an example of storing phases and using phase estimation
+		
+		- grover's search explanation
+		
+	\end{document}
