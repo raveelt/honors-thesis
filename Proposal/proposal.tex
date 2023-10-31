@@ -54,37 +54,68 @@
 		
 		\section{Theory}
 		
-		\subsection{Bottleneck Travelling Salesman}
-		The BTSP can be represented as a graph problem.  We start with a graph, whose vertices are labelled A through D, representing a 4-city system. We define movement from one vertex to another as a walk, done through the edges connecting our vertices. We are interested in a particular walk known as a hamiltonian cycle that contains every vertex extactly once before returning to the start ($A \rightarrow B \rightarrow C\rightarrow D \rightarrow A$). Our graph also includes edge weights, we define as $ \gamma_i $.
-		The BTSP is to find the hamiltonian cycle in a graph, where the largest edge weight ("bottleneck") is minimized. This is distinct from the TSP where the combined edge weights in a given cycle is minimized. The total possible hamiltonian cycles is given by $(N-1)!$, where N is the number of nodes. We present a symmetric case in the figure,  $N_k \rightarrow N_{k+1} = N_{k+1} \rightarrow N_{k} = \gamma_i$. Thus the total possible cycles is  $(N-1)!/2$.  It is important to note that a solution to either BTSP or TSP is not unique. BTSP solutions also do not nessesarily equate to the TSP solutions. We can illustrate an example with the help of our figure. 
+		\subsection{Bottleneck Travelling Salesman Problem}
 		
-		consider all the hamiltonian cycles for a symmetric 4-city system:
+		\begin{figure}[!h]
+			\centering
+			\includegraphics[trim={0 0 21.9cm 0},clip, width=0.7 \linewidth]{"../4-city graphic"}
+			\caption{An undirected weighted graph represention of a  symmetric 4-city system.  The vertices represent cities and the edge weights represent the cost of travel. }
+			\label{fig:4-city-graphic}
+		\end{figure}		
 		
 		
+		The BTSP can be represented as a graph problem.  We start with a graph, whose vertices are labelled A through D, representing a 4-city system. We define movement from one vertex to another as a walk, done through the edges connecting our vertices. We are interested in a particular walk known as a hamiltonian cycle that contains every vertex extactly once before returning to the start. Our graph also includes edge weights, we define as $ \gamma_i $.
+		The BTSP is to find the hamiltonian cycle in a graph, where the largest edge weight ("bottleneck") is minimized. This is distinct from the TSP where the combined edge weights in a given cycle is minimized. The total possible hamiltonian cycles is given by $(N-1)!$, where N is the number of nodes. We present a symmetric case in the figure,  $N_k \rightarrow N_{k+1} = N_{k+1} \rightarrow N_{k} = \gamma_i$. Thus the total possible cycles is  $(N-1)!/2$.  It is important to note that a solution to either BTSP or TSP is not unique. BTSP solutions also do not nessesarily equate to the TSP solutions. We can illustrate an example with the help of our figure. Consider all the hamiltonian cycles for a symmetric 4-city system:
+		\begin{center}
 		$ A \rightarrow B \rightarrow C \rightarrow D \rightarrow A $
 		
 		$ A \rightarrow B \rightarrow D \rightarrow C \rightarrow A $ 
 		
 		$ A \rightarrow C \rightarrow B \rightarrow D \rightarrow A $
+	    \end{center}
 		
-		assigning some arbritrary weights, we can see the total costs of the cycles below:
-		
+		Assigning some arbritrary weights, we can see the total costs of the cycles below. The first cycle is the solution to BTSP as its largest edge weight at $5$ is the smallest among all three. The last cycle is a solution to the TSP as its combined edge weight is the smallest.
+		\begin{center}
 		$\gamma_1 + \gamma_4 + \gamma_5 + \gamma_3 = 4 + 4 + 5 + 4 = 17$
 		
 		$ \gamma_1 + \gamma_6 + \gamma_5 + \gamma_2 = 4 + 6 + 5 + 2 = 17$
 		
 		$  \gamma_2 + \gamma_4 + \gamma_6 + \gamma_3 = 2 + 4 + 6 + 4 = 16$
+		\end{center}
 		
+
+		By simply changing the weight of $\gamma_6$ to $5$, we can illustrate all cycles are solutions to the BTSP. 
 		
+		\begin{center}
+
+			$\gamma_1 + \gamma_4 + \gamma_5 + \gamma_3 = 4 + 4 + 5 + 4 = 17$
+			
+			$ \gamma_1 + \gamma_6 + \gamma_5 + \gamma_2 = 4 + 5 + 5 + 2 = 16$
+			
+			$  \gamma_2 + \gamma_4 + \gamma_6 + \gamma_3 = 2 + 4 + 5 + 4 = 15$
+		\end{center}
 		
-	
+
+		\subsection{Grover's Search Algorithm}
+		
+		In 1996, Lov Grover proposed a quantum algorithm for unstructured database search, that would provide at most a quadractic speedup. This speed up can be realized for suffiently large databases, but does not provide the exponential speedup promised by other quantum algorithms. We can refer to figure 2, to see the quantum circuit representation.
 		
 		\begin{figure}[!h]
 			\centering
-			\includegraphics[trim={0 0 21.9cm 0},clip, width=0.7 \linewidth]{"../4-city graphic"}
-			\caption{Symmetric 4-city problem}
-			\label{fig:4-city-graphic}
-		\end{figure}		
+			\includegraphics[trim={5cm 26cm 15cm 0},clip, width=0.99 \linewidth]{../grover_circuit}
+			\caption{A concise quantum circuit representation of Grover's search algorithm applied to an n-qubit system. The Hadamard $H^{\otimes n }$ gate performs a uniform superposition over all possible states $N$ ($2^n$). The $U_w$ gate marks our goal state. The $U_s$ gate amplifies the amplitude of our goal state. the $r$ exponent, refers to the number of iterations needed to maximize the amplitude. The approximate number is $\sqrt{N}$ times.}
+			\label{fig:grovercircuit}
+		\end{figure}
+		
+		A geometric representation of the algorithm as well as the two-qubit example will help us understand. 
+		
+		
+		\begin{figure}[!h]
+			\centering
+			\includegraphics[trim={0 7.5cm 0 0},clip, width=0.99\linewidth]{../grover_geometric}
+			\caption{geometric reprentation of Grover's algorithm. a) An iteration performed on an n-qubit system. b) An iteration performed on a 2-qubit system}
+			\label{fig:grovergeometric}
+		\end{figure}
 		
 		
 		 %A simple example of minimizing the bottleneck travelling salesman problem (maybe with images):
