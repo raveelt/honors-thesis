@@ -42,13 +42,15 @@
 		\section{Motivation}
 		
 		
-		Continuous advancements in quantum computing have opened up new ways to solve complex computational problems that were previously considered intractable using classical methods. The Bottleneck Traveling Salesman Problem (BTSP), is a good example of an optimization problem that stands as a challenge in the field of logistics and operations research. Its practical applications range from optimizing delivery routes to circuit design. As a result, achieving an efficient solution is highly sought after.
+		Continuous advancements in quantum computing have opened up new ways to solve complex computational problems that were previously considered intractable using classical methods. The Bottleneck Traveling Salesman Problem (BTSP), is a good example of an optimization problem that stands as a challenge in the field of logistics and operations research (need ref). Its practical applications range from optimizing delivery routes to circuit design (need ref). As a result, achieving an efficient solution is highly sought after.
 		
-		This research proposal embarks on a journey at the intersection of quantum computing and optimization by introducing a quantum algorithm tailored to address the BTSP. The BTSP requires finding the shortest closed tour through a set of cities while minimizing the largest cost (the "bottleneck") along any route. Its computational complexity grows exponentially with the number of cities, rendering classical solutions impractical for large-scale instances.
+		We embark on a journey at the intersection of quantum computing and optimization by introducing a quantum algorithm tailored to address the BTSP. It requires finding the shortest closed tour through a set of cities while minimizing the largest cost (the "bottleneck") along any route. Its computational complexity grows exponentially with the number of cities (need ref), rendering classical solutions impractical for large-scale instances.
 		
-		Our approach is to capitalize on the inherent quantum parallelism, as well as the unique feature of phase encoding in quantum computing. By exploiting these phenomena, we aim to encode and manipulate the costs associated with various routes efficiently. Additionally, the utilization of Grover's search algorithm as a central component of our quantum approach is poised to significantly expedite the search for the optimal solution.
+		Our approach is to capitalize on the inherent quantum parallelism, as well as the unique feature of phase encoding in quantum computing. By exploiting these phenomena, we aim to encode and manipulate the costs associated with various routes efficiently. Additionally, the utilization of Grover's search algorithm as a central component of our quantum approach significantly expedites the search for the optimal solution.
 		
-		In this proposal, we highlight the theoretical foundation of the quantum algorithm, its potential computational advantages over classical methods, and its practical implications for solving real-world instances of the BTSP. The following sections will detail the key problem that is the BTSP, its expected computational complexity, and the significance of its implementation, underscoring its potential to reshape how we approach complex combinatorial optimization problems.
+		In this proposal, our primary objective is to shed light on the theoretical foundation of the quantum algorithm, its potential computational advantages over classical methods. Through this research, we aim to work towards a clear understanding of these aspects. The following sections will detail the BTSP, its expected computational complexity, Grover's algorithm and the significance of its implementation.
+		
+		\textbf{This section in the examples was typically a page, needs more substance. Maybe elaborating on the practical examples a little more. Dont love last paragraph} 
 		
 		
 		\section{Theory}
@@ -63,8 +65,13 @@
 		\end{figure}		
 		
 		
+		
+		
 		The BTSP can be represented as a graph problem.  We start with a graph, whose vertices are labelled A through D, representing a 4-city system. We define movement from one vertex to another as a walk, done through the edges connecting our vertices. We are interested in a particular walk known as a hamiltonian cycle that contains every vertex extactly once before returning to the start. Our graph also includes edge weights, we define as $ \gamma_i $.
 		The BTSP is to find the hamiltonian cycle in a graph, where the largest edge weight ("bottleneck") is minimized. This is distinct from the Travelling Salesman Problem (TSP) where the combined edge weights in a given cycle is minimized. The total possible hamiltonian cycles is given by $(N-1)!$, where N is the number of nodes. We present a symmetric case in the figure,  $N_k \rightarrow N_{k+1} = N_{k+1} \rightarrow N_{k} = \gamma_i$. Thus the total possible cycles is  $(N-1)!/2$.  It is important to note that a solution to either BTSP or TSP is not unique. BTSP solutions also do not nessesarily equate to the TSP solutions. We can illustrate an example with the help of our figure. Consider all the hamiltonian cycles for a symmetric 4-city system:
+		
+		\textbf{the discussion of hamiltonian cycles within the paragraph could maybe be a little more formal? seperating the math from the paragraph?} 
+		
 		\begin{center}
 		$ A \rightarrow B \rightarrow C \rightarrow D \rightarrow A $
 		
@@ -105,7 +112,7 @@
 			\label{fig:grovercircuit}
 		\end{figure}
 		
-		In 1996, Lov Grover proposed a quantum algorithm for unstructured database search, that would provide at most a quadractic speedup. This speed up can be realized for suffiently large databases, but does not provide the exponential speedup promised by other quantum algorithms. We can refer to figure 2, to see the quantum circuit representation.
+		In 1996, Lov Grover proposed a quantum algorithm for unstructured database search, that would provide at most a quadractic speedup (need ref). This speed up can be realized for suffiently large databases, but does not provide the exponential speedup promised by other quantum algorithms. We can refer to figure 2, to see the quantum circuit representation.
 		A geometric representation of the algorithm as well as the two-qubit example will help us understand. 
 		
 		
@@ -116,8 +123,10 @@
 			\label{fig:grovergeometric}. 
 		\end{figure}
 		
-		Lets walk through one iteration of Grover's algorithm. Most quantum circuits are initialized at $|0\rangle$, then we apply the $H$ gate, this results in a uniform superposition:
 		
+		\textbf{do i really need a two - qubit example in the figure? I dont refer to it in the text below at all. The kets are also not generating properly in fig 2, 3. Need to fix}
+		
+		Lets walk through one iteration of Grover's algorithm. Most quantum circuits are initialized at $|0\rangle$, then we apply the $H$ gate, this results in a uniform superposition:
 		
 		$$ |s\rangle = H^{\otimes n} |0 \rangle = \frac{1}{\sqrt{2^n}} \sum_{x\in\{0,1\}^n} |x\rangle$$
 		
@@ -143,7 +152,7 @@
 		$$P(w) = |\langle w |(U_sU_w)^r |s \rangle|^2 = \frac{1}{N} = sin^2 (\theta(\frac{1}{2} + r)) $$
 		
 		to maximize the probability we need P(w) = 1, so we can set the inside of the sine function to $\pi/2$:
-		$$ \theta(\frac{1}{2} + r) = \frac{\pi}{2}$$
+		$$ \theta \left(\frac{1}{2} + r \right) = \frac{\pi}{2}$$
 		
 		\begin{equation}
 			r = \frac{\pi}{2\theta} + \frac{1}{2} \approx \frac{\pi}{2\theta}
@@ -175,7 +184,13 @@
 			\end{cases}       
 		\end{equation}
 		
-		We need to encode our max edge costs per cycle into the domain of our function f(x). We then need to construct a matrix, $U_w$, that it will result in a $f(x) = 1$
+		\textbf{how would this oracle change, since there are no unique solutions as illustrated in the theory section?}
+		
+		\textbf{this section needs a lot more work, hoping it is more in depth once i understand QFT / phase estimation. This would imply the theory section would grow as well.}
+	
+		\textbf{the discussion of $U_w$ might be better suited in the theory section?}
+		
+		%We need to encode our max edge costs per cycle into the domain of our function f(x). We then need to construct a matrix, $U_w$, that it will result in a $f(x) = 1$
 		
 		\section{recources list}
 		\begin{enumerate}
@@ -183,6 +198,7 @@
 			\item Quantum Simulators
 		\end{enumerate}
 		
+		\textbf{might not need this section, dont need recource request to conduct my thesis}
 		\section{planned schedule}
 		
 		
@@ -200,6 +216,8 @@
 		for his encouragement and support to pursue a topic that truly captivates my interest.
 		
 		\begin{thebibliography}{99}
+			
+			\textbf{No references listed yet}
 			
 		\end{thebibliography}
 		
