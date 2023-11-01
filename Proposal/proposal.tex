@@ -20,36 +20,35 @@
 		\date{\today}
 		
 		\begin{abstract}
-			Provide a brief summary of the proposal here.  This should be a concise
-			statement of what will be accomplished, the methods that will be used and
-			the potential significance.  Many of you have already sent me a description
-			of your project that can be used as the basis for this.  I will only accept
-			\LaTeX\ complied files in pdf format (and we're going to specifically use
-			revtex, the style for Physical Review). They must be uploaded by midnight
-			before the oral presentation is scheduled.  Make sure your supervisor has
-			a chance to read it over before you submit it.
+			%statement of what will be accomplished, the methods that will be used and
+			%the potential significance.  Many of you have already sent me a description
+			%of your project that can be used as the basis for this.  I will only accept
+			%\LaTeX\ complied files in pdf format (and we're going to specifically use
+			%revtex, the style for Physical Review). They must be uploaded by midnight
+			%before the oral presentation is scheduled.  Make sure your supervisor has
+			%a chance to read it over before you submit it.
+			
+			the Bottleneck Travelling Salesman Problem is an NP-Hard optimization problem. The implication being
+			there exists no solution in polynomial time.  We propose an algorithm to provide a 
+			quadratic speedup using the grover's quantum search algorthim as the basis. We will test this algorithm on either
+			real quantum hardware or simulators, implement improvements and discuss our findings.
+			
 		\end{abstract}
 		
 		\maketitle
-		
-		The text should be split into sections.  The example here is a guide -- you can
-		choose different section headings, or number of sections, as long as it follows
-		this general scheme.
 		
 		% The first section of the paper.
 		
 		\section{Motivation}
 		
 		
-		Recent advancements in quantum computing have opened up new frontiers in solving complex computational problems that were previously considered intractable using classical methods. The Bottleneck Traveling Salesman Problem (BTSP), a quintessential example of combinatorial optimization, stands as a formidable challenge in the field of logistics and operations research. Its practical applications range from optimizing delivery routes to circuit design, making its efficient solution a subject of paramount importance.
+		Continuous advancements in quantum computing have opened up new ways to solve complex computational problems that were previously considered intractable using classical methods. The Bottleneck Traveling Salesman Problem (BTSP), is a good example of an optimization problem that stands as a challenge in the field of logistics and operations research. Its practical applications range from optimizing delivery routes to circuit design. As a result, achieving an efficient solution is highly sought after.
 		
-		This research proposal embarks on a pioneering journey at the intersection of quantum computing and combinatorial optimization by introducing a quantum algorithm tailored to address the BTSP. The BTSP requires finding the shortest closed tour through a set of cities while minimizing the largest cost (the "bottleneck") along any route. Its computational complexity grows exponentially with the number of cities, rendering classical solutions impractical for large-scale instances.
+		This research proposal embarks on a journey at the intersection of quantum computing and optimization by introducing a quantum algorithm tailored to address the BTSP. The BTSP requires finding the shortest closed tour through a set of cities while minimizing the largest cost (the "bottleneck") along any route. Its computational complexity grows exponentially with the number of cities, rendering classical solutions impractical for large-scale instances.
 		
-		Our approach capitalizes on the inherent quantum parallelism and superposition principles, as well as the unique feature of phase encoding in quantum computing. By exploiting these quantum phenomena, we aim to encode and manipulate the costs associated with various routes efficiently. Additionally, the utilization of generalized Grover's search algorithm as a central component of our quantum approach is poised to significantly expedite the search for the optimal solution.
+		Our approach is to capitalize on the inherent quantum parallelism, as well as the unique feature of phase encoding in quantum computing. By exploiting these phenomena, we aim to encode and manipulate the costs associated with various routes efficiently. Additionally, the utilization of Grover's search algorithm as a central component of our quantum approach is poised to significantly expedite the search for the optimal solution.
 		
-		In this letter, we present a succinct yet comprehensive overview of our research proposal, highlighting the theoretical foundation of the quantum algorithm, its potential computational advantages over classical methods, and its practical implications for solving real-world instances of the BTSP. This proposal underscores our commitment to bridging the gap between quantum theory and practical optimization, offering a glimpse into the potential impact of quantum computing on route optimization, logistics, and transportation.
-		
-		The following sections will detail the key components of our quantum algorithm, its expected computational complexity, and the significance of its implementation, underscoring its potential to reshape how we approach complex combinatorial optimization problems.
+		In this proposal, we highlight the theoretical foundation of the quantum algorithm, its potential computational advantages over classical methods, and its practical implications for solving real-world instances of the BTSP. The following sections will detail the key problem that is the BTSP, its expected computational complexity, and the significance of its implementation, underscoring its potential to reshape how we approach complex combinatorial optimization problems.
 		
 		
 		\section{Theory}
@@ -65,7 +64,7 @@
 		
 		
 		The BTSP can be represented as a graph problem.  We start with a graph, whose vertices are labelled A through D, representing a 4-city system. We define movement from one vertex to another as a walk, done through the edges connecting our vertices. We are interested in a particular walk known as a hamiltonian cycle that contains every vertex extactly once before returning to the start. Our graph also includes edge weights, we define as $ \gamma_i $.
-		The BTSP is to find the hamiltonian cycle in a graph, where the largest edge weight ("bottleneck") is minimized. This is distinct from the TSP where the combined edge weights in a given cycle is minimized. The total possible hamiltonian cycles is given by $(N-1)!$, where N is the number of nodes. We present a symmetric case in the figure,  $N_k \rightarrow N_{k+1} = N_{k+1} \rightarrow N_{k} = \gamma_i$. Thus the total possible cycles is  $(N-1)!/2$.  It is important to note that a solution to either BTSP or TSP is not unique. BTSP solutions also do not nessesarily equate to the TSP solutions. We can illustrate an example with the help of our figure. Consider all the hamiltonian cycles for a symmetric 4-city system:
+		The BTSP is to find the hamiltonian cycle in a graph, where the largest edge weight ("bottleneck") is minimized. This is distinct from the Travelling Salesman Problem (TSP) where the combined edge weights in a given cycle is minimized. The total possible hamiltonian cycles is given by $(N-1)!$, where N is the number of nodes. We present a symmetric case in the figure,  $N_k \rightarrow N_{k+1} = N_{k+1} \rightarrow N_{k} = \gamma_i$. Thus the total possible cycles is  $(N-1)!/2$.  It is important to note that a solution to either BTSP or TSP is not unique. BTSP solutions also do not nessesarily equate to the TSP solutions. We can illustrate an example with the help of our figure. Consider all the hamiltonian cycles for a symmetric 4-city system:
 		\begin{center}
 		$ A \rightarrow B \rightarrow C \rightarrow D \rightarrow A $
 		
@@ -95,10 +94,9 @@
 			$  \gamma_2 + \gamma_4 + \gamma_6 + \gamma_3 = 2 + 4 + 5 + 4 = 15$
 		\end{center}
 		
-
-		\subsection{Grover's Search Algorithm}
+		The computational complexity of the BTSP is shown to be NP-hard (reference.). Implying there is no algorithm for a solution in polynomial time. A brute-force approach would imply that we can run an algorithm in $O((N-1)!)$ time
 		
-		In 1996, Lov Grover proposed a quantum algorithm for unstructured database search, that would provide at most a quadractic speedup. This speed up can be realized for suffiently large databases, but does not provide the exponential speedup promised by other quantum algorithms. We can refer to figure 2, to see the quantum circuit representation.
+		\subsection{Grover's Search Algorithm}
 		
 		\begin{figure}[!h]
 			\centering
@@ -107,37 +105,103 @@
 			\label{fig:grovercircuit}
 		\end{figure}
 		
+		In 1996, Lov Grover proposed a quantum algorithm for unstructured database search, that would provide at most a quadractic speedup. This speed up can be realized for suffiently large databases, but does not provide the exponential speedup promised by other quantum algorithms. We can refer to figure 2, to see the quantum circuit representation.
 		A geometric representation of the algorithm as well as the two-qubit example will help us understand. 
 		
 		
 		\begin{figure}[!h]
 			\centering
 			\includegraphics[trim={0 7.5cm 0 0},clip, width=0.99\linewidth]{../grover_geometric}
-			\caption{geometric reprentation of Grover's algorithm. a) An iteration performed on an n-qubit system. b) An iteration performed on a 2-qubit system}
-			\label{fig:grovergeometric}
+			\caption{geometric reprentation of Grover's algorithm.  a) An iteration performed on an n-qubit system.  Starting from the uniform superposition $|s\rangle$, we perform a reflection over the orthogonal states of $|w\rangle$ with $U_w$. Then we perform a reflection over the superposition state $|s\rangle$ with $U_s$. we can see our new state $|x\rangle = U_sU_w|s\rangle$ is closer to the goal state $|w\rangle$. A new iteration, would imply reflecting again over $|w_\perp\rangle$ and then reflecting back over $|x\rangle$. b) An iteration performed on a 2-qubit system. Only one iteration is required to hit any goal state $|w\rangle$ }
+			\label{fig:grovergeometric}. 
 		\end{figure}
+		
+		Lets walk through one iteration of Grover's algorithm. Most quantum circuits are initialized at $|0\rangle$, then we apply the $H$ gate, this results in a uniform superposition:
+		
+		
+		$$ |s\rangle = H^{\otimes n} |0 \rangle = \frac{1}{\sqrt{2^n}} \sum_{x\in\{0,1\}^n} |x\rangle$$
+		
+	%	$$ |s\rangle_2 = H^{\otimes 2} |0 \rangle = \frac{1}{2} (|00\rangle + |01\rangle + |10\rangle + |11\rangle)$$
+		
+		The orthogonal states  to our goal state can be represented as the sum of all states not containing $|w\rangle$
+		
+		$$ |w_\perp\rangle=  \frac{1}{\sqrt{2^n -1}} \sum_{x\in\{0,1\}^n}^{x \neq w} |x\rangle$$
+		
+		From here we apply the $U_w$ gate, for our reflection over the orthogonal states. This can be thought of flipping the sign onstate $|w\rangle$ contained within $|s\rangle$. We can see the visual representation in figure 3. We then perform a similiar reflection over the original state $|s\rangle$ :
+		
+		$$ U_w|s \rangle	=  (\mathbb {I} - 2|w \rangle \langle w|) |s \rangle = |s'\rangle$$
+		$$ U_s|s' \rangle	=  (2|s \rangle \langle s| - \mathbb {I}) |s' \rangle = |s''\rangle$$
+		
+		Our $|s''\rangle$ is now closer to our goal state $|w\rangle$.  If we want to maximize our probability of measuring  $|w\rangle$, we will need to perform a number of iterations ($r$). For sufficiently large number of states, $N = 2^n$, we can make a few approximations to calculate $r$
+		\begin{equation}
+			\langle w | s \rangle = \frac{1}{\sqrt{N}} = sin \frac{\theta}{2} \approx \frac{\theta}{2}
+		\end{equation}
+		
+		
+		$$P(w) = |\langle w | s \rangle|^2 = \frac{1}{N} = sin^2 \frac{\theta}{2} $$
+		
+		$$P(w) = |\langle w |(U_sU_w)^r |s \rangle|^2 = \frac{1}{N} = sin^2 (\theta(\frac{1}{2} + r)) $$
+		
+		to maximize the probability we need P(w) = 1, so we can set the inside of the sine function to $\pi/2$:
+		$$ \theta(\frac{1}{2} + r) = \frac{\pi}{2}$$
+		
+		\begin{equation}
+			r = \frac{\pi}{2\theta} + \frac{1}{2} \approx \frac{\pi}{2\theta}
+		\end{equation}
+		
+		Using eqn. 1 to substitute $\theta$ in eqn 3, we can get an approximate result for r
+		
+		\begin{equation}
+			r \approx \frac{\pi}{4}\sqrt{N}
+		\end{equation}
+		
 		
 		
 		 %A simple example of minimizing the bottleneck travelling salesman problem (maybe with images):
-		
 		%an example of storing phases and using phase estimation
-		
 		%grover's search explanation
 		
 		\section{details of proposed experiment/calculation}
 		
-		The challenge of this project is building the oracle $U_w$, the problem can eventually be boiled down to The goal of this thesis is to obtain build a working oracle for the BTSP. After this we  
+		The goal is to implement a quantum algorithm that will calculate a solution for the BTSP in $\mathcal{O}(\sqrt{(N-1)!})$
+		
+		The challenge of this project is constructing $U_w$, this is sometimes referred to as the oracle. We gave a geometric explanation in the theory section, but lets discuss the structure of an oracle in depth. Given a function $f: \{0,1,...,N-1\} \rightarrow \{0,1\}$:
+		
+		\begin{equation}
+			U_{w}|x\rangle = (-1)^{f(x)}|x\rangle = 
+			\begin{cases}
+				-|x\rangle & \text{for  $x=w$ }\\
+				|x\rangle  & \text{for $x\neq w$}\\
+			\end{cases}       
+		\end{equation}
+		
+		We need to encode our max edge costs per cycle into the domain of our function f(x). We then need to construct a matrix, $U_w$, that it will result in a $f(x) = 1$
 		
 		\section{recources list}
-		
-		
+		\begin{enumerate}
+			\item IBM Quantum Experience (10 min/month free access)
+			\item Quantum Simulators
+		\end{enumerate}
 		
 		\section{planned schedule}
 		
-		- Oct - Dec -  Oracle building (includes research and trial and error)
-		- Jan - February -  Running it on a quantum system or simulator with analysis of results 
-		- March -> thesis writing
 		
+		\begin{enumerate}
+			\item October to December:  Oracle construction
+			\item January to February:  Running it on a quantum system or simulator with analysis of results and implementing any improvements.
+			\item  March: Thesis writing
+		\end{enumerate}
+		
+		
+		
+		\section{Acknowledgements}
+		
+		I want to express my gratitude to Dr. Matthew Choptuik for not only supervising me but also 
+		for his encouragement and support to pursue a topic that truly captivates my interest.
+		
+		\begin{thebibliography}{99}
+			
+		\end{thebibliography}
 		
 		
 	\end{document}
