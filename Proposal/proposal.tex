@@ -59,7 +59,7 @@
 		
 		\begin{figure}[!h]
 			\centering
-			\includegraphics[trim={0 0 21.9cm 0},clip, width=0.7 \linewidth]{"../4-city graphic"}
+			\includegraphics[trim={0 0 21.9cm 0},clip, width=0.7 \linewidth]{"graphics/4-city graphic"}
 			\caption{An undirected weighted graph represention of a  symmetric 4-city system.  The vertices represent cities and the edge weights represent the cost of travel. }
 			\label{fig:4-city-graphic}
 		\end{figure}		
@@ -102,12 +102,13 @@
 		\end{center}
 		
 		The computational complexity of the BTSP is shown to be NP-hard (reference.). Implying there is no algorithm for a solution in polynomial time. A brute-force approach would imply that we can run an algorithm in $O((N-1)!)$ time
+	
 		
 		\subsection{Grover's Search Algorithm}
 		
 		\begin{figure}[!h]
 			\centering
-			\includegraphics[trim={5cm 26cm 15cm 0},clip, width=0.99 \linewidth]{../grover_circuit}
+			\includegraphics[trim={5cm 26cm 15cm 0},clip, width=0.99 \linewidth]{"graphics/grover_circuit"}
 			\caption{A concise quantum circuit representation of Grover's search algorithm applied to an n-qubit system. The Hadamard $H^{\otimes n }$ gate performs a uniform superposition over all possible states $N$ ($2^n$). The $U_w$ gate marks our goal state. The $U_s$ gate amplifies the amplitude of our goal state. the $r$ exponent, refers to the number of iterations needed to maximize the amplitude. The approximate number is $\sqrt{N}$ times.}
 			\label{fig:grovercircuit}
 		\end{figure}
@@ -118,7 +119,7 @@
 		
 		\begin{figure}[!h]
 			\centering
-			\includegraphics[trim={0 7.5cm 0 0},clip, width=0.99\linewidth]{../grover_geometric}
+			\includegraphics[trim={0 7.5cm 0 0},clip, width=0.99\linewidth]{"graphics/grover_geometric"}
 			\caption{geometric reprentation of Grover's algorithm.  a) An iteration performed on an n-qubit system.  Starting from the uniform superposition $|s\rangle$, we perform a reflection over the orthogonal states of $|w\rangle$ with $U_w$. Then we perform a reflection over the superposition state $|s\rangle$ with $U_s$. we can see our new state $|x\rangle = U_sU_w|s\rangle$ is closer to the goal state $|w\rangle$. A new iteration, would imply reflecting again over $|w_\perp\rangle$ and then reflecting back over $|x\rangle$. b) An iteration performed on a 2-qubit system. Only one iteration is required to hit any goal state $|w\rangle$ }
 			\label{fig:grovergeometric}. 
 		\end{figure}
@@ -128,7 +129,7 @@
 		
 		Lets walk through one iteration of Grover's algorithm. Most quantum circuits are initialized at $|0\rangle$, then we apply the $H$ gate, this results in a uniform superposition:
 		
-		$$ |s\rangle = H^{\otimes n} |0 \rangle = \frac{1}{\sqrt{2^n}} \sum_{x\in\{0,1\}^n} |x\rangle$$
+		$$ |s\rangle = H^{\otimes n} |0^{\otimes n} \rangle = \frac{1}{\sqrt{2^n}} \sum_{x\in\{0,1\}^n} |x\rangle$$
 		
 	%	$$ |s\rangle_2 = H^{\otimes 2} |0 \rangle = \frac{1}{2} (|00\rangle + |01\rangle + |10\rangle + |11\rangle)$$
 		
@@ -143,13 +144,13 @@
 		
 		Our $|s''\rangle$ is now closer to our goal state $|w\rangle$.  If we want to maximize our probability of measuring  $|w\rangle$, we will need to perform a number of iterations ($r$). For sufficiently large number of states, $N = 2^n$, we can make a few approximations to calculate $r$
 		\begin{equation}
-			\langle w | s \rangle = \frac{1}{\sqrt{N}} = sin \frac{\theta}{2} \approx \frac{\theta}{2}
+			\langle w | s \rangle = \frac{1}{\sqrt{N}} = \sin \frac{\theta}{2} \approx \frac{\theta}{2}
 		\end{equation}
 		
 		
-		$$P(w) = |\langle w | s \rangle|^2 = \frac{1}{N} = sin^2 \frac{\theta}{2} $$
+		$$P(w) = |\langle w | s \rangle|^2 = \frac{1}{N} = \sin^2 \frac{\theta}{2} $$
 		
-		$$P(w) = |\langle w |(U_sU_w)^r |s \rangle|^2 = \frac{1}{N} = sin^2 (\theta(\frac{1}{2} + r)) $$
+		$$P(w) = |\langle w |(U_sU_w)^r |s \rangle|^2 = \frac{1}{N} = \sin^2 (\theta(\frac{1}{2} + r)) $$
 		
 		to maximize the probability we need P(w) = 1, so we can set the inside of the sine function to $\pi/2$:
 		$$ \theta \left(\frac{1}{2} + r \right) = \frac{\pi}{2}$$
@@ -164,6 +165,23 @@
 			r \approx \frac{\pi}{4}\sqrt{N}
 		\end{equation}
 		
+		
+		\subsection{Quantum Phase Estimation Algorithm}
+		
+		Given an eigenstate $|\lambda \rangle$ of a unitary operator $U$, the phase estimation algorithm approximates a value for $\phi \in [0,1)$ satisfying:
+		
+		\begin{equation}
+		 U |\lambda \rangle = e^{2\pi i \phi} |\lambda \rangle
+	    \end{equation}
+		\begin{figure}[!h]
+			\centering
+			\includegraphics[trim={0 13cm 10cm 0},clip, width=0.99 \linewidth]{"graphics/phasr_circuit"}
+			\caption{a quantum circuit representation of the phase estimation algorithm. $ U |\lambda \rangle = e^{2\pi i \phi} |\lambda \rangle $, we can  approximate a value for $\phi \in [0,1)$ . The  Using the Hadamard gate, we observe a uniform superposition over $n$ qubits. By performing the apply a controlled$-U$ operation qubit by qubit for n-qubit system, w}
+			\label{fig:phasrcircuit}
+		\end{figure}
+		
+		
+		Let's walk through through the quantum circuit in figure 4, to understand the inner workings of this algorithm.		
 		
 		
 		 %A simple example of minimizing the bottleneck travelling salesman problem (maybe with images):
