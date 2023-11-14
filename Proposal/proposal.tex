@@ -181,21 +181,20 @@
 		$$ F_N |x \rangle = \frac{1}{\sqrt{2^n}} \bigotimes_{j=1}^n (|0\rangle +  e^{2\pi i x k 2^{-j}} |1\rangle)$$
 		
 		$$= \frac{1}{\sqrt{2^n}} ((|0\rangle + \omega_1|1\rangle)  \otimes(|0\rangle + \omega_2|1\rangle)\otimes ... \otimes(|0\rangle + \omega_n|1\rangle))$$
+	     \end{center}
+	     
+		\begin{eqnarray*}
+		\omega_1 &=& e^{2\pi i x 2^{-1}} =  e^{2\pi i (0.x_n)}\\
+		\omega_2 &=& e^{2\pi i x 2^{-2}} =  e^{2\pi i (0.x_{n-1}x_n)}\\
+		...\\
+		\omega_n &=& e^{2\pi i x 2^{-n}} =  e^{2\pi i (0.x_1...x_n)}
+		\end{eqnarray*}
 	    
-	%	\begin{align}
-		$\omega_1 = e^{2\pi i x 2^{-1}} =  e^{2\pi i (0.x_n)}$
 		
-		$\omega_2 = e^{2\pi i x 2^{-2}} =  e^{2\pi i (0.x_{n-1}x_n)}$
-		
-		$...$
-		
-		$\omega_n = e^{2\pi i x 2^{-n}} =  e^{2\pi i (0.x1...x_n)}$
-	%	\end{align}
-		
-		An important characteristic of the $w_j$ is the bit shift occuring in the exponent. if we look at $w_1$, the exponent has a factor $x 2^{-1}$, which is equivalent to one right bit shift $x_1...x_{n-1}.x_n$.  We know that integer multiples of the exponent would imply full rotations returning to the same point thus we can ignore all the values on the left hand side of the decimal. 
+		An important characteristic of the $w_j$ is the bit shift occuring in the exponent. if we look at $w_1$, the exponent has a factor $x 2^{-1}$, which is equivalent to one right bit shift: $x_1...x_{n-1}.x_n$. Integer multiples of the exponent would imply full rotations returning to the same point thus we can ignore all the values on the left hand side of the decimal and we are left with $0.x_n$. 
 		
 		
-	    \end{center}
+	    
 		
 		  Given an eigenstate $|\lambda \rangle$ of a unitary operator $U$, the phase estimation algorithm approximates a value for $\phi \in [0,1)$ satisfying:
 		
