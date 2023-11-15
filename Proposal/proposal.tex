@@ -5,6 +5,7 @@
 \usepackage{graphicx}% Enhanced capability for dealing with figures
 \usepackage{dcolumn}% Align table columns on decimal point.
 \usepackage{bm}% bold math.
+\usepackage{amsmath}
 % The \begin{document} command sets the start of the RevTeX commands.
 	
 	\begin{document}
@@ -59,7 +60,7 @@
 		
 		\begin{figure}[!h]
 			\centering
-			\includegraphics[trim={0 0 21.9cm 0},clip, width=0.7 \linewidth]{"graphics/4-city graphic"}
+			\includegraphics[trim={0 0 21.9cm 0},clip, width=0.7 \linewidth]{"graphics/4-city"}
 			\caption{An undirected weighted graph represention of a  symmetric 4-city system.  The vertices represent cities and the edge weights represent the cost of travel. }
 			\label{fig:4-city-graphic}
 		\end{figure}		
@@ -108,7 +109,7 @@
 		
 		\begin{figure}[!h]
 			\centering
-			\includegraphics[trim={5cm 26cm 15cm 0},clip, width=0.99 \linewidth]{"graphics/grover_circuit"}
+			\includegraphics[trim={4.5cm 26cm 15cm 0},clip, width=0.99 \linewidth]{"graphics/grov_circ"}
 			\caption{A concise quantum circuit representation of Grover's search algorithm applied to an n-qubit system. The Hadamard $H^{\otimes n }$ gate performs a uniform superposition over all possible states $N$ ($2^n$). The $U_w$ gate marks our goal state. The $U_s$ gate amplifies the amplitude of our goal state. the $r$ exponent, refers to the number of iterations needed to maximize the amplitude. The approximate number is $\sqrt{N}$ times.}
 			\label{fig:grovercircuit}
 		\end{figure}
@@ -119,13 +120,10 @@
 		
 		\begin{figure}[!h]
 			\centering
-			\includegraphics[trim={0 7.5cm 0 0},clip, width=0.99\linewidth]{"graphics/grover_geometric"}
-			\caption{geometric reprentation of Grover's algorithm.  a) An iteration performed on an n-qubit system.  Starting from the uniform superposition $|s\rangle$, we perform a reflection over the orthogonal states of $|w\rangle$ with $U_w$. Then we perform a reflection over the superposition state $|s\rangle$ with $U_s$. we can see our new state $|x\rangle = U_sU_w|s\rangle$ is closer to the goal state $|w\rangle$. A new iteration, would imply reflecting again over $|w_\perp\rangle$ and then reflecting back over $|x\rangle$. b) An iteration performed on a 2-qubit system. Only one iteration is required to hit any goal state $|w\rangle$ }
-			\label{fig:grovergeometric}. 
+			\includegraphics[trim={0 7.5cm 0 0},clip, width=0.99\linewidth]{"graphics/grov_geom"}
+			\caption{geometric reprentation of Grover's algorithm.  a) An iteration performed on an n-qubit system.  Starting from the uniform superposition $|s\rangle$, we perform a reflection over the orthogonal states of $|w\rangle$ with $U_w$. Then we perform a reflection over the superposition state $|s\rangle$ with $U_s$. we can see our new state $|x\rangle = U_sU_w|s\rangle$ is closer to the goal state $|w\rangle$. A new iteration, would imply reflecting again over $|w_\perp\rangle$ and then reflecting back over $|x\rangle$. b) An iteration performed on a 2-qubit system. Only one iteration is required to hit any goal state $|w\rangle$. }
+			\label{fig:grovergeometric}
 		\end{figure}
-		
-		
-		\textbf{do i really need a two - qubit example in the figure? I dont refer to it in the text below at all. The kets are also not generating properly in fig 2, 3. Need to fix}
 		
 		Lets walk through one iteration of Grover's algorithm. Most quantum circuits are initialized at $|0\rangle$, then we apply the $H$ gate, this results in a uniform superposition:
 		
@@ -196,7 +194,7 @@
 		
 		
 	    
-		Let's discuss the phase estimation problem: Given an eigenstate $|\lambda \rangle$ of a unitary operator $U$, we would like a good approximation  for $\phi \in [0,1)$ satisfying:
+		Let's discuss the phase estimation problem. Given an eigenstate $|\lambda \rangle$ of a unitary operator $U$, we want to calculate a good approximation  for $\phi \in [0,1)$ satisfying:
 		
 		\begin{equation}
 		 U |\lambda \rangle = e^{2\pi i \phi} |\lambda \rangle
@@ -207,7 +205,7 @@
 	    
 		\begin{figure}[!h]
 			\centering
-			\includegraphics[trim={0 13cm 10cm 0},clip, width=0.99 \linewidth]{"graphics/phasr_circuit"}
+			\includegraphics[trim={1cm 12cm 11cm 0},clip, width=0.99 \linewidth]{"graphics/phase_circ"}
 			\caption{a quantum circuit representation of the phase estimation algorithm. $ U |\lambda \rangle = e^{2\pi i \phi} |\lambda \rangle $, we can  approximate a value for $\phi \in [0,1)$ . The  Using the Hadamard gate, we observe a uniform superposition over $n$ qubits. By performing the apply a controlled$-U$ operation qubit by qubit for n-qubit system, w}
 			\label{fig:phasrcircuit}
 		\end{figure}
@@ -225,12 +223,12 @@
 		 &=&\frac{1}{\sqrt{2}}( |0 \rangle + e^{2\pi i \phi}|1 \rangle)\otimes |\lambda\rangle
 		\end{eqnarray*}
 		
-		We can see the eigenstate after the $CU$ operation is left unchanged. the phase has been encoded into the control qubit instead, this result is due to the phase kickback (reference). We can reuse our eigenstate for the next qubit. Consecutive qubits have double the amount of $CU$ operators as the previous, thus squaring the eigenvalue each time:
+		We can see the eigenstate after the $CU$ operation is left unchanged. the phase has been encoded into the control qubit instead, this result is due to the phase kickback (reference). Thus, we can reuse our eigenstate for the next qubit. Consecutive qubits have double the amount of $CU$ operators as the previous, thus squaring the eigenvalue each time:
 		
 		\begin{eqnarray*}
 		\text{qubit\textsubscript{n-1}} &:&   |0 \rangle + e^{2\pi i \phi 2}|1 \rangle \\
 		...\\
-		\text{qubit\textsubscript{n}} &:&   |0 \rangle + e^{2\pi i \phi 2^n}|1 \rangle
+		\text{qubit\textsubscript{1}} &:&   |0 \rangle + e^{2\pi i \phi 2^n}|1 \rangle
 	    \end{eqnarray*}
 		
 		We know that the value of $\phi < 1$. We can represent this in binary notation  in the form $0.\phi_1\phi_2...\phi_n$:
@@ -247,7 +245,7 @@
 			\text{qubit\textsubscript{1}} &:&   |0 \rangle + e^{2\pi i (0.\phi_n)}|1 \rangle
 		\end{eqnarray*}
 	
-		If we look at the form of our first register after the $CU$ operations, it will resemble the result of performing the QFT we saw in equation 5. But here we have a state $|\phi\rangle$, so our $\omega_j$ are:
+		If we look at the form of first register after all the $CU$ operations in the state $|\alpha\rangle$, it will resemble the result of performing the QFT we saw in equation 5. Where our $\omega_j$ are:
 		
 		\begin{eqnarray*}
 			\omega_1 &=& e^{2\pi i x 2^{-1}} =  e^{2\pi i (0.\phi_n)}\\
@@ -268,14 +266,16 @@
 		
 		\section{details of proposed experiment/calculation}
 		
-		The goal is to implement a quantum algorithm that will calculate a solution for the BTSP in $\mathcal{O}(\sqrt{(N-1)!})$. Ideally we are able to leverage the tools described in the previous section. 
+		\textit{currently rewriting this section}
+	
+		%The goal is to implement a quantum algorithm that will calculate a solution for the BTSP in $\mathcal{O}(\sqrt{(N-1)!})$. Ideally we are able to leverage the tools described in the previous section. 
 		
-		We need it to calculate all the hamiltonian cycles and find a solution where the largest edge weight is minimized. A strategy includes encoding the largest edge weights of the hamiltonian cycles as phases. Then using the phase estimation algorithm to find all these phases. And finally use grover's algorithm to find the smallest phase.
+		%We need it to calculate all the hamiltonian cycles and find a solution where the largest edge weight is minimized. A strategy includes encoding the largest edge weights of the hamiltonian cycles as phases. Then using the phase estimation algorithm to find all these phases. And finally use grover's algorithm to find the smallest phase.
 		
-		One limitation includes the fact that the edge weights need to be normalized by $2\pi$.  We cannot have disconnected cities, 
-		In this paper, we can see this strategy implemented that resulted in a $N^N$ unitary matrix where $(N-1)!$ of those eigenvalues were associated with the hamiltonian cycles. In our case, we need to construct a matrix that 
+		%One limitation includes the fact that the edge weights need to be normalized by $2\pi$.  We cannot have disconnected cities, 
+		%In this paper, we can see this strategy implemented that resulted in a $N^N$ unitary matrix where $(N-1)!$ of those eigenvalues were associated with the hamiltonian cycles. In our case, we need to construct a matrix that 
 		
-		 To then be estimated with the phase algorithm.  might be a key to realizing all the possible hamiltonian cycles. From there we can use grover's algorithm to find the minimum. The challenge of this project is constructing $U_w$, this is sometimes referred to as the oracle. We gave a geometric explanation in the theory section, but lets discuss the structure of an oracle in depth. Given a function $f: \{0,1,...,N-1\} \rightarrow \{0,1\}$:
+		 %To then be estimated with the phase algorithm.  might be a key to realizing all the possible hamiltonian cycles. From there we can use grover's algorithm to find the minimum. The challenge of this project is constructing $U_w$, this is sometimes referred to as the oracle. We gave a geometric explanation in the theory section, but lets discuss the structure of an oracle in depth. Given a function $f: \{0,1,...,N-1\} \rightarrow \{0,1\}$:
 		
 		\begin{equation}
 			U_{w}|x\rangle = (-1)^{f(x)}|x\rangle = 
@@ -310,6 +310,67 @@
 		
 		I want to express my gratitude to Dr. Matthew Choptuik for not only supervising me but also 
 		for his encouragement and support to pursue a topic that truly captivates my interest.
+		
+		\section{Appendix}
+		
+		some basics on quantum computing to go here, plus details on the common used dirac notation, gates, etc:
+		single qubit states: 
+		\begin{align*}	
+			|0\rangle &= \begin{bmatrix}
+				1 \\
+				0 \\
+			\end{bmatrix}, 
+		    |1\rangle = \begin{bmatrix}
+				0 \\
+				1 \\
+			\end{bmatrix}
+		\end{align*}
+		
+		2-qubit states: 
+		\begin{align*}	
+			|00\rangle &= |0\rangle \otimes |0\rangle = \begin{bmatrix}
+				1 \\
+				0 \\
+				0 \\
+				0 \\
+			\end{bmatrix}, 
+			|01\rangle = |0\rangle \otimes |1\rangle = \begin{bmatrix}
+				0 \\
+				1 \\
+				0 \\
+				0 \\
+			\end{bmatrix} 			
+		\end{align*}
+		
+		\begin{align*}	
+			|00\rangle &= |1\rangle \otimes |0\rangle = \begin{bmatrix}
+				0 \\
+				0 \\
+				1 \\
+				0 \\
+			\end{bmatrix}, 
+			|01\rangle = |1\rangle \otimes |1\rangle = \begin{bmatrix}
+				0 \\
+				0 \\
+				0 \\
+				1 \\
+			\end{bmatrix}		
+		\end{align*}
+		
+		
+		multiple qubit states are achieved through tensor products of single states.
+		
+		Hadamard Gate: commonly used to create a uniform superpositon:
+		
+		\begin{align*}	
+			H &=\frac{1}{\sqrt{2}} \begin{bmatrix}
+				1 & 1 \\
+				1 &-1 \\
+			\end{bmatrix}
+		\end{align*}
+		
+		
+		
 		
 		\begin{thebibliography}{99}
 			
