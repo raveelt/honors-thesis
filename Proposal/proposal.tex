@@ -173,15 +173,16 @@
 		
 		$$ F_N |x \rangle = \frac{1}{\sqrt{N}} \sum_{k=0}^{N-1} e^{2\pi i x k N^{-1}} |k\rangle $$
 		
-		let's represent this in binary notation and decompose it into a tensor product for some clarification.
-		
+		let's represent this in binary notation and decompose it into a tensor product. We can represent $|x\rangle$ as a string of bits, and the QFT as a tensor product of single qubit basis states:
+				
 		$$|x\rangle = |x_1x_2 ... x_n\rangle =  |x_1\rangle \otimes |x_2\rangle \otimes ... \otimes |x_n\rangle$$
 		
-		\begin{center}
-		$$ F_N |x \rangle = \frac{1}{\sqrt{2^n}} \bigotimes_{j=1}^n (|0\rangle +  e^{2\pi i x k 2^{-j}} |1\rangle)$$
+		\begin{eqnarray}
+		F_N |x \rangle = \frac{1}{\sqrt{2^n}} \bigotimes_{j=1}^n (|0\rangle +  e^{2\pi i x k 2^{-j}} |1\rangle)
+		\end{eqnarray}
 		
 		$$= \frac{1}{\sqrt{2^n}} ((|0\rangle + \omega_1|1\rangle)  \otimes(|0\rangle + \omega_2|1\rangle)\otimes ... \otimes(|0\rangle + \omega_n|1\rangle))$$
-	     \end{center}
+	    
 	     
 		\begin{eqnarray*}
 		\omega_1 &=& e^{2\pi i x 2^{-1}} =  e^{2\pi i (0.x_n)}\\
@@ -195,12 +196,15 @@
 		
 		
 	    
-		
-		  Given an eigenstate $|\lambda \rangle$ of a unitary operator $U$, the phase estimation algorithm approximates a value for $\phi \in [0,1)$ satisfying:
+		Let's discuss the phase estimation problem: Given an eigenstate $|\lambda \rangle$ of a unitary operator $U$, we would like a good approximation  for $\phi \in [0,1)$ satisfying:
 		
 		\begin{equation}
 		 U |\lambda \rangle = e^{2\pi i \phi} |\lambda \rangle
 	    \end{equation}
+	    
+	    the phase estimation algorithm uses two registers of qubits. The first one will be our control qubits that determine the precision of our approximation. The second register will be a set of $m$ qubits initialized to an eigenstate $|\lambda\rangle$.
+	    
+	    
 		\begin{figure}[!h]
 			\centering
 			\includegraphics[trim={0 13cm 10cm 0},clip, width=0.99 \linewidth]{"graphics/phasr_circuit"}
@@ -209,7 +213,53 @@
 		\end{figure}
 		
 		
-		Let's walk through through the quantum circuit in figure 4, to understand the inner workings of this algorithm.	 Our initialized state is $|0^{\otimes n} \lambda\rangle$. From here we perform a the same operation we find in 
+		Let's walk through through the quantum circuit in figure 4, to understand the inner workings of this algorithm.	 Our initialized state is $|0^{\otimes n} \lambda\rangle$. From here we perform a the same operation we find in equation 1, where all the qubits in the first register are set to a uniform superposition on all states $2^n$. The next portion of the algorithm involves applying controlled gates based on the unitary operator $U$. The function of these $CU$ gates is to apply the operator $U$ on $|\lambda\rangle$ if the control qubit is in the state $|1\rangle$. We can have a look at the affect on the n\textsuperscript{th} qubit, after it has been prepared in a superposition by the Hadamard gate:
+		
+		$$ \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) \otimes |\lambda\rangle = |0 \lambda \rangle + |1 \lambda\rangle$$
+		
+		Applying $CU$ and factoring out the eigenstate:
+		
+		\begin{eqnarray*}
+		 CU \frac{1}{\sqrt{2}}(|0 \lambda \rangle + |1 \lambda\rangle) &=&  \frac{1}{\sqrt{2}}(CU|0 \lambda \rangle + CU|1 \lambda\rangle )\\
+		 &=& \frac{1}{\sqrt{2}}(|0 \lambda \rangle + e^{2\pi i \phi}|1 \lambda\rangle)\\
+		 &=&\frac{1}{\sqrt{2}}( |0 \rangle + e^{2\pi i \phi}|1 \rangle)\otimes |\lambda\rangle
+		\end{eqnarray*}
+		
+		We can see the eigenstate after the $CU$ operation is left unchanged. the phase has been encoded into the control qubit instead, this result is due to the phase kickback (reference). We can reuse our eigenstate for the next qubit. Consecutive qubits have double the amount of $CU$ operators as the previous, thus squaring the eigenvalue each time:
+		
+		\begin{eqnarray*}
+		\text{qubit\textsubscript{n-1}} &:&   |0 \rangle + e^{2\pi i \phi 2}|1 \rangle \\
+		...\\
+		\text{qubit\textsubscript{n}} &:&   |0 \rangle + e^{2\pi i \phi 2^n}|1 \rangle
+	    \end{eqnarray*}
+		
+		We know that the value of $\phi < 1$. We can represent this in binary notation  in the form $0.\phi_1\phi_2...\phi_n$:
+		
+		$$\phi = \sum_{j=1}^n \phi_j 2^{-j}$$
+		
+		If we have another look at the control qubits using binary notation for $\phi$ instead, we can see the result of the multiple $CU$ operations simply results in right bit shifts:
+		
+		
+		\begin{eqnarray*}
+			\text{qubit\textsubscript{n}} &:&   |0 \rangle +e^{2\pi i (0.\phi_1\phi_2...\phi_n)}|1 \rangle  \\
+			\text{qubit\textsubscript{n-1}} &:&   |0 \rangle + e^{2\pi i (0.\phi_2...\phi_n)}|1 \rangle \\
+			...\\
+			\text{qubit\textsubscript{1}} &:&   |0 \rangle + e^{2\pi i (0.\phi_n)}|1 \rangle
+		\end{eqnarray*}
+	
+		If we look at the form of our first register after the $CU$ operations, it will resemble the result of performing the QFT we saw in equation 5. But here we have a state $|\phi\rangle$, so our $\omega_j$ are:
+		
+		\begin{eqnarray*}
+			\omega_1 &=& e^{2\pi i x 2^{-1}} =  e^{2\pi i (0.\phi_n)}\\
+			\omega_2 &=& e^{2\pi i x 2^{-2}} =  e^{2\pi i (0.\phi_{n-1}\phi_n)}\\
+			...\\
+			\omega_n &=& e^{2\pi i x 2^{-n}} =  e^{2\pi i (0.\phi_1...\phi_n)}
+		\end{eqnarray*}
+		
+		simply performing the inverse QFT will give us $|\phi\rangle =  |\phi_1\phi_2 ... \phi_n\rangle$.  We can immediately see the approximation is limited by the number of qubits in the first register. A simple strategy would be to increase the number of qubits, however this would also increase computational cost as we double our use of $CU$ gates for each additional qubit.
+		
+		
+		
 		
 		
 		 %A simple example of minimizing the bottleneck travelling salesman problem (maybe with images):
@@ -218,9 +268,14 @@
 		
 		\section{details of proposed experiment/calculation}
 		
-		The goal is to implement a quantum algorithm that will calculate a solution for the BTSP in $\mathcal{O}(\sqrt{(N-1)!})$
+		The goal is to implement a quantum algorithm that will calculate a solution for the BTSP in $\mathcal{O}(\sqrt{(N-1)!})$. Ideally we are able to leverage the tools described in the previous section. 
 		
-		The challenge of this project is constructing $U_w$, this is sometimes referred to as the oracle. We gave a geometric explanation in the theory section, but lets discuss the structure of an oracle in depth. Given a function $f: \{0,1,...,N-1\} \rightarrow \{0,1\}$:
+		We need it to calculate all the hamiltonian cycles and find a solution where the largest edge weight is minimized. A strategy includes encoding the largest edge weights of the hamiltonian cycles as phases. Then using the phase estimation algorithm to find all these phases. And finally use grover's algorithm to find the smallest phase.
+		
+		One limitation includes the fact that the edge weights need to be normalized by $2\pi$.  We cannot have disconnected cities, 
+		In this paper, we can see this strategy implemented that resulted in a $N^N$ unitary matrix where $(N-1)!$ of those eigenvalues were associated with the hamiltonian cycles. In our case, we need to construct a matrix that 
+		
+		 To then be estimated with the phase algorithm.  might be a key to realizing all the possible hamiltonian cycles. From there we can use grover's algorithm to find the minimum. The challenge of this project is constructing $U_w$, this is sometimes referred to as the oracle. We gave a geometric explanation in the theory section, but lets discuss the structure of an oracle in depth. Given a function $f: \{0,1,...,N-1\} \rightarrow \{0,1\}$:
 		
 		\begin{equation}
 			U_{w}|x\rangle = (-1)^{f(x)}|x\rangle = 
@@ -230,11 +285,6 @@
 			\end{cases}       
 		\end{equation}
 		
-		\textbf{how would this oracle change, since there are no unique solutions as illustrated in the theory section?}
-		
-		\textbf{this section needs a lot more work, hoping it is more in depth once i understand QFT / phase estimation. This would imply the theory section would grow as well.}
-	
-		\textbf{the discussion of $U_w$ might be better suited in the theory section?}
 		
 		%We need to encode our max edge costs per cycle into the domain of our function f(x). We then need to construct a matrix, $U_w$, that it will result in a $f(x) = 1$
 		
