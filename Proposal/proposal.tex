@@ -370,7 +370,7 @@
 		\end{align*}
 		
 		
-		multiple qubit states are achieved through tensor products of single states.
+		Multiple qubit states are achieved through tensor products of single states.  an $n$- qubit system will span a $2^n$ Hilbert space. We can see with the $2$-qubit system we have $4$ states
 		
 		Hadamard Gate: commonly used to create a uniform superpositon:
 		
@@ -381,8 +381,22 @@
 			\end{bmatrix}
 		\end{align*}
 		
+		\begin{align*}	
+		H|0\rangle = \frac{1}{\sqrt{2}} (|0\rangle + |1\rangle) = |+\rangle\\
+		H|1\rangle = \frac{1}{\sqrt{2}} (|0\rangle - |1\rangle) = |-\rangle
+		\end{align*}
+			
+		We can refer to equation 1 to see the result of Hadamard on an $n$-qubit system. Let's have a look at the Hadamard gate applied to $|00\rangle$:
 		
+		\begin{align*}	
+		H^{\otimes 2}|00\rangle &=& H|0\rangle H|0\rangle\\
+		&=& |+\rangle|+\rangle\\
+		&=& (\frac{1}{\sqrt{2}} (|0\rangle + |1\rangle))(\frac{1}{\sqrt{2}} (|0\rangle + |1\rangle))\\
+		&=& \frac{1}{2} (|0\rangle + |1\rangle)(|0\rangle + |1\rangle)\\
+		&=& \frac{1}{2} (|00\rangle + |01\rangle + |10\rangle + |11\rangle)\\
+		\end{align*}
 		
+		Here we can see why Dirac notation is powerful as it simplifies tensor products and removes any need for matrix representation.
 		
 		\begin{thebibliography}{99}
 			
