@@ -6,6 +6,8 @@
 \usepackage{dcolumn}% Align table columns on decimal point.
 \usepackage{bm}% bold math.
 \usepackage{amsmath}
+ \usepackage[normalem]{ulem}
+ \useunder{\uline}{\ul}{}
 % The \begin{document} command sets the start of the RevTeX commands.
 	
 	\begin{document}
@@ -266,45 +268,55 @@
 		
 		\section{details of proposed experiment/calculation}
 		
-		\textit{currently rewriting this section}
-	
-		%The goal is to implement a quantum algorithm that will calculate a solution for the BTSP in $\mathcal{O}(\sqrt{(N-1)!})$. Ideally we are able to leverage the tools described in the previous section. 
 		
-		%We need it to calculate all the hamiltonian cycles and find a solution where the largest edge weight is minimized. A strategy includes encoding the largest edge weights of the hamiltonian cycles as phases. Then using the phase estimation algorithm to find all these phases. And finally use grover's algorithm to find the smallest phase.
+		Using the tools we explore in the theory section, i propose to create a quantum algorithm that will calculate a solution for the BTSP in $\mathcal{O}(\sqrt{(N-1)!})$. Solving the BTSP can be broken down into two steps:
 		
-		%One limitation includes the fact that the edge weights need to be normalized by $2\pi$.  We cannot have disconnected cities, 
-		%In this paper, we can see this strategy implemented that resulted in a $N^N$ unitary matrix where $(N-1)!$ of those eigenvalues were associated with the hamiltonian cycles. In our case, we need to construct a matrix that 
-		
-		 %To then be estimated with the phase algorithm.  might be a key to realizing all the possible hamiltonian cycles. From there we can use grover's algorithm to find the minimum. The challenge of this project is constructing $U_w$, this is sometimes referred to as the oracle. We gave a geometric explanation in the theory section, but lets discuss the structure of an oracle in depth. Given a function $f: \{0,1,...,N-1\} \rightarrow \{0,1\}$:
-		
-		\begin{equation}
-			U_{w}|x\rangle = (-1)^{f(x)}|x\rangle = 
-			\begin{cases}
-				-|x\rangle & \text{for  $x=w$ }\\
-				|x\rangle  & \text{for $x\neq w$}\\
-			\end{cases}       
-		\end{equation}
-		
-		
-		%We need to encode our max edge costs per cycle into the domain of our function f(x). We then need to construct a matrix, $U_w$, that it will result in a $f(x) = 1$
-		
-		\section{recources list}
 		\begin{enumerate}
-			\item IBM Quantum Experience (10 min/month free access)
-			\item Quantum Simulators
+			\item Finding all hamiltonian cycles.
+			\item Comparing the max edge weight contributions and finding a minimum.
 		\end{enumerate}
 		
-		\textbf{might not need this section, dont need recource request to conduct my thesis}
+		There is a strategy of finding the Hamiltonian cycles through the phase estimation algorithm.  Outlined in "paper 2018", they store edge weights as phases and create an $N^N$ size diagonal matrix in which $(N-1)!$ entries correspond to the hamiltonian cycles. Their approach is great, however it is not easy to see each edge weight contribution in the cycle. For the BTSP we need to see the max edge weight contribution, thus I hope to leverage their approach and construct a strategy to find it in each Hamiltonian cycle.
+		
+	   Once all the max edge weights are available, the next challenge is using Grover's algorithm to find the minimum. We need to construct a  $U_w$. Given a function $f: \{0,1,...,N-1\} \rightarrow \{0,1\}$:
+	   
+	   \begin{equation}
+	   	U_{w}|x\rangle = (-1)^{f(x)}|x\rangle = 
+	   	\begin{cases}
+	   		-|x\rangle & \text{for  $x=w$ }\\
+	   		|x\rangle  & \text{for $x\neq w$}\\
+	   	\end{cases}       
+	   \end{equation}
+		
+		Here we need to map our minimum edge weights to the inputs of our function $f$ and devise a strategy where the minimum edge weight input would output a value of $1$. If both of these steps are accomplished, we will have ourselves a quantum algorithm for the BTSP. We can then test this algorithm on open source Quantum Simulators or even possibly use IBM Quantum Experience (10 min/month free access). We can test the efficiency, errors and drawbacks of our algorithm in the process. We can then implement improvements and test again.
+		
+		%One limitation includes the fact that the edge weights need to be normalized by $2\pi$.  We cannot have disconnected cities,  
+		
+		
+		%\section{recources list}
+		%\begin{enumerate}
+		%	\item IBM Quantum Experience (10 min/month free access)
+		%	\item Quantum Simulators
+		% \end{enumerate}
+		
+		% \textbf{might not need this section, dont need recource request to conduct my thesis}
 		\section{planned schedule}
 		
 		
-		\begin{enumerate}
-			\item October to December:  Oracle construction
-			\item January to February:  Running it on a quantum system or simulator with analysis of results and implementing any improvements.
-			\item  March: Thesis writing
-		\end{enumerate}
+	%	\begin{enumerate}
+		%	\item October to January : Research and Algorithm Construction 
+			%\item February:  Running it on a quantum system or simulator with analysis of results and implementing any improvements.
+			%\item  March: Thesis writing
+		%\end{enumerate}
 		
-		
+		\begin{table}[!h]
+			\begin{tabular}{ll}
+				\textbf{Timeline}  & \textbf{Plan}                       \\
+				October - January  & Research and Algorithm Construction \\
+				January - February & Algorithm Testing and Improvements  \\
+				March              & Thesis Writing                     
+			\end{tabular}
+		\end{table}
 		
 		\section{Acknowledgements}
 		
