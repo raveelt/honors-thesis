@@ -6,8 +6,6 @@
 \usepackage{dcolumn}% Align table columns on decimal point.
 \usepackage{bm}% bold math.
 \usepackage{amsmath}
- \usepackage[normalem]{ulem}
- \useunder{\uline}{\ul}{}
 % The \begin{document} command sets the start of the RevTeX commands.
 	
 	\begin{document}
@@ -31,10 +29,8 @@
 			%before the oral presentation is scheduled.  Make sure your supervisor has
 			%a chance to read it over before you submit it.
 			
-			the Bottleneck Travelling Salesman Problem is an NP-Hard optimization problem. The implication being
-			there exists no solution in polynomial time.  We propose an algorithm to provide a 
-			quadratic speedup using the grover's quantum search algorthim as the basis. We will test this algorithm on either
-			real quantum hardware or simulators, implement improvements and discuss our findings.
+			the Bottleneck Travelling Salesman Problem (BTSP) stands as an NP-Hard optimization problem, suggesting a lack of solutions in polynomial time.
+			With a complexity of $(N-1)!$ for $N$ cities, the need for a more efficient solution becomes evident. In response, we propose the development of an algorithm rooted in quantum phase estimation and Grover's algorithm, aiming to provide a solution within the improved time frame of $\sqrt{(N-1)!}$. To validate the efficacy of our proposed quantum algorithm, testing will be conducted on simulators and potentially real quantum hardware. Subsequent to the experimental phase and implementation of enhancements, we will present our findings and insights gained. The research doesn't just aim to offer a quantum-powered solution to the BTSP but also adds to the conversation about how quantum algorithms can change how we solve tough optimization problems.
 			
 		\end{abstract}
 		
@@ -51,7 +47,7 @@
 		
 		Our approach is to capitalize on the inherent quantum parallelism, as well as the unique feature of phase encoding in quantum computing. By exploiting these phenomena, we aim to encode and manipulate the costs associated with various routes efficiently. Additionally, the utilization of Grover's search algorithm as a central component of our quantum approach significantly expedites the search for the optimal solution.
 		
-		In this proposal, our primary objective is to shed light on the theoretical foundation of the quantum algorithm, its potential computational advantages over classical methods. Through this research, we aim to work towards a clear understanding of these aspects. The following sections will detail the BTSP, its expected computational complexity, Grover's algorithm and the significance of its implementation.
+		In this proposal, our primary objective is to shed light on the theoretical foundation of the quantum algorithm, its potential computational advantages over classical methods. Through this research, we aim to work towards a clear understanding of these aspects. The following sections will detail the BTSP and its expected computational complexity,  Grover's algorithm, phase estimation algorithm and their respective significance of implementation.
 		
 		\textbf{This section in the examples was typically a page, needs more substance. Maybe elaborating on the practical examples a little more. Dont love last paragraph} 
 		
@@ -116,8 +112,7 @@
 			\label{fig:grovercircuit}
 		\end{figure}
 		
-		In 1996, Lov Grover proposed a quantum algorithm for unstructured database search, that would provide at most a quadractic speedup (need ref). This speed up can be realized for suffiently large databases, but does not provide the exponential speedup promised by other quantum algorithms. We can refer to figure 2, to see the quantum circuit representation.
-		A geometric representation of the algorithm as well as the two-qubit example will help us understand. 
+		In 1996, Lov Grover proposed a quantum algorithm for unstructured database search, where an $N$ sized list could be searched in $\sqrt{N}$ time \cite{grover1996fast}. This speed up can be realized for suffiently large databases, but does not provide the exponential speedup promised by other quantum algorithms. We can refer to FIG. \ref{fig:grovercircuit}, to see the quantum circuit representation. We will use the geometric representation of the algorithm shown in FIG. \ref{fig:grovergeometric}, to aid our understanding of the algorithm.  
 		
 		
 		\begin{figure}[!h]
@@ -202,7 +197,7 @@
 		 U |\lambda \rangle = e^{2\pi i \phi} |\lambda \rangle
 	    \end{equation}
 	    
-	    the phase estimation algorithm uses two registers of qubits. The first one will be our control qubits that determine the precision of our approximation. The second register will be a set of $m$ qubits initialized to an eigenstate $|\lambda\rangle$.
+	    the phase estimation algorithm uses two registers of qubits. The first one will be a set of $n$ control qubits that determine the precision of our approximation. The second register will be a set of $m$ qubits initialized to an eigenstate $|\lambda\rangle$.
 	    
 	    
 		\begin{figure}[!h]
@@ -276,7 +271,7 @@
 			\item Comparing the max edge weight contributions and finding a minimum.
 		\end{enumerate}
 		
-		There is a strategy of finding the Hamiltonian cycles through the phase estimation algorithm.  Outlined in "paper 2018", they store edge weights as phases and create an $N^N$ size diagonal matrix in which $(N-1)!$ entries correspond to the hamiltonian cycles. Their approach is great, however it is not easy to see each edge weight contribution in the cycle. For the BTSP we need to see the max edge weight contribution, thus I hope to leverage their approach and construct a strategy to find it in each Hamiltonian cycle.
+		There is a strategy of finding the Hamiltonian cycles through the phase estimation algorithm \cite{srinivasan2018efficient}. This strategy stores edge weights as phases and creates an $N^N$ size diagonal matrix in which $(N-1)!$ entries correspond to the hamiltonian cycles. The approach is feasible, however it is not easy to see each edge weight contribution in the cycle. For the BTSP we need to see the max edge weight contribution, thus I hope to leverage their approach and construct a strategy to find it in each Hamiltonian cycle.
 		
 	   Once all the max edge weights are available, the next challenge is using Grover's algorithm to find the minimum. We need to construct a  $U_w$. Given a function $f: \{0,1,...,N-1\} \rightarrow \{0,1\}$:
 	   
@@ -370,7 +365,7 @@
 		\end{align*}
 		
 		
-		Multiple qubit states are achieved through tensor products of single states.  an $n$- qubit system will span a $2^n$ Hilbert space. We can see with the $2$-qubit system we have $4$ states
+		Multiple qubit states are achieved through tensor products of single states.  an $n$-qubit system will span a Hilbert space $N = 2^n $. We can see with the $2$-qubit system we have $4$ states
 		
 		Hadamard Gate: commonly used to create a uniform superpositon:
 		
@@ -398,11 +393,11 @@
 		
 		Here we can see why Dirac notation is powerful as it simplifies tensor products and removes any need for matrix representation.
 		
-		\begin{thebibliography}{99}
+		%\begin{thebibliography}{99}
 			
-			\textbf{No references listed yet}
+		\bibliography{ref}
 			
-		\end{thebibliography}
+		%\end{thebibliography}
 		
 		
 	\end{document}
