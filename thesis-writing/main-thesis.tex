@@ -1,0 +1,993 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+%%
+%% This is file `ubcsample.tex',
+%% generated with the docstrip utility.
+%
+% The original source files were:
+%
+% ubcthesis.dtx  (with options: `ubcsampletex')
+%% 
+%% This file was generated from the ubcthesis package.
+%% --------------------------------------------------------------
+%% 
+%% Copyright (C) 2001
+%% Michael McNeil Forbes
+%% mforbes@alum.mit.edu
+%% 
+%% This file may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.2
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%    http://www.latex-project.org/lppl.txt
+%% and version 1.2 or later is part of all distributions of LaTeX
+%% version 1999/12/01 or later.
+%% 
+%% This program is distributed in the hope that it will be useful,
+%% but WITHOUT ANY WARRANTY; without even the implied warranty of
+%% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+%% LaTeX Project Public License for more details.
+%% 
+%% This program consists of the files ubcthesis.dtx, ubcthesis.ins, and
+%% the sample figures fig.eps and fig.fig.
+%% 
+%% This file may be modified and used as a base for your thesis without
+%% including the licence agreement as long as the content (i.e. textual
+%% body) of the file is completely rewritten. You must, however, change
+%% the name of the file.
+%% 
+%% This file may only be distributed together with a copy of this
+%% program. You may, however, distribute this program without generated
+%% files such as this one.
+%% 
+
+
+% This Sample thesis requires \LaTeX2e
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+%\ProvidesFile{ubcsample.tex}[2015/05/31 v1.72 ^^J
+% University of British Columbia Sample Thesis]
+% This is the \documentclass[]{} command.  The manditory argument
+% specifies the "flavour" of thesis (ubcthesis for UBC).  The
+% optional arguments (in []) specify options that affect how the
+% thesis is displayed.  Please see the ubcthesis documentation for
+% details about the options.
+\documentclass[msc,oneside]{ubcthesis}
+%\usepackage[pass,paperwidth=8.5in,paperheight=11in]{geometry}
+\usepackage[
+paperwidth=8.5in,
+paperheight=11in,
+% other options: a3paper, a5paper, etc
+left=3.2cm,
+right=2.5cm,
+top=2.5cm,
+bottom=2.5cm,
+% use vmargin=2cm to make vertical margins equal to 2cm.
+% us  hmargin=3cm to make horizontal margins equal to 3cm.
+% use margin=3cm to make all margins  equal to 3cm.
+]
+{geometry}
+%\pdfpageheight=11in
+%\pdfpagewidth=8.5in
+%
+% To compile this sample thesis, issue the following commands:
+% latex ubcsample
+% bibtex ubcsample
+% latex ubcsample
+% latex ubcsample
+% latex ubcsample
+%
+% To view use xdvi (on unix systems):
+% xdvi ubcsample.dvi
+%
+% To make a postscript file, use dvips:
+% dvips -o ubcsample.ps ubcsample.dvi
+%
+% To view the postscript file, use ghostview or gv (on unix systems):
+% gv ubcsample.ps
+%
+%************************************************
+% Optional packages.
+%
+% The use of these packages is optional, but they provide various
+% tools for more flexible formating.  The sample thesis uses these,
+% but if you remove the example code, you should be able to exclude
+% these packages.  Only standard packages have been described here;
+% they should be installed with any complete LaTeX instalation, but
+% if not, you can find them at the Comprehensive TeX Archive Network
+% (CTAN): http://www.ctan.org/
+%
+
+%******** afterpage ***************************
+% This package allows you to issue commands at the end of the current
+% page.  A good use for this is to use the command
+% \afterpage{\clearpage} right after a figure.  This will cause the
+% figure to be inserted on the page following the current one (or on
+% the current page if it will fit) but will not break the page in the
+% middle.
+\usepackage{afterpage}
+\usepackage{xcolor}
+%******** float *********************************
+% This package allows you to customize the style of
+% "floats"---floating objects such as figures and tables.  In
+% addition, it allows you to define additional floating objects which
+% may be included in a list similar to that produces by \listoftables
+% and \listoffigures.  Common uses include introducing floats for
+% programs and other code bits in Compute Science and Chemical Schema.
+\usepackage{float}
+\usepackage{amsmath,bm}
+\usepackage{tikz}
+\usepackage{quantikz}
+\usepackage{dsfont}
+%******** tocloft *******************************
+% This package allows you to customize and define custom lists such
+% as a list of programs or Chemical Scheme.  Note: if you use the
+% subfigure package, you must specify that you do as an option here.
+% The title option uses the default formatting.  We do not use this
+% here as the default formatting is acceptable.  Use the float
+% package instead unless you need the extra formatting control
+% provided by tocloft.
+%\usepackage[subfigure, titles]{tocloft}
+
+%******** alltt *********************************
+% The alltt package allows you to include files and have them
+% formatted in a verbatim fashion.  This is useful for including
+% source code from an additional file.
+%\usepackage{alltt}
+
+%******** listings ******************************
+% The listings package may be used to include chunks of source code
+% and has facilities for pretty-printing many languages.
+%\usepackage{listings}
+
+%******** longtable *****************************
+% The longtable package allows you to define tables that span
+% multiple pages.
+
+
+
+\usepackage{longtable}
+
+%******** graphics and graphicx *****************
+% This allows you to include encapsulated postscript files.  If you
+% don't have this, comment the \includegraphics{} line following the
+% comment "%includegraphics" later in this file.
+\usepackage{graphicx}
+
+%******** subfigure *****************************
+% The subfigure package allows you to include multiple figures and
+% captions within a single figure environment.
+%\usepackage{subfigure}
+
+%******** here **********************************
+% The here package gives you more control over the placement of
+% figures and tables.  In particular, you can specify the placement
+% "H" which means "Put the figure here" rather than [h] which means
+% "I would suggest that you put the figure here if you think it looks
+% good."
+%\usepackage{here}
+
+%******** pdflscape ********************************
+% This allows you to include landscape layout pages by using the
+% |landscape| environment.  The use of |pdflscape| is preferred over
+% the standard |lscape| package because it automatically rotates the
+% page in the pdf file for easier reading.  (Thanks to Joseph Shea
+% for pointing this out.)
+\usepackage{pdflscape}
+
+%******** natbib ********************************
+% This is a very nice package for bibliographies.  It includes options
+% for sorting and compressing bibliographic entries.
+\usepackage[numbers,sort&compress]{natbib}
+%\usepackage{natbib}   % omit 'round' option if you prefer square brackets
+
+%\usepackage{hyperref}
+\usepackage[unicode=true,
+colorlinks=true,
+linktocpage,
+linkbordercolor={0.5 0.5 1},
+citebordercolor={0.5 1 0.5},
+linkcolor=blue]{hyperref}
+
+
+\usepackage[nameinlink]{cleveref}
+
+
+% for clever referencing, i.e. references equations as e.g.: eq. (1.1), particularly useful together with hyperref (which is automatically loaded by jcappub)
+
+%******** psfrag ******************************
+% This allows you to replace text in postscript pictures with formated
+% latex text.  This allows you to use math in graph labels
+% etc. Uncomment the psfrag lines following the "%psfrag" comment
+% later in this file if you don't have this package.  The replacements
+% will only be visible in the final postscript file: they will be
+% listed in the .dvi file but not performed.
+%\usepackage{psfrag}
+%\usepackage[margin=0.5in]{geometry}
+%******** hyperref *****************************
+% Please read the manual:
+% http://www.tug.org/applications/hyperref/manual.html
+%
+% This adds hyperlinks to your document: with the right viewers (later
+% versions of xdvi, acrobat with pdftex, latex2html etc.) this will
+% make your equation, figure, citation references etc. hyperlinks so
+% that you can click on them.  Also, your table of contents will be
+% able to take you to the appropriate sections.  In the viewers that
+% support this, the links often appear with an underscore.  This
+% underscore will not appear in printed versions.
+%
+% Note: if you do not use the hypertex option, then the dvips driver
+% may be loaded by default.  This will cause the entries in the list
+% of figures and list of tables to be on a single line because dvips
+% does not deal with hyperlinks on broken lines properly.
+%
+% NOTE: HYPERREF is sensitive to the ORDER in which it is LOADED.
+% For example, it must be loaded AFTER natbib but BEFORE newly
+% defined float environments.  See the README file with the hyperref
+% for some help with this.  If you have some very obscure errors, try
+% first disabling hyperref.  If that fixes the problem, try various
+% orderings.
+%
+% Note also that there is a bug with versions before 2003/11/30
+% v6.74m that cause the float package to not function correctly.
+% Please ensure you have a current version of this package.  A
+% warning will be issued if you leave the date below but do not have
+% a current version installed.
+%
+% Some notes on options: depending on how you build your files, you
+% may need to choose the appropriate option (such as [pdftex]) for the
+% backend driver (see the hyperref manual for a complete list).  Also,
+% the default here is to make links from the page numbers in the table
+% of contents and lists of figures etc.  There are other options:
+% excluding the [linktocpage] option will make the entire text a
+% hyperref, but for some backends will prevent the text from wrapping
+% which can look terrible.  There is a [breaklinks=true] option that
+% will be set if the backend supports (dvipdfm for example supports
+% it but does not work with psfrag.)
+%
+% Finally, there are many options for choosing the colours of the
+% links.  These will be included by default in future versions but
+% you should probably consider changing some now for the electronic
+% version of your thesis.
+%\usepackage[unicode=true,
+%  linktocpage,
+%  linkbordercolor={0.5 0.5 1},
+%  citebordercolor={0.5 1 0.5},
+%  linkcolor=blue]{hyperref}
+
+% If you would like to compile this sample thesis without the
+% hyperref package, then you will need to comment out the previous
+% \usepackage command and uncomment the following command which will
+% put the URL's in a typewriter font but not link them.
+%\newcommand\url[1]{\texttt{#1}}
+
+%******** setspace *******************************
+% The setspace package allows you to manually set the spacing of the
+% file.  UBC may require 1.5 spacing for microfilming of theses.  In
+% this case you may obtain this by including this package and issuing
+% one of the following commands:
+%\usepackage{setspace}
+%\singlespacing
+%\onehalfspacing
+%\doublespacing
+
+% These commands are optional.  The defaults are shown.  You only
+% need to include them if you need a different value
+\institution{The University Of British Columbia}
+
+% If you are at the Okanagan campus, then you should specify these
+% instead.
+%\faculty{The College of Graduate Studies}
+%\institutionaddress{Okanagan}
+\faculty{The Faculty of Science}
+\institutionaddress{Vancouver}
+
+% You can issue as many of these as you have...
+%\previousdegree{B.Sc., University of British Columbia, year}
+%\previousdegree{M.Sc., The University of British Columbia, 2022}
+%\previousdegree{Ph.D., Massachusetts Institute of Technology, 2005}
+
+% You can override the option setting here.
+\degreetitle{Bachelor of Science}
+
+% These commands are required.
+\title{A Quantum Algorithm for the Bottleneck Travelling Salesman Problem}
+%\subtitle{With a Subtitle}
+\author{Raveel Tejani}
+%\copyrightyear{2000}
+\submitdate{\monthname\ \number\year} % The "\ " is required after
+% \monthname to prevent the
+% command from eating the space.
+\program{Physics}
+
+% These commands are presently not required for UBC theses as the
+% advisor's name and title are not presently required anywhere.
+%\advisor{Ariel R.~Zhitnitsky}
+%\advisortitle{Professor of Physics}
+
+% One might want to override the format of the section and chapter
+% numbers.  This shows you how to do it.  Note that the current
+% format is acceptable for submission to the FoGS: If you wish to modify
+% these, you should check with the FoGS explicity. prior to making
+% the modifications.
+\renewcommand\thepart         {\Roman{part}}
+\renewcommand\thechapter      {\arabic{chapter}}
+\renewcommand\thesection      {\thechapter.\arabic{section}}
+\renewcommand\thesubsection   {\thesection.\arabic{subsection}}
+\renewcommand\thesubsubsection{\thesubsection.\arabic{subsubsection}}
+\renewcommand\theparagraph    {\thesubsubsection.\arabic{paragraph}}
+\renewcommand\thesubparagraph {\theparagraph.\arabic{subparagraph}}
+
+\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{2}
+%\newcommand{\arefe}[1]{{\textcolor{cyan}{#1}}}
+% Here is an example of a "Program" environment defined with the
+% "float" package.  The list of programs will be stored in the file
+% ubcsample.lop and the numbering will start with the chapter
+% number.  The style will be "ruled".
+\floatstyle{ruled}
+\newfloat{Program}{htbp}{lop}[chapter]
+
+% Here is the start of the document.
+\begin{document}
+	
+	
+	%% This starts numbering in Roman numerals as required for the thesis
+	%% style and is mandatory.
+	\frontmatter
+	
+	%%% The order of the following components should be preserved.  The order
+	%%% listed here is the order currently required by FoGS:        \\
+	%%% Title (Mandatory)                                           \\
+	%%% Preface (Manditory if any collaborator contributions)       \\
+	%%% Abstract (Mandatory)                                        \\
+	%%% List of Contents, Tables, Figures, etc. (As appropriate)    \\
+	%%% Acknowledgements (Optional)                                 \\
+	%%% Dedication (Optional)                                       \\
+	
+	\maketitle                      %% Mandatory
+	
+	%\clearpage
+	
+	%%%THESIS APPROVAL PAGE - REQUIRED AS PART OF YOUR COMPLETED THESIS
+	
+	%%%%%%% UBC FoGPS Requires the following statements at the beginning of the thesis. There is a (separate) thesis approval form that has to be signed and dated by the same individuals listed here as approving the thesis. You will have to get ensure that your department submits that approval form before you will be able to create an account and upload your thesis onto ciRCle. 
+	%\noindent
+	%The following individuals certify that they have read, and recommend to the Faculty of Graduate and Postdoctoral Studies for acceptance, the thesis entitled:
+	
+	%\bigskip\noindent
+	%\textbf{Title}
+	
+	
+	
+	%\bigskip\noindent
+	%submitted by 
+	%\textbf{Author}
+	%in partial fulfillment of the requirements for
+	%the degree of 
+	%\textbf{program}
+	%\bigskip\noindent
+	%in	\textbf{Physics}
+	
+	
+	%\bigskip\noindent
+	%\textbf{[Include titles, departments, and universities, or titles and organizations. Remember to remove ALL material in square brackets [  ] before adding the page to your thesis.] Modify the examining committee to adapt to your case.}
+	
+	%\bigskip\noindent
+	%\textbf{Examining Committee:}
+	
+	%\bigskip\noindent
+	%Supervisor: 
+	
+	%\bigskip\noindent
+	%Co-supervisor: \hrulefill
+	
+	%\bigskip\noindent
+	%Supervisory Committee Member: \hrulefill
+	
+	%\bigskip\noindent
+	%Additional Examiner: 
+	
+	%\bigskip\noindent
+	%Additional Supervisory Committee Members: 
+	
+	%\bigskip\noindent
+	%Supervisory Committee Member:\hrulefill
+	
+	
+	
+	
+	
+	
+	
+	\clearpage
+	\begin{abstract}                %% Mandatory -  maximum 350 words
+%		The \texttt{genthesis.cls} \LaTeX{} class file and accompanying
+%		documents, such as this sample thesis, are distributed in the hope
+%		that it will be useful but without any warranty (without even the
+%		implied warranty of fitness for a particular purpose).  For a
+%		description of this file's purpose, and instructions on its use, see
+%		below.
+%		
+		%We present  a constraint and full solution to the bottleneck travelling salesman problem based on the quantum phase estimation algorithm.
+		
+		\textbf{chapter not complete.}
+		
+		
+	\end{abstract}
+	
+%	\chapter{Lay Summary}
+%	
+%	%[Required, Maximum 150 words]
+%	
+%	%This is a simple summary of your thesis, written so that members of the public will get some idea about what you have done.
+%	
+%	%Full-sky simulations of the foreground radiation of the cosmic microwave background are computationally expensive and it is challenging to measure if they can replicate the same statistical properties as the real data. 
+%	%In this thesis, I advocate for the use of a method called the ``hierarchical wavelet coefficients" for characterizing non-Gaussianities in a spherical field. This method is also known as the ``wavelet scattering transform" method and so far it has been mostly used for analysing flat (cutsky) maps. I demonstrate that the full-sky implementation introduced in this thesis is also capable of characterizing non-Gaussianities using a small set of coefficients.  
+%	
+%	%The algorithm for this method is based on the  \textsc{Healpy} package. 
+%	
+%	%I demonstrate that we can check the non-Gaussianity in simulated maps. I propose that this method can potentially serve as a tool for measuring and controlling the amount of non-Gaussianity in future simulations. 
+%	[Required, Maximum 150 words]
+%	
+%	This is a simple summary of your thesis, written so that members of the public will get some idea about what you have done. 
+%	
+%	\chapter{Preface}
+%	% Manditory if any of the conditions are met
+%	
+%	You must include a preface if any part of your research was partly or
+%	wholly published in articles, was part of a collaboration, or required
+%	the approval of UBC Research Ethics Boards.
+%	
+%	The Preface must include the following:
+%	
+%	\begin{itemize}
+%		\item A statement indicating the relative contributions of all
+%		collaborators and co-authors of publications (if any), emphasizing
+%		details of your contribution, and stating the proportion of research
+%		and writing conducted by you.
+%		\item A list of any publications arising from work presented in the
+%		dissertation, and the chapter(s) in which the work is located.
+%		\item The name of the particular UBC Research Ethics Board, and the
+%		Certificate Number(s) of the Ethics Certificate(s) obtained, if
+%		ethics approval was required for the research.
+%	\end{itemize}
+%	
+%	Thats's what I wrote:
+%	
+%	The content of this thesis is original unpublished work by the author. The idea for this study came about through discussions with author's supervisor, Dr. supervisor. All necessary python scripts, as well as the resulting plots and data were created by the author. Individual techniques and methods used but not developed by the author have been cited where appropriate.
+%	
+	
+	\tableofcontents %% Mandatory
+	%\listoftables                   %% Mandatory if thesis has tables
+	\listoffigures                  %% Mandatory if thesis has figures
+	%\listof{Program}{List of Programs} %% Optional
+	%% Any other lists should come here, i.e.
+	%% Abbreviation schemes, definitions, lists of formulae, list of
+	%% schemes, glossary, list of symbols etc.
+	
+	\chapter{Acknowledgements}      %% Optional
+	
+	%This is the place to thank professional colleagues and people who have
+	%given you the most help during the course of your graduate work.
+	\vspace{0.5cm}
+	\textbf{chapter not complete.}
+	
+	
+	%\chapter{Dedication} %% Optional
+	%The dedication is usually quite short, and is a personal rather than
+	%an academic recognition.  The \emph{Dedication} does not have to be
+	%titled, but it must appear in the table of contents.  If you want to
+	%skip the chapter title but still enter it into the Table of Contents,
+	%use this command \verb|\chapter[Dedication]{}|.
+	
+	%Note that this section is the last of the preliminary pages (with
+	%lowercase Roman numeral page numbers).  It must be placed
+	%\emph{before} the \verb|\mainmatter| command.  After that, Arabic
+	%numbered pages will begin.
+	
+	% Any other unusual prefactory material should come here before the
+	% main body.
+	
+	% Now regular page numbering begins.
+	\mainmatter
+	
+	% Parts are the largest structural units, but are optional.
+	%\part{Thesis}
+	
+	% Chapters are the next main unit.
+	%\chapter{Contents}
+	%\input{fehrest}
+	
+	
+	\chapter{Introduction}
+	%input{Introduction/INTRO01}
+	%\input{Introduction/INTRO02}
+	
+	
+	
+	Continuous advancements in quantum computing have opened new ways to solve complex computational problems that were previously considered intractable using classical methods. Well known examples of these advancements include Shor's \cite{Shor} and Grover's \cite{grover1996fast} algorithm for factoring and unstructured search respectively. The Bottleneck Traveling Salesman Problem (BTSP) serves as a challenging optimization problem in the field of logistics and operations research. Its practical applications range from optimizing vehicle routes to circuit design. Consequently, achieving an efficient solution is highly sought after. However, the BTSP is classified as an NP-hard problem, indicating it is at least as difficult as the hardest problems in the NP class. For reference, an NP problem must satisfy two conditions: no known solution in polynomial time, and a solution can be verified in polynomial time. An NP-hard problem does not need to satisfy the verification condition. To address this problem, many heuristic approaches are explored \cite{heuristicthesis}\cite{heuristic}. However, inherent to such methods is a trade-off between precision and efficiency.
+	
+%	We embark on a journey at the intersection of quantum computing and optimization by introducing a quantum algorithm tailored to address the BTSP. It requires finding the shortest closed tour through a set of cities while minimizing the largest cost, the "bottleneck", along any route. Its computational complexity grows exponentially with the number of cities, rendering classical solutions impractical for large-scale instances. Our approach is to capitalize on the inherent quantum parallelism, as well as the unique feature of phase encoding in quantum computing. By exploiting these phenomena, we aim to encode and manipulate the costs associated with various routes efficiently. Additionally, the utilization of Grover's search algorithm as a central component of our quantum approach significantly expedites the search for the optimal solution.  Quantum searching, in general, may be useful for obtaining solutions faster for problems belonging to the complexity class NP \cite{nielsen00}. In this proposal, our primary objective is to shed light on the theoretical foundation of the quantum algorithm, its potential computational advantages over classical methods. Through this research, we aim to work towards a clear understanding of these aspects. The following sections will detail the BTSP, Grover's algorithm, quantum phase estimation and their respective significance and complexity. 
+	
+	\vspace{0.5cm}
+	\textbf{chapter not complete.}
+%	
+%	\begin{enumerate}
+%		\item discussion of the current state of quantum computation
+%		\item discussion of why we should consider quantum algorithms over classical computation
+%		\item discussion of why the bottleneck travelling salesman problem is interesting to consider
+%	\end{enumerate}
+	
+	\chapter{Theory}
+	\section{The Bottleneck Travelling Salesman Problem}
+	
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[trim={0 0 21.9cm 0},clip, width=0.5 \linewidth]{"graphics/4-city"}
+		\caption{An undirected weighted graph represention of a  symmetric 4-city system.  The vertices represent cities and the edge weights represent the cost of travel. }
+		\label{fig:4-city-graphic}
+	\end{figure}		
+	
+	The BTSP can be represented as a graph problem.  We start with a graph, whose vertices are labelled A through D, representing a 4-city system. We define movement from one vertex to another as a walk, done through the edges connecting our vertices. We are interested in a particular walk known as a Hamiltonian cycle that contains every vertex exactly once before returning to the start. Our graph also includes edge weights, we define as $ \gamma_i $.
+	The BTSP is to find the Hamiltonian cycle in a graph, where the largest edge weight (bottleneck) is minimized. This is distinct from the Travelling Salesman Problem (TSP) where the combined edge weights in a given cycle is minimized. The total possible Hamiltonian cycles is given by $(N-1)!$, where N is the number of nodes. We present a symmetric case in FIG .\ref{fig:4-city-graphic},  $N_k \rightarrow N_{k+1} = N_{k+1} \rightarrow N_{k} = \gamma_i$. Thus the total possible cycles is  $(N-1)!/2$.  It is important to note that a solution to either BTSP or TSP is not unique. BTSP solutions also do not necessarily equate to the TSP solutions. We can illustrate an example below. Consider all the Hamiltonian cycles for a symmetric 4-city system:
+	
+	\begin{center}
+		$ A \rightarrow B \rightarrow C \rightarrow D \rightarrow A $
+		
+		$ A \rightarrow B \rightarrow D \rightarrow C \rightarrow A $ 
+		
+		$ A \rightarrow C \rightarrow B \rightarrow D \rightarrow A $
+	\end{center}
+	
+	Assigning some arbitrary weights, we can see the total costs of the cycles below. The first cycle is the solution to BTSP as its largest edge weight at $5$ is the smallest among all three. The last cycle is a solution to the TSP as its combined edge weight is the smallest.
+	\begin{center}
+		$\gamma_1 + \gamma_4 + \gamma_5 + \gamma_3 = 4 + 4 + 5 + 4 = 17$
+		
+		$ \gamma_1 + \gamma_6 + \gamma_5 + \gamma_2 = 4 + 6 + 5 + 2 = 17$
+		
+		$  \gamma_2 + \gamma_4 + \gamma_6 + \gamma_3 = 2 + 4 + 6 + 4 = 16$
+	\end{center}
+	
+	
+	By simply changing the weight of $\gamma_6$ to $5$, we can illustrate all cycles are solutions to the BTSP. 
+	
+	\begin{center}
+		
+		$\gamma_1 + \gamma_4 + \gamma_5 + \gamma_3 = 4 + 4 + 5 + 4 = 17$
+		
+		$ \gamma_1 + \gamma_6 + \gamma_5 + \gamma_2 = 4 + 5 + 5 + 2 = 16$
+		
+		$  \gamma_2 + \gamma_4 + \gamma_6 + \gamma_3 = 2 + 4 + 5 + 4 = 15$
+	\end{center}
+	
+	The computational complexity of the BTSP is known to be NP-hard. Implying there is no algorithm for a solution in polynomial time. A brute-force approach would imply that we can run an algorithm in $O((N-1)!)$ time.
+	%\input{Chapter2/CHAP02SEC001}
+	
+	\section{Quantum Computing Basics}
+	
+	\subsection{Frequently Used Notation}
+	Single qubit states: 
+	\begin{align*}	
+		|0\rangle &= \begin{bmatrix}
+			1 \\
+			0 \\
+		\end{bmatrix}, 
+		|1\rangle = \begin{bmatrix}
+			0 \\
+			1 \\
+		\end{bmatrix}
+	\end{align*}
+	
+	2-qubit states: 
+	\begin{align*}	
+		|00\rangle &= |0\rangle \otimes |0\rangle = \begin{bmatrix}
+			1 \\
+			0 \\
+			0 \\
+			0 \\
+		\end{bmatrix}, 
+		|01\rangle = |0\rangle \otimes |1\rangle = \begin{bmatrix}
+			0 \\
+			1 \\
+			0 \\
+			0 \\
+		\end{bmatrix} 			
+	\end{align*}
+	
+	\begin{align*}	
+		|00\rangle &= |1\rangle \otimes |0\rangle = \begin{bmatrix}
+			0 \\
+			0 \\
+			1 \\
+			0 \\
+		\end{bmatrix}, 
+		|01\rangle = |1\rangle \otimes |1\rangle = \begin{bmatrix}
+			0 \\
+			0 \\
+			0 \\
+			1 \\
+		\end{bmatrix}		
+	\end{align*}
+	
+	
+	Multiple qubit states are achieved through tensor products of single states. An $n$-qubit system will span a Hilbert space $N = 2^n $. We can see with the $2$-qubit system we have $4$ states. Quantum logic gates serve as the quantum computing counterparts to classical logic gates, performing operations on qubits instead of classical bits. Represented as unitary matrices, these operations must be reversible. Below we can see the Hadamard gate and the result of its application to single qubit states, frequently employed to establish a uniform superposition.
+	
+	\begin{align*}	
+		H &=\frac{1}{\sqrt{2}} \begin{bmatrix}
+			1 & 1 \\
+			1 &-1 \\
+		\end{bmatrix}
+	\end{align*}
+	
+	\begin{align*}	
+		H|0\rangle = \frac{1}{\sqrt{2}} (|0\rangle + |1\rangle) = |+\rangle\\
+		H|1\rangle = \frac{1}{\sqrt{2}} (|0\rangle - |1\rangle) = |-\rangle
+	\end{align*}
+	
+	We can refer to equation 1 to see the result of Hadamard on an $n$-qubit system. Let's have a look at the Hadamard gate applied to $|00\rangle$:
+	
+	\begin{align*}	
+		H^{\otimes 2}|00\rangle &= H|0\rangle H|0\rangle\\
+		&= |+\rangle|+\rangle\\
+		&= (\frac{1}{\sqrt{2}} (|0\rangle + |1\rangle))(\frac{1}{\sqrt{2}} (|0\rangle + |1\rangle))\\
+		&= \frac{1}{2} (|0\rangle + |1\rangle)(|0\rangle + |1\rangle)\\
+		&= \frac{1}{2} (|00\rangle + |01\rangle + |10\rangle + |11\rangle)\\
+	\end{align*}
+	
+	Here we can see why Dirac notation is powerful as it simplifies tensor products and removes need for matrix representation.
+	
+	\subsection{Quantum Circuit Components}
+	
+	\begin{figure}[!h]
+		\centering
+		\begin{tikzpicture}[thick]
+			
+			\tikzstyle{operator} = [draw,fill=white,minimum size=1.5em] 
+			
+			%\draw (3,3) -- (3,0) ;
+			
+			\draw (0,3) -- (2,3) ;
+			\node at (4.05,3) {quantum wire};
+			
+			\draw (0,2.1) -- (2,2.1) ;
+			\draw (0,2.2) -- (2,2.2) ;
+			\node at (4,2.15) {classical wire};
+			
+			\draw (0,1.1) -- (2,1.1) ;
+			\node[operator] (op11) at (1,1.1) {H};
+			\node at (4.28,1.1) {single qubit gate};
+			
+			\draw (0,0.1) -- (1,0.1) ;
+			
+			\draw (1,0.15) -- (2,0.15) ;
+			\draw (1,0.05) -- (2,0.05) ;
+			% Define coordinates
+			\def\Radius{0.2}
+			\path
+			(-\Radius, 0) coordinate (A)
+			-- coordinate (M)
+			(\Radius, 0) coordinate (B)
+			(M) +(60:\Radius) coordinate (C)
+			+(120:\Radius) coordinate (D)
+			;
+			
+			\node[operator] (op11) at (1,0.1) {};
+			\node at (4.46,0.1) {qubit measurement};
+			
+			% Draw semicircle
+			\draw[operator]
+			(1.2,0) arc(0:180:\Radius) -- cycle ;
+			% Annotations
+			
+			\draw (1,0.05) -- (1.2,0.25);
+			
+		\end{tikzpicture}
+	\end{figure}	
+	
+	\subsection{Controlled Gates and Phase Kickback}
+	
+	\textbf{section not complete}
+	
+	\begin{enumerate}
+		\item We will describe the use of control gates.
+		\item We will describe the emergence of phase kickback with the use of hadamard gates discussed in the previous section. This will be important to know going into the next section.
+	\end{enumerate}
+	
+	\section{Quantum Phase Estimation}
+	
+	The phase estimation algorithm initially proposed by Alexey Kitaev \cite{kitaev1995quantum} plays an important role as a subroutine for the more widely known factoring algorithm by Peter Shor \cite{Shor}. We first must briefly discuss the Quantum Fourier Transform (QFT) as it is key to understanding phase estimation \cite{nielsen00}. Given a computational basis state $|x\rangle$, applying the QFT ($F_N$) results in:
+	
+	$$ F_N |x \rangle = \frac{1}{\sqrt{N}} \sum_{k=0}^{N-1} e^{2\pi i x k N^{-1}} |k\rangle $$
+	
+	Let's represent this in binary notation and decompose it into a tensor product. We can represent $|x\rangle$ as a string of bits, and the QFT as a tensor product of single qubit basis states:
+	
+	$$|x\rangle = |x_1x_2 ... x_n\rangle =  |x_1\rangle \otimes |x_2\rangle \otimes ... \otimes |x_n\rangle$$
+	
+	\begin{eqnarray}
+		F_N |x \rangle = \frac{1}{\sqrt{2^n}} \bigotimes_{j=1}^n (|0\rangle +  e^{2\pi i x 2^{-j}} |1\rangle)
+	\end{eqnarray}
+	
+	$$= \frac{1}{\sqrt{2^n}} ((|0\rangle + \omega_1|1\rangle)  \otimes(|0\rangle + \omega_2|1\rangle)\otimes ... \otimes(|0\rangle + \omega_n|1\rangle))$$
+	
+	
+	\begin{eqnarray*}
+		\omega_1 &=& e^{2\pi i x 2^{-1}} =  e^{2\pi i (0.x_n)}\\
+		\omega_2 &=& e^{2\pi i x 2^{-2}} =  e^{2\pi i (0.x_{n-1}x_n)}\\
+		...\\
+		\omega_n &=& e^{2\pi i x 2^{-n}} =  e^{2\pi i (0.x_1...x_n)}
+	\end{eqnarray*}
+	
+	
+	An important characteristic of the $w_j$ is the bit shift occurring in the exponent. If we look at $w_1$, the exponent has a factor $x 2^{-1}$, which is equivalent to one right bit shift: $x_1...x_{n-1}.x_n$. Integer multiples of the exponent would imply full rotations returning to the same point thus we can ignore all the values on the left of the decimal and what remains is $0.x_n$. 
+	
+	
+	
+	Let's discuss the phase estimation problem. Given an eigenstate $|\lambda \rangle$ of a unitary operator $U$, we want to calculate a good approximation  for $\phi \in [0,1)$ satisfying:
+	
+	\begin{equation}
+		U |\lambda \rangle = e^{2\pi i \phi} |\lambda \rangle
+	\end{equation}
+	
+	The phase estimation algorithm uses two registers of qubits. The first one will be a set of $n$ control qubits that determine the precision of our approximation. The second register will be a set of $m$ qubits initialized to an eigenstate $|\lambda\rangle$.
+	
+	
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[trim={1cm 12cm 11cm 0},clip, width=0.8 \linewidth]{"graphics/phase_circ"}
+		\caption{A quantum circuit representation of the phase estimation algorithm. Given, $ U |\lambda \rangle = e^{2\pi i \phi} |\lambda \rangle $, this algorithm allows us to generate an  approximation for $\phi \in [0,1)$ . The circuit consists of two registers of qubits, the first $n$-qubits are initialized to $|0\rangle$ and contribute to the precision of the $\phi$ value obtained. The second register of $m$-qubits is initialized to the eigenstate of $U$.  The Hadamard gates, $H$, are used to create a uniform superposition in the first register. The control gates based on $U$ are responsible for encoding phase to the qubits in the first register. Finally, a $QFT^\dagger$ is performed on the first register to extract the encoded phase. Each subsequent qubit in the first register would require double the control gates. Thus, with a large $n$ we obtain a more precise value for $\phi$, but also exponentially increase our computation time.}
+		\label{fig:phasrcircuit}
+	\end{figure}
+	
+	
+	Let's walk through the quantum circuit in FIG. \ref{fig:phasrcircuit}, to understand the inner workings of this algorithm.	 Our initialized state is $|0^{\otimes n} \lambda\rangle$. From here we perform the same operation we find in equation 1, where all the qubits in the first register are set to a uniform superposition on all states $2^n$. The next portion of the algorithm involves applying controlled gates based on the unitary operator $U$. The function of these $CU$ gates is to apply the operator $U$ on $|\lambda\rangle$ if the control qubit is in the state $|1\rangle$. We can have a look at the effect on the n\textsuperscript{th} qubit, after it has been prepared in a superposition by the Hadamard gate:
+	
+	$$ \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) \otimes |\lambda\rangle = |0 \lambda \rangle + |1 \lambda\rangle$$
+	
+	Applying $CU$ and factoring out the eigenstate:
+	
+	\begin{eqnarray*}
+		CU \frac{1}{\sqrt{2}}(|0 \lambda \rangle + |1 \lambda\rangle) &=&  \frac{1}{\sqrt{2}}(CU|0 \lambda \rangle + CU|1 \lambda\rangle )\\
+		&=& \frac{1}{\sqrt{2}}(|0 \lambda \rangle + e^{2\pi i \phi}|1 \lambda\rangle)\\
+		&=&\frac{1}{\sqrt{2}}( |0 \rangle + e^{2\pi i \phi}|1 \rangle)\otimes |\lambda\rangle
+	\end{eqnarray*}
+	
+	We can see the eigenstate after the $CU$ operation is left unchanged. the phase has been encoded into the control qubit instead, a result is due to the phase kickback. Thus, we can reuse our eigenstate for the next qubit. Consecutive qubits have double the amount of $CU$ operators as the previous, thus squaring the eigenvalue each time:
+	
+	\begin{eqnarray*}
+		\text{qubit\textsubscript{n-1}} &:&   |0 \rangle + e^{2\pi i \phi 2}|1 \rangle \\
+		...\\
+		\text{qubit\textsubscript{1}} &:&   |0 \rangle + e^{2\pi i \phi 2^n}|1 \rangle
+	\end{eqnarray*}
+	
+	We know that the value of $\phi < 1$. We can represent this in binary notation in the form $0.\phi_1\phi_2...\phi_n$:
+	
+	$$\phi = \sum_{j=1}^n \phi_j 2^{-j}$$
+	
+	If we have another look at the control qubits using binary notation for $\phi$ instead, we can see the result of the multiple $CU$ operations simply results in right bit shifts:
+	
+	
+	\begin{eqnarray*}
+		\text{qubit\textsubscript{n}} &:&   |0 \rangle +e^{2\pi i (0.\phi_1\phi_2...\phi_n)}|1 \rangle  \\
+		\text{qubit\textsubscript{n-1}} &:&   |0 \rangle + e^{2\pi i (0.\phi_2...\phi_n)}|1 \rangle \\
+		...\\
+		\text{qubit\textsubscript{1}} &:&   |0 \rangle + e^{2\pi i (0.\phi_n)}|1 \rangle
+	\end{eqnarray*}
+	
+	If we look at the form of first register after all the $CU$ operations in the state $|\alpha\rangle$, it will resemble the result of performing the QFT we saw in equation 5. Where our $\omega_j$ are:
+	
+	\begin{eqnarray*}
+		\omega_1 &=& e^{2\pi i x 2^{-1}} =  e^{2\pi i (0.\phi_n)}\\
+		\omega_2 &=& e^{2\pi i x 2^{-2}} =  e^{2\pi i (0.\phi_{n-1}\phi_n)}\\
+		...\\
+		\omega_n &=& e^{2\pi i x 2^{-n}} =  e^{2\pi i (0.\phi_1...\phi_n)}
+	\end{eqnarray*}
+	
+	simply performing the inverse QFT will give us $|\phi\rangle =  |\phi_1\phi_2 ... \phi_n\rangle$.  We can immediately see the approximation is limited by the number of qubits in the first register. A simple strategy would be to increase the number of qubits; however this would also increase computational cost as we double our use of $CU$ gates for each additional qubit.
+	
+	
+	
+	
+	
+	%A simple example of minimizing the bottleneck travelling salesman problem (maybe with images):
+	%an example of storing phases and using phase estimation
+	%grover's search explanation
+	\chapter{Algorithm for the Constraint Problem}
+	
+The constrained version of the BTSP asks whether there exists a Hamiltonian cycle in which the weight of every edge is less than a specified threshold $\alpha$. In such a cycle, if we denote the weight of any edge as $\gamma_i$, then it must satisfy the condition:
+	 
+	 $$\gamma_i < \alpha$$
+	
+	
+	We will construct the algorithm in the following steps:
+	\begin{enumerate}
+		\item Normalize edge weights so no single hamiltonian cycle is greater than or equal to 1.\\
+		\item Construct a unitary operator that holds information regarding the hamiltonian cyles as phases in the diagonal.\\
+		\item Set all edgeweights $> \alpha$ to zero and construct a secondary unitary operator similiar to step 2.\\
+		\item Create controlled gates using the unitary operators constructed in Step 2 and 3.\\
+		\item Identify all the eigenstates of the unitary operators that map to the phases associated with the hamiltonian cycles.\\
+		\item Perform phase estimation twice with an eigenstate using the control gates to evaluate the hamiltonian cycle before and after the edgeweights $> \alpha$ are set to zero.\\
+		\item Compare the two phases achieved. If they are equal, the corresponding hamiltonian cycle is a solution that satisfies the constraint.\\
+		
+	\end{enumerate}
+		
+	\section{Normalize Edge Weights}
+	
+	A hamiltonian cycle of a complete graph with $N$ nodes requires $N$ edge-weights to complete the cycle. A single graph consists a total of $N(N-1)$ edgeweights in a directed graph. we can choose the largest $N$ and use these to normalize the edge weights. Let $w$ describe our edge-weights and will be a list of $m = N(N-1)$ elements:
+	
+	$$w = \{w_1, w_2, \ldots, w_m\}$$ 
+	
+	Sort $w$ in descending order to obtain:
+	
+	$$w' = {w'_1, w'_2, \ldots, w'_m}$$
+	
+	Where: $w'_1 \geq w'_2 \geq \ldots \geq w'_m$
+	
+	\vspace{0.5cm}
+	
+The sum $S$ of the largest $N$ items in $w$ can be described as:
+$$S = \sum_{i=1}^{N} w'_i$$
+
+  We can now perform the normalization. Let $\tilde{w}$ describe our normalized edge-weights:
+  
+  	$$\tilde{w} = (S + \epsilon)^{-1}w$$
+	
+		Where: $\epsilon>0$.  The purpose of $\epsilon$ is to make sure if any normalized hamiltonian cycle is exactly equal to $ S$ then we do not have a zero phase.
+	
+	
+	\section{Unitary Operator for Hamiltonian Cycles}
+	
+	 We start by constructing diagonal matrices $U_j$, one for each node in a complete graph and describe the matrix elements:
+	
+
+	$$\Large\left[U_j \right]_{kk} = e^{2\pi i\gamma_{jk} (1 - \delta_{jk})}$$
+	
+	
+	Where:	$ 1 \leq j, k \leq N$
+	$N$ denotes the total number of nodes.
+	$\gamma_{jk}$ represents the edgeweight connecting node $j\rightarrow k$
+	
+	\vspace{0.5cm}
+	
+	Then we construct $U$, a tensor product of all the diagonal matrices:
+	
+	$$\Large U = \bigotimes_j^N U_j$$
+	
+	
+	$U$ will be a $N^N \times N^N$ matrix with only the diagonal elements populated. Because the diagonal elements will entirely consist of phases $\left[U \right]_{kk} = e^{i\alpha_{kk}} $. We can confirm the unitary operator condition is satisfied: $U^\dagger U = \mathds{1}$.
+	
+
+	\section{Identifying The Eigenstates}
+	
+		\vspace{0.5cm}
+	
+	\textbf{section not complete.}
+	\vspace{0.5cm}
+	
+	\begin{enumerate}
+	\item Here I will discuss how we determine the eigenstates associated with the hamiltonian cycles.
+	\end{enumerate}
+				
+	
+	
+	
+	
+	
+	
+	\chapter{Constraint Solution for a 4-City Problem}
+	
+	\section{Algorithm Construction}
+	for our contstraint test, we simply need a tensor product of 4 matrices:
+	
+	$$\Large U = U_1 \otimes U_2 \otimes U_3 \otimes U_4$$
+	
+	lets have a closer look at the matrix $U_1$
+	$$ \Large
+	\begin{bmatrix}
+		1 & 0 & 0 & 0 \\
+		0 & e^{i\gamma_{12}} & 0 & 0 \\
+		0 & 0 & e^{i\gamma_{13}} & 0 \\
+		0 & 0 & 0 & e^{i\gamma_{14}} \\
+	\end{bmatrix}
+	$$
+	
+	\vspace{0.5cm}
+	
+	\textbf{section not complete.}
+	
+		\vspace{0.5cm}
+	
+		\begin{enumerate}
+		\item In this section I will work through the steps for algorithm construction mentioned in the previous chapter for the 4-city problem. 
+		\item a circuit figure will be included as well.
+	\end{enumerate}
+	
+	
+	
+	
+	%constructing the large matrix U is straight forward. I am a little confused on how to construct a controlled-U operation such that we have the appropriate phase kickback. The 2018 paper does a decomposition, and claims that a $CU$ matrix can simply be achieved by the tensor product of the smaller $CU_J$ matrices. Need to confirm how this works.
+	
+	
+	
+	\section{Results: Simulations with Qiskit}
+	
+	\textbf{section not complete.}
+	
+	\vspace{0.5cm}
+	
+	\textbf{progress report: The algorithm has been constructed and tested with simulators in Qiskit for the 4-city problem. The full solution has been explored but given time constrained may not be solved and will be briefly discussed in the following section. The simulator does generate graphs we intend to include in this section. the presentation style of the graphs is still being explored. A constraint problem simulation with 5-cities might also be explored, again if time permitting. Otherwise things are fairly on track.}
+	
+	\vspace{0.5cm}
+	\textbf{next steps:}
+	
+	\textbf{
+	\begin{enumerate}
+		\item complete the sections presented in this thesis, particularly regarding theory and algorithm construction section
+		\item complete this chapter of the constraint solution with circuit figures and graphs from Qiskit Simulation
+		\item complete other sections (discussion, intro, abstract...) including appendix regarding the code used in python.
+		\item time permitting: construct and present 5-city simulation as well
+	\end{enumerate}}
+	
+	
+	%\input{Results/RSLT01}
+	%\input{Results/RSLT02}
+	\chapter{Discussion}
+	%\input{Discussion/DISC01}
+	
+	\begin{enumerate}
+		\item this section will dicuss the advantages and drawbacks of the algorithm proposed.
+	\end{enumerate}
+	
+	
+	%% This file is setup to use a bibtex file sample.bib and uses the
+	%% plain style.  Other styles may be used depending on the conventions
+	%% of your field of study.
+	%%
+	%%% Note: the bibliography must come before the appendices.
+	% \bibliographystyle{JHEP}
+	% \bibliographystyle{plainnat}
+	\bibliographystyle{unsrt}
+	%\bibliography{references,refs}
+	\bibliography{ref}
+	%\printbibliography  %[heading=none, keyword=OWN]
+	%% Use this to reset the appendix counter.  Note that the FoGS
+	%% requires that the word ``Appendices'' appear in the table of
+	%% contents either before each appendix lable or as a division
+	%% denoting the start of the appendices.  We take the latter option
+	%% here.  This is ensured by making the \texttt{appendicestoc} option
+	%% a default option to the UBC thesis class.
+	
+	%%% If you only have one appendix, please uncomment the following line.
+	% \renewcommand{\appendicesname}{Appendix}
+	\appendix
+	\chapter{Code for  the 4-city constraint problem}
+	
+	\begin{enumerate}
+		\item this section will include any code used to produce graphs in the simulated section.
+	\end{enumerate}
+	
+	
+	%\input{Appendix1}
+	
+	%\chapter{Second Appendix}
+	%Here is the second appendix.
+	
+	%% This changes the headings and chapter titles (no numbers for
+	%% example).
+	\backmatter
+	
+	%% Indices come here if you have them.
+	
+	
+	
+	
+	
+	
+	
+	
+	%\url{http://www.grad.ubc.ca/current-students/dissertation-thesis-preparation}\\
+	
+	
+	\end{document}
+	
+	
+	
+\end{document}
