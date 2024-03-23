@@ -855,20 +855,47 @@ $$S = \sum_{i=1}^{N} w'_i$$
 	$U$ will be a $N^N \times N^N$ matrix with only the diagonal elements populated. Because the diagonal elements will entirely consist of phases $\left[U \right]_{kk} = e^{i\alpha_{kk}} $. We can confirm the unitary operator condition is satisfied: $U^\dagger U = \mathds{1}$.
 	
 
-	\section{Identifying The Eigenstates}
+	\section{Identifying the Eigenstates associated with the Hamiltonian Cycles}
 	
-		\vspace{0.5cm}
+Given $U$'s diagonal nature, its eigenstates align with the basis vectors. Our focus is on specific eigenstates corresponding to the Hamiltonian cycles, determined by the phases. To comprehend how the diagonal elements of $U$ derive from the individual $U_j$ matrices, we visualize the tensor product construction. Notably, the product populates the diagonal elements of $U$ allowing a simplification where we consider these elements directly:
 	
-	\textbf{section not complete.}
+	\begin{flalign*}
+	[U]_{0} & = [U_1]_{0}\cdot [U_2] _{0}\cdot \ldots  \cdot [U_{N-2}]_{0} \cdot [U_{N-1}]_{0}\cdot [U_N]_{0} \\
+	[U]_{1}  & = [U_1]_{0}\cdot [U_2] _{0}\cdot \ldots \cdot [U_{N-2}]_{0}\cdot [U_{N-1}]_{0}\cdot [U_N]_{1}\\
+	&  \vdots\\
+	[U]_{N-1} &= [U_1]_{0}\cdot [U_2] _{0}\cdot \ldots\cdot [U_{N-2}]_{0} \cdot [U_{N-1}]_{0}\cdot [U_N]_{N-1}\\
+	[U]_{N} &= [U_1]_{0}\cdot [U_2] _{0}\cdot \ldots \cdot [U_{N-2}]_{0} \cdot [U_{N-1}]_{1}\cdot [U_N]_{0}\\
+	& \vdots\\
+	[U]_{2N - 1} & = [U_1]_{0}\cdot [U_2] _{0}\cdot \ldots \cdot [U_{N-2}]_{0} \cdot [U_{N-1}]_{1}\cdot [U_N]_{N-1}\\
+	[U]_{2N} &= [U_1]_{0}\cdot [U_2] _{0}\cdot \ldots \cdot [U_{N-2}]_{0} \cdot [U_{N-1}]_{2}\cdot [U_N]_{0}\\
+	& \vdots\\
+	[U]_{N^2 - 1 } & = [U_1]_{0}\cdot [U_2] _{0}\cdot \ldots \cdot [U_{N-2}]_{0} \cdot [U_{0}]_{N-1}\cdot [U_N]_{N-1}\\
+	[U]_{N^2} &= [U_1]_{0}\cdot [U_2] _{0}\cdot \ldots \cdot [U_{N-2}]_{1} \cdot [U_{N-1}]_{0}\cdot [U_N]_{0}\\
+	& \vdots\\
+	[U]_{N^2 + N - 1} & = [U_1]_{0}\cdot [U_2] _{0}\cdot \ldots \cdot [U_{N-2}]_{1} \cdot [U_{N-1}]_{0}\cdot [U_N]_{N-1}\\
+	[U]_{N^2 + N } &= [U_1]_{0}\cdot [U_2] _{0}\cdot \ldots \cdot [U_{N-2}]_{1} \cdot [U_{N-1}]_{1}\cdot [U_N]_{0}\\
+	&  \vdots\\
+	[U]_{N^3- 1} & = [U_1]_{0}\cdot [U_2] _{0}\cdot \ldots \cdot [U_{N-2}]_{N-1} \cdot [U_{N-1}]_{N-1}\cdot [U_N]_{N-1}
+	\end{flalign*}
+	\vspace{0.5cm}
+	This pattern indicates:
+	\begin{equation}
+	[U]_{k} = [U_1]_{\alpha_{N-1}}\cdot [U_2] _{\alpha_{N-2}}\cdot \ldots \cdot [U_{N-2}]_{\alpha_2} \cdot [U_{2}]_{\alpha_{1}}\cdot [U_N]_{\alpha_{0}}
+	\end{equation}
+	
+	With: $$\alpha_i = \left(k//\left(N^{i}\right)\right) \% N$$
+	
 	\vspace{0.5cm}
 	
-	\begin{enumerate}
-	\item Here I will discuss how we determine the eigenstates associated with the hamiltonian cycles.
-	\end{enumerate}
-				
+	Where:
 	
+	$//$ denotes integer division
 	
+	$\%$ is the modulus operation
 	
+	\vspace{0.5cm}
+	
+ 	We can see the pattern follows base-$N$ counting where $N$ is the total number of nodes. Simply converting $k$ into base-$N$, will give us the indices of our original diagonal matrices. To locate the relevent eigenstates, we start by identifying the elements in $U_j$ associated  with a hamiltonian cycle, retrieve their respective indices, convert this string of indices from Base-$N$ to $k$.  and we would have identified our eigenstate $|k\rangle$. We will see a concrete example in the following section
 	
 	
 	
