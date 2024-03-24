@@ -848,8 +848,9 @@ $$S = \sum_{i=1}^{N} w'_i$$
 	\vspace{0.5cm}
 	
 	Then we construct $U$, a tensor product of all the diagonal matrices:
-	
-	$$\Large U = \bigotimes_j^N U_j$$
+	\begin{equation}\label{U-tensor}
+	 U = \bigotimes_j^N U_j
+	 \end{equation}
 	
 	
 	$U$ will be a $N^N \times N^N$ matrix with only the diagonal elements populated. Because the diagonal elements will entirely consist of phases $\left[U \right]_{kk} = e^{i\alpha_{kk}} $. We can confirm the unitary operator condition is satisfied: $U^\dagger U = \mathds{1}$.
@@ -902,55 +903,60 @@ Given $U$'s diagonal nature, its eigenstates align with the basis vectors. Our f
 	\chapter{Constraint Solution for a 4-City Problem}
 	
 	\section{Algorithm Construction}
-	for our contstraint test, we simply need a tensor product of 4 matrices:
+	For the 4 city problem we will start with four matrices to represent the edgeweights from each node. Using \ref{Uj-elements} we can construct matrix $A$:
 	
-	$$\Large U = U_A \otimes U_B \otimes U_C \otimes U_D$$
+		$$\Large
+		A = \begin{bmatrix}
+				1 & 0 & 0 & 0 \\
+				0 & e^{i2\pi\gamma_{AB}} & 0 & 0 \\
+				0 & 0 & e^{i2\pi\gamma_{AC}} & 0 \\
+				0 & 0 & 0 & e^{i2\pi\gamma_{AD}} \\
+			\end{bmatrix}
+		$$
+		
+	Since we only populate the diagonal elements, we can ignore the other elements of the matrix. Let $ a = \mathrm{diag}(A)$, and lets construct the other diagonals:
 	
-	Using equation \ref{Uj-elements}, we can construct the diagonal elements of our marices. Let $|u_i\rangle = \mathrm{diag}(U_i)$:
-	\begin{align*}	
-		|u_A\rangle  & = \begin{bmatrix}
+		\begin{align*}	
+		a & = \begin{bmatrix}
 			1 \\
-			 e^{i\gamma_{AB}} \\
-			e^{i\gamma_{AC}} \\
-			e^{i\gamma_{AD}} \\
+			e^{i2\pi\gamma_{AB}} \\
+			e^{i2\pi\gamma_{AC}} \\
+			e^{i2\pi\gamma_{AD}} \\
 		\end{bmatrix} 
-		|u_B\rangle  = \begin{bmatrix}
-			e^{i\gamma_{BA}} \\
+		b  = \begin{bmatrix}
+			e^{i2\pi\gamma_{BA}} \\
 			1 \\
-			e^{i\gamma_{BC}} \\
-			e^{i\gamma_{BD}} \\
+			e^{i2\pi\gamma_{BC}} \\
+			e^{i2\pi\gamma_{BD}} \\
 		\end{bmatrix}
-		|u_C\rangle  = \begin{bmatrix}
-			e^{i\gamma_{CA}} \\
-			e^{i\gamma_{CB}} \\
-			e^{i\gamma_{BC}} \\
-			e^{i\gamma_{BD}} \\
+		c  = \begin{bmatrix}
+			e^{i2\pi\gamma_{CA}} \\
+			e^{i2\pi\gamma_{CB}} \\
+			e^{i2\pi\gamma_{BC}} \\
+			e^{i2\pi\gamma_{BD}} \\
 		\end{bmatrix} 
-		|u_D\rangle = \begin{bmatrix}
-			e^{i\gamma_{DA}} \\
-			e^{i\gamma_{DB}} \\
-			e^{i\gamma_{DC}} \\
+		d = \begin{bmatrix}
+			e^{i2\pi\gamma_{DA}} \\
+			e^{i2\pi\gamma_{DB}} \\
+			e^{i2\pi\gamma_{DC}} \\
 			1 \\
 		\end{bmatrix} 						 			
 	\end{align*}
 	
 	
+	We then construct the tensor product with equation \ref{U-tensor}:
 	
-%	lets have a closer look at the matrix $U_A$
-%	$$ \Large
-%	\begin{bmatrix}
-%		1 & 0 & 0 & 0 \\
-%		0 & e^{i\gamma_{12}} & 0 & 0 \\
-%		0 & 0 & e^{i\gamma_{13}} & 0 \\
-%		0 & 0 & 0 & e^{i\gamma_{14}} \\
-%	\end{bmatrix}
-%	$$
-%	
+	$$\Large U = A \otimes B \otimes C \otimes D$$
+	
+	The convience of dealing with only the diagonals we can similiarly state $ u = \mathrm{diag}(U)$, thus:
+	
+	$$ u = a \otimes b \otimes c \otimes d$$
+
 
 Refering to equation \ref{U-matrix-eq} regarding the matrix elements for U,  the diagonal elements for the 4-city problem will reduce to:
 
-	\begin{equation}
-		[U]_{k} = [U_A]_{\alpha_{3}}\cdot [U_B] _{\alpha_{2}} \cdot [U_{C}]_{\alpha_1} \cdot [U_{D}]_{\alpha_{0}}
+	\begin{equation}\label{4-city-tensor}
+		u_{k} = a_{\alpha_{3}}\cdot b _{\alpha_{2}} \cdot c_{\alpha_1} \cdot d_{\alpha_{0}}
 	\end{equation}
 	
 	With: $$\alpha_i = \left(k//\left(4^{i}\right)\right) \% 4$$
@@ -958,7 +964,38 @@ Refering to equation \ref{U-matrix-eq} regarding the matrix elements for U,  the
 	
 	\vspace{0.5cm}
 	
-	lets construct the full tabe:
+	lets walk through identifying the eigenstate of one hamiltonian cycle. Lets say the cycle we choose is the following:
+	
+	\begin{equation}\label{one-ham-cycle-4-city}
+	 A \rightarrow D \rightarrow B \rightarrow C \rightarrow A
+	\end{equation}
+	from here we can identify the edgeweights we care about are:
+	
+	\begin{equation*}
+	\gamma_{AD} + \gamma_{DB} + \gamma_{BC} + \gamma_{CA}
+	\end{equation*}
+
+	Thus the phase we would like to estimate would be given by the following element product:
+	
+	\begin{equation*}
+	\Large{a_{3} \cdot d_{1} \cdot b_{2} \cdot c_{0} = e^{i2\pi (\gamma_{AD} + \gamma_{DB} + \gamma_{BC} + \gamma_{CA})}}
+	\end{equation*}
+	
+	
+	To correctly identify the eigenstate, we need to rearrange the product to match the form of equation \ref{4-city-tensor}:
+	
+	\begin{equation*}
+		\Large{a_{3} \cdot d_{1} \cdot b_{2} \cdot c_{0} = \Large{a_{3}} \cdot b_{2} \cdot c_{0}  \cdot d_{1}}
+	\end{equation*}
+	
+	From here we simply read out the indices and based on our discussion under equation \ref{U-matrix-eq} , we can infer we are working in base 4. Thus we simply need to convert to base 10 to understand the exact column number and to base 2 to be used as the initialized eigenstate.
+	
+	\begin{equation*}
+	\text{base } 4 = 3201 \leftrightarrow \text{base } 10 = 225 \leftrightarrow  \text{base } 2 = 11100001
+\end{equation*}
+
+Thus our eigenstate for \ref{one-ham-cycle-4-city} will be  $|225\rangle$ or $|11100001\rangle$. We can perform an identical process for all the hamiltonian cycles to find their corresponding eigenstates. These are all listed in table \ref{table:comprehensive_hamiltonian_cycles_analysis}
+	
 	
 %	\begin{table}[h]
 %		\centering
