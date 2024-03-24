@@ -457,7 +457,7 @@ linkcolor=blue]{hyperref}
 %	
 	
 	\tableofcontents %% Mandatory
-	%\listoftables                   %% Mandatory if thesis has tables
+	\listoftables                   %% Mandatory if thesis has tables
 	\listoffigures                  %% Mandatory if thesis has figures
 	%\listof{Program}{List of Programs} %% Optional
 	%% Any other lists should come here, i.e.
@@ -837,9 +837,9 @@ $$S = \sum_{i=1}^{N} w'_i$$
 	
 	 We start by constructing diagonal matrices $U_j$, one for each node in a complete graph and describe the matrix elements:
 	
-
-	$$\Large\left[U_j \right]_{kk} = e^{2\pi i\gamma_{jk} (1 - \delta_{jk})}$$
-	
+	\begin{equation}\label{Uj-elements}
+	\left[U_j \right]_{kk} = e^{2\pi i\gamma_{jk} (1 - \delta_{jk})}
+	\end{equation}
 	
 	Where:	$ 1 \leq j, k \leq N$
 	$N$ denotes the total number of nodes.
@@ -879,7 +879,7 @@ Given $U$'s diagonal nature, its eigenstates align with the basis vectors. Our f
 	\end{flalign*}
 	\vspace{0.5cm}
 	This pattern indicates:
-	\begin{equation}
+	\begin{equation}\label{U-matrix-eq}
 	[U]_{k} = [U_1]_{\alpha_{N-1}}\cdot [U_2] _{\alpha_{N-2}}\cdot \ldots \cdot [U_{N-2}]_{\alpha_2} \cdot [U_{2}]_{\alpha_{1}}\cdot [U_N]_{\alpha_{0}}
 	\end{equation}
 	
@@ -904,21 +904,114 @@ Given $U$'s diagonal nature, its eigenstates align with the basis vectors. Our f
 	\section{Algorithm Construction}
 	for our contstraint test, we simply need a tensor product of 4 matrices:
 	
-	$$\Large U = U_1 \otimes U_2 \otimes U_3 \otimes U_4$$
+	$$\Large U = U_A \otimes U_B \otimes U_C \otimes U_D$$
 	
-	lets have a closer look at the matrix $U_1$
-	$$ \Large
-	\begin{bmatrix}
-		1 & 0 & 0 & 0 \\
-		0 & e^{i\gamma_{12}} & 0 & 0 \\
-		0 & 0 & e^{i\gamma_{13}} & 0 \\
-		0 & 0 & 0 & e^{i\gamma_{14}} \\
-	\end{bmatrix}
-	$$
+	Using equation \ref{Uj-elements}, we can construct the diagonal elements of our marices. Let $|u_i\rangle = \mathrm{diag}(U_i)$:
+	\begin{align*}	
+		|u_A\rangle  & = \begin{bmatrix}
+			1 \\
+			 e^{i\gamma_{AB}} \\
+			e^{i\gamma_{AC}} \\
+			e^{i\gamma_{AD}} \\
+		\end{bmatrix} 
+		|u_B\rangle  = \begin{bmatrix}
+			e^{i\gamma_{BA}} \\
+			1 \\
+			e^{i\gamma_{BC}} \\
+			e^{i\gamma_{BD}} \\
+		\end{bmatrix}
+		|u_C\rangle  = \begin{bmatrix}
+			e^{i\gamma_{CA}} \\
+			e^{i\gamma_{CB}} \\
+			e^{i\gamma_{BC}} \\
+			e^{i\gamma_{BD}} \\
+		\end{bmatrix} 
+		|u_D\rangle = \begin{bmatrix}
+			e^{i\gamma_{DA}} \\
+			e^{i\gamma_{DB}} \\
+			e^{i\gamma_{DC}} \\
+			1 \\
+		\end{bmatrix} 						 			
+	\end{align*}
+	
+	
+	
+%	lets have a closer look at the matrix $U_A$
+%	$$ \Large
+%	\begin{bmatrix}
+%		1 & 0 & 0 & 0 \\
+%		0 & e^{i\gamma_{12}} & 0 & 0 \\
+%		0 & 0 & e^{i\gamma_{13}} & 0 \\
+%		0 & 0 & 0 & e^{i\gamma_{14}} \\
+%	\end{bmatrix}
+%	$$
+%	
+
+Refering to equation \ref{U-matrix-eq} regarding the matrix elements for U,  the diagonal elements for the 4-city problem will reduce to:
+
+	\begin{equation}
+		[U]_{k} = [U_A]_{\alpha_{3}}\cdot [U_B] _{\alpha_{2}} \cdot [U_{C}]_{\alpha_1} \cdot [U_{D}]_{\alpha_{0}}
+	\end{equation}
+	
+	With: $$\alpha_i = \left(k//\left(4^{i}\right)\right) \% 4$$
+	
 	
 	\vspace{0.5cm}
 	
-	\textbf{section not complete.}
+	lets construct the full tabe:
+	
+%	\begin{table}[h]
+%		\centering
+%		\begin{tabular}{|c|c|c|c|c|c|}
+%			\hline
+%			\textbf{Hamiltonian Cycle} & \textbf{Edge Weights Sum} & \textbf{Matrix Elements Product} & \textbf{Indices Sequence} & \textbf{Base 10} & \textbf{Base 2} \\
+%			\hline
+%			$A \rightarrow B \rightarrow C \rightarrow D \rightarrow A$ &$ \(\gamma_{AB} + \gamma_{BC} + \gamma_{CD} + \gamma_{DA}\)$ & \(a_{1} \cdot b_{2} \cdot c_{3} \cdot d_{0}\) & 1230 & 108 & 1101100 \\
+%			A \rightarrow B \rightarrow D \rightarrow C \rightarrow A & \(\gamma_{AB} + \gamma_{BD} + \gamma_{DC} + \gamma_{CA}\) & \(a_{1} \cdot b_{3} \cdot d_{2} \cdot c_{0}\) & 1302 & 114 & 1110010 \\
+%			A \rightarrow C \rightarrow B \rightarrow D \rightarrow A & \(\gamma_{AC} + \gamma_{CB} + \gamma_{BD} + \gamma_{DA}\) & \(a_{2} \cdot c_{1} \cdot b_{3} \cdot d_{0}\) & 2310 & 180 & 10110100 \\
+%			A \rightarrow C \rightarrow D \rightarrow B \rightarrow A & \(\gamma_{AC} + \gamma_{CD} + \gamma_{DB} + \gamma_{BA}\) & \(a_{2} \cdot c_{3} \cdot d_{1} \cdot b_{0}\) & 2031 & 141 & 10001101 \\
+%			A \rightarrow D \rightarrow B \rightarrow C \rightarrow A & \(\gamma_{AD} + \gamma_{DB} + \gamma_{BC} + \gamma_{CA}\) & \(a_{3} \cdot d_{1} \cdot b_{2} \cdot c_{0}\) & 3120 & 216 & 11011000 \\
+%			A \rightarrow D \rightarrow C \rightarrow B \rightarrow A & \(\gamma_{AD} + \gamma_{DC} + \gamma_{CB} + \gamma_{BA}\) & \(a_{3} \cdot d_{2} \cdot c_{1} \cdot b_{0}\) & 3201 & 225 & 11100001 \\
+%			\hline
+%		\end{tabular}
+%		\caption{Hamiltonian Cycles of a 4-City Graph with Conversions to Base 10 and Base 2}
+%		\label{table:hamiltonian_cycles_conversions}
+%	\end{table}
+%	
+	
+	
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|c|c|c|}
+		\hline
+		\multicolumn{3}{|c|}{\textbf{Hamiltonian Cycle Details}} \\
+		\hline
+		\textbf{Cycle} & \textbf{Edge Weights Sum} & \textbf{Matrix Elements Product} \\
+		\hline
+		$A \rightarrow B \rightarrow C \rightarrow D \rightarrow A$ & $\gamma_{AB} + \gamma_{BC} + \gamma_{CD} + \gamma_{DA}$ & $a_{1} \cdot b_{2} \cdot c_{3} \cdot d_{0}$ \\
+		$A \rightarrow B \rightarrow D \rightarrow C \rightarrow A$ & $\gamma_{AB} + \gamma_{BD} + \gamma_{DC} + \gamma_{CA}$ & $a_{1} \cdot b_{3} \cdot d_{2} \cdot c_{0}$ \\
+		$A \rightarrow C \rightarrow B \rightarrow D \rightarrow A$ & $\gamma_{AC} + \gamma_{CB} + \gamma_{BD} + \gamma_{DA}$ & $a_{2} \cdot c_{1} \cdot b_{3} \cdot d_{0}$ \\
+		$A \rightarrow C \rightarrow D \rightarrow B \rightarrow A$ & $\gamma_{AC} + \gamma_{CD} + \gamma_{DB} + \gamma_{BA}$ & $a_{2} \cdot c_{3} \cdot d_{1} \cdot b_{0}$ \\
+		$A \rightarrow D \rightarrow B \rightarrow C \rightarrow A$ & $\gamma_{AD} + \gamma_{DB} + \gamma_{BC} + \gamma_{CA}$ & $a_{3} \cdot d_{1} \cdot b_{2} \cdot c_{0}$ \\
+		$A \rightarrow D \rightarrow C \rightarrow B \rightarrow A$ & $\gamma_{AD} + \gamma_{DC} + \gamma_{CB} + \gamma_{BA}$ & $a_{3} \cdot d_{2} \cdot c_{1} \cdot b_{0}$ \\
+		\hline
+		\multicolumn{3}{|c|}{\textbf{Conversions}} \\
+		\hline
+		\textbf{Rearranged Indices (Base 4)} & \textbf{Base 10} & \textbf{Base 2} \\
+		\hline
+		1230 & 108 & 01101100 \\
+		1302 & 114 & 01110010 \\
+		2310 & 180 & 10110100 \\
+		2031 & 141 & 10001101 \\
+		3120 & 216 & 11011000 \\
+		3201 & 225 & 11100001 \\
+		\hline
+	\end{tabular}
+	\caption{Comprehensive Hamiltonian Cycles Analysis}
+	\label{table:comprehensive_hamiltonian_cycles_analysis}
+\end{table}
+
+	
 	
 		\vspace{0.5cm}
 	
