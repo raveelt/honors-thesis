@@ -1,0 +1,17 @@
+\begin{Program}
+  \caption{\label{prog:fib} Python program that computes the $n^{\rm
+      th}$ Fibonacci number using memoization.}
+\begin{verbatim}
+def fib(n,_cache={}):
+    if n < 2:
+        return 1
+    if n in _cache:
+        return _cache[n]
+    else:
+        result = fib(n-1)+fib(n-2)
+        _cache[n] = result
+        return result
+\end{verbatim}
+\end{Program}
+
+In~\cite{1929PNAS...15..168H} they say ~\cite{1948MNRAS.108..252B}

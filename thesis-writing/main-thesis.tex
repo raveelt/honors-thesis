@@ -116,7 +116,9 @@ bottom=2.5cm,
 \usepackage{amsmath,bm}
 \usepackage{tikz}
 \usepackage{quantikz}
+\usepackage{tabularray}
 \usepackage{dsfont}
+\usetikzlibrary{shapes.geometric}
 \usetikzlibrary{arrows.meta} % For arrow tips
 \usepackage{xcolor} % For colors
 \definecolor{lightblue}{RGB}{173,216,230} % Define light blue
@@ -175,6 +177,7 @@ bottom=2.5cm,
 % page in the pdf file for easier reading.  (Thanks to Joseph Shea
 % for pointing this out.)
 \usepackage{pdflscape}
+\usepackage{pdfpages}
 
 %******** natbib ********************************
 % This is a very nice package for bibliographies.  It includes options
@@ -329,6 +332,18 @@ linkcolor=blue]{hyperref}
 \floatstyle{ruled}
 \newfloat{Program}{htbp}{lop}[chapter]
 
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%EVERTYTHING FOR JUPYTER NOTEBOOK%%%%%
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Here is the start of the document.
 \begin{document}
 	
@@ -803,7 +818,7 @@ The constrained version of the BTSP asks whether there exists a Hamiltonian cycl
 	We will construct the algorithm in the following steps:
 	\begin{enumerate}
 		\item Normalize edge weights so no single hamiltonian cycle is greater than or equal to 1. This is to ensure we can appropriately use the phase estimation algorithm.\\
-		\item Construct a unitary operator that holds information regarding the hamiltonian cyles as phases in the diagonal. The approach will follow inline with what was found  the paper: \cite{srinivasan2018efficient}\\
+		\item Construct a unitary operator that holds information regarding the hamiltonian cyles as phases in the diagonal. The approach will follow inline with what was found  the paper: \cite{srinivasan2018efficient} \\
 		\item Set all edgeweights $> \alpha$ to zero and construct a secondary unitary operator similiar to step 2.\\
 		\item Create controlled gates using the unitary operators constructed in Step 2 and 3.\\
 		\item Identify all the eigenstates of the unitary operators that map to the phases associated with the hamiltonian cycles.\\
@@ -843,7 +858,7 @@ S = \sum_{i=1}^{N} w'_i
 		Where: $\epsilon>0$.  The purpose of $\epsilon$ is to make sure if any normalized hamiltonian cycle is exactly equal to $ S$ then we do not have a zero phase.
 	
 	
-	\section{Unitary Operator for Hamiltonian Cycles}
+	\section{Unitary Operator and Eigenstates associated with the Hamiltonian Cycles}
 	
 	 We start by constructing diagonal matrices $U_j$, one for each node in a complete graph and describe the matrix elements:
 	
@@ -863,12 +878,10 @@ S = \sum_{i=1}^{N} w'_i
 	 \end{equation}
 	
 	
-	$U$ will be a $N^N \times N^N$ matrix with only the diagonal elements populated. Because the diagonal elements will entirely consist of phases $\left[U \right]_{kk} = e^{i\alpha_{kk}} $. We can confirm the unitary operator condition is satisfied: $U^\dagger U = \mathds{1}$.
+	$U$ will be a $N^N \times N^N$ matrix with only the diagonal elements populated. Because the diagonal elements will entirely consist of phases $\left[U \right]_{kk} = e^{i\alpha_{kk}} $. We can confirm the unitary operator condition is satisfied: $U^\dagger U = \mathds{1}$. 
 	
-
-	\section{Identifying the Eigenstates associated with the Hamiltonian Cycles}
 	
-Given $U$'s diagonal nature, its eigenstates align with the basis vectors. Our focus is on specific eigenstates corresponding to the Hamiltonian cycles, determined by the phases. To comprehend how the diagonal elements of $U$ derive from the individual $U_j$ matrices, we visualize the tensor product construction. Notably, the product populates the diagonal elements of $U$ allowing a simplification where we consider these elements directly:
+	Given $U$'s diagonal nature, its eigenstates align with the basis vectors. Our focus is on specific eigenstates corresponding to the Hamiltonian cycles, determined by the phases. To comprehend how the diagonal elements of $U$ derive from the individual $U_j$ matrices, we visualize the tensor product construction. Notably, the product populates the diagonal elements of $U$ allowing a simplification where we consider these elements directly:
 	
 	\begin{flalign*}
 	[U]_{0} & = [U_1]_{0}\cdot [U_2] _{0}\cdot \ldots  \cdot [U_{N-2}]_{0} \cdot [U_{N-1}]_{0}\cdot [U_N]_{0} \\
@@ -906,14 +919,396 @@ Given $U$'s diagonal nature, its eigenstates align with the basis vectors. Our f
 	
 	\vspace{0.5cm}
 	
- 	We can see the pattern follows base-$N$ counting where $N$ is the total number of nodes. Simply converting $k$ into base-$N$, will give us the indices of our original diagonal matrices. To locate the relevent eigenstates, we start by identifying the elements in $U_j$ associated  with a hamiltonian cycle, retrieve their respective indices, convert this string of indices from Base-$N$ to $k$.  and we would have identified our eigenstate $|k\rangle$. We will see a concrete example in the following section
+ 	We can see the pattern follows base-$N$ counting where $N$ is the total number of nodes. Simply converting $k$ into base-$N$, will give us the indices of our original diagonal matrices. To locate the relevent eigenstates, we start by identifying the elements in $U_j$ associated  with a hamiltonian cycle, retrieve their respective indices, convert this string of indices from Base-$N$ to $k$.  and we would have identified our eigenstate $|k\rangle$. 
+	
+	\subsection{The Four City Graph}
+	
+	\begin{center}	
+	\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=4.5cm, thick,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
+		
+		\node[main node] (1) {A};
+		\node[main node] (2) [below left of=1] {B};
+		\node[main node] (3) [below right of=2] {C};
+		\node[main node] (4) [below right of=1] {D};
+		
+		\path[every node/.style={font=\sffamily\small}]
+		(1) edge node [left] {$\gamma_{AD}$} (4)
+		edge [bend right] node[left] {$\gamma_{AB}$} (2)
+		edge[bend right=22] node[left] {$\gamma_{AC}$} (3)
+		%edge [loop above] node {0.1} (1)
+		(2) edge node [right] {$\gamma_{BA}$} (1)
+		edge[bend right=22] node[below] {$\gamma_{BD}$} (4)
+		%edge [loop left] node {0.4} (2)
+		edge [bend right] node[left] {$\gamma_{BC}$} (3)
+		(3) edge node [right] {$\gamma_{CB}$} (2)
+		edge [bend right] node[right] {$\gamma_{CD}$} (4)
+		edge[bend right=22] node[right] {$\gamma_{CA}$} (1)
+		(4) edge node [left] {$\gamma_{DC}$} (3)
+		%edge [loop right] node {0.6} (4)
+		edge[bend right=22] node {$\gamma_{DB}$} (2)
+		edge [bend right] node[right] {$\gamma_{DA}$} (1);
+	\end{tikzpicture}
+	
+	\end{center}
+	
+	
+	For the 4 city problem we will start with four matrices to represent the $12$ edgeweights from each node. Using \ref{Uj-elements}, Where:	$ j, k \in \{A,B,C,D\}$.  we can construct matrix $A$:
+
+	$$
+	A = \begin{bmatrix}
+		1 & 0 & 0 & 0 \\
+		0 & e^{i2\pi\gamma_{AB}} & 0 & 0 \\
+		0 & 0 & e^{i2\pi\gamma_{AC}} & 0 \\
+		0 & 0 & 0 & e^{i2\pi\gamma_{AD}} \\
+	\end{bmatrix}
+	$$
+	
+	Since we only populate the diagonal elements, we can ignore the other elements of the matrix. Let $ a = \mathrm{diag}(A)$, and lets construct the other diagonals:
+	
+	\begin{align*}	
+		a & = \begin{bmatrix}
+			1 \\
+			e^{i2\pi\gamma_{AB}} \\
+			e^{i2\pi\gamma_{AC}} \\
+			e^{i2\pi\gamma_{AD}} \\
+		\end{bmatrix} 
+		b  = \begin{bmatrix}
+			e^{i2\pi\gamma_{BA}} \\
+			1 \\
+			e^{i2\pi\gamma_{BC}} \\
+			e^{i2\pi\gamma_{BD}} \\
+		\end{bmatrix}
+		c  = \begin{bmatrix}
+			e^{i2\pi\gamma_{CA}} \\
+			e^{i2\pi\gamma_{CB}} \\
+			1 \\
+			e^{i2\pi\gamma_{CD}} \\
+		\end{bmatrix} 
+		d = \begin{bmatrix}
+			e^{i2\pi\gamma_{DA}} \\
+			e^{i2\pi\gamma_{DB}} \\
+			e^{i2\pi\gamma_{DC}} \\
+			1 \\
+		\end{bmatrix} 						 			
+	\end{align*}
+	
+	
+	We then construct the tensor product with equation \ref{U-tensor}:
+	
+	\begin{equation}\label{4-city-matrix-tensor}
+	 U = A \otimes B \otimes C \otimes D
+	\end{equation}
+	
+	The convience of dealing with only the diagonals we can similiarly state $ u = \mathrm{diag}(U)$, thus:
+	
+	$$ u = a \otimes b \otimes c \otimes d$$
+	
+	
+	Refering to equation \ref{U-matrix-eq} regarding the matrix elements for U,  the diagonal elements for the 4-city problem will reduce to:
+	
+	\begin{equation}\label{4-city-tensor}
+		u_{k} = a_{\alpha_{3}}\cdot b _{\alpha_{2}} \cdot c_{\alpha_1} \cdot d_{\alpha_{0}}
+	\end{equation}
+	
+	With: $$\alpha_i = \left(k//\left(4^{i}\right)\right) \% 4$$
+	
+	
+	\vspace{0.5cm}
+	
+	lets walk through identifying the eigenstate of one hamiltonian cycle. Lets say the cycle we choose is the following:
+	
+	\begin{equation}\label{one-ham-cycle-4-city}
+		A \rightarrow D \rightarrow B \rightarrow C \rightarrow A
+	\end{equation}
+	from here we can identify the edgeweights we care about are:
+	
+	\begin{equation*}
+		\gamma_{AD} + \gamma_{DB} + \gamma_{BC} + \gamma_{CA}
+	\end{equation*}
+	
+	Thus the phase we would like to estimate would be given by the following element product:
+	
+	\begin{equation*}
+		\Large{a_{3} \cdot d_{1} \cdot b_{2} \cdot c_{0} = e^{i2\pi (\gamma_{AD} + \gamma_{DB} + \gamma_{BC} + \gamma_{CA})}}
+	\end{equation*}
+	
+	
+	To correctly identify the eigenstate, we need to rearrange the product to match the form of equation \ref{4-city-tensor}:
+	
+	\begin{equation*}
+		\Large{a_{3} \cdot d_{1} \cdot b_{2} \cdot c_{0} = \Large{a_{3}} \cdot b_{2} \cdot c_{0}  \cdot d_{1}}
+	\end{equation*}
+	
+	From here we simply read out the indices and based on our discussion under equation \ref{U-matrix-eq} , we can infer we are working in base 4. Thus we simply need to convert to base 10 to understand the exact column number and to base 2 to be used as the initialized eigenstate.
+	
+	\begin{equation*}
+		\text{base } 4 = 3201 \leftrightarrow \text{base } 10 = 225 \leftrightarrow  \text{base } 2 = 11100001
+	\end{equation*}
+	
+	Thus our eigenstate for \ref{one-ham-cycle-4-city} will be  $|225\rangle$ or $|11100001\rangle$. We can perform an identical process for all the hamiltonian cycles to find their corresponding eigenstates. These are all listed in table \ref{table:ham-cycle-details-4-city} and and \ref{table:4-city-conversions}
+	
+	
+	\begin{table}[h]
+		\centering
+		\begin{tabular}{|c|c|c|}
+			\hline
+			\textbf{Hamiltonian Cycle} & \textbf{Edge Weights Sum} & \textbf{Diagonal Elements Product} \\
+			\hline
+			$A \rightarrow B \rightarrow C \rightarrow D \rightarrow A$ & $\gamma_{AB} + \gamma_{BC} + \gamma_{CD} + \gamma_{DA}$ & $a_{1} \cdot b_{2} \cdot c_{3} \cdot d_{0}$ \\
+			$A \rightarrow B \rightarrow D \rightarrow C \rightarrow A$ & $\gamma_{AB} + \gamma_{BD} + \gamma_{DC} + \gamma_{CA}$ & $a_{1} \cdot b_{3} \cdot d_{2} \cdot c_{0}$ \\
+			$A \rightarrow C \rightarrow B \rightarrow D \rightarrow A$ & $\gamma_{AC} + \gamma_{CB} + \gamma_{BD} + \gamma_{DA}$ & $a_{2} \cdot c_{1} \cdot b_{3} \cdot d_{0}$ \\
+			$A \rightarrow C \rightarrow D \rightarrow B \rightarrow A$ & $\gamma_{AC} + \gamma_{CD} + \gamma_{DB} + \gamma_{BA}$ & $a_{2} \cdot c_{3} \cdot d_{1} \cdot b_{0}$ \\
+			$A \rightarrow D \rightarrow B \rightarrow C \rightarrow A$ & $\gamma_{AD} + \gamma_{DB} + \gamma_{BC} + \gamma_{CA}$ & $a_{3} \cdot d_{1} \cdot b_{2} \cdot c_{0}$ \\
+			$A \rightarrow D \rightarrow C \rightarrow B \rightarrow A$ & $\gamma_{AD} + \gamma_{DC} + \gamma_{CB} + \gamma_{BA}$ & $a_{3} \cdot d_{2} \cdot c_{1} \cdot b_{0}$ \\
+			\hline
+			\end{tabular}
+					\caption{Hamiltonian cycles of the directed 4-city graph with their edgeweight summation and expected diagonal element products (\ref{4-city-tensor}).}
+			\label{table:ham-cycle-details-4-city}
+	\end{table}
+	\begin{table}[h]
+		\centering
+		\begin{tabular}{|c|c|c|}	
+			
+			\hline
+			\textbf{Rearranged Indices (Base 4)} & \textbf{Base 10} & \textbf{Base 2} \\
+			\hline
+			1230 & 108 & 01101100 \\
+			1302 & 114 & 01110010 \\
+			2310 & 180 & 10110100 \\
+			2031 & 141 & 10001101 \\
+			3201 & 225 & 11100001 \\
+			3012 & 198 & 11000110 \\
+			\hline
+		\end{tabular}
+		\caption{Eigenstates of matrix $U$ (\ref{4-city-matrix-tensor}), containing the normalized hamiltonian cycle edge weight sum of the directed 4-city graph.}
+		\label{table:4-city-conversions}
+	\end{table}
+	
+	\subsection{The Five City Graph}
 	
 	
 	
-	\chapter{Constraint Solution for a 4-City Problem}
+		\begin{center}	
+		\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=5cm, thick,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
+			
+			\node[main node] (1) {A};
+			\node[main node] (2) [below left of=1, xshift = -1.5cm] {B};
+			\node[main node] (3) [below of=2, xshift= 1.5cm] {C};
+			\node[main node] (5) [below right of=1, xshift = 1.5cm] {E};
+			\node[main node] (4) [below of=5, xshift= -1.5cm] {D};
+			
+			\path[every node/.style={font=\sffamily\small}]
+			(1) edge [bend right=10] node [left] {$\gamma_{AD}$} (4)
+			edge node[left] {$\gamma_{AB}$} (2)
+			edge [bend right=10] node[left, pos = 0.2] {$\gamma_{AC}$} (3)
+			edge[bend left] node[above] {$\gamma_{AE}$} (5)
+
+			(2) edge[bend left] node [above] {$\gamma_{BA}$} (1)
+			edge [bend right=10]  node[below left , pos = 0.8] {$\gamma_{BD}$} (4)
+			edge node[right] {$\gamma_{BC}$} (3)
+			edge [bend right=10] node[above] {$\gamma_{BE}$} (5)
+			
+			(3) edge[bend left] node [left] {$\gamma_{CB}$} (2)
+			edge node[below] {$\gamma_{CD}$} (4)
+			edge [bend right=10] node[right] {$\gamma_{CA}$} (1)
+			edge [bend right=10] node[below right , pos = 0.2] {$\gamma_{CE}$} (5)
+			
+			(4) edge[bend left] node[below] {$\gamma_{DC}$} (3)
+			edge [bend right=10] node[above] {$\gamma_{DB}$} (2)
+			edge [bend right=10] node[right, pos = 0.8] {$\gamma_{DA}$} (1)
+			edge node[left] {$\gamma_{DE}$} (5)
+			
+			(5) edge node [above] {$\gamma_{EA}$} (1)
+			edge [bend right=10]  node[above] {$\gamma_{EB}$} (2)
+			edge [bend right=10] node[above] {$\gamma_{EC}$} (3)
+			edge[bend left] node {$\gamma_{ED}$} (4);
+
+		\end{tikzpicture}
+		
+	\end{center}
+	
+	
+	We construct our matrix U with the tensor product as in equation \ref{U-tensor}.
+	
+	\begin{equation}\label{5-city-matrix-tensor}
+		U = A \otimes B \otimes C \otimes D \otimes E
+	\end{equation}
+	
+	 Similiar to the four-city graph we only populate the diagonal elements, Let $ a = \mathrm{diag}(A)$, and let us construct the other diagonals:
+	
+	\begin{align*}	
+		a & = \begin{bmatrix}
+			1 \\
+			e^{i2\pi\gamma_{AB}} \\
+			e^{i2\pi\gamma_{AC}} \\
+			e^{i2\pi\gamma_{AD}} \\
+			e^{i2\pi\gamma_{AE}} \\
+		\end{bmatrix} 
+		b  = \begin{bmatrix}
+			e^{i2\pi\gamma_{BA}} \\
+			1 \\
+			e^{i2\pi\gamma_{BC}} \\
+			e^{i2\pi\gamma_{BD}} \\
+			e^{i2\pi\gamma_{BE}} \\
+		\end{bmatrix}
+		c  = \begin{bmatrix}
+			e^{i2\pi\gamma_{CA}} \\
+			e^{i2\pi\gamma_{CB}} \\
+			1 \\
+			e^{i2\pi\gamma_{CD}} \\
+			e^{i2\pi\gamma_{CE}} \\
+		\end{bmatrix} 
+		d = \begin{bmatrix}
+			e^{i2\pi\gamma_{DA}} \\
+			e^{i2\pi\gamma_{DB}} \\
+			e^{i2\pi\gamma_{DC}} \\
+			1 \\
+			e^{i2\pi\gamma_{DE}} \\
+		\end{bmatrix}  
+		e = \begin{bmatrix}
+			e^{i2\pi\gamma_{EA}} \\
+			e^{i2\pi\gamma_{EB}} \\
+			e^{i2\pi\gamma_{EC}} \\
+			e^{i2\pi\gamma_{ED}} \\
+			1 \\
+		\end{bmatrix}		 			
+	\end{align*}
+	
+
+	
+	We can state $ u = \mathrm{diag}(U)$, thus:
+	
+	$$ u = a \otimes b \otimes c \otimes d \otimes e$$
+	
+	
+	Refering to equation \ref{U-matrix-eq} regarding the matrix elements for U,  the diagonal elements for the 5-city problem will reduce to:
+	
+	\begin{equation}\label{5-city-tensor}
+		u_{k} = a_{\alpha_{4}}\cdot b _{\alpha_{3}} \cdot c_{\alpha_2} \cdot d_{\alpha_{1}}\cdot e_{\alpha_{0}}
+	\end{equation}
+	
+	With: $$\alpha_i = \left(k//\left(5^{i}\right)\right) \% 5$$
+	
+	
+	\vspace{0.5cm}
+	
+	Let us walk through identifying the eigenstate of one hamiltonian cycle:
+	
+	\begin{equation}\label{one-ham-cycle-4-city}
+		A \rightarrow E \rightarrow D \rightarrow C \rightarrow B \rightarrow A
+	\end{equation}
+	
+	from here we can identify the edgeweights we care about are:
+	
+	\begin{equation*}
+		\gamma_{AE} + \gamma_{ED} + \gamma_{DC} + \gamma_{CB} + \gamma_{BA}
+	\end{equation*}
+	
+	Thus the phase we would like to estimate would be given by the following element product:
+	
+	\begin{equation*}
+		\Large{a_{4} \cdot e_{3} \cdot d_{2} \cdot c_{1} \cdot b_{0} = e^{i2\pi (\gamma_{AE} + \gamma_{ED} + \gamma_{DC} + \gamma_{CB} + \gamma_{BA})}}
+	\end{equation*}
+	
+	
+	To correctly identify the eigenstate, we need to rearrange the product to match the form of equation \ref{5-city-tensor}:
+	
+	\begin{equation*}
+		\Large{a_{4} \cdot e_{3} \cdot d_{2} \cdot c_{1} \cdot b_{0}= a_{4} \cdot b_{0}  \cdot c_{1}\cdot d_{2} \cdot e_{3}}
+	\end{equation*}
+	
+	From here we simply read out the indices and based on our discussion under equation \ref{U-matrix-eq} , we can infer we are working in base 4. Thus we simply need to convert to base 10 to understand the exact column number and to base 2 to be used as the initialized eigenstate.
+	
+	\begin{equation*}
+		\text{base } 5 = 40123 \leftrightarrow \text{base } 10 = 2538 \leftrightarrow  \text{base } 2 = 100111101010
+	\end{equation*}
+	
+	Thus our eigenstate for \ref{one-ham-cycle-4-city} will be  $|2538\rangle$ or $|100111101010\rangle$. We can perform an identical process for all the hamiltonian cycles to find their corresponding eigenstates. These are all listed in table \ref{table:ham-cycle-details-5-city} and \ref{table:5-city-conversions}
+	
+	
+	
+	
+	\begin{table}[h]
+		\centering
+		\begin{tabular}{|c|c|c|}
+			\hline
+			\textbf{Hamiltonian Cycle} & \textbf{Edge Weights Sum} & \textbf{Matrix Elements Product} \\
+			\hline
+$A \rightarrow B \rightarrow C \rightarrow D \rightarrow E \rightarrow A$ & $ \gamma_{AB} + \gamma_{BC} + \gamma_{CD} + \gamma_{DE} + \gamma_{EA}$ & $a_1  \cdot b_2 \cdot c_3 \cdot d_4 \cdot e_0$ \\
+$A \rightarrow B \rightarrow C \rightarrow E \rightarrow D \rightarrow A$ & $ \gamma_{AB} + \gamma_{BC} + \gamma_{CE} + \gamma_{ED} + \gamma_{DA}$ & $a_1  \cdot b_2 \cdot c_4 \cdot e_3 \cdot d_0$ \\
+$A \rightarrow B \rightarrow D \rightarrow C \rightarrow E \rightarrow A$ & $ \gamma_{AB} + \gamma_{BD} + \gamma_{DC} + \gamma_{CE} + \gamma_{EA}$ & $a_1  \cdot b_3 \cdot d_2 \cdot c_4 \cdot e_0$ \\
+$A \rightarrow B \rightarrow D \rightarrow E \rightarrow C \rightarrow A$ & $ \gamma_{AB} + \gamma_{BD} + \gamma_{DE} + \gamma_{EC} + \gamma_{CA}$ & $a_1  \cdot b_3 \cdot d_4 \cdot e_2 \cdot c_0$ \\
+$A \rightarrow B \rightarrow E \rightarrow C \rightarrow D \rightarrow A$ & $ \gamma_{AB} + \gamma_{BE} + \gamma_{EC} + \gamma_{CD} + \gamma_{DA}$ & $a_1  \cdot b_4 \cdot e_2 \cdot c_3 \cdot d_0$ \\
+$A \rightarrow B \rightarrow E \rightarrow D \rightarrow C \rightarrow A$ & $ \gamma_{AB} + \gamma_{BE} + \gamma_{ED} + \gamma_{DC} + \gamma_{CA}$ & $a_1  \cdot b_4 \cdot e_3 \cdot d_2 \cdot c_0$ \\
+$A \rightarrow C \rightarrow B \rightarrow D \rightarrow E \rightarrow A$ & $ \gamma_{AC} + \gamma_{CB} + \gamma_{BD} + \gamma_{DE} + \gamma_{EA}$ & $a_2  \cdot c_1 \cdot b_3 \cdot d_4 \cdot e_0$ \\
+$A \rightarrow C \rightarrow B \rightarrow E \rightarrow D \rightarrow A$ & $ \gamma_{AC} + \gamma_{CB} + \gamma_{BE} + \gamma_{ED} + \gamma_{DA}$ & $a_2  \cdot c_1 \cdot b_4 \cdot e_3 \cdot d_0$ \\
+$A \rightarrow C \rightarrow D \rightarrow B \rightarrow E \rightarrow A$ & $ \gamma_{AC} + \gamma_{CD} + \gamma_{DB} + \gamma_{BE} + \gamma_{EA}$ & $a_2  \cdot c_3 \cdot d_1 \cdot b_4 \cdot e_0$ \\
+$A \rightarrow C \rightarrow D \rightarrow E \rightarrow B \rightarrow A$ & $ \gamma_{AC} + \gamma_{CD} + \gamma_{DE} + \gamma_{EB} + \gamma_{BA}$ & $a_2  \cdot c_3 \cdot d_4 \cdot e_1 \cdot b_0$ \\
+$A \rightarrow C \rightarrow E \rightarrow B \rightarrow D \rightarrow A$ & $ \gamma_{AC} + \gamma_{CE} + \gamma_{EB} + \gamma_{BD} + \gamma_{DA}$ & $a_2  \cdot c_4 \cdot e_1 \cdot b_3 \cdot d_0$ \\
+$A \rightarrow C \rightarrow E \rightarrow D \rightarrow B \rightarrow A$ & $ \gamma_{AC} + \gamma_{CE} + \gamma_{ED} + \gamma_{DB} + \gamma_{BA}$ & $a_2  \cdot c_4 \cdot e_3 \cdot d_1 \cdot b_0$ \\
+$A \rightarrow D \rightarrow B \rightarrow C \rightarrow E \rightarrow A$ & $ \gamma_{AD} + \gamma_{DB} + \gamma_{BC} + \gamma_{CE} + \gamma_{EA}$ & $a_3  \cdot d_1 \cdot b_2 \cdot c_4 \cdot e_0$ \\
+$A \rightarrow D \rightarrow B \rightarrow E \rightarrow C \rightarrow A$ & $ \gamma_{AD} + \gamma_{DB} + \gamma_{BE} + \gamma_{EC} + \gamma_{CA}$ & $a_3  \cdot d_1 \cdot b_4 \cdot e_2 \cdot c_0$ \\
+$A \rightarrow D \rightarrow C \rightarrow B \rightarrow E \rightarrow A$ & $ \gamma_{AD} + \gamma_{DC} + \gamma_{CB} + \gamma_{BE} + \gamma_{EA}$ & $a_3  \cdot d_2 \cdot c_1 \cdot b_4 \cdot e_0$ \\
+$A \rightarrow D \rightarrow C \rightarrow E \rightarrow B \rightarrow A$ & $ \gamma_{AD} + \gamma_{DC} + \gamma_{CE} + \gamma_{EB} + \gamma_{BA}$ & $a_3  \cdot d_2 \cdot c_4 \cdot e_1 \cdot b_0$ \\
+$A \rightarrow D \rightarrow E \rightarrow B \rightarrow C \rightarrow A$ & $ \gamma_{AD} + \gamma_{DE} + \gamma_{EB} + \gamma_{BC} + \gamma_{CA}$ & $a_3  \cdot d_4 \cdot e_1 \cdot b_2 \cdot c_0$ \\
+$A \rightarrow D \rightarrow E \rightarrow C \rightarrow B \rightarrow A$ & $ \gamma_{AD} + \gamma_{DE} + \gamma_{EC} + \gamma_{CB} + \gamma_{BA}$ & $a_3  \cdot d_4 \cdot e_2 \cdot c_1 \cdot b_0$ \\
+$A \rightarrow E \rightarrow B \rightarrow C \rightarrow D \rightarrow A$ & $ \gamma_{AE} + \gamma_{EB} + \gamma_{BC} + \gamma_{CD} + \gamma_{DA}$ & $a_4  \cdot e_1 \cdot b_2 \cdot c_3 \cdot d_0$ \\
+$A \rightarrow E \rightarrow B \rightarrow D \rightarrow C \rightarrow A$ & $ \gamma_{AE} + \gamma_{EB} + \gamma_{BD} + \gamma_{DC} + \gamma_{CA}$ & $a_4  \cdot e_1 \cdot b_3 \cdot d_2 \cdot c_0$ \\
+$A \rightarrow E \rightarrow C \rightarrow B \rightarrow D \rightarrow A$ & $ \gamma_{AE} + \gamma_{EC} + \gamma_{CB} + \gamma_{BD} + \gamma_{DA}$ & $a_4  \cdot e_2 \cdot c_1 \cdot b_3 \cdot d_0$ \\
+$A \rightarrow E \rightarrow C \rightarrow D \rightarrow B \rightarrow A$ & $ \gamma_{AE} + \gamma_{EC} + \gamma_{CD} + \gamma_{DB} + \gamma_{BA}$ & $a_4  \cdot e_2 \cdot c_3 \cdot d_1 \cdot b_0$ \\
+$A \rightarrow E \rightarrow D \rightarrow B \rightarrow C \rightarrow A$ & $ \gamma_{AE} + \gamma_{ED} + \gamma_{DB} + \gamma_{BC} + \gamma_{CA}$ & $a_4  \cdot e_3 \cdot d_1 \cdot b_2 \cdot c_0$ \\
+$A \rightarrow E \rightarrow D \rightarrow C \rightarrow B \rightarrow A$ & $ \gamma_{AE} + \gamma_{ED} + \gamma_{DC} + \gamma_{CB} + \gamma_{BA}$ & $a_4  \cdot e_3 \cdot d_2 \cdot c_1 \cdot b_0$ \\
+			\hline
+			\end{tabular}
+\caption{Hamiltonian cycles of the directed 4-city graph with their edgeweight summation and expected diagonal element products (\ref{5-city-tensor}).}
+\label{table:ham-cycle-details-5-city}
+\end{table}
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|}	
+		
+		\hline
+		\textbf{Rearranged Indices (Base 5)} & \textbf{Base 10} & \textbf{Base 2} \\
+		\hline
+		12340 & 970 & 001111001010 \\
+		12403 & 978 & 001111010010 \\
+		13420 & 1110 & 010001010110 \\
+		13042 & 1022 & 001111111110 \\
+		14302 & 1202 & 010010110010 \\
+		14023 & 1138 & 010001110010 \\
+		23140 & 1670 & 011010000110 \\
+		24103 & 1778 & 011011110010 \\
+		24310 & 1830 & 011100100110 \\
+		20341 & 1346 & 010101000010 \\
+		23401 & 1726 & 011010111110 \\
+		20413 & 1358 & 010101001110 \\
+		32410 & 2230 & 100010110110 \\
+		34012 & 2382 & 100101001110 \\
+		34120 & 2410 & 100101101010 \\
+		30421 & 1986 & 011111000010 \\
+		32041 & 2146 & 100001100010 \\
+		30142 & 1922 & 011110000010 \\
+		42301 & 2826 & 101100001010 \\
+		43021 & 2886 & 101101000110 \\
+		43102 & 2902 & 101101010110 \\
+		40312 & 2582 & 101000010110 \\
+		42013 & 2758 & 101011000110 \\
+		40123 & 2538 & 100111101010 \\
+		\hline
+		\end{tabular}
+		\caption{Eigenstates of matrix $U$ (\ref{5-city-matrix-tensor}), containing the normalized hamiltonian cycle edge weight sum of the directed 4-city graph}
+		\label{table:5-city-conversions}
+	\end{table}
+	
+	
+	\vspace{0.5cm}
+
+	
+	\chapter{Constraint Solutions}
 	
 	Lets consider the following example of a symmetric 4-city system we are considering the symmetric case thus we only need to look at three hamiltonian cycles. The constraint for our BTSP in this case will involve $\gamma < 6$:
 	
+	\section{An Undirected 4-city Graph}
 	\begin{center}	
 		\begin{tikzpicture}[scale=3, every node/.style={circle, draw, fill=blue!20}]
 			% Nodes
@@ -936,7 +1331,7 @@ Given $U$'s diagonal nature, its eigenstates align with the basis vectors. Our f
 	\end{equation*}
 	
 	
-	\section{Algorithm Construction}
+	\subsection{Algorithm Construction}
 	
 	We will follow the instructions highlighted at the begining of chapter 3. We start by normalizing our edge weights. We need to sort our all edge weights in descending order as in equation \ref{sorted-weights}:	
 	
@@ -957,171 +1352,27 @@ Given $U$'s diagonal nature, its eigenstates align with the basis vectors. Our f
 	\end{equation*}
 	
 	
-	Now we need to construct the unitary operator and eigenstates but we will first discuss it abstractly that would be applicable to any 4-city graph
-	
-	\subsection{Unitary Operator and Eigenstates for The 4-city graph}
-	For the 4 city problem we will start with four matrices to represent the edgeweights from each node. Using \ref{Uj-elements} we can construct matrix $A$:
-	
-		$$\Large
-		A = \begin{bmatrix}
-				1 & 0 & 0 & 0 \\
-				0 & e^{i2\pi\gamma_{AB}} & 0 & 0 \\
-				0 & 0 & e^{i2\pi\gamma_{AC}} & 0 \\
-				0 & 0 & 0 & e^{i2\pi\gamma_{AD}} \\
-			\end{bmatrix}
-		$$
-		
-	Since we only populate the diagonal elements, we can ignore the other elements of the matrix. Let $ a = \mathrm{diag}(A)$, and lets construct the other diagonals:
-	
-		\begin{align*}	
-		a & = \begin{bmatrix}
-			1 \\
-			e^{i2\pi\gamma_{AB}} \\
-			e^{i2\pi\gamma_{AC}} \\
-			e^{i2\pi\gamma_{AD}} \\
-		\end{bmatrix} 
-		b  = \begin{bmatrix}
-			e^{i2\pi\gamma_{BA}} \\
-			1 \\
-			e^{i2\pi\gamma_{BC}} \\
-			e^{i2\pi\gamma_{BD}} \\
-		\end{bmatrix}
-		c  = \begin{bmatrix}
-			e^{i2\pi\gamma_{CA}} \\
-			e^{i2\pi\gamma_{CB}} \\
-			e^{i2\pi\gamma_{BC}} \\
-			e^{i2\pi\gamma_{BD}} \\
-		\end{bmatrix} 
-		d = \begin{bmatrix}
-			e^{i2\pi\gamma_{DA}} \\
-			e^{i2\pi\gamma_{DB}} \\
-			e^{i2\pi\gamma_{DC}} \\
-			1 \\
-		\end{bmatrix} 						 			
-	\end{align*}
 	
 	
-	We then construct the tensor product with equation \ref{U-tensor}:
-	
-	$$\Large U = A \otimes B \otimes C \otimes D$$
-	
-	The convience of dealing with only the diagonals we can similiarly state $ u = \mathrm{diag}(U)$, thus:
-	
-	$$ u = a \otimes b \otimes c \otimes d$$
-
-
-Refering to equation \ref{U-matrix-eq} regarding the matrix elements for U,  the diagonal elements for the 4-city problem will reduce to:
-
-	\begin{equation}\label{4-city-tensor}
-		u_{k} = a_{\alpha_{3}}\cdot b _{\alpha_{2}} \cdot c_{\alpha_1} \cdot d_{\alpha_{0}}
-	\end{equation}
-	
-	With: $$\alpha_i = \left(k//\left(4^{i}\right)\right) \% 4$$
-	
-	
-	\vspace{0.5cm}
-	
-	lets walk through identifying the eigenstate of one hamiltonian cycle. Lets say the cycle we choose is the following:
-	
-	\begin{equation}\label{one-ham-cycle-4-city}
-	 A \rightarrow D \rightarrow B \rightarrow C \rightarrow A
-	\end{equation}
-	from here we can identify the edgeweights we care about are:
-	
-	\begin{equation*}
-	\gamma_{AD} + \gamma_{DB} + \gamma_{BC} + \gamma_{CA}
-	\end{equation*}
-
-	Thus the phase we would like to estimate would be given by the following element product:
-	
-	\begin{equation*}
-	\Large{a_{3} \cdot d_{1} \cdot b_{2} \cdot c_{0} = e^{i2\pi (\gamma_{AD} + \gamma_{DB} + \gamma_{BC} + \gamma_{CA})}}
-	\end{equation*}
+	\begin{center}	
+		\begin{tikzpicture}[scale=3, every node/.style={circle, draw, fill=blue!20}]
+			% Nodes
+			\node (1) at (2,0) {D};
+			\node (2) at (3,0) {C};
+			\node (3) at (3,1) {B};
+			\node (4) at (2,1) {A};
+			% Edges with weights
+			\draw (1) -- (2) node[midway, below, fill=none, draw=none, shape=rectangle] {$0.25$};
+			\draw (2) -- (3) node[midway, right, fill=none, draw=none, shape=rectangle] {$0.2$};
+			\draw (3) -- (4) node[midway, above, fill=none, draw=none, shape=rectangle] {$0.2$};
+			\draw (4) -- (1) node[midway, left, fill=none, draw=none, shape=rectangle] {$0.2$};
+			\draw (1) -- (3) node[pos = 0.4, below, xshift=1mm, fill=none, draw=none, shape=rectangle] {$0.3$};
+			\draw (2) -- (4) node[pos = 0.6, above,xshift=1mm, fill=none, draw=none, shape=rectangle] {$0.1$};
+		\end{tikzpicture}
+	\end{center}
 	
 	
-	To correctly identify the eigenstate, we need to rearrange the product to match the form of equation \ref{4-city-tensor}:
-	
-	\begin{equation*}
-		\Large{a_{3} \cdot d_{1} \cdot b_{2} \cdot c_{0} = \Large{a_{3}} \cdot b_{2} \cdot c_{0}  \cdot d_{1}}
-	\end{equation*}
-	
-	From here we simply read out the indices and based on our discussion under equation \ref{U-matrix-eq} , we can infer we are working in base 4. Thus we simply need to convert to base 10 to understand the exact column number and to base 2 to be used as the initialized eigenstate.
-	
-	\begin{equation*}
-	\text{base } 4 = 3201 \leftrightarrow \text{base } 10 = 225 \leftrightarrow  \text{base } 2 = 11100001
-\end{equation*}
-
-Thus our eigenstate for \ref{one-ham-cycle-4-city} will be  $|225\rangle$ or $|11100001\rangle$. We can perform an identical process for all the hamiltonian cycles to find their corresponding eigenstates. These are all listed in table \ref{table:ham-cycle-details-4-city}
-	
-	
-%	\begin{table}[h]
-%		\centering
-%		\begin{tabular}{|c|c|c|c|c|c|}
-%			\hline
-%			\textbf{Hamiltonian Cycle} & \textbf{Edge Weights Sum} & \textbf{Matrix Elements Product} & \textbf{Indices Sequence} & \textbf{Base 10} & \textbf{Base 2} \\
-%			\hline
-%			$A \rightarrow B \rightarrow C \rightarrow D \rightarrow A$ &$ \(\gamma_{AB} + \gamma_{BC} + \gamma_{CD} + \gamma_{DA}\)$ & \(a_{1} \cdot b_{2} \cdot c_{3} \cdot d_{0}\) & 1230 & 108 & 1101100 \\
-%			A \rightarrow B \rightarrow D \rightarrow C \rightarrow A & \(\gamma_{AB} + \gamma_{BD} + \gamma_{DC} + \gamma_{CA}\) & \(a_{1} \cdot b_{3} \cdot d_{2} \cdot c_{0}\) & 1302 & 114 & 1110010 \\
-%			A \rightarrow C \rightarrow B \rightarrow D \rightarrow A & \(\gamma_{AC} + \gamma_{CB} + \gamma_{BD} + \gamma_{DA}\) & \(a_{2} \cdot c_{1} \cdot b_{3} \cdot d_{0}\) & 2310 & 180 & 10110100 \\
-%			A \rightarrow C \rightarrow D \rightarrow B \rightarrow A & \(\gamma_{AC} + \gamma_{CD} + \gamma_{DB} + \gamma_{BA}\) & \(a_{2} \cdot c_{3} \cdot d_{1} \cdot b_{0}\) & 2031 & 141 & 10001101 \\
-%			A \rightarrow D \rightarrow B \rightarrow C \rightarrow A & \(\gamma_{AD} + \gamma_{DB} + \gamma_{BC} + \gamma_{CA}\) & \(a_{3} \cdot d_{1} \cdot b_{2} \cdot c_{0}\) & 3120 & 216 & 11011000 \\
-%			A \rightarrow D \rightarrow C \rightarrow B \rightarrow A & \(\gamma_{AD} + \gamma_{DC} + \gamma_{CB} + \gamma_{BA}\) & \(a_{3} \cdot d_{2} \cdot c_{1} \cdot b_{0}\) & 3201 & 225 & 11100001 \\
-%			\hline
-%		\end{tabular}
-%		\caption{Hamiltonian Cycles of a 4-City Graph with Conversions to Base 10 and Base 2}
-%		\label{table:hamiltonian_cycles_conversions}
-%	\end{table}
-%	
-	
-	
-\begin{table}[h]
-	\centering
-	\begin{tabular}{|c|c|c|}
-		\hline
-		\textbf{Hamiltonian Cycle} & \textbf{Edge Weights Sum} & \textbf{Matrix Elements Product} \\
-		\hline
-		$A \rightarrow B \rightarrow C \rightarrow D \rightarrow A$ & $\gamma_{AB} + \gamma_{BC} + \gamma_{CD} + \gamma_{DA}$ & $a_{1} \cdot b_{2} \cdot c_{3} \cdot d_{0}$ \\
-		$A \rightarrow B \rightarrow D \rightarrow C \rightarrow A$ & $\gamma_{AB} + \gamma_{BD} + \gamma_{DC} + \gamma_{CA}$ & $a_{1} \cdot b_{3} \cdot d_{2} \cdot c_{0}$ \\
-		$A \rightarrow C \rightarrow B \rightarrow D \rightarrow A$ & $\gamma_{AC} + \gamma_{CB} + \gamma_{BD} + \gamma_{DA}$ & $a_{2} \cdot c_{1} \cdot b_{3} \cdot d_{0}$ \\
-		$A \rightarrow C \rightarrow D \rightarrow B \rightarrow A$ & $\gamma_{AC} + \gamma_{CD} + \gamma_{DB} + \gamma_{BA}$ & $a_{2} \cdot c_{3} \cdot d_{1} \cdot b_{0}$ \\
-		$A \rightarrow D \rightarrow B \rightarrow C \rightarrow A$ & $\gamma_{AD} + \gamma_{DB} + \gamma_{BC} + \gamma_{CA}$ & $a_{3} \cdot d_{1} \cdot b_{2} \cdot c_{0}$ \\
-		$A \rightarrow D \rightarrow C \rightarrow B \rightarrow A$ & $\gamma_{AD} + \gamma_{DC} + \gamma_{CB} + \gamma_{BA}$ & $a_{3} \cdot d_{2} \cdot c_{1} \cdot b_{0}$ \\
-		\hline
-	%\end{tabular}
-		
-	%\\[5pts]
-	
-	%\begin{tabular}{|c|c|c|}
-		\multicolumn{3}{|c|}{\textbf{Conversions}} \\
-		\hline
-		\textbf{Rearranged Indices (Base 4)} & \textbf{Base 10} & \textbf{Base 2} \\
-		\hline
-		1230 & 108 & 01101100 \\
-		1302 & 114 & 01110010 \\
-		2310 & 180 & 10110100 \\
-		2031 & 141 & 10001101 \\
-		3120 & 216 & 11011000 \\
-		3201 & 225 & 11100001 \\
-		\hline
-	\end{tabular}
-	\caption{Comprehensive Hamiltonian Cycles Analysis}
-	\label{table:ham-cycle-details-4-city}
-\end{table}
-
-	
-	
-		\vspace{0.5cm}
-	
-		\begin{enumerate}
-		\item In this section I will work through the steps for algorithm construction mentioned in the previous chapter for the 4-city problem. 
-		\item a circuit figure will be included as well.
-	\end{enumerate}
-	
-	
-	
-	\subsection{Problem Specific Operator and Eigenstates}
-	
-	Our matrix U's diagonals will look like the following:
+	Now we need to construct the unitary operator and eigenstates. Our matrix $U$ and $U'$ diagonals will look like the following:
 	
 	
 	\begin{align*}	
@@ -1151,169 +1402,234 @@ Thus our eigenstate for \ref{one-ham-cycle-4-city} will be  $|225\rangle$ or $|1
 		\end{bmatrix} 						 			
 	\end{align*}
 	
+	\begin{align*}	
+		u' & = \begin{bmatrix}
+			1 \\
+			e^{i2\pi(0.2)} \\
+			e^{i2\pi(0.1)} \\
+			e^{i2\pi(0.2)} \\
+		\end{bmatrix} 
+		\otimes \begin{bmatrix}
+			e^{i2\pi(0.2)} \\
+			1 \\
+			e^{i2\pi(0.2)} \\
+			e^{i2\pi(0)} \\
+		\end{bmatrix}
+		\otimes \begin{bmatrix}
+			e^{i2\pi(0.1)} \\
+			e^{i2\pi(0.2)} \\
+			1\\
+			e^{i2\pi(0.25)} \\
+		\end{bmatrix} 
+		\otimes \begin{bmatrix}
+			e^{i2\pi(0.2)} \\
+			e^{i2\pi(0)} \\
+			e^{i2\pi(0.25)} \\
+			1 \\
+		\end{bmatrix} 						 			
+	\end{align*}
 	
-	Because we are dealing with the symmetric case. Based on Table \ref{table:ham-cycle-details-4-city} we can simply 
 	
-	\section{Results: Simulations with Qiskit}
+	Because we are dealing with the symmetric case. Based on Table \ref{table:ham-cycle-details-4-city} we can simply use the results and conversions from the first three cycles. Thus we will be estimating phases using the following eigenstates:
+	
+	$$|108\rangle = |01101100\rangle$$
+	$$|114\rangle = |01110010\rangle$$
+	$$|180\rangle = |10110100\rangle$$
+	And expect the following phases:
+	
+	\vspace{1cm}
+	Cycle 1: $A \rightarrow B \rightarrow C \rightarrow D \rightarrow A$
+	
+	\begin{center}	
+		\begin{tikzpicture}[scale=3, every node/.style={circle, draw, fill=blue!20}]
+			% Nodes
+			\node (1) at (0,0) {D};
+			\node (2) at (1,0) {C};
+			\node (3) at (1,1) {B};
+			\node (4) at (0,1) {A};
+			% Edges with weights
+			\draw[blue!60, ultra thick] (1) -- (2) node[midway, below, fill=none, draw=none, shape=rectangle] {$0.25$};
+			\draw[blue!60,ultra  thick] (2) -- (3) node[midway, right, fill=none, draw=none, shape=rectangle] {$0.2$};
+			\draw [blue!60, ultra thick](3) -- (4) node[midway, above, fill=none, draw=none, shape=rectangle] {$0.2$};
+			\draw [blue!60,ultra  thick](4) -- (1) node[midway, left, fill=none, draw=none, shape=rectangle] {$0.2$};
+			\draw (1) -- (3) node[pos = 0.4, xshift=1mm, below, fill=none, draw=none, shape=rectangle] {$0.3$};
+			\draw (2) -- (4) node[pos = 0.6, xshift=1mm, above, fill=none, draw=none, shape=rectangle] {$0.1$};
+			
+			
+			
+			% Nodes
+			\node (5) at (2.5,0) {D};
+			\node (6) at (3.5,0) {C};
+			\node (7) at (3.5,1) {B};
+			\node (8) at (2.5,1) {A};
+			% Edges with weights
+			\draw[black!30!green, ultra thick] (5) -- (6) node[midway, below, fill=none, draw=none, shape=rectangle] {$0.25$};
+			\draw[black!30!green, ultra thick] (6) -- (7) node[midway, right, fill=none, draw=none, shape=rectangle] {$0.2$};
+			\draw [black!30!green, ultra thick](7) -- (8) node[midway, above, fill=none, draw=none, shape=rectangle] {$0.2$};
+			\draw [black!30!green, ultra thick](8) -- (5) node[midway, left, fill=none, draw=none, shape=rectangle] {$0.2$};
+			\draw (5) -- (7) node[pos = 0.4, below, fill=none, draw=none, shape=rectangle] {$0$};
+			\draw (6) -- (8) node[pos = 0.6, xshift=1mm, above, fill=none, draw=none, shape=rectangle] {$0.1$};
+			
+			\draw[->, ultra thick, >=latex] (1.5, 0.5) -- (2, 0.5);
+			
+		\end{tikzpicture}
+	\end{center}
 	
 	
-	Lets consider the following example of a symmetric 4-city system we are considering the symmetric case thus we only need to look at three hamiltonian cycles. The constraint for our bottleneck solution in this case will involve $\gamma < 6$
+	 $$u_{108} = e^{i2\pi (\gamma_{AB} + \gamma_{BC} + \gamma_{CD} + \gamma_{DA})} = e^{i2\pi(0.85)}$$
+	 $$u'_{108} = e^{i2\pi (\gamma_{AB} + \gamma_{BC} + \gamma_{CD} + \gamma_{DA})} = e^{i2\pi(0.85)}$$
+	 
+	  \vspace{1cm}
+	 
+	 Cycle 2: $A \rightarrow B \rightarrow D \rightarrow C \rightarrow A$
+	 
+	 \begin{center}	
+	 	\begin{tikzpicture}[scale=3, every node/.style={circle, draw, fill=blue!20}]
+	 		% Nodes
+	 		\node (1) at (0,0) {D};
+	 		\node (2) at (1,0) {C};
+	 		\node (3) at (1,1) {B};
+	 		\node (4) at (0,1) {A};
+	 		% Edges with weights
+	 		\draw [blue!60, ultra thick](1) -- (2) node[midway, below, fill=none, draw=none, shape=rectangle] {$0.25$};
+	 		\draw (2) -- (3) node[midway, right, fill=none, draw=none, shape=rectangle] {$0.2$};
+	 		\draw [blue!60, ultra thick](3) -- (4) node[midway, above, fill=none, draw=none, shape=rectangle] {$0.2$};
+	 		\draw (4) -- (1) node[midway, left, fill=none, draw=none, shape=rectangle] {$0.2$};
+	 		\draw [blue!60, ultra thick](1) -- (3) node[pos = 0.4, xshift=1mm, below, fill=none, draw=none, shape=rectangle] {$0.3$};
+	 		\draw [blue!60, ultra thick](2) -- (4) node[pos = 0.6, xshift=1mm, above, fill=none, draw=none, shape=rectangle] {$0.1$};
+	 		
+	 		
+	 		
+	 		% Nodes
+	 		\node (5) at (2.5,0) {D};
+	 		\node (6) at (3.5,0) {C};
+	 		\node (7) at (3.5,1) {B};
+	 		\node (8) at (2.5,1) {A};
+	 		% Edges with weights
+	 		\draw[red, ultra thick] (5) -- (6) node[midway, below, fill=none, draw=none, shape=rectangle] {$0.25$};
+	 		\draw (6) -- (7) node[midway, right, fill=none, draw=none, shape=rectangle] {$0.2$};
+	 		\draw [red, ultra thick](7) -- (8) node[midway, above, fill=none, draw=none, shape=rectangle] {$0.2$};
+	 		\draw (8) -- (5) node[midway, left, fill=none, draw=none, shape=rectangle] {$0.2$};
+	 		\draw  [red, ultra thick](5) -- (7) node[pos = 0.4, below, fill=none, draw=none, shape=rectangle] {$0$};
+	 		\draw  [red,ultra  thick](6) -- (8) node[pos = 0.6, xshift=1mm, above, fill=none, draw=none, shape=rectangle] {$0.1$};
+	 		
+	 		\draw[->, ultra thick, >=latex] (1.5, 0.5) -- (2, 0.5);
+	 		
+	 	\end{tikzpicture}
+	 \end{center}
+	 
+	 $$ u_{114} = e^{i2\pi (\gamma_{AB} + \gamma_{BD} + \gamma_{DC} + \gamma_{CA})} = e^{i2\pi(0.85)}$$
+	 $$ u'_{114} = e^{i2\pi (\gamma_{AB} + \gamma_{BD} + \gamma_{DC} + \gamma_{CA})} = e^{i2\pi(0.55)}$$
+	 
+	 \vspace{1cm}
+	 
+	 Cycle 3: $A \rightarrow C \rightarrow B \rightarrow D \rightarrow A$
+	 
+	 \begin{center}	
+	 	\begin{tikzpicture}[scale=3, every node/.style={circle, draw, fill=blue!20}]
+	 		% Nodes
+	 		\node (1) at (0,0) {D};
+	 		\node (2) at (1,0) {C};
+	 		\node (3) at (1,1) {B};
+	 		\node (4) at (0,1) {A};
+	 		% Edges with weights
+	 		\draw (1) -- (2) node[midway, below, fill=none, draw=none, shape=rectangle] {$0.25$};
+	 		\draw [blue!60, ultra thick](2) -- (3) node[midway, right, fill=none, draw=none, shape=rectangle] {$0.2$};
+	 		\draw (3) -- (4) node[midway, above, fill=none, draw=none, shape=rectangle] {$0.2$};
+	 		\draw [blue!60,ultra thick](4) -- (1) node[midway, left, fill=none, draw=none, shape=rectangle] {$0.2$};
+	 		\draw [blue!60,ultra thick](1) -- (3) node[pos = 0.4, xshift=1mm, below, fill=none, draw=none, shape=rectangle] {$0.3$};
+	 		\draw [blue!60,ultra thick](2) -- (4) node[pos = 0.6, xshift=1mm, above, fill=none, draw=none, shape=rectangle] {$0.2$};
+	 		
+	 		% Nodes
+	 		\node (5) at (2.5,0) {D};
+	 		\node (6) at (3.5,0) {C};
+	 		\node (7) at (3.5,1) {B};
+	 		\node (8) at (2.5,1) {A};
+	 		% Edges with weights
+	 		\draw (5) -- (6) node[midway, below, fill=none, draw=none, shape=rectangle] {$0.25$};
+	 		\draw [red,ultra thick](6) -- (7) node[midway, right, fill=none, draw=none, shape=rectangle] {$0.2$};
+	 		\draw (7) -- (8) node[midway, above, fill=none, draw=none, shape=rectangle] {$0.2$};
+	 		\draw [red,ultra thick](8) -- (5) node[midway, left, fill=none, draw=none, shape=rectangle] {$0.2$};
+	 		\draw  [red,ultra thick](5) -- (7) node[pos = 0.4, below, fill=none, draw=none, shape=rectangle] {$0$};
+	 		\draw  [red,ultra thick](6) -- (8) node[pos = 0.6, xshift=1mm, above, fill=none, draw=none, shape=rectangle] {$0.1$};
+	 		
+	 		% Arrow pointing from the first graph to the second graph
+	 		\draw[->, ultra thick, >=latex] (1.5, 0.5) -- (2, 0.5);% node[midway, above,  fill=none, draw=none, shape=rectangle] {Transition};
+	 		
+	 	\end{tikzpicture}
+	 \end{center}
+	 
+	 $$ u_{180} = e^{i2\pi (\gamma_{AC} + \gamma_{CB} + \gamma_{BD} + \gamma_{DA})} = e^{i2\pi(0.80)}$$
+	$$ u'_{180} = e^{i2\pi (\gamma_{AC} + \gamma_{CB} + \gamma_{BD} + \gamma_{DA})} = e^{i2\pi(0.50)}$$
 	
+	\subsection{Results: Simulations with Qiskit}
 	
-
-\begin{center}	
-\begin{tikzpicture}[scale=3, every node/.style={circle, draw, fill=blue!20}]
-	% Nodes
-	\node (1) at (2,0) {D};
-	\node (2) at (3,0) {C};
-	\node (3) at (3,1) {B};
-	\node (4) at (2,1) {A};
-	% Edges with weights
-	\draw (1) -- (2) node[midway, below, fill=none, draw=none, shape=rectangle] {$5$};
-	\draw (2) -- (3) node[midway, right, fill=none, draw=none, shape=rectangle] {$4$};
-	\draw (3) -- (4) node[midway, above, fill=none, draw=none, shape=rectangle] {$4$};
-	\draw (4) -- (1) node[midway, left, fill=none, draw=none, shape=rectangle] {$4$};
-	\draw (1) -- (3) node[pos = 0.4, below, fill=none, draw=none, shape=rectangle] {$6$};
-	\draw (2) -- (4) node[pos = 0.6, above, fill=none, draw=none, shape=rectangle] {$2$};
-\end{tikzpicture}
-\end{center}
-
-
-
-The basis of our algorithm is to perform phase estimation before and after the edgeweights that do not satify the criteria above are removed. Below we highlight each hamiltonian cycles before and after the criteria. If the hamiltonian cycle is not affected we highlight in green vs red.
+	The basis of our algorithm is to perform phase estimation before and after the edgeweights that do not satify the criteria above are removed. Below we highlight each hamiltonian cycles before and after the criteria. If the hamiltonian cycle is not affected we highlight in green vs red.
 
 
 
 
 \vspace{0.5cm}
 
-Cycle 1: $A \rightarrow B \rightarrow C \rightarrow D \rightarrow A$
-\begin{center}	
-\begin{tikzpicture}[scale=3, every node/.style={circle, draw, fill=blue!20}]
-	% Nodes
-	\node (1) at (0,0) {D};
-	\node (2) at (1,0) {C};
-	\node (3) at (1,1) {B};
-	\node (4) at (0,1) {A};
-	% Edges with weights
-	\draw[blue!60, ultra thick] (1) -- (2) node[midway, below, fill=none, draw=none, shape=rectangle] {$5$};
-	\draw[blue!60,ultra  thick] (2) -- (3) node[midway, right, fill=none, draw=none, shape=rectangle] {$4$};
-	\draw [blue!60, ultra thick](3) -- (4) node[midway, above, fill=none, draw=none, shape=rectangle] {$4$};
-	\draw [blue!60,ultra  thick](4) -- (1) node[midway, left, fill=none, draw=none, shape=rectangle] {$4$};
-	\draw (1) -- (3) node[pos = 0.4, below, fill=none, draw=none, shape=rectangle] {$6$};
-	\draw (2) -- (4) node[pos = 0.6, above, fill=none, draw=none, shape=rectangle] {$2$};
-	
-	
-	
-	% Nodes
-	\node (5) at (2.5,0) {D};
-	\node (6) at (3.5,0) {C};
-	\node (7) at (3.5,1) {B};
-	\node (8) at (2.5,1) {A};
-	% Edges with weights
-	\draw[black!30!green, ultra thick] (5) -- (6) node[midway, below, fill=none, draw=none, shape=rectangle] {$5$};
-	\draw[black!30!green, ultra thick] (6) -- (7) node[midway, right, fill=none, draw=none, shape=rectangle] {$4$};
-	\draw [black!30!green, ultra thick](7) -- (8) node[midway, above, fill=none, draw=none, shape=rectangle] {$4$};
-	\draw [black!30!green, ultra thick](8) -- (5) node[midway, left, fill=none, draw=none, shape=rectangle] {$4$};
-	\draw (5) -- (7) node[pos = 0.4, below, fill=none, draw=none, shape=rectangle] {$0$};
-	\draw (6) -- (8) node[pos = 0.6, above, fill=none, draw=none, shape=rectangle] {$2$};
-	
-	\draw[->, ultra thick, >=latex] (1.5, 0.5) -- (2, 0.5);
-	
-\end{tikzpicture}
-\end{center}
-
-Cycle 2: $A \rightarrow B \rightarrow D \rightarrow C \rightarrow A$
-
-\begin{center}	
-\begin{tikzpicture}[scale=3, every node/.style={circle, draw, fill=blue!20}]
-	% Nodes
-	\node (1) at (0,0) {D};
-	\node (2) at (1,0) {C};
-	\node (3) at (1,1) {B};
-	\node (4) at (0,1) {A};
-	% Edges with weights
-	\draw [blue!60, ultra thick](1) -- (2) node[midway, below, fill=none, draw=none, shape=rectangle] {$5$};
-	\draw (2) -- (3) node[midway, right, fill=none, draw=none, shape=rectangle] {$4$};
-	\draw [blue!60, ultra thick](3) -- (4) node[midway, above, fill=none, draw=none, shape=rectangle] {$4$};
-	\draw (4) -- (1) node[midway, left, fill=none, draw=none, shape=rectangle] {$4$};
-	\draw [blue!60, ultra thick](1) -- (3) node[pos = 0.4, below, fill=none, draw=none, shape=rectangle] {$6$};
-	\draw [blue!60, ultra thick](2) -- (4) node[pos = 0.6, above, fill=none, draw=none, shape=rectangle] {$2$};
-	
-	
-	
-	% Nodes
-	\node (5) at (2.5,0) {D};
-	\node (6) at (3.5,0) {C};
-	\node (7) at (3.5,1) {B};
-	\node (8) at (2.5,1) {A};
-	% Edges with weights
-	\draw[red, ultra thick] (5) -- (6) node[midway, below, fill=none, draw=none, shape=rectangle] {$5$};
-	\draw (6) -- (7) node[midway, right, fill=none, draw=none, shape=rectangle] {$4$};
-	\draw [red, ultra thick](7) -- (8) node[midway, above, fill=none, draw=none, shape=rectangle] {$4$};
-	\draw (8) -- (5) node[midway, left, fill=none, draw=none, shape=rectangle] {$4$};
-	\draw  [red, ultra thick](5) -- (7) node[pos = 0.4, below, fill=none, draw=none, shape=rectangle] {$0$};
-	\draw  [red,ultra  thick](6) -- (8) node[pos = 0.6, above, fill=none, draw=none, shape=rectangle] {$2$};
-	
-	\draw[->, ultra thick, >=latex] (1.5, 0.5) -- (2, 0.5);
-	
-\end{tikzpicture}
-\end{center}
-
-Cycle 3: $A \rightarrow C \rightarrow B \rightarrow D \rightarrow A$
-
-\begin{center}	
-\begin{tikzpicture}[scale=3, every node/.style={circle, draw, fill=blue!20}]
-	% Nodes
-	\node (1) at (0,0) {D};
-	\node (2) at (1,0) {C};
-	\node (3) at (1,1) {B};
-	\node (4) at (0,1) {A};
-	% Edges with weights
-	\draw (1) -- (2) node[midway, below, fill=none, draw=none, shape=rectangle] {$5$};
-	\draw [blue!60, ultra thick](2) -- (3) node[midway, right, fill=none, draw=none, shape=rectangle] {$4$};
-	\draw (3) -- (4) node[midway, above, fill=none, draw=none, shape=rectangle] {$4$};
-	\draw [blue!60,ultra thick](4) -- (1) node[midway, left, fill=none, draw=none, shape=rectangle] {$4$};
-	\draw [blue!60,ultra thick](1) -- (3) node[pos = 0.4, below, fill=none, draw=none, shape=rectangle] {$6$};
-	\draw [blue!60,ultra thick](2) -- (4) node[pos = 0.6, above, fill=none, draw=none, shape=rectangle] {$2$};
-	
-	% Nodes
-	\node (5) at (2.5,0) {D};
-	\node (6) at (3.5,0) {C};
-	\node (7) at (3.5,1) {B};
-	\node (8) at (2.5,1) {A};
-	% Edges with weights
-	\draw (5) -- (6) node[midway, below, fill=none, draw=none, shape=rectangle] {$5$};
-	\draw [red,ultra thick](6) -- (7) node[midway, right, fill=none, draw=none, shape=rectangle] {$4$};
-	\draw (7) -- (8) node[midway, above, fill=none, draw=none, shape=rectangle] {$4$};
-	\draw [red,ultra thick](8) -- (5) node[midway, left, fill=none, draw=none, shape=rectangle] {$4$};
-	\draw  [red,ultra thick](5) -- (7) node[pos = 0.4, below, fill=none, draw=none, shape=rectangle] {$0$};
-	\draw  [red,ultra thick](6) -- (8) node[pos = 0.6, above, fill=none, draw=none, shape=rectangle] {$2$};
-	
-	 % Arrow pointing from the first graph to the second graph
-	\draw[->, ultra thick, >=latex] (1.5, 0.5) -- (2, 0.5);% node[midway, above,  fill=none, draw=none, shape=rectangle] {Transition};
-	
-\end{tikzpicture}
-\end{center}
 
 
 
-	\textbf{section not complete.}
+
+
+		\begin{figure}[!h]
+		\centering
+		\includegraphics[trim={8.5cm 4.4cm 6cm 4.4cm},clip, width=1 \linewidth]{"graphics/4-city-1-cycle-constrained-barrier"}
+		\caption{the quantum circuit for the BTSP: 3 qubit phase estimation is performed measuring the hamiltonian cycle $A \rightarrow B \rightarrow C \rightarrow D \rightarrow A$, using the corresponding eigenstate is $|01101100\rangle$. Due to Qiskit convention on qubit ordering, the eigentate is initialized in reverse. The CU gate denotes the control unitary matrix containing all the hamiltonian cycles. The CU' gate inhabits the same cycles but before it was constructed, all edgeweights not satisfying the constraint, $\geq \alpha$, were set to zero. We have two sets of 3 qubits to be measured and stored in to classical registers labelled 'output' and 'output c'.}
+		\label{fig:4-city-graphic}
+	\end{figure}		
+
+
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[width=\textwidth,height=0.9\textheight,keepaspectratio]{"graphics/3qubit-4city"}
+		\caption{3-qubit phase estimation for the 4-city problem}
+		\label{fig:4-city-graphic}
+	\end{figure}		
+	
+		\begin{figure}[!h]
+		\centering
+		\includegraphics[ width=\textwidth,height=0.9\textheight,keepaspectratio]{"graphics/4qubit-4city"}
+		\caption{4-qubit phase estimation for the 4-city problem}
+		\label{fig:4-city-graphic}
+	\end{figure}		
+	
+		\begin{figure}[!h]
+		\centering
+		\includegraphics[width=\textwidth,height=0.9\textheight,keepaspectratio]{"graphics/5qubit-4city"}
+		\caption{5-qubit phase estimation for the 4-city problem}
+		\label{fig:4-city-graphic}
+	\end{figure}		
+	
+
+	\section{An Undirected 5-City Graph}
+	
+	\begin{tikzpicture}[scale=1, every node/.style={circle,draw}]
+	\node (A) at (0, 2) {A};
+	\node (B) at (2, 4) {B};
+	\node (C) at (4, 2) {C};
+	\node (D) at (3, 0) {D};
+	\node (E) at (1, 0) {E};
+	\draw (A) -- (B) node[midway, fill=white, draw=none, shape=rectangle] {10};
+	\draw (A) -- (C) node[midway, fill=white, draw=none, shape=rectangle] {5};
+	\draw (A) -- (D) node[midway, fill=white, draw=none, shape=rectangle] {7};
+	\draw (A) -- (E) node[midway, fill=white, draw=none, shape=rectangle] {9};
+	\draw (B) -- (C) node[midway, fill=white, draw=none, shape=rectangle] {1};
+	\draw (B) -- (D) node[midway,above,  fill=white, draw=none, shape=rectangle] {5};
+	\draw (B) -- (E) node[midway, below,fill=white, draw=none, shape=rectangle] {4};
+	\draw (C) -- (D) node[midway, fill=white, draw=none, shape=rectangle] {8};
+	\draw (C) -- (E) node[midway, fill=white, draw=none, shape=rectangle] {1};
+	\draw (D) -- (E) node[midway,fill=white, draw=none, shape=rectangle] {3};
+	
+	\end{tikzpicture}
+
 	
 	\vspace{0.5cm}
 	
-	\textbf{progress report: The algorithm has been constructed and tested with simulators in Qiskit for the 4-city problem. The full solution has been explored but given time constrained may not be solved and will be briefly discussed in the following section. The simulator does generate graphs we intend to include in this section. the presentation style of the graphs is still being explored. A constraint problem simulation with 5-cities might also be explored, again if time permitting. Otherwise things are fairly on track.}
-	
-	\vspace{0.5cm}
-	\textbf{next steps:}
-	
-	\textbf{
-	\begin{enumerate}
-		\item complete the sections presented in this thesis, particularly regarding theory and algorithm construction section
-		\item complete this chapter of the constraint solution with circuit figures and graphs from Qiskit Simulation
-		\item complete other sections (discussion, intro, abstract...) including appendix regarding the code used in python.
-		\item time permitting: construct and present 5-city simulation as well
-	\end{enumerate}}
 	
 	
 	%\input{Results/RSLT01}
@@ -1348,7 +1664,16 @@ Cycle 3: $A \rightarrow C \rightarrow B \rightarrow D \rightarrow A$
 	%%% If you only have one appendix, please uncomment the following line.
 	% \renewcommand{\appendicesname}{Appendix}
 	\appendix
-	\chapter{Code for  the 4-city constraint problem}
+	\chapter{Code: Calculating the Hamiltonian Cycles and Locating Eigenstates}
+	
+	\includepdf[pages=-]{hamiltonian_cycles.pdf}
+	%\input{ham_cycles.tex}
+	%\input{hamiltonian_cycles.tex}
+	\chapter{Code: 4-City Problem}
+	
+	\includepdf[pages=-]{4-city-code/4-city-code.pdf}
+	
+	\chapter{Code: 5-city constraint problem}
 	
 	\begin{enumerate}
 		\item this section will include any code used to produce graphs in the simulated section.

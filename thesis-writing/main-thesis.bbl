@@ -1,0 +1,42 @@
+\begin{thebibliography}{1}
+
+\bibitem{Shor}
+P.W. Shor.
+\newblock Algorithms for quantum computation: discrete logarithms and
+  factoring.
+\newblock In {\em Proceedings 35th Annual Symposium on Foundations of Computer
+  Science}, pages 124--134, 1994.
+
+\bibitem{grover1996fast}
+Lov~K. Grover.
+\newblock A fast quantum mechanical algorithm for database search, 1996.
+
+\bibitem{heuristicthesis}
+John Larusic.
+\newblock A heuristic for solving the bottleneck traveling salesman problem.
+\newblock 2005.
+
+\bibitem{heuristic}
+Ravi Ramakrishnan, Prabha Sharma, and Abraham~P. Punnen.
+\newblock An efficient heuristic algorithm for the bottleneck traveling
+  salesman problem.
+\newblock {\em Opsearch}, 46(3):275--288, 09 2009.
+\newblock Copyright - Operational Research Society of India 2009; Last updated
+  - 2023-08-22.
+
+\bibitem{kitaev1995quantum}
+A.~Yu. Kitaev.
+\newblock Quantum measurements and the abelian stabilizer problem, 1995.
+
+\bibitem{nielsen00}
+Michael~A. Nielsen and Isaac~L. Chuang.
+\newblock {\em Quantum Computation and Quantum Information}.
+\newblock Cambridge University Press, 2000.
+
+\bibitem{srinivasan2018efficient}
+Karthik Srinivasan, Saipriya Satyajit, Bikash~K. Behera, and Prasanta~K.
+  Panigrahi.
+\newblock Efficient quantum algorithm for solving travelling salesman problem:
+  An ibm quantum experience, 2018.
+
+\end{thebibliography}
