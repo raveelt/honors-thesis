@@ -118,6 +118,8 @@ bottom=2.5cm,
 \usepackage{quantikz}
 \usepackage{tabularray}
 \usepackage{dsfont}
+\usepackage{booktabs} % For professional looking tables
+\usepackage{multirow} % Required for combining rows
 \usetikzlibrary{shapes.geometric}
 \usetikzlibrary{arrows.meta} % For arrow tips
 \usepackage{xcolor} % For colors
@@ -178,6 +180,7 @@ bottom=2.5cm,
 % for pointing this out.)
 \usepackage{pdflscape}
 \usepackage{pdfpages}
+\usepackage{xcolor}
 
 %******** natbib ********************************
 % This is a very nice package for bibliographies.  It includes options
@@ -808,9 +811,9 @@ linkcolor=blue]{hyperref}
 	%A simple example of minimizing the bottleneck travelling salesman problem (maybe with images):
 	%an example of storing phases and using phase estimation
 	%grover's search explanation
-	\chapter{Algorithm for the Constraint Problem}
+	\chapter{Algorithm}
 	
-The constrained version of the BTSP asks whether there exists a Hamiltonian cycle in which the weight of every edge is less than a specified threshold $\alpha$. In such a cycle, if we denote the weight of any edge as $\gamma_i$, then it must satisfy the condition:
+The Decision problem of the BTSP asks whether there exists a Hamiltonian cycle in which the weight of every edge is less than a specified threshold $\alpha$. In such a cycle, if we denote the weight of any edge as $\gamma_i$, then it must satisfy the condition:
 	 
 	 $$\gamma_i < \alpha$$
 	
@@ -1304,11 +1307,11 @@ $A \rightarrow E \rightarrow D \rightarrow C \rightarrow B \rightarrow A$ & $ \g
 	\vspace{0.5cm}
 
 	
-	\chapter{Constraint Solutions}
+	\chapter{Simulations}
 	
 	Lets consider the following example of a symmetric 4-city system we are considering the symmetric case thus we only need to look at three hamiltonian cycles. The constraint for our BTSP in this case will involve $\gamma < 6$:
 	
-	\section{An Undirected 4-city Graph}
+	\section{An Undirected 4-City Graph}
 	\begin{center}	
 		\begin{tikzpicture}[scale=3, every node/.style={circle, draw, fill=blue!20}]
 			% Nodes
@@ -1564,72 +1567,1189 @@ $A \rightarrow E \rightarrow D \rightarrow C \rightarrow B \rightarrow A$ & $ \g
 	
 	\subsection{Results: Simulations with Qiskit}
 	
-	The basis of our algorithm is to perform phase estimation before and after the edgeweights that do not satify the criteria above are removed. Below we highlight each hamiltonian cycles before and after the criteria. If the hamiltonian cycle is not affected we highlight in green vs red.
-
-
-
-
+	Fig. \ref{fig:4-city-circuit} shows us the circuit for our first hamiltonian cycle initialized in eigenstate $|01101100\rangle$. We will run a similiar circuit for the other two hamiltonian cycles with the only change being the eigenstate initialization. 
+	
 \vspace{0.5cm}
 
-
-
-
-
-
-		\begin{figure}[!h]
+ \begin{figure}[!h]
 		\centering
 		\includegraphics[trim={8.5cm 4.4cm 6cm 4.4cm},clip, width=1 \linewidth]{"graphics/4-city-1-cycle-constrained-barrier"}
 		\caption{the quantum circuit for the BTSP: 3 qubit phase estimation is performed measuring the hamiltonian cycle $A \rightarrow B \rightarrow C \rightarrow D \rightarrow A$, using the corresponding eigenstate is $|01101100\rangle$. Due to Qiskit convention on qubit ordering, the eigentate is initialized in reverse. The CU gate denotes the control unitary matrix containing all the hamiltonian cycles. The CU' gate inhabits the same cycles but before it was constructed, all edgeweights not satisfying the constraint, $\geq \alpha$, were set to zero. We have two sets of 3 qubits to be measured and stored in to classical registers labelled 'output' and 'output c'.}
-		\label{fig:4-city-graphic}
+		\label{fig:4-city-circuit}
 	\end{figure}		
+
+
 
 
 	\begin{figure}[!h]
 		\centering
 		\includegraphics[width=\textwidth,height=0.9\textheight,keepaspectratio]{"graphics/3qubit-4city"}
-		\caption{3-qubit phase estimation for the 4-city problem}
-		\label{fig:4-city-graphic}
+		\caption{3-qubit phase estimation for the 4-city graph}
+		\label{fig:4-city-graphic-3}
 	\end{figure}		
 	
 		\begin{figure}[!h]
 		\centering
 		\includegraphics[ width=\textwidth,height=0.9\textheight,keepaspectratio]{"graphics/4qubit-4city"}
-		\caption{4-qubit phase estimation for the 4-city problem}
-		\label{fig:4-city-graphic}
+		\caption{4-qubit phase estimation for the 4-city graph}
+		\label{fig:4-city-graphic-4}
 	\end{figure}		
 	
 		\begin{figure}[!h]
 		\centering
 		\includegraphics[width=\textwidth,height=0.9\textheight,keepaspectratio]{"graphics/5qubit-4city"}
-		\caption{5-qubit phase estimation for the 4-city problem}
-		\label{fig:4-city-graphic}
+		\caption{5-qubit phase estimation for the 4-city graph}
+		\label{fig:4-city-graphic-5}
 	\end{figure}		
 	
 
-	\section{An Undirected 5-City Graph}
-	
-	\begin{tikzpicture}[scale=1, every node/.style={circle,draw}]
-	\node (A) at (0, 2) {A};
-	\node (B) at (2, 4) {B};
-	\node (C) at (4, 2) {C};
-	\node (D) at (3, 0) {D};
-	\node (E) at (1, 0) {E};
-	\draw (A) -- (B) node[midway, fill=white, draw=none, shape=rectangle] {10};
-	\draw (A) -- (C) node[midway, fill=white, draw=none, shape=rectangle] {5};
-	\draw (A) -- (D) node[midway, fill=white, draw=none, shape=rectangle] {7};
-	\draw (A) -- (E) node[midway, fill=white, draw=none, shape=rectangle] {9};
-	\draw (B) -- (C) node[midway, fill=white, draw=none, shape=rectangle] {1};
-	\draw (B) -- (D) node[midway,above,  fill=white, draw=none, shape=rectangle] {5};
-	\draw (B) -- (E) node[midway, below,fill=white, draw=none, shape=rectangle] {4};
-	\draw (C) -- (D) node[midway, fill=white, draw=none, shape=rectangle] {8};
-	\draw (C) -- (E) node[midway, fill=white, draw=none, shape=rectangle] {1};
-	\draw (D) -- (E) node[midway,fill=white, draw=none, shape=rectangle] {3};
-	
-	\end{tikzpicture}
+ We can see in Fig. \ref{fig:4-city-graphic-3} our estimation for the first cycle with the highest counts is $111\; 111$. The left set of binary digits refer to the phase estimated after our constrained is satisfied and similiarly the right is for estimation before. We can convert these binary digits to their decimal representation: 
+ 
+ $$0.111, \; 0.111 = 0.875, \; 0.875$$
+ 
+ We can summarize the most probable results in a table:
+ 
+\begin{table}[ht!]
+	\centering
+	\label{your-table-label}
+	\begin{tabular}{lllllll} % Updated for 7 columns
+		\toprule
+		Cycle & Expected & N & 1st & Prob. & 2nd & Prob. \\
+		\midrule
+		\multirow{3}{*}{1} & \multirow{3}{*}{$0.85, \; 0.85$} & 3 & $0.875, \; 0.875$ & $77\%$ &  $0.75, \; 0.875$  & $6\%$ \\
+		&                          & 4& $0.875, \; 0.875$ & $34\%$ &  $0.875, \; 0.8125$  & $16\%$ \\
+		&                          & 5 & $0.84375, \; 0.84375$ & $77\%$ &  $0.84375, \; 0.875$  & $5\%$ \\
+		\hline
+		\multirow{3}{*}{2} & \multirow{3}{*}{$0.55, \; 0.85$} & 3 & $0.5, \; 0.875$ & $50\%$ &  $0.625, \; 0.875$  & $24\%$ \\
+		&                          & 4& $0.5625, \; 0.875$ & $49\%$ &  $0.5625, \; 0.8125$  & $24\%$ \\
+		&                          & 5 & $0.5625, \; 0.84375$ & $51\%$ &  $0.53125, \; 0.84375$  & $21\%$ \\
+		\hline
+		\multirow{3}{*}{3} & \multirow{3}{*}{$0.50, \; 0.80$ } & 3 & $0.5, \; 0.75$ & $58\%$ &  $0.5, \; 0.875$  & $27\%$ \\
+		&                          & 4& $0.5, \; 0.8125$ & $88\%$ &  $0.5, \; 0.75$  & $6\%$ \\
+		&                          & 5 & $0.5, \; 0.8125$ & $58\%$ &  $0.5, \; 0.78125$  & $26\%$ \\
+		\bottomrule
+	\end{tabular}
+	\caption{Simulation results for the 4-city graph. $N$ refers to the number of phase qubits, 1st and 2nd refer to the most probable and second most probable measurement, along with their associated probabilities on their right}
+	\label{table:sim-results-4-city}
+\end{table} 
 
+\clearpage
+
+
+\section{An Undirected 5-City Graph}
+	
+%	\begin{tikzpicture}[scale=1, every node/.style={circle,draw}, node distance=1cm]
+%	\node (A) at (0, 2) {A};
+%	\node (B) at (2, 4) {B};
+%	\node (C) at (4, 2) {C};
+%	\node (D) at (3, 0) {D};
+%	\node (E) at (1, 0) {E};
+%	\draw (A) -- (B) node[midway, fill=none, draw=none, shape=rectangle] {10};
+%	\draw (A) -- (C) node[midway, fill=none, draw=none, shape=rectangle] {5};
+%	\draw (A) -- (D) node[midway, fill=none, draw=none, shape=rectangle] {7};
+%	\draw (A) -- (E) node[midway, fill=white, draw=none, shape=rectangle] {9};
+%	\draw (B) -- (C) node[midway, fill=white, draw=none, shape=rectangle] {1};
+%	\draw (B) -- (D) node[midway,above,  fill=white, draw=none, shape=rectangle] {5};
+%	\draw (B) -- (E) node[midway, below,fill=white, draw=none, shape=rectangle] {4};
+%	\draw (C) -- (D) node[midway, fill=white, draw=none, shape=rectangle] {8};
+%	\draw (C) -- (E) node[midway, fill=white, draw=none, shape=rectangle] {1};
+%	\draw (D) -- (E) node[midway,fill=white, draw=none, shape=rectangle] {3};
+%	
+%	\end{tikzpicture}
+%
+%	
+%	
+%	%[->,shorten >=1pt,auto,node distance=5cm, thick,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
+%	\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=1cm, thick,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]%[ auto, every node/.style={circle,draw}, node distance=1cm]
+%	\node[main node] (A) {A};
+%	\node[main node] (B) [below left of=1, xshift = -1.5cm] {B};
+%	\node[main node] (C) [below of=2, xshift= 1.5cm] {C};
+%	\node[main node] (E) [below right of=1, xshift = 1.5cm] {E};
+%	\node[main node] (D) [below of=5, xshift= -1.5cm] {D};
+%	
+%	\draw (A) -- (B) node[midway, fill=none, draw=none, shape=rectangle] {10};
+%	\draw (A) -- (C) node[midway, fill=none, draw=none, shape=rectangle] {5};
+%	\draw (A) -- (D) node[midway, fill=none, draw=none, shape=rectangle] {7};
+%	\draw (A) -- (E) node[midway, fill=white, draw=none, shape=rectangle] {9};
+%	\draw (B) -- (C) node[midway, fill=white, draw=none, shape=rectangle] {1};
+%	\draw (B) -- (D) node[midway,above,  fill=white, draw=none, shape=rectangle] {5};
+%	\draw (B) -- (E) node[midway, below,fill=white, draw=none, shape=rectangle] {4};
+%	\draw (C) -- (D) node[midway, fill=white, draw=none, shape=rectangle] {8};
+%	\draw (C) -- (E) node[midway, fill=white, draw=none, shape=rectangle] {1};
+%	\draw (D) -- (E) node[midway,fill=white, draw=none, shape=rectangle] {3};
+%	
+%	\end{tikzpicture}
+	
+	
+	
+	\begin{center}	
+		\begin{tikzpicture}[-,shorten >=1pt,auto,node distance=1.5cm,main node/.style={circle, draw, fill=blue!20}]
+			
+			\node[main node] (1) {A};
+			\node[main node] (2) [below left of=1, xshift = -0.8cm, yshift = -0.2cm] {B};
+			\node[main node] (3) [below of=2, xshift= 0.8cm, yshift = -0.6cm] {C};
+			\node[main node] (5) [below right of=1, xshift = 0.8cm, yshift = -0.2cm] {E};
+			\node[main node] (4) [below of=5, xshift= -0.8cm, yshift = -0.6cm] {D};
+			
+			
+			
+			\path[every node/.style={font=\sffamily\small}]
+			(1)
+			edge node [right] {7} (4)
+			edge node[above] {10} (2)
+			edge node[left] {5} (3)
+			edge node[above] {9} (5)
+			
+			(2) 
+			edge node[below] {5} (4)
+			edge node[left] {1} (3)
+			edge node[above] {4} (5)
+			
+			(3)
+			edge node[below] {8} (4)
+			edge node[below] {1} (5)
+			
+			(4) edge node[right] {3} (5);
+			
+		\end{tikzpicture}
+		
+	\end{center}
+	
+	
+		\subsection{Algorithm Construction}
+	
+	We will follow the instructions highlighted at the begining of chapter 3. We start by normalizing our edge weights. We need to sort our all edge weights in descending order as in equation \ref{sorted-weights}:	
+	
+	\begin{equation*}
+		w' = \{10,9,8,7,5,5,4,3,1,1\}
+	\end{equation*}
+	
+	
+	Then we need to retrieve the sum $S$ as in equation \ref{sum-S}
+	\begin{equation*}
+		S = \sum_{i=1}^{5} w'_i = 10 + 9  + 8 + 7 + 5 = 39
+	\end{equation*}
+	
+	From here we can normalize our edgeweights as in \ref{normalization}, we can set $\epsilon = 1$
+	
+	\begin{equation*}
+		\tilde{w} = \frac{  \{10,9,8,7,5,5,4,3,1,1\}}{40} = \{0.25 , 0.225 , 0.2 , 0.175 , 0.125, 0.125, 0.1, 0.075, 0.025, 0.025\} 
+	\end{equation*}
+	
+	
+	
+	
+	\begin{center}	
+		\begin{tikzpicture}[-,shorten >=1pt,auto,node distance=1.7cm,main node/.style={circle, draw, fill=blue!20}]
+			
+			\node[main node] (1) {A};
+			\node[main node] (2) [below left of=1, xshift = -0.8cm, yshift = -0.2cm] {B};
+			\node[main node] (3) [below of=2, xshift= 0.8cm, yshift = -0.6cm] {C};
+			\node[main node] (5) [below right of=1, xshift = 0.8cm, yshift = -0.2cm] {E};
+			\node[main node] (4) [below of=5, xshift= -0.8cm, yshift = -0.6cm] {D};
+			
+			
+			
+			\path[every node/.style={font=\sffamily\small}]
+			(1)
+			edge node [right, yshift = 0.1cm, xshift = -0.05cm] {.175} (4)
+			edge node[above] {.25} (2)
+			edge node[left, yshift = 0.1cm, xshift = 0.08cm] {.125} (3)
+			edge node[above, xshift = 0.2cm] {.225} (5)
+			
+			(2) 
+			edge node[below, xshift = -0.15cm] {.125} (4)
+			edge node[left] {.025} (3)
+			edge node[above] {.1} (5)
+			
+			(3)
+			edge node[below] {0.2} (4)
+			edge node[below, xshift = 0.1cm] {.025} (5)
+			
+			(4) edge node[right] {.075} (5);
+			
+		\end{tikzpicture}
+		
+	\end{center}
+	
+	
+	
+	Now we need to construct the unitary operator and eigenstates. Our matrix $U$ and $U'$ diagonals will look like the following:
+	
+	
+	\begin{align*}	
+		u & = \begin{bmatrix}
+			1 \\
+			e^{i2\pi(0.25)} \\
+			e^{i2\pi(0.125)} \\
+			e^{i2\pi(0.175)} \\
+			e^{i2\pi(0.225)} \\
+		\end{bmatrix} 
+		\otimes \begin{bmatrix}
+			e^{i2\pi(0.25)} \\
+			1 \\
+			e^{i2\pi(0.025)} \\
+			e^{i2\pi(0.125)} \\
+			e^{i2\pi(0.1)} \\
+		\end{bmatrix}
+		\otimes \begin{bmatrix}
+			e^{i2\pi(0.125)} \\
+			e^{i2\pi(0.025)} \\
+			1\\
+			e^{i2\pi(0.2)} \\
+			e^{i2\pi(0.025)} \\
+		\end{bmatrix} 
+		\otimes \begin{bmatrix}
+			e^{i2\pi(0.175)} \\
+			e^{i2\pi(0.125)} \\
+			e^{i2\pi(0.2)} \\
+			1 \\
+			e^{i2\pi(0.075)} \\
+		\end{bmatrix} 
+		\otimes \begin{bmatrix}
+			e^{i2\pi(0.225)} \\
+			e^{i2\pi(0.1)} \\
+			e^{i2\pi(0.025)} \\
+			e^{i2\pi(0.075)} \\
+			1 \\
+		\end{bmatrix} 							 			
+	\end{align*}
+	
+	\begin{align*}	
+	u' & = \begin{bmatrix}
+		1 \\
+		e^{i2\pi(0)} \\
+		e^{i2\pi(0.125)} \\
+		e^{i2\pi(0.175)} \\
+		e^{i2\pi(0)} \\
+	\end{bmatrix} 
+	\otimes \begin{bmatrix}
+		e^{i2\pi(0)} \\
+		1 \\
+		e^{i2\pi(0.025)} \\
+		e^{i2\pi(0.125)} \\
+		e^{i2\pi(0.1)} \\
+	\end{bmatrix}
+	\otimes \begin{bmatrix}
+		e^{i2\pi(0.125)} \\
+		e^{i2\pi(0.025)} \\
+		1\\
+		e^{i2\pi(0.2)} \\
+		e^{i2\pi(0.025)} \\
+	\end{bmatrix} 
+	\otimes \begin{bmatrix}
+		e^{i2\pi(0.175)} \\
+		e^{i2\pi(0.125)} \\
+		e^{i2\pi(0.2)} \\
+		1 \\
+		e^{i2\pi(0.075)} \\
+	\end{bmatrix} 
+	\otimes \begin{bmatrix}
+		e^{i2\pi(0)} \\
+		e^{i2\pi(0.1)} \\
+		e^{i2\pi(0.025)} \\
+		e^{i2\pi(0.075)} \\
+		1 \\
+	\end{bmatrix} 							 			
+\end{align*}
+	
+	
+	Because we are dealing with the symmetric case. Based on Table \ref{table:ham-cycle-details-5-city} we can simply use the results and conversions from the first three cycles. Thus we will be estimating phases using the following eigenstates:
+	
+	$$|970\rangle  = |001111001010\rangle$$
+	$$|978\rangle  = |001111010010\rangle$$
+	$$|1110\rangle = |010001010110\rangle$$
+	$$|1022\rangle = |001111111110\rangle$$
+	$$|1202\rangle = |010010110010\rangle$$
+	$$|1138\rangle = |010001110010\rangle$$
+	$$|1670\rangle = |011010000110\rangle$$
+	$$|1778\rangle = |011011110010\rangle$$
+	$$|1830\rangle = |011100100110\rangle$$
+	$$|1726\rangle = |011010111110\rangle$$
+	$$|2230\rangle = |100010110110\rangle$$
+	$$|2410\rangle = |100101101010\rangle$$
+	And expect the following phases:
+	
+	\vspace{0.5cm}
+		Cycle 1: $A \rightarrow B \rightarrow C \rightarrow D \rightarrow E \rightarrow A$
+		
+	\begin{center}	
+		\begin{tikzpicture}[-,shorten >=1pt,auto,node distance=1.7cm,main node/.style={circle, draw, fill=blue!20}]
+			% Nodes
+			\node [main node] (1) at (0,0) {A};
+			%\node[main node] (1) {A};
+			\node[main node] (2) [below left of=1, xshift = -0.8cm, yshift = -0.2cm] {B};
+			\node[main node] (3) [below of=2, xshift= 0.8cm, yshift = -0.6cm] {C};
+			\node[main node] (5) [below right of=1, xshift = 0.8cm, yshift = -0.2cm] {E};
+			\node[main node] (4) [below of=5, xshift= -0.8cm, yshift = -0.6cm] {D};
+			
+			
+			
+			\path[every node/.style={font=\sffamily\small}]
+			(1)
+			edge node [right, yshift = 0.1cm, xshift = -0.05cm] {.175} (4)
+			edge[blue!60,ultra thick] node[above] {.25} (2)
+			edge node[left, yshift = 0.1cm, xshift = 0.08cm] {.125} (3)
+			edge[blue!60,ultra thick] node[above, xshift = 0.2cm] {.225} (5)
+			
+			(2) 
+			edge node[below, xshift = -0.15cm] {.125} (4)
+			edge[blue!60,ultra thick] node[left] {.025} (3)
+			edge node[above] {.1} (5)
+			
+			(3)
+			edge[blue!60,ultra thick] node[below] {0.2} (4)
+			edge node[below, xshift = 0.1cm] {.025} (5)
+			
+			(4) edge [blue!60,ultra thick] node[right] {.075} (5);
+			
+			\node [main node] (6) at (9,0) {A};
+			\node[main node] (7) [below left of=6, xshift = -0.8cm, yshift = -0.2cm] {B};
+			\node[main node] (8) [below of=7, xshift= 0.8cm, yshift = -0.6cm] {C};
+			\node[main node] (10) [below right of=6, xshift = 0.8cm, yshift = -0.2cm] {E};
+			\node[main node] (9) [below of=10, xshift= -0.8cm, yshift = -0.6cm] {D};
+			
+			
+			\path[every node/.style={font=\sffamily\small}]
+			(6)
+			edge node [right, yshift = 0.1cm, xshift = -0.05cm] {.175} (9)
+			edge [red,ultra thick]node[above] {0} (7)
+			edgenode[left, yshift = 0.1cm, xshift = 0.08cm] {.125} (8)
+			edge[red,ultra thick] node[above, xshift = 0.2cm] {0} (10)
+			
+			(7) 
+			edge node[below, xshift = -0.15cm] {.125} (9)
+			edge[red,ultra thick] node[left] {.025} (8)
+			edge node[above] {.1} (10)
+			
+			(8)
+			edge [red,ultra thick] node[below] {0.2} (9)
+			edge node[below, xshift = 0.1cm] {.025} (10)
+			
+			(9)edge[red,ultra thick]  node[right] {.075} (10);
+			
+			\draw[->, ultra thick, >=latex] (3.8, -1.5) -- (5.3, -1.5);
+			
+		\end{tikzpicture}
+	\end{center}
+	
+	$$ u_{970}  = e^{i2\pi(0.775)}$$
+	$$ u'_{970} = e^{i2\pi(0.3)}$$
 	
 	\vspace{0.5cm}
 	
+	Cycle 2: $A \rightarrow B \rightarrow C \rightarrow E \rightarrow D \rightarrow A$
+	\begin{center}	
+		\begin{tikzpicture}[-,shorten >=1pt,auto,node distance=1.7cm,main node/.style={circle, draw, fill=blue!20}]
+			% Nodes
+			\node [main node] (1) at (0,0) {A};
+			%\node[main node] (1) {A};
+			\node[main node] (2) [below left of=1, xshift = -0.8cm, yshift = -0.2cm] {B};
+			\node[main node] (3) [below of=2, xshift= 0.8cm, yshift = -0.6cm] {C};
+			\node[main node] (5) [below right of=1, xshift = 0.8cm, yshift = -0.2cm] {E};
+			\node[main node] (4) [below of=5, xshift= -0.8cm, yshift = -0.6cm] {D};
+			
+			
+			
+			\path[every node/.style={font=\sffamily\small}]
+			(1)
+			edge [blue!60,ultra thick]node [right, yshift = 0.1cm, xshift = -0.05cm] {.175} (4)
+			edge [blue!60,ultra thick]node[above] {.25} (2)
+			edge node[left, yshift = 0.1cm, xshift = 0.08cm] {.125} (3)
+			edge node[above, xshift = 0.2cm] {.225} (5)
+			
+			(2) 
+			edge node[below, xshift = -0.15cm] {.125} (4)
+			edge [blue!60,ultra thick]node[left] {.025} (3)
+			edge node[above] {.1} (5)
+			
+			(3)
+			edge node[below] {0.2} (4)
+			edge [blue!60,ultra thick]node[below, xshift = 0.1cm] {.025} (5)
+			
+			(4) edge[blue!60,ultra thick] node[right] {.075} (5);
+			
+			\node [main node] (6) at (9,0) {A};
+			\node[main node] (7) [below left of=6, xshift = -0.8cm, yshift = -0.2cm] {B};
+			\node[main node] (8) [below of=7, xshift= 0.8cm, yshift = -0.6cm] {C};
+			\node[main node] (10) [below right of=6, xshift = 0.8cm, yshift = -0.2cm] {E};
+			\node[main node] (9) [below of=10, xshift= -0.8cm, yshift = -0.6cm] {D};
+			
+			
+			\path[every node/.style={font=\sffamily\small}]
+			(6)
+			edge [red,ultra thick] node [right, yshift = 0.1cm, xshift = -0.05cm] {.175} (9)
+			edge[red,ultra thick] node[above] {0} (7)
+			edge node[left, yshift = 0.1cm, xshift = 0.08cm] {.125} (8)
+			edge node[above, xshift = 0.2cm] {0} (10)
+			
+			(7) 
+			edge node[below, xshift = -0.15cm] {.125} (9)
+			edge [red,ultra thick]node[left] {.025} (8)
+			edge node[above] {.1} (10)
+			
+			(8)
+			edge node[below] {0.2} (9)
+			edge[red,ultra thick] node[below, xshift = 0.1cm] {.025} (10)
+			
+			(9)  edge [red,ultra thick] node[right] {.075} (10);
+			
+			\draw[->, ultra thick, >=latex] (3.8, -1.5) -- (5.3, -1.5);
+			
+		\end{tikzpicture}
+	\end{center}
+	
+	$$ u_{978}  = e^{i2\pi(0.55)}$$
+	$$ u'_{978} = e^{i2\pi(0.3)}$$
+	
+	\vspace{0.5cm}
+	
+	Cycle 3: $A \rightarrow B \rightarrow D \rightarrow C \rightarrow E \rightarrow A$
+	\begin{center}	
+		\begin{tikzpicture}[-,shorten >=1pt,auto,node distance=1.7cm,main node/.style={circle, draw, fill=blue!20}]
+			% Nodes
+			\node [main node] (1) at (0,0) {A};
+			%\node[main node] (1) {A};
+			\node[main node] (2) [below left of=1, xshift = -0.8cm, yshift = -0.2cm] {B};
+			\node[main node] (3) [below of=2, xshift= 0.8cm, yshift = -0.6cm] {C};
+			\node[main node] (5) [below right of=1, xshift = 0.8cm, yshift = -0.2cm] {E};
+			\node[main node] (4) [below of=5, xshift= -0.8cm, yshift = -0.6cm] {D};
+			
+			
+			
+			\path[every node/.style={font=\sffamily\small}]
+			(1)
+			edge node [right, yshift = 0.1cm, xshift = -0.05cm] {.175} (4)
+			edge [blue!60,ultra thick] node[above] {.25} (2)
+			edge node[left, yshift = 0.1cm, xshift = 0.08cm] {.125} (3)
+			edge[blue!60,ultra thick] node[above, xshift = 0.2cm] {.225} (5)
+			
+			(2) 
+			edge[blue!60,ultra thick] node[below, xshift = -0.15cm] {.125} (4)
+			edge node[left] {.025} (3)
+			edge node[above] {.1} (5)
+			
+			(3)
+			edge[blue!60,ultra thick] node[below] {0.2} (4)
+			edge [blue!60,ultra thick]node[below, xshift = 0.1cm] {.025} (5)
+			
+			(4) edge node[right] {.075} (5);
+			
+			\node [main node] (6) at (9,0) {A};
+			\node[main node] (7) [below left of=6, xshift = -0.8cm, yshift = -0.2cm] {B};
+			\node[main node] (8) [below of=7, xshift= 0.8cm, yshift = -0.6cm] {C};
+			\node[main node] (10) [below right of=6, xshift = 0.8cm, yshift = -0.2cm] {E};
+			\node[main node] (9) [below of=10, xshift= -0.8cm, yshift = -0.6cm] {D};
+			
+			
+			\path[every node/.style={font=\sffamily\small}]
+			(6)
+			edge node [right, yshift = 0.1cm, xshift = -0.05cm] {.175} (9)
+			edge[red,ultra thick] node[above] {0} (7)
+			edge node[left, yshift = 0.1cm, xshift = 0.08cm] {.125} (8)
+			edge[red,ultra thick] node[above, xshift = 0.2cm] {0} (10)
+			
+			(7) 
+			edge [red,ultra thick]node[below, xshift = -0.15cm] {.125} (9)
+			edge node[left] {.025} (8)
+			edge node[above] {.1} (10)
+			
+			(8)
+			edge[red,ultra thick] node[below] {0.2} (9)
+			edge[red,ultra thick] node[below, xshift = 0.1cm] {.025} (10)
+			
+			(9) edge node[right] {.075} (10);
+			
+			\draw[->, ultra thick, >=latex] (3.8, -1.5) -- (5.3, -1.5);
+			
+		\end{tikzpicture}
+	\end{center}
+	
+	$$ u_{1110}  = e^{i2\pi(0.825)}$$
+	$$ u'_{1110} = e^{i2\pi(0.35)}$$
+	
+	\vspace{0.5cm}
+	
+	
+		Cycle 4: $A \rightarrow B \rightarrow D \rightarrow E \rightarrow C \rightarrow A$ 
+	\begin{center}	
+		\begin{tikzpicture}[-,shorten >=1pt,auto,node distance=1.7cm,main node/.style={circle, draw, fill=blue!20}]
+			% Nodes
+			\node [main node] (1) at (0,0) {A};
+			%\node[main node] (1) {A};
+			\node[main node] (2) [below left of=1, xshift = -0.8cm, yshift = -0.2cm] {B};
+			\node[main node] (3) [below of=2, xshift= 0.8cm, yshift = -0.6cm] {C};
+			\node[main node] (5) [below right of=1, xshift = 0.8cm, yshift = -0.2cm] {E};
+			\node[main node] (4) [below of=5, xshift= -0.8cm, yshift = -0.6cm] {D};
+			
+			
+			
+			\path[every node/.style={font=\sffamily\small}]
+			(1)
+			edge node [right, yshift = 0.1cm, xshift = -0.05cm] {.175} (4)
+			edge[blue!60,ultra thick] node[above] {.25} (2)
+			edge [blue!60,ultra thick] node[left, yshift = 0.1cm, xshift = 0.08cm] {.125} (3)
+			edge node[above, xshift = 0.2cm] {.225} (5)
+			
+			(2) 
+			edge [blue!60,ultra thick]node[below, xshift = -0.15cm] {.125} (4)
+			edge node[left] {.025} (3)
+			edge node[above] {.1} (5)
+			
+			(3)
+			edge node[below] {0.2} (4)
+			edge [blue!60,ultra thick]node[below, xshift = 0.1cm] {.025} (5)
+			
+			(4) edge [blue!60,ultra thick]node[right] {.075} (5);
+			
+			\node [main node] (6) at (9,0) {A};
+			\node[main node] (7) [below left of=6, xshift = -0.8cm, yshift = -0.2cm] {B};
+			\node[main node] (8) [below of=7, xshift= 0.8cm, yshift = -0.6cm] {C};
+			\node[main node] (10) [below right of=6, xshift = 0.8cm, yshift = -0.2cm] {E};
+			\node[main node] (9) [below of=10, xshift= -0.8cm, yshift = -0.6cm] {D};
+			
+			
+			\path[every node/.style={font=\sffamily\small}]
+			(6)
+			edge node [right, yshift = 0.1cm, xshift = -0.05cm] {.175} (9)
+			edge [red,ultra thick]node[above] {0} (7)
+			edge [red,ultra thick]node[left, yshift = 0.1cm, xshift = 0.08cm] {.125} (8)
+			edge node[above, xshift = 0.2cm] {0} (10)
+			
+			(7) 
+			edge [red,ultra thick]node[below, xshift = -0.15cm] {.125} (9)
+			edge node[left] {.025} (8)
+			edge node[above] {.1} (10)
+			
+			(8)
+			edge node[below] {0.2} (9)
+			edge[red,ultra thick] node[below, xshift = 0.1cm] {.025} (10)
+			
+			(9) edge [red,ultra thick]node[right] {.075} (10);
+			
+			\draw[->, ultra thick, >=latex] (3.8, -1.5) -- (5.3, -1.5);
+			
+		\end{tikzpicture}
+	\end{center}
+	
+	$$ u_{1022}  = e^{i2\pi(0.6)}$$
+	$$ u'_{1022} = e^{i2\pi(0.35)}$$
+	
+	\vspace{0.5cm}
+	
+		Cycle 5: $A \rightarrow B \rightarrow E \rightarrow C \rightarrow D \rightarrow A$
+	\begin{center}	
+		\begin{tikzpicture}[-,shorten >=1pt,auto,node distance=1.7cm,main node/.style={circle, draw, fill=blue!20}]
+			% Nodes
+			\node [main node] (1) at (0,0) {A};
+			\node[main node] (2) [below left of=1, xshift = -0.8cm, yshift = -0.2cm] {B};
+			\node[main node] (3) [below of=2, xshift= 0.8cm, yshift = -0.6cm] {C};
+			\node[main node] (5) [below right of=1, xshift = 0.8cm, yshift = -0.2cm] {E};
+			\node[main node] (4) [below of=5, xshift= -0.8cm, yshift = -0.6cm] {D};
+			
+			
+			
+			\path[every node/.style={font=\sffamily\small}]
+			(1)
+			edge  [blue!60,ultra thick]node [right, yshift = 0.1cm, xshift = -0.05cm] {.175} (4)
+			edge [blue!60,ultra thick] node[above] {.25} (2)
+			edge node[left, yshift = 0.1cm, xshift = 0.08cm] {.125} (3)
+			edge node[above, xshift = 0.2cm] {.225} (5)
+			
+			(2) 
+			edge node[below, xshift = -0.15cm] {.125} (4)
+			edge node[left] {.025} (3)
+			edge  [blue!60,ultra thick]node[above] {.1} (5)
+			
+			(3)
+			edge  [blue!60,ultra thick]node[below] {0.2} (4)
+			edge  [blue!60,ultra thick]node[below, xshift = 0.1cm] {.025} (5)
+			
+			(4) edge node[right] {.075} (5);
+			
+			\node [main node] (6) at (9,0) {A};
+			\node[main node] (7) [below left of=6, xshift = -0.8cm, yshift = -0.2cm] {B};
+			\node[main node] (8) [below of=7, xshift= 0.8cm, yshift = -0.6cm] {C};
+			\node[main node] (10) [below right of=6, xshift = 0.8cm, yshift = -0.2cm] {E};
+			\node[main node] (9) [below of=10, xshift= -0.8cm, yshift = -0.6cm] {D};
+			
+			
+			\path[every node/.style={font=\sffamily\small}]
+			(6)
+			edge[red,ultra thick] node [right, yshift = 0.1cm, xshift = -0.05cm] {.175} (9)
+			edge[red,ultra thick] node[above] {0} (7)
+			edge node[left, yshift = 0.1cm, xshift = 0.08cm] {.125} (8)
+			edge node[above, xshift = 0.2cm] {0} (10)
+			
+			(7) 
+			edge node[below, xshift = -0.15cm] {.125} (9)
+			edge node[left] {.025} (8)
+			edge[red,ultra thick] node[above] {.1} (10)
+			
+			(8)
+			edge [red,ultra thick]node[below] {0.2} (9)
+			edge [red,ultra thick]node[below, xshift = 0.1cm] {.025} (10)
+			
+			(9) edge node[right] {.075} (10);
+			
+			\draw[->, ultra thick, >=latex] (3.8, -1.5) -- (5.3, -1.5);
+			
+		\end{tikzpicture}
+	\end{center}
+	
+	$$ u_{1202}  = e^{i2\pi(0.75)}$$
+	$$ u'_{1202} = e^{i2\pi(0.5)}$$
+	
+	\vspace{0.5cm}
+	
+		Cycle 6: $A \rightarrow B \rightarrow E \rightarrow D \rightarrow C \rightarrow A$
+	\begin{center}	
+		\begin{tikzpicture}[-,shorten >=1pt,auto,node distance=1.7cm,main node/.style={circle, draw, fill=blue!20}]
+			% Nodes
+			\node [main node] (1) at (0,0) {A};
+			%\node[main node] (1) {A};
+			\node[main node] (2) [below left of=1, xshift = -0.8cm, yshift = -0.2cm] {B};
+			\node[main node] (3) [below of=2, xshift= 0.8cm, yshift = -0.6cm] {C};
+			\node[main node] (5) [below right of=1, xshift = 0.8cm, yshift = -0.2cm] {E};
+			\node[main node] (4) [below of=5, xshift= -0.8cm, yshift = -0.6cm] {D};
+			
+			
+			
+			\path[every node/.style={font=\sffamily\small}]
+			(1)
+			edge node [right, yshift = 0.1cm, xshift = -0.05cm] {.175} (4)
+			edge [blue!60,ultra thick] node[above] {.25} (2)
+			edge[blue!60,ultra thick]  node[left, yshift = 0.1cm, xshift = 0.08cm] {.125} (3)
+			edge node[above, xshift = 0.2cm] {.225} (5)
+			
+			(2) 
+			edge node[below, xshift = -0.15cm] {.125} (4)
+			edge node[left] {.025} (3)
+			edge  [blue!60,ultra thick] node[above] {.1} (5)
+			
+			(3)
+			edge [blue!60,ultra thick]  node[below] {0.2} (4)
+			edge node[below, xshift = 0.1cm] {.025} (5)
+			
+			(4)  edge[blue!60,ultra thick]  node[right] {.075} (5);
+			
+			\node [main node] (6) at (9,0) {A};
+			\node[main node] (7) [below left of=6, xshift = -0.8cm, yshift = -0.2cm] {B};
+			\node[main node] (8) [below of=7, xshift= 0.8cm, yshift = -0.6cm] {C};
+			\node[main node] (10) [below right of=6, xshift = 0.8cm, yshift = -0.2cm] {E};
+			\node[main node] (9) [below of=10, xshift= -0.8cm, yshift = -0.6cm] {D};
+			
+			
+			\path[every node/.style={font=\sffamily\small}]
+			(6)
+			edge node [right, yshift = 0.1cm, xshift = -0.05cm] {.175} (9)
+			edge[red,ultra thick] node[above] {0} (7)
+			edge [red,ultra thick]node[left, yshift = 0.1cm, xshift = 0.08cm] {.125} (8)
+			edge node[above, xshift = 0.2cm] {0} (10)
+			
+			(7) 
+			edge node[below, xshift = -0.15cm] {.125} (9)
+			edge node[left] {.025} (8)
+			edge [red,ultra thick]node[above] {.1} (10)
+			
+			(8)
+			edge[red,ultra thick] node[below] {0.2} (9)
+			edge node[below, xshift = 0.1cm] {.025} (10)
+			
+			(9) edge[red,ultra thick] node[right] {.075} (10);
+			
+			\draw[->, ultra thick, >=latex] (3.8, -1.5) -- (5.3, -1.5);
+			
+		\end{tikzpicture}
+	\end{center}
+	
+	$$ u_{1138}  = e^{i2\pi(0.75)}$$
+	$$ u'_{1138} = e^{i2\pi(0.5)}$$
+	
+	\vspace{0.5cm}
+	
+		Cycle 7: $A \rightarrow C \rightarrow B \rightarrow D \rightarrow E \rightarrow A$
+	\begin{center}	
+		\begin{tikzpicture}[-,shorten >=1pt,auto,node distance=1.7cm,main node/.style={circle, draw, fill=blue!20}]
+			% Nodes
+			\node [main node] (1) at (0,0) {A};
+			%\node[main node] (1) {A};
+			\node[main node] (2) [below left of=1, xshift = -0.8cm, yshift = -0.2cm] {B};
+			\node[main node] (3) [below of=2, xshift= 0.8cm, yshift = -0.6cm] {C};
+			\node[main node] (5) [below right of=1, xshift = 0.8cm, yshift = -0.2cm] {E};
+			\node[main node] (4) [below of=5, xshift= -0.8cm, yshift = -0.6cm] {D};
+			
+			
+			
+			\path[every node/.style={font=\sffamily\small}]
+			(1)
+			edge node [right, yshift = 0.1cm, xshift = -0.05cm] {.175} (4)
+			edge node[above] {.25} (2)
+			edge [blue!60,ultra thick] node[left, yshift = 0.1cm, xshift = 0.08cm] {.125} (3)
+			edge [blue!60,ultra thick] node[above, xshift = 0.2cm] {.225} (5)
+			
+			(2) 
+			edge [blue!60,ultra thick] node[below, xshift = -0.15cm] {.125} (4)
+			edge [blue!60,ultra thick]  node[left] {.025} (3)
+			edge node[above] {.1} (5)
+			
+			(3)
+			edge node[below] {0.2} (4)
+			edge node[below, xshift = 0.1cm] {.025} (5)
+			
+			(4) edge [blue!60,ultra thick]  node[right] {.075} (5);
+			
+			\node [main node] (6) at (9,0) {A};
+			\node[main node] (7) [below left of=6, xshift = -0.8cm, yshift = -0.2cm] {B};
+			\node[main node] (8) [below of=7, xshift= 0.8cm, yshift = -0.6cm] {C};
+			\node[main node] (10) [below right of=6, xshift = 0.8cm, yshift = -0.2cm] {E};
+			\node[main node] (9) [below of=10, xshift= -0.8cm, yshift = -0.6cm] {D};
+			
+			
+			\path[every node/.style={font=\sffamily\small}]
+			(6)
+			edge node [right, yshift = 0.1cm, xshift = -0.05cm] {.175} (9)
+			edge node[above] {0} (7)
+			edge [red,ultra thick]node[left, yshift = 0.1cm, xshift = 0.08cm] {.125} (8)
+			edge [red,ultra thick]node[above, xshift = 0.2cm] {0} (10)
+			
+			(7) 
+			edge [red,ultra thick]node[below, xshift = -0.15cm] {.125} (9)
+			edge [red,ultra thick]node[left] {.025} (8)
+			edge node[above] {.1} (10)
+			
+			(8)
+			edge node[below] {0.2} (9)
+			edge node[below, xshift = 0.1cm] {.025} (10)
+			
+			(9) edge[red,ultra thick] node[right] {.075} (10);
+			
+			\draw[->, ultra thick, >=latex] (3.8, -1.5) -- (5.3, -1.5);
+			
+		\end{tikzpicture}
+	\end{center}
+	
+	$$ u_{1670}  = e^{i2\pi(0.575)}$$
+	$$ u'_{1670} = e^{i2\pi(0.35)}$$
+	
+	\vspace{0.5cm}
+	
+	
+		 Cycle 8: $A \rightarrow C \rightarrow B \rightarrow E \rightarrow D \rightarrow A$
+	
+	\begin{center}	
+		\begin{tikzpicture}[-,shorten >=1pt,auto,node distance=1.7cm,main node/.style={circle, draw, fill=blue!20}]
+			% Nodes
+			\node [main node] (1) at (0,0) {A};
+			%\node[main node] (1) {A};
+			\node[main node] (2) [below left of=1, xshift = -0.8cm, yshift = -0.2cm] {B};
+			\node[main node] (3) [below of=2, xshift= 0.8cm, yshift = -0.6cm] {C};
+			\node[main node] (5) [below right of=1, xshift = 0.8cm, yshift = -0.2cm] {E};
+			\node[main node] (4) [below of=5, xshift= -0.8cm, yshift = -0.6cm] {D};
+			
+			
+			
+			\path[every node/.style={font=\sffamily\small}]
+			(1)
+			edge[blue!60,ultra thick] node [right, yshift = 0.1cm, xshift = -0.05cm] {.175} (4)
+			edge node[above] {.25} (2)
+			edge[blue!60,ultra thick] node[left, yshift = 0.1cm, xshift = 0.08cm] {.125} (3)
+			edge node[above, xshift = 0.2cm] {.225} (5)
+			
+			(2) 
+			edge node[below, xshift = -0.15cm] {.125} (4)
+			edge[blue!60,ultra thick] node[left] {.025} (3)
+			edge[blue!60,ultra thick] node[above] {.1} (5)
+			
+			(3)
+			edge node[below] {0.2} (4)
+			edge node[below, xshift = 0.1cm] {.025} (5)
+			
+			(4) edge[blue!60,ultra thick]  node[right] {.075} (5);
+			
+			
+			
+			\node [main node] (6) at (9,0) {A};
+			\node[main node] (7) [below left of=6, xshift = -0.8cm, yshift = -0.2cm] {B};
+			\node[main node] (8) [below of=7, xshift= 0.8cm, yshift = -0.6cm] {C};
+			\node[main node] (10) [below right of=6, xshift = 0.8cm, yshift = -0.2cm] {E};
+			\node[main node] (9) [below of=10, xshift= -0.8cm, yshift = -0.6cm] {D};
+			
+			
+			
+			\path[every node/.style={font=\sffamily\small}]
+			(6)
+			edge[black!30!green, ultra thick] node [right, yshift = 0.1cm, xshift = -0.05cm] {.175} (9)
+			edge node[above] {0} (7)
+			edge[black!30!green, ultra thick] node[left, yshift = 0.1cm, xshift = 0.08cm] {.125} (8)
+			edge node[above, xshift = 0.2cm] {0} (10)
+			
+			(7) 
+			edge node[below, xshift = -0.15cm] {.125} (9)
+			edge[black!30!green, ultra thick] node[left] {.025} (8)
+			edge[black!30!green, ultra thick] node[above] {.1} (10)
+			
+			(8)
+			edge node[below] {0.2} (9)
+			edge node[below, xshift = 0.1cm] {.025} (10)
+			
+			(9) edge[black!30!green, ultra thick] node[right] {.075} (10);
+			
+			\draw[->, ultra thick, >=latex] (3.8, -1.5) -- (5.3, -1.5);
+			
+		\end{tikzpicture}
+	\end{center}
+	
+	$$ u_{1778}  = e^{i2\pi(0.5)}$$
+	$$ u'_{1778}  = e^{i2\pi(0.5)}$$
+	
+	\vspace{0.5cm}
+	
+	Cycle 9: $A \rightarrow C \rightarrow D \rightarrow B \rightarrow E \rightarrow A$
+	
+		\begin{center}	
+		\begin{tikzpicture}[-,shorten >=1pt,auto,node distance=1.7cm,main node/.style={circle, draw, fill=blue!20}]
+			% Nodes
+			\node [main node] (1) at (0,0) {A};
+			%\node[main node] (1) {A};
+			\node[main node] (2) [below left of=1, xshift = -0.8cm, yshift = -0.2cm] {B};
+			\node[main node] (3) [below of=2, xshift= 0.8cm, yshift = -0.6cm] {C};
+			\node[main node] (5) [below right of=1, xshift = 0.8cm, yshift = -0.2cm] {E};
+			\node[main node] (4) [below of=5, xshift= -0.8cm, yshift = -0.6cm] {D};
+			
+			
+			
+			\path[every node/.style={font=\sffamily\small}]
+			(1)
+			edge node [right, yshift = 0.1cm, xshift = -0.05cm] {.175} (4)
+			edge node[above] {.25} (2)
+			edge[blue!60,ultra thick] node[left, yshift = 0.1cm, xshift = 0.08cm] {.125} (3)
+			edge[blue!60,ultra thick] node[above, xshift = 0.2cm] {.225} (5)
+			
+			(2) 
+			edge[blue!60,ultra thick] node[below, xshift = -0.15cm] {.125} (4)
+			edge node[left] {.025} (3)
+			edge[blue!60,ultra thick] node[above] {.1} (5)
+			
+			(3)
+			edge[blue!60,ultra thick] node[below] {0.2} (4)
+			edge node[below, xshift = 0.1cm] {.025} (5)
+			
+			(4) edge node[right] {.075} (5);
+			
+			\node [main node] (6) at (9,0) {A};
+			\node[main node] (7) [below left of=6, xshift = -0.8cm, yshift = -0.2cm] {B};
+			\node[main node] (8) [below of=7, xshift= 0.8cm, yshift = -0.6cm] {C};
+			\node[main node] (10) [below right of=6, xshift = 0.8cm, yshift = -0.2cm] {E};
+			\node[main node] (9) [below of=10, xshift= -0.8cm, yshift = -0.6cm] {D};
+			
+
+			\path[every node/.style={font=\sffamily\small}]
+			(6)
+			edge node [right, yshift = 0.1cm, xshift = -0.05cm] {.175} (9)
+			edge node[above] {0} (7)
+			edge[red,ultra thick] node[left, yshift = 0.1cm, xshift = 0.08cm] {.125} (8)
+			edge [red,ultra thick]node[above, xshift = 0.2cm] {0} (10)
+			
+			(7) 
+			edge [red,ultra thick]node[below, xshift = -0.15cm] {.125} (9)
+			edge node[left] {.025} (8)
+			edge[red,ultra thick] node[above] {.1} (10)
+			
+			(8)
+			edge [red,ultra thick]node[below] {0.2} (9)
+			edge node[below, xshift = 0.1cm] {.025} (10)
+			
+			(9) edge node[right] {.075} (10);
+			
+			\draw[->, ultra thick, >=latex] (3.8, -1.5) -- (5.3, -1.5);
+			
+		\end{tikzpicture}
+	\end{center}
+	
+		$$ u_{1830} =  e^{i2\pi(0.775)}$$
+	$$ u'_{1830} =  e^{i2\pi(0.55)}$$
+	
+	\vspace{0.5cm}
+	
+		Cycle 10: $A \rightarrow C \rightarrow E \rightarrow B \rightarrow D \rightarrow A$
+	
+	\begin{center}	
+		\begin{tikzpicture}[-,shorten >=1pt,auto,node distance=1.7cm,main node/.style={circle, draw, fill=blue!20}]
+			% Nodes
+			\node [main node] (1) at (0,0) {A};
+			%\node[main node] (1) {A};
+			\node[main node] (2) [below left of=1, xshift = -0.8cm, yshift = -0.2cm] {B};
+			\node[main node] (3) [below of=2, xshift= 0.8cm, yshift = -0.6cm] {C};
+			\node[main node] (5) [below right of=1, xshift = 0.8cm, yshift = -0.2cm] {E};
+			\node[main node] (4) [below of=5, xshift= -0.8cm, yshift = -0.6cm] {D};
+			
+			
+			
+			\path[every node/.style={font=\sffamily\small}]
+			(1)
+			edge[blue!60,ultra thick] node [right, yshift = 0.1cm, xshift = -0.05cm] {.175} (4)
+			edge node[above] {.25} (2)
+			edge[blue!60,ultra thick] node[left, yshift = 0.1cm, xshift = 0.08cm] {.125} (3)
+			edge node[above, xshift = 0.2cm] {.225} (5)
+			
+			(2) 
+			edge[blue!60,ultra thick] node[below, xshift = -0.15cm] {.125} (4)
+			edge node[left] {.025} (3)
+			edge[blue!60,ultra thick] node[above] {.1} (5)
+			
+			(3)
+			edge node[below] {0.2} (4)
+			edge[blue!60,ultra thick] node[below, xshift = 0.1cm] {.025} (5)
+			
+			(4) edge node[right] {.075} (5);
+			
+			\node [main node] (6) at (9,0) {A};
+			\node[main node] (7) [below left of=6, xshift = -0.8cm, yshift = -0.2cm] {B};
+			\node[main node] (8) [below of=7, xshift= 0.8cm, yshift = -0.6cm] {C};
+			\node[main node] (10) [below right of=6, xshift = 0.8cm, yshift = -0.2cm] {E};
+			\node[main node] (9) [below of=10, xshift= -0.8cm, yshift = -0.6cm] {D};
+			
+			
+			\path[every node/.style={font=\sffamily\small}]
+			(6)
+			edge [black!30!green, ultra thick]node [right, yshift = 0.1cm, xshift = -0.05cm] {.175} (9)
+			edge node[above] {0} (7)
+			edge[black!30!green, ultra thick] node[left, yshift = 0.1cm, xshift = 0.08cm] {.125} (8)
+			edge node[above, xshift = 0.2cm] {0} (10)
+			
+			(7) 
+			edge[black!30!green, ultra thick] node[below, xshift = -0.15cm] {.125} (9)
+			edge node[left] {.025} (8)
+			edge[black!30!green, ultra thick] node[above] {.1} (10)
+			
+			(8)
+			edge node[below] {0.2} (9)
+			edge[black!30!green, ultra thick] node[below, xshift = 0.1cm] {.025} (10)
+			
+			(9) edge node[right] {.075} (10);
+			
+			\draw[->, ultra thick, >=latex] (3.8, -1.5) -- (5.3, -1.5);
+			
+		\end{tikzpicture}
+	\end{center}
+	
+	$$ u_{1726} =  e^{i2\pi(0.55)}$$
+	$$ u'_{1726} = e^{i2\pi(0.55)}$$
+	
+	\vspace{0.5cm}
+	
+		Cycle 11: $A \rightarrow D \rightarrow B \rightarrow C \rightarrow E \rightarrow A$
+	
+	\begin{center}	
+		\begin{tikzpicture}[-,shorten >=1pt,auto,node distance=1.7cm,main node/.style={circle, draw, fill=blue!20}]
+			% Nodes
+			\node [main node] (1) at (0,0) {A};
+			%\node[main node] (1) {A};
+			\node[main node] (2) [below left of=1, xshift = -0.8cm, yshift = -0.2cm] {B};
+			\node[main node] (3) [below of=2, xshift= 0.8cm, yshift = -0.6cm] {C};
+			\node[main node] (5) [below right of=1, xshift = 0.8cm, yshift = -0.2cm] {E};
+			\node[main node] (4) [below of=5, xshift= -0.8cm, yshift = -0.6cm] {D};
+			
+			
+			
+			\path[every node/.style={font=\sffamily\small}]
+			(1)
+			edge[blue!60,ultra thick] node [right, yshift = 0.1cm, xshift = -0.05cm] {.175} (4)
+			edge node[above] {.25} (2)
+			edge node[left, yshift = 0.1cm, xshift = 0.08cm] {.125} (3)
+			edge[blue!60,ultra thick] node[above, xshift = 0.2cm] {.225} (5)
+			
+			(2) 
+			edge[blue!60,ultra thick] node[below, xshift = -0.15cm] {.125} (4)
+			edge[blue!60,ultra thick] node[left] {.025} (3)
+			edge node[above] {.1} (5)
+			
+			(3)
+			edge node[below] {0.2} (4)
+			edge[blue!60,ultra thick] node[below, xshift = 0.1cm] {.025} (5)
+			
+			(4) edge node[right] {.075} (5);
+			
+			\node [main node] (6) at (9,0) {A};
+			\node[main node] (7) [below left of=6, xshift = -0.8cm, yshift = -0.2cm] {B};
+			\node[main node] (8) [below of=7, xshift= 0.8cm, yshift = -0.6cm] {C};
+			\node[main node] (10) [below right of=6, xshift = 0.8cm, yshift = -0.2cm] {E};
+			\node[main node] (9) [below of=10, xshift= -0.8cm, yshift = -0.6cm] {D};
+			
+			
+			\path[every node/.style={font=\sffamily\small}]
+			(6)
+			edge[red,ultra thick] node [right, yshift = 0.1cm, xshift = -0.05cm] {.175} (9)
+			edge node[above] {0} (7)
+			edge node[left, yshift = 0.1cm, xshift = 0.08cm] {.125} (8)
+			edge [red,ultra thick]node[above, xshift = 0.2cm] {0} (10)
+			
+			(7) 
+			edge[red,ultra thick] node[below, xshift = -0.15cm] {.125} (9)
+			edge [red,ultra thick]node[left] {.025} (8)
+			edge node[above] {.1} (10)
+			
+			(8)
+			edge node[below] {0.2} (9)
+			edge [red,ultra thick]node[below, xshift = 0.1cm] {.025} (10)
+			
+			(9) edge node[right] {.075} (10);
+			
+			\draw[->, ultra thick, >=latex] (3.8, -1.5) -- (5.3, -1.5);
+			
+		\end{tikzpicture}
+	\end{center}
+	
+	$$ u_{2230} =  e^{i2\pi(0.575)}$$
+	$$ u'_{2230} = e^{i2\pi(0.35)}$$
+	
+	\vspace{0.5cm}
+	
+		Cycle 12: $A \rightarrow D \rightarrow C \rightarrow B \rightarrow E \rightarrow A$
+	
+	\begin{center}	
+		\begin{tikzpicture}[-,shorten >=1pt,auto,node distance=1.7cm,main node/.style={circle, draw, fill=blue!20}]
+			% Nodes
+			\node [main node] (1) at (0,0) {A};
+			%\node[main node] (1) {A};
+			\node[main node] (2) [below left of=1, xshift = -0.8cm, yshift = -0.2cm] {B};
+			\node[main node] (3) [below of=2, xshift= 0.8cm, yshift = -0.6cm] {C};
+			\node[main node] (5) [below right of=1, xshift = 0.8cm, yshift = -0.2cm] {E};
+			\node[main node] (4) [below of=5, xshift= -0.8cm, yshift = -0.6cm] {D};
+			
+			
+			
+			\path[every node/.style={font=\sffamily\small}]
+			(1)
+			edge [blue!60,ultra thick]node [right, yshift = 0.1cm, xshift = -0.05cm] {.175} (4)
+			edge node[above] {.25} (2)
+			edge node[left, yshift = 0.1cm, xshift = 0.08cm] {.125} (3)
+			edge [blue!60,ultra thick]node[above, xshift = 0.2cm] {.225} (5)
+			
+			(2) 
+			edge node[below, xshift = -0.15cm] {.125} (4)
+			edge[blue!60,ultra thick] node[left] {.025} (3)
+			edge [blue!60,ultra thick]node[above] {.1} (5)
+			
+			(3)
+			edge [blue!60,ultra thick]node[below] {0.2} (4)
+			edge node[below, xshift = 0.1cm] {.025} (5)
+			
+			(4) edge node[right] {.075} (5);
+			
+			\node [main node] (6) at (9,0) {A};
+			\node[main node] (7) [below left of=6, xshift = -0.8cm, yshift = -0.2cm] {B};
+			\node[main node] (8) [below of=7, xshift= 0.8cm, yshift = -0.6cm] {C};
+			\node[main node] (10) [below right of=6, xshift = 0.8cm, yshift = -0.2cm] {E};
+			\node[main node] (9) [below of=10, xshift= -0.8cm, yshift = -0.6cm] {D};
+			
+			
+			\path[every node/.style={font=\sffamily\small}]
+			(6)
+			edge[red,ultra thick] node [right, yshift = 0.1cm, xshift = -0.05cm] {.175} (9)
+			edge node[above] {0} (7)
+			edge node[left, yshift = 0.1cm, xshift = 0.08cm] {.125} (8)
+			edge[red,ultra thick] node[above, xshift = 0.2cm] {0} (10)
+			
+			(7) 
+			edge node[below, xshift = -0.15cm] {.125} (9)
+			edge [red,ultra thick]node[left] {.025} (8)
+			edge [red,ultra thick]node[above] {.1} (10)
+			
+			(8)
+			edge [red,ultra thick]node[below] {0.2} (9)
+			edge node[below, xshift = 0.1cm] {.025} (10)
+			
+			(9) edge node[right] {.075} (10);
+			
+			\draw[->, ultra thick, >=latex] (3.8, -1.5) -- (5.3, -1.5);
+			
+		\end{tikzpicture}
+	\end{center}
+	
+	$$ u_{2410}  = e^{i2\pi(0.725)}$$
+	$$ u'_{2410}  = e^{i2\pi(0.5)}$$
+	
+	\vspace{0.5cm}
+	
+	
+		\begin{figure}[!h]
+		\centering
+		\includegraphics[width=\textwidth,height=0.9\textheight,keepaspectratio]{"graphics/1-3-5city"}
+		\caption{3 \& 4 qubit phase estimation for the 5-city graph. Hamiltonian cycles: 1 to 3}
+		\label{fig:4-city-graphic}
+	\end{figure}		
+	
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[ width=\textwidth,height=0.9\textheight,keepaspectratio]{"graphics/4-6-5city"}
+		\caption{3 \& 4 qubit phase estimation for the 5-city graph. Hamiltonian cycles: 4 to 6}
+		\label{fig:4-city-graphic}
+	\end{figure}		
+	
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[width=\textwidth,height=0.9\textheight,keepaspectratio]{"graphics/7-9-5city"}
+		\caption{3 \& 4 qubit phase estimation for the 5-city graph. Hamiltonian cycles: 7 to 9}
+		\label{fig:4-city-graphic}
+	\end{figure}		
+	
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[width=\textwidth,height=0.9\textheight,keepaspectratio]{"graphics/10-12-5city"}
+		\caption{3 \& 4 qubit phase estimation for the 5-city graph. Hamiltonian cycles: 10 to 12}
+		\label{fig:4-city-graphic}
+	\end{figure}		
+	
+	\begin{table}[ht!]
+		\centering
+		\label{your-table-label}
+		\begin{tabular}{lllllll} % Updated for 7 columns
+			\toprule
+			Cycle & Expected & N & 1st & Prob. & 2nd & Prob. \\
+			\midrule
+			\multirow{2}{*}{1} & \multirow{2}{*}{$0.3, \; 0.775$} & 3 & $0.25, \; 0.75$ & $52\%$ &  $0.375, \; 0.75$  & $23\%$ \\
+			&                          & 4& $0.3125, \; 0.75$ & $50\%$ &  $0.3125, \; 0.8125$  & $21\%$ \\
+			\hline
+			\multirow{2}{*}{2} & \multirow{2}{*}{$0.3, \; 0.55$} & 3 & $0.25, \; 0.5$ & $35\%$ &  $0.25, \; 0.625$  & $14\%$ \\
+			&                          & 4& $0.3125, \; 0.5625$ & $75\%$ &  $0.3125, \; 0.5$  & $6\%$ \\
+			\hline
+			\multirow{2}{*}{3} & \multirow{2}{*}{$0.35, \; 0.825$ } & 3 & $0.375, \; 0.875$ & $50\%$ &  $0.375, \; 0.75$  & $24\%$ \\
+			&                          & 4& $0.375, \; 0.8125$ & $47\%$ &  $0.3125, \; 0.8125$  & $23\%$ \\
+			\hline
+			\multirow{2}{*}{4} & \multirow{2}{*}{$0.35, \; 0.6$} & 3 & $0.375, \; 0.625$ & $78\%$ &  $0.25, \; 0.625$  & $5\%$ \\
+			&                          & 4& $0.375, \; 0.625$ & $31\%$ &  $0.3125, \; 0.625$  & $16\%$ \\
+			\hline
+			\multirow{2}{*}{5} & \multirow{2}{*}{$0.5, \; 0.75$} & 3 & $0.5, \; 0.75$ & $100\%$ & & \\
+			&                          & 4& $0.5, \; 0.75$ & $100\%$ &   &  \\
+			\hline
+			\multirow{2}{*}{6} & \multirow{2}{*}{$0.5, \; 0.75$} & 3 & $0.5, \; 0.75$ & $100\%$ & & \\
+			&                          & 4& $0.5, \; 0.75$ & $100\%$ &   &  \\
+			\hline
+			\multirow{2}{*}{7} & \multirow{2}{*}{$0.35, \; 0.575$ } & 3 & $0.375, \; 0.625$ & $51\%$ &  $0.375, \; 0.5$  & $23\%$ \\
+			&                          & 4& $0.375, \; 0.5625$ & $50\%$ &  $0.3125, \; 0.5625$  & $21\%$ \\
+			\hline
+			\multirow{2}{*}{8} & \multirow{2}{*}{$0.5, \; 0.5$} & 3 & $0.5, \; 0.5$ & $100\%$ &   &  \\
+			&                          & 4& $0.5, \; 0.5$ & $100\%$ &   &  \\
+			\hline
+			\multirow{2}{*}{9} & \multirow{2}{*}{$0.55, \; 0.775$} & 3 & $0.5, \; 0.75$ & $52\%$ &  $0.625, \; 0.75$  & $22\%$ \\
+			&                          & 4& $0.5625, \; 0.75$ & $51\%$ &  $0.5625, \; 0.8125$  & $22\%$ \\
+			\hline
+			\multirow{2}{*}{10} & \multirow{2}{*}{$0.55, \; 0.55$ } & 3 & $0.5, \; 0.5$ & $32\%$ &  $0.5, \; 0.625$  & $17\%$ \\
+			&                          & 4& $0.5625, \; 0.5625$ & $75\%$ &  $0.5625, \; 0.5$  & $5\%$ \\
+			\hline
+			\multirow{2}{*}{11} & \multirow{2}{*}{$0.35, \; 0.575$} & 3 & $0.375, \; 0.625$ & $49\%$ &  $0.375, \; 0.5$  & $22\%$ \\
+			&                          & 4& $0.375, \; 0.5625$ & $51\%$ &  $0.3125, \; 0.5625$  & $20\%$ \\
+			\hline
+			\multirow{2}{*}{12} & \multirow{2}{*}{$0.50, \; 0.725$ } & 3 & $0.5, \; 0.75$ & $88\%$ &  $0.5, \; 0.625$  & $5\%$ \\
+			&                          & 4& $0.5, \; 0.75$ & $58\%$ &  $0.5, \; 0.6875$  & $24\%$ \\
+			
+			\bottomrule
+		\end{tabular}
+		\caption{Simulation results for the 5-city graph. $N$ refers to the number of phase qubits, 1st and 2nd refer to the most probable and second most probable measurement, along with their associated probabilities on their right.}
+		\label{table:sim-results-5-city}
+	\end{table} 
 	
 	
 	%\input{Results/RSLT01}
@@ -1669,15 +2789,11 @@ $A \rightarrow E \rightarrow D \rightarrow C \rightarrow B \rightarrow A$ & $ \g
 	\includepdf[pages=-]{hamiltonian_cycles.pdf}
 	%\input{ham_cycles.tex}
 	%\input{hamiltonian_cycles.tex}
-	\chapter{Code: 4-City Problem}
+	\chapter{Simulation Code with Qiskit}
+	
+	The code presented here is simulations for the four city . This code can be further extended to larger graphs.
 	
 	\includepdf[pages=-]{4-city-code/4-city-code.pdf}
-	
-	\chapter{Code: 5-city constraint problem}
-	
-	\begin{enumerate}
-		\item this section will include any code used to produce graphs in the simulated section.
-	\end{enumerate}
 	
 	
 	%\input{Appendix1}

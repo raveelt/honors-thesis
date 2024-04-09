@@ -11,19 +11,19 @@
 \contentsline {subsection}{\numberline {2.2.2}{Quantum Circuit Components}}{4}{subsection.2.2.2}%
 \contentsline {subsection}{\numberline {2.2.3}{Controlled Gates and Phase Kickback}}{4}{subsection.2.2.3}%
 \contentsline {section}{\numberline {2.3}{Quantum Phase Estimation}}{4}{section.2.3}%
-\contentsline {chapter}{\numberline {3}{Algorithm for the Constraint Problem}}{8}{chapter.3}%
+\contentsline {chapter}{\numberline {3}{Algorithm}}{8}{chapter.3}%
 \contentsline {section}{\numberline {3.1}{Normalize Edge Weights}}{8}{section.3.1}%
 \contentsline {section}{\numberline {3.2}{Unitary Operator and Eigenstates associated with the Hamiltonian Cycles}}{9}{section.3.2}%
 \contentsline {subsection}{\numberline {3.2.1}{The Four City Graph}}{11}{subsection.3.2.1}%
 \contentsline {subsection}{\numberline {3.2.2}{The Five City Graph}}{13}{subsection.3.2.2}%
-\contentsline {chapter}{\numberline {4}{Constraint Solutions}}{17}{chapter.4}%
-\contentsline {section}{\numberline {4.1}{An Undirected 4-city Graph}}{17}{section.4.1}%
+\contentsline {chapter}{\numberline {4}{Simulations}}{17}{chapter.4}%
+\contentsline {section}{\numberline {4.1}{An Undirected 4-City Graph}}{17}{section.4.1}%
 \contentsline {subsection}{\numberline {4.1.1}{Algorithm Construction}}{17}{subsection.4.1.1}%
 \contentsline {subsection}{\numberline {4.1.2}{Results: Simulations with Qiskit}}{19}{subsection.4.1.2}%
-\contentsline {section}{\numberline {4.2}{An Undirected 5-City Graph}}{20}{section.4.2}%
-\contentsline {chapter}{\numberline {5}{Discussion}}{24}{chapter.5}%
-\contentsline {chapter}{{Bibliography}}{25}{chapter*.6}%
+\contentsline {section}{\numberline {4.2}{An Undirected 5-City Graph}}{25}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}{Algorithm Construction}}{25}{subsection.4.2.1}%
+\contentsline {chapter}{\numberline {5}{Discussion}}{36}{chapter.5}%
+\contentsline {chapter}{{Bibliography}}{37}{chapter*.6}%
 \contentsline {part}{{Appendices}}{}{}
-\contentsline {chapter}{\numberline {A}{Code: Calculating the Hamiltonian Cycles and Locating Eigenstates}}{26}{appendix.A}%
-\contentsline {chapter}{\numberline {B}{Code: 4-City Problem}}{30}{appendix.B}%
-\contentsline {chapter}{\numberline {C}{Code: 5-city constraint problem}}{39}{appendix.C}%
+\contentsline {chapter}{\numberline {A}{Code: Calculating the Hamiltonian Cycles and Locating Eigenstates}}{38}{appendix.A}%
+\contentsline {chapter}{\numberline {B}{Simulation Code with Qiskit}}{42}{appendix.B}%
