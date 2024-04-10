@@ -25,6 +25,7 @@
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{lop}{\addvspace {10\p@ }}
+\citation{Phase-estimation}
 \@writefile{toc}{\contentsline {chapter}{{List of Figures}}{vi}{chapter*.4}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
@@ -60,144 +61,148 @@
 \newlabel{control-u-matrix}{{2.1}{6}{\@fmttocentry {Controlled Gates}}{equation.2.2.1}{}}
 \newlabel{control-u-matrix@cref}{{[equation][1][2]2.1}{[1][6][]6}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.3}{Quantum Phase Estimation}}{6}{section.2.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {2.2}{\ignorespaces A quantum circuit representation of the phase estimation algorithm. Given $ U |\lambda \rangle = e^{2\pi i \phi } |\lambda \rangle $, this algorithm allows us to generate an approximation for $\phi \in [0,1)$ . The circuit consists of two registers of qubits. The first $n$-qubits are initialized to $|0\rangle $ and contribute to the precision of the $\phi $ value obtained. The second register of $m$-qubits is initialized to the eigenstate of $U$. The Hadamard gates, $H$, are used to create a uniform superposition in the first register. The control gates based on $U$ are responsible for encoding phase to the qubits in the first register. Finally, a $QFT^\dagger $ is performed on the first register to extract the encoded phase. Each subsequent qubit in the first register would require double the control gates. Thus, with a large $n$ we obtain a more precise value for $\phi $, but also exponentially increase our computation time.\relax }}{7}{figure.caption.11}\protected@file@percent }
-\newlabel{fig:phasrcircuit}{{2.2}{7}{A quantum circuit representation of the phase estimation algorithm. Given $ U |\lambda \rangle = e^{2\pi i \phi } |\lambda \rangle $, this algorithm allows us to generate an approximation for $\phi \in [0,1)$ . The circuit consists of two registers of qubits. The first $n$-qubits are initialized to $|0\rangle $ and contribute to the precision of the $\phi $ value obtained. The second register of $m$-qubits is initialized to the eigenstate of $U$. The Hadamard gates, $H$, are used to create a uniform superposition in the first register. The control gates based on $U$ are responsible for encoding phase to the qubits in the first register. Finally, a $QFT^\dagger $ is performed on the first register to extract the encoded phase. Each subsequent qubit in the first register would require double the control gates. Thus, with a large $n$ we obtain a more precise value for $\phi $, but also exponentially increase our computation time.\relax }{figure.caption.11}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.2}{\ignorespaces A quantum circuit representation of the phase estimation algorithm. Given $ U |\lambda \rangle = e^{2\pi i \phi } |\lambda \rangle $, this algorithm allows us to generate an approximation for $\phi \in [0,1)$ . The circuit consists of two registers of qubits. The first $n$-qubits are initialized to $|0\rangle $ and contribute to the precision of the $\phi $ value obtained. The second register of $m$-qubits is initialized to the eigenstate of $U$. The Hadamard gates, $H$, are used to create a uniform superposition in the first register. The control gates based on $U$ are responsible for encoding phase to the qubits in the first register. Finally, a $QFT^\dagger $ is performed on the first register to extract the encoded phase. Each subsequent qubit in the first register would require double the control gates. Thus, with a large $n$ we obtain a more precise value for $\phi $, but also exponentially increase our computation time.\relax }}{7}{figure.caption.10}\protected@file@percent }
+\newlabel{fig:phasrcircuit}{{2.2}{7}{A quantum circuit representation of the phase estimation algorithm. Given $ U |\lambda \rangle = e^{2\pi i \phi } |\lambda \rangle $, this algorithm allows us to generate an approximation for $\phi \in [0,1)$ . The circuit consists of two registers of qubits. The first $n$-qubits are initialized to $|0\rangle $ and contribute to the precision of the $\phi $ value obtained. The second register of $m$-qubits is initialized to the eigenstate of $U$. The Hadamard gates, $H$, are used to create a uniform superposition in the first register. The control gates based on $U$ are responsible for encoding phase to the qubits in the first register. Finally, a $QFT^\dagger $ is performed on the first register to extract the encoded phase. Each subsequent qubit in the first register would require double the control gates. Thus, with a large $n$ we obtain a more precise value for $\phi $, but also exponentially increase our computation time.\relax }{figure.caption.10}{}}
 \newlabel{fig:phasrcircuit@cref}{{[figure][2][2]2.2}{[1][7][]7}}
-\newlabel{fig:image1}{{2.3a}{10}{First Image\relax }{figure.caption.12}{}}
-\newlabel{fig:image1@cref}{{[subfigure][1][2,3]2.3a}{[1][8][]10}}
-\newlabel{sub@fig:image1}{{a}{10}{First Image\relax }{figure.caption.12}{}}
-\newlabel{sub@fig:image1@cref}{{[subfigure][1][2,3]2.3a}{[1][8][]10}}
-\newlabel{fig:image2}{{2.3b}{10}{Second Image\relax }{figure.caption.12}{}}
-\newlabel{fig:image2@cref}{{[subfigure][2][2,3]2.3b}{[1][8][]10}}
-\newlabel{sub@fig:image2}{{b}{10}{Second Image\relax }{figure.caption.12}{}}
-\newlabel{sub@fig:image2@cref}{{[subfigure][2][2,3]2.3b}{[1][8][]10}}
-\newlabel{fig:image3}{{2.3c}{10}{Third Image\relax }{figure.caption.12}{}}
-\newlabel{fig:image3@cref}{{[subfigure][3][2,3]2.3c}{[1][8][]10}}
-\newlabel{sub@fig:image3}{{c}{10}{Third Image\relax }{figure.caption.12}{}}
-\newlabel{sub@fig:image3@cref}{{[subfigure][3][2,3]2.3c}{[1][8][]10}}
-\newlabel{fig:image4}{{2.3d}{10}{Fourth Image\relax }{figure.caption.12}{}}
-\newlabel{fig:image4@cref}{{[subfigure][4][2,3]2.3d}{[1][8][]10}}
-\newlabel{sub@fig:image4}{{d}{10}{Fourth Image\relax }{figure.caption.12}{}}
-\newlabel{sub@fig:image4@cref}{{[subfigure][4][2,3]2.3d}{[1][8][]10}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.3}{\ignorespaces A 2x2 grid of images.\relax }}{10}{figure.caption.12}\protected@file@percent }
-\newlabel{fig:2x2grid}{{2.3}{10}{A 2x2 grid of images.\relax }{figure.caption.12}{}}
-\newlabel{fig:2x2grid@cref}{{[figure][3][2]2.3}{[1][8][]10}}
+\citation{Phase-estimation}
+\citation{Phase-estimation}
+\citation{Phase-estimation}
+\newlabel{fig:image1}{{2.3a}{9}{2-qubit estimation\relax }{figure.caption.11}{}}
+\newlabel{fig:image1@cref}{{[subfigure][1][2,3]2.3a}{[1][9][]9}}
+\newlabel{sub@fig:image1}{{a}{9}{2-qubit estimation\relax }{figure.caption.11}{}}
+\newlabel{sub@fig:image1@cref}{{[subfigure][1][2,3]2.3a}{[1][9][]9}}
+\newlabel{fig:image2}{{2.3b}{9}{3-qubit estimation\relax }{figure.caption.11}{}}
+\newlabel{fig:image2@cref}{{[subfigure][2][2,3]2.3b}{[1][9][]9}}
+\newlabel{sub@fig:image2}{{b}{9}{3-qubit estimation\relax }{figure.caption.11}{}}
+\newlabel{sub@fig:image2@cref}{{[subfigure][2][2,3]2.3b}{[1][9][]9}}
+\newlabel{fig:image3}{{2.3c}{9}{4-qubit estimation\relax }{figure.caption.11}{}}
+\newlabel{fig:image3@cref}{{[subfigure][3][2,3]2.3c}{[1][9][]9}}
+\newlabel{sub@fig:image3}{{c}{9}{4-qubit estimation\relax }{figure.caption.11}{}}
+\newlabel{sub@fig:image3@cref}{{[subfigure][3][2,3]2.3c}{[1][9][]9}}
+\newlabel{fig:image4}{{2.3d}{9}{5-qubit estimation\relax }{figure.caption.11}{}}
+\newlabel{fig:image4@cref}{{[subfigure][4][2,3]2.3d}{[1][9][]9}}
+\newlabel{sub@fig:image4}{{d}{9}{5-qubit estimation\relax }{figure.caption.11}{}}
+\newlabel{sub@fig:image4@cref}{{[subfigure][4][2,3]2.3d}{[1][9][]9}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.3}{\ignorespaces Varying degree of precision by the phase estimation algorithm \cite  {Phase-estimation}.\relax }}{9}{figure.caption.11}\protected@file@percent }
+\newlabel{fig:phase-precision}{{2.3}{9}{Varying degree of precision by the phase estimation algorithm \cite {Phase-estimation}.\relax }{figure.caption.11}{}}
+\newlabel{fig:phase-precision@cref}{{[figure][3][2]2.3}{[1][9][]9}}
 \citation{srinivasan2018efficient}
-\@writefile{toc}{\contentsline {chapter}{\numberline {3}{Algorithm}}{11}{chapter.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {3}{Algorithm}}{10}{chapter.3}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{lop}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {3.1}{Normalize Edge Weights}}{11}{section.3.1}\protected@file@percent }
-\newlabel{sorted-weights}{{3.1}{12}{\@fmttocentry {Normalize Edge Weights}}{equation.3.1.1}{}}
-\newlabel{sorted-weights@cref}{{[equation][1][3]3.1}{[1][11][]12}}
-\newlabel{sum-S}{{3.2}{12}{\@fmttocentry {Normalize Edge Weights}}{equation.3.1.2}{}}
-\newlabel{sum-S@cref}{{[equation][2][3]3.2}{[1][12][]12}}
-\newlabel{normalization}{{3.3}{12}{\@fmttocentry {Normalize Edge Weights}}{equation.3.1.3}{}}
-\newlabel{normalization@cref}{{[equation][3][3]3.3}{[1][12][]12}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.2}{Unitary Operator and Eigenstates associated with the Hamiltonian Cycles}}{12}{section.3.2}\protected@file@percent }
-\newlabel{Uj-elements}{{3.4}{12}{\@fmttocentry {Unitary Operator and Eigenstates associated with the Hamiltonian Cycles}}{equation.3.2.4}{}}
-\newlabel{Uj-elements@cref}{{[equation][4][3]3.4}{[1][12][]12}}
-\newlabel{U-tensor}{{3.5}{12}{\@fmttocentry {Unitary Operator and Eigenstates associated with the Hamiltonian Cycles}}{equation.3.2.5}{}}
-\newlabel{U-tensor@cref}{{[equation][5][3]3.5}{[1][12][]12}}
-\newlabel{U-matrix-eq}{{3.6}{13}{\@fmttocentry {Unitary Operator and Eigenstates associated with the Hamiltonian Cycles}}{equation.3.2.6}{}}
-\newlabel{U-matrix-eq@cref}{{[equation][6][3]3.6}{[1][13][]13}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}{The Four City Graph}}{14}{subsection.3.2.1}\protected@file@percent }
-\newlabel{4-city-matrix-tensor}{{3.7}{14}{\@fmttocentry {The Four City Graph}}{equation.3.2.7}{}}
-\newlabel{4-city-matrix-tensor@cref}{{[equation][7][3]3.7}{[1][14][]14}}
-\newlabel{4-city-tensor}{{3.8}{14}{\@fmttocentry {The Four City Graph}}{equation.3.2.8}{}}
-\newlabel{4-city-tensor@cref}{{[equation][8][3]3.8}{[1][14][]14}}
-\newlabel{one-ham-cycle-4-city}{{3.9}{15}{\@fmttocentry {The Four City Graph}}{equation.3.2.9}{}}
-\newlabel{one-ham-cycle-4-city@cref}{{[equation][9][3]3.9}{[1][14][]15}}
-\@writefile{lot}{\contentsline {table}{\numberline {3.1}{\ignorespaces Hamiltonian cycles of the directed 4-city graph with their edgeweight summation and expected diagonal element products (\ref {4-city-tensor}).\relax }}{15}{table.caption.13}\protected@file@percent }
-\newlabel{table:ham-cycle-details-4-city}{{3.1}{15}{Hamiltonian cycles of the directed 4-city graph with their edgeweight summation and expected diagonal element products (\ref {4-city-tensor}).\relax }{table.caption.13}{}}
-\newlabel{table:ham-cycle-details-4-city@cref}{{[table][1][3]3.1}{[1][15][]15}}
-\@writefile{lot}{\contentsline {table}{\numberline {3.2}{\ignorespaces Eigenstates of matrix $U$ (\ref {4-city-matrix-tensor}), containing the normalized hamiltonian cycle edge weight sum of the directed 4-city graph.\relax }}{15}{table.caption.14}\protected@file@percent }
-\newlabel{table:4-city-conversions}{{3.2}{15}{Eigenstates of matrix $U$ (\ref {4-city-matrix-tensor}), containing the normalized hamiltonian cycle edge weight sum of the directed 4-city graph.\relax }{table.caption.14}{}}
-\newlabel{table:4-city-conversions@cref}{{[table][2][3]3.2}{[1][15][]15}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}{The Five City Graph}}{16}{subsection.3.2.2}\protected@file@percent }
-\newlabel{5-city-matrix-tensor}{{3.10}{16}{\@fmttocentry {The Five City Graph}}{equation.3.2.10}{}}
-\newlabel{5-city-matrix-tensor@cref}{{[equation][10][3]3.10}{[1][16][]16}}
-\newlabel{5-city-tensor}{{3.11}{16}{\@fmttocentry {The Five City Graph}}{equation.3.2.11}{}}
-\newlabel{5-city-tensor@cref}{{[equation][11][3]3.11}{[1][16][]16}}
-\newlabel{one-ham-cycle-4-city}{{3.12}{17}{\@fmttocentry {The Five City Graph}}{equation.3.2.12}{}}
-\newlabel{one-ham-cycle-4-city@cref}{{[equation][12][3]3.12}{[1][16][]17}}
-\@writefile{lot}{\contentsline {table}{\numberline {3.3}{\ignorespaces Hamiltonian cycles of the directed 4-city graph with their edgeweight summation and expected diagonal element products (\ref {5-city-tensor}).\relax }}{18}{table.caption.15}\protected@file@percent }
-\newlabel{table:ham-cycle-details-5-city}{{3.3}{18}{Hamiltonian cycles of the directed 4-city graph with their edgeweight summation and expected diagonal element products (\ref {5-city-tensor}).\relax }{table.caption.15}{}}
-\newlabel{table:ham-cycle-details-5-city@cref}{{[table][3][3]3.3}{[1][17][]18}}
-\@writefile{lot}{\contentsline {table}{\numberline {3.4}{\ignorespaces Eigenstates of matrix $U$ (\ref {5-city-matrix-tensor}), containing the normalized hamiltonian cycle edge weight sum of the directed 4-city graph\relax }}{19}{table.caption.16}\protected@file@percent }
-\newlabel{table:5-city-conversions}{{3.4}{19}{Eigenstates of matrix $U$ (\ref {5-city-matrix-tensor}), containing the normalized hamiltonian cycle edge weight sum of the directed 4-city graph\relax }{table.caption.16}{}}
-\newlabel{table:5-city-conversions@cref}{{[table][4][3]3.4}{[1][17][]19}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {4}{Simulations}}{20}{chapter.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}{Normalize Edge Weights}}{10}{section.3.1}\protected@file@percent }
+\newlabel{sorted-weights}{{3.1}{11}{\@fmttocentry {Normalize Edge Weights}}{equation.3.1.1}{}}
+\newlabel{sorted-weights@cref}{{[equation][1][3]3.1}{[1][11][]11}}
+\newlabel{sum-S}{{3.2}{11}{\@fmttocentry {Normalize Edge Weights}}{equation.3.1.2}{}}
+\newlabel{sum-S@cref}{{[equation][2][3]3.2}{[1][11][]11}}
+\newlabel{normalization}{{3.3}{11}{\@fmttocentry {Normalize Edge Weights}}{equation.3.1.3}{}}
+\newlabel{normalization@cref}{{[equation][3][3]3.3}{[1][11][]11}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}{Unitary Operator and Eigenstates associated with the Hamiltonian Cycles}}{11}{section.3.2}\protected@file@percent }
+\newlabel{Uj-elements}{{3.4}{11}{\@fmttocentry {Unitary Operator and Eigenstates associated with the Hamiltonian Cycles}}{equation.3.2.4}{}}
+\newlabel{Uj-elements@cref}{{[equation][4][3]3.4}{[1][11][]11}}
+\newlabel{U-tensor}{{3.5}{11}{\@fmttocentry {Unitary Operator and Eigenstates associated with the Hamiltonian Cycles}}{equation.3.2.5}{}}
+\newlabel{U-tensor@cref}{{[equation][5][3]3.5}{[1][11][]11}}
+\newlabel{U-matrix-eq}{{3.6}{12}{\@fmttocentry {Unitary Operator and Eigenstates associated with the Hamiltonian Cycles}}{equation.3.2.6}{}}
+\newlabel{U-matrix-eq@cref}{{[equation][6][3]3.6}{[1][12][]12}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}{The Four City Graph}}{13}{subsection.3.2.1}\protected@file@percent }
+\newlabel{4-city-matrix-tensor}{{3.7}{13}{\@fmttocentry {The Four City Graph}}{equation.3.2.7}{}}
+\newlabel{4-city-matrix-tensor@cref}{{[equation][7][3]3.7}{[1][13][]13}}
+\newlabel{4-city-tensor}{{3.8}{13}{\@fmttocentry {The Four City Graph}}{equation.3.2.8}{}}
+\newlabel{4-city-tensor@cref}{{[equation][8][3]3.8}{[1][13][]13}}
+\newlabel{one-ham-cycle-4-city}{{3.9}{14}{\@fmttocentry {The Four City Graph}}{equation.3.2.9}{}}
+\newlabel{one-ham-cycle-4-city@cref}{{[equation][9][3]3.9}{[1][13][]14}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.1}{\ignorespaces Hamiltonian cycles of the directed 4-city graph with their edgeweight summation and expected diagonal element products (\ref {4-city-tensor}).\relax }}{14}{table.caption.12}\protected@file@percent }
+\newlabel{table:ham-cycle-details-4-city}{{3.1}{14}{Hamiltonian cycles of the directed 4-city graph with their edgeweight summation and expected diagonal element products (\ref {4-city-tensor}).\relax }{table.caption.12}{}}
+\newlabel{table:ham-cycle-details-4-city@cref}{{[table][1][3]3.1}{[1][14][]14}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.2}{\ignorespaces Eigenstates of matrix $U$ (\ref {4-city-matrix-tensor}), containing the normalized hamiltonian cycle edge weight sum of the directed 4-city graph.\relax }}{14}{table.caption.13}\protected@file@percent }
+\newlabel{table:4-city-conversions}{{3.2}{14}{Eigenstates of matrix $U$ (\ref {4-city-matrix-tensor}), containing the normalized hamiltonian cycle edge weight sum of the directed 4-city graph.\relax }{table.caption.13}{}}
+\newlabel{table:4-city-conversions@cref}{{[table][2][3]3.2}{[1][14][]14}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}{The Five City Graph}}{15}{subsection.3.2.2}\protected@file@percent }
+\newlabel{5-city-matrix-tensor}{{3.10}{15}{\@fmttocentry {The Five City Graph}}{equation.3.2.10}{}}
+\newlabel{5-city-matrix-tensor@cref}{{[equation][10][3]3.10}{[1][15][]15}}
+\newlabel{5-city-tensor}{{3.11}{15}{\@fmttocentry {The Five City Graph}}{equation.3.2.11}{}}
+\newlabel{5-city-tensor@cref}{{[equation][11][3]3.11}{[1][15][]15}}
+\newlabel{one-ham-cycle-4-city}{{3.12}{16}{\@fmttocentry {The Five City Graph}}{equation.3.2.12}{}}
+\newlabel{one-ham-cycle-4-city@cref}{{[equation][12][3]3.12}{[1][15][]16}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.3}{\ignorespaces Hamiltonian cycles of the directed 4-city graph with their edgeweight summation and expected diagonal element products (\ref {5-city-tensor}).\relax }}{17}{table.caption.14}\protected@file@percent }
+\newlabel{table:ham-cycle-details-5-city}{{3.3}{17}{Hamiltonian cycles of the directed 4-city graph with their edgeweight summation and expected diagonal element products (\ref {5-city-tensor}).\relax }{table.caption.14}{}}
+\newlabel{table:ham-cycle-details-5-city@cref}{{[table][3][3]3.3}{[1][16][]17}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.4}{\ignorespaces Eigenstates of matrix $U$ (\ref {5-city-matrix-tensor}), containing the normalized hamiltonian cycle edge weight sum of the directed 4-city graph\relax }}{18}{table.caption.15}\protected@file@percent }
+\newlabel{table:5-city-conversions}{{3.4}{18}{Eigenstates of matrix $U$ (\ref {5-city-matrix-tensor}), containing the normalized hamiltonian cycle edge weight sum of the directed 4-city graph\relax }{table.caption.15}{}}
+\newlabel{table:5-city-conversions@cref}{{[table][4][3]3.4}{[1][16][]18}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}{Simulations}}{19}{chapter.4}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{lop}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {4.1}{An Undirected 4-City Graph}}{20}{section.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.1}{Algorithm Construction}}{20}{subsection.4.1.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.2}{Results: Simulations with Qiskit}}{22}{subsection.4.1.2}\protected@file@percent }
-\newlabel{4-city-sim}{{4.1.2}{22}{\@fmttocentry {Results: Simulations with Qiskit}}{subsection.4.1.2}{}}
-\newlabel{4-city-sim@cref}{{[subsection][2][4,1]4.1.2}{[1][22][]22}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces the quantum circuit for the BTSP: 3 qubit phase estimation is performed measuring the hamiltonian cycle $A \rightarrow B \rightarrow C \rightarrow D \rightarrow A$, using the corresponding eigenstate is $|01101100\rangle $. Due to Qiskit convention on qubit ordering, the eigentate is initialized in reverse. The CU gate denotes the control unitary matrix containing all the hamiltonian cycles. The CU' gate inhabits the same cycles but before it was constructed, all edgeweights not satisfying the constraint, $\geq \alpha $, were set to zero. We have two sets of 3 qubits to be measured and stored in to classical registers labelled 'output' and 'output c'.\relax }}{23}{figure.caption.17}\protected@file@percent }
-\newlabel{fig:4-city-circuit}{{4.1}{23}{the quantum circuit for the BTSP: 3 qubit phase estimation is performed measuring the hamiltonian cycle $A \rightarrow B \rightarrow C \rightarrow D \rightarrow A$, using the corresponding eigenstate is $|01101100\rangle $. Due to Qiskit convention on qubit ordering, the eigentate is initialized in reverse. The CU gate denotes the control unitary matrix containing all the hamiltonian cycles. The CU' gate inhabits the same cycles but before it was constructed, all edgeweights not satisfying the constraint, $\geq \alpha $, were set to zero. We have two sets of 3 qubits to be measured and stored in to classical registers labelled 'output' and 'output c'.\relax }{figure.caption.17}{}}
-\newlabel{fig:4-city-circuit@cref}{{[figure][1][4]4.1}{[1][22][]23}}
-\@writefile{lot}{\contentsline {table}{\numberline {4.1}{\ignorespaces Simulation results for the 4-city graph. $N$ refers to the number of phase qubits, 1st and 2nd refer to the most probable and second most probable measurement, along with their associated probabilities on their right\relax }}{23}{table.caption.21}\protected@file@percent }
-\newlabel{table:sim-results-4-city}{{4.1}{23}{Simulation results for the 4-city graph. $N$ refers to the number of phase qubits, 1st and 2nd refer to the most probable and second most probable measurement, along with their associated probabilities on their right\relax }{table.caption.21}{}}
-\newlabel{table:sim-results-4-city@cref}{{[table][1][4]4.1}{[1][22][]23}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces 3-qubit phase estimation for the 4-city graph\relax }}{24}{figure.caption.18}\protected@file@percent }
-\newlabel{fig:4-city-graphic-3}{{4.2}{24}{3-qubit phase estimation for the 4-city graph\relax }{figure.caption.18}{}}
-\newlabel{fig:4-city-graphic-3@cref}{{[figure][2][4]4.2}{[1][22][]24}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces 4-qubit phase estimation for the 4-city graph\relax }}{25}{figure.caption.19}\protected@file@percent }
-\newlabel{fig:4-city-graphic-4}{{4.3}{25}{4-qubit phase estimation for the 4-city graph\relax }{figure.caption.19}{}}
-\newlabel{fig:4-city-graphic-4@cref}{{[figure][3][4]4.3}{[1][22][]25}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.4}{\ignorespaces 5-qubit phase estimation for the 4-city graph\relax }}{26}{figure.caption.20}\protected@file@percent }
-\newlabel{fig:4-city-graphic-5}{{4.4}{26}{5-qubit phase estimation for the 4-city graph\relax }{figure.caption.20}{}}
-\newlabel{fig:4-city-graphic-5@cref}{{[figure][4][4]4.4}{[1][22][]26}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.2}{An Undirected 5-City Graph}}{27}{section.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}{Algorithm Construction}}{27}{subsection.4.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.2}{Results: Simulations with Qiskit}}{32}{subsection.4.2.2}\protected@file@percent }
-\newlabel{5-city-sim}{{4.2.2}{32}{\@fmttocentry {Results: Simulations with Qiskit}}{subsection.4.2.2}{}}
-\newlabel{5-city-sim@cref}{{[subsection][2][4,2]4.2.2}{[1][31][]32}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.5}{\ignorespaces the quantum circuit for the BTSP: 3 qubit phase estimation is performed measuring the hamiltonian cycle $A \rightarrow B \rightarrow C \rightarrow D \rightarrow E \rightarrow A$, using the corresponding eigenstate is $|970\rangle = |001111001010\rangle $. Due to Qiskit convention on qubit ordering, the eigentate is initialized in reverse. The CU gate denotes the control unitary matrix containing all the hamiltonian cycles. The CU' gate inhabits the same cycles but before it was constructed, all edgeweights not satisfying the constraint, $\geq \alpha $, were set to zero. We have two sets of 3 qubits to be measured and stored in to classical registers labelled 'output' and 'output c'.\relax }}{32}{figure.caption.22}\protected@file@percent }
-\newlabel{fig:5-city-circuit}{{4.5}{32}{the quantum circuit for the BTSP: 3 qubit phase estimation is performed measuring the hamiltonian cycle $A \rightarrow B \rightarrow C \rightarrow D \rightarrow E \rightarrow A$, using the corresponding eigenstate is $|970\rangle = |001111001010\rangle $. Due to Qiskit convention on qubit ordering, the eigentate is initialized in reverse. The CU gate denotes the control unitary matrix containing all the hamiltonian cycles. The CU' gate inhabits the same cycles but before it was constructed, all edgeweights not satisfying the constraint, $\geq \alpha $, were set to zero. We have two sets of 3 qubits to be measured and stored in to classical registers labelled 'output' and 'output c'.\relax }{figure.caption.22}{}}
-\newlabel{fig:5-city-circuit@cref}{{[figure][5][4]4.5}{[1][32][]32}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.6}{\ignorespaces 3 qubit (left column) \& 4 qubit (right column) phase estimation for the 5-city graph. Hamiltonian cycles: 1 to 3\relax }}{33}{figure.caption.23}\protected@file@percent }
-\newlabel{fig:5-city-1-3}{{4.6}{33}{3 qubit (left column) \& 4 qubit (right column) phase estimation for the 5-city graph. Hamiltonian cycles: 1 to 3\relax }{figure.caption.23}{}}
-\newlabel{fig:5-city-1-3@cref}{{[figure][6][4]4.6}{[1][32][]33}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.7}{\ignorespaces 3 qubit (left column) \& 4 qubit (right column) phase estimation for the 5-city graph. Hamiltonian cycles: 4 to 6\relax }}{34}{figure.caption.24}\protected@file@percent }
-\newlabel{fig:5-city-4-6}{{4.7}{34}{3 qubit (left column) \& 4 qubit (right column) phase estimation for the 5-city graph. Hamiltonian cycles: 4 to 6\relax }{figure.caption.24}{}}
-\newlabel{fig:5-city-4-6@cref}{{[figure][7][4]4.7}{[1][32][]34}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.8}{\ignorespaces 3 qubit (left column) \& 4 qubit (right column) phase estimation for the 5-city graph. Hamiltonian cycles: 7 to 9\relax }}{35}{figure.caption.25}\protected@file@percent }
-\newlabel{fig:5-city-7-9}{{4.8}{35}{3 qubit (left column) \& 4 qubit (right column) phase estimation for the 5-city graph. Hamiltonian cycles: 7 to 9\relax }{figure.caption.25}{}}
-\newlabel{fig:5-city-7-9@cref}{{[figure][8][4]4.8}{[1][32][]35}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.9}{\ignorespaces 3 qubit (left column) \& 4 qubit (right column) phase estimation for the 5-city graph. Hamiltonian cycles: 10 to 12\relax }}{36}{figure.caption.26}\protected@file@percent }
-\newlabel{fig:5-city-10-12}{{4.9}{36}{3 qubit (left column) \& 4 qubit (right column) phase estimation for the 5-city graph. Hamiltonian cycles: 10 to 12\relax }{figure.caption.26}{}}
-\newlabel{fig:5-city-10-12@cref}{{[figure][9][4]4.9}{[1][32][]36}}
-\newlabel{your-table-label}{{\caption@xref {your-table-label}{ on input line 2731}}{37}{\@fmttocentry {Results: Simulations with Qiskit}}{table.caption.27}{}}
-\newlabel{your-table-label@cref}{{[subsection][2][4,2]4.2.2}{[1][32][]37}}
-\@writefile{lot}{\contentsline {table}{\numberline {4.2}{\ignorespaces Simulation results for the 5-city graph. $N$ refers to the number of phase qubits, 1st and 2nd refer to the most probable and second most probable measurement, along with their associated probabilities on their right.\relax }}{37}{table.caption.27}\protected@file@percent }
-\newlabel{table:sim-results-5-city}{{4.2}{37}{Simulation results for the 5-city graph. $N$ refers to the number of phase qubits, 1st and 2nd refer to the most probable and second most probable measurement, along with their associated probabilities on their right.\relax }{table.caption.27}{}}
-\newlabel{table:sim-results-5-city@cref}{{[table][2][4]4.2}{[1][32][]37}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}{An Undirected 4-City Graph}}{19}{section.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.1}{Algorithm Construction}}{19}{subsection.4.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.2}{Results: Simulations with Qiskit}}{21}{subsection.4.1.2}\protected@file@percent }
+\newlabel{4-city-sim}{{4.1.2}{21}{\@fmttocentry {Results: Simulations with Qiskit}}{subsection.4.1.2}{}}
+\newlabel{4-city-sim@cref}{{[subsection][2][4,1]4.1.2}{[1][21][]21}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces the quantum circuit for the BTSP: 3 qubit phase estimation is performed measuring the hamiltonian cycle $A \rightarrow B \rightarrow C \rightarrow D \rightarrow A$, using the corresponding eigenstate is $|01101100\rangle $. Due to Qiskit convention on qubit ordering, the eigentate is initialized in reverse. The CU gate denotes the control unitary matrix containing all the hamiltonian cycles. The CU' gate inhabits the same cycles but before it was constructed, all edgeweights not satisfying the constraint, $\geq \alpha $, were set to zero. We have two sets of 3 qubits to be measured and stored in to classical registers labelled 'output' and 'output c'.\relax }}{22}{figure.caption.16}\protected@file@percent }
+\newlabel{fig:4-city-circuit}{{4.1}{22}{the quantum circuit for the BTSP: 3 qubit phase estimation is performed measuring the hamiltonian cycle $A \rightarrow B \rightarrow C \rightarrow D \rightarrow A$, using the corresponding eigenstate is $|01101100\rangle $. Due to Qiskit convention on qubit ordering, the eigentate is initialized in reverse. The CU gate denotes the control unitary matrix containing all the hamiltonian cycles. The CU' gate inhabits the same cycles but before it was constructed, all edgeweights not satisfying the constraint, $\geq \alpha $, were set to zero. We have two sets of 3 qubits to be measured and stored in to classical registers labelled 'output' and 'output c'.\relax }{figure.caption.16}{}}
+\newlabel{fig:4-city-circuit@cref}{{[figure][1][4]4.1}{[1][21][]22}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.1}{\ignorespaces Simulation results for the 4-city graph. $N$ refers to the number of phase qubits, 1st and 2nd refer to the most probable and second most probable measurement, along with their associated probabilities on their right\relax }}{22}{table.caption.20}\protected@file@percent }
+\newlabel{table:sim-results-4-city}{{4.1}{22}{Simulation results for the 4-city graph. $N$ refers to the number of phase qubits, 1st and 2nd refer to the most probable and second most probable measurement, along with their associated probabilities on their right\relax }{table.caption.20}{}}
+\newlabel{table:sim-results-4-city@cref}{{[table][1][4]4.1}{[1][21][]22}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces 3-qubit phase estimation for the 4-city graph\relax }}{23}{figure.caption.17}\protected@file@percent }
+\newlabel{fig:4-city-graphic-3}{{4.2}{23}{3-qubit phase estimation for the 4-city graph\relax }{figure.caption.17}{}}
+\newlabel{fig:4-city-graphic-3@cref}{{[figure][2][4]4.2}{[1][21][]23}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces 4-qubit phase estimation for the 4-city graph\relax }}{24}{figure.caption.18}\protected@file@percent }
+\newlabel{fig:4-city-graphic-4}{{4.3}{24}{4-qubit phase estimation for the 4-city graph\relax }{figure.caption.18}{}}
+\newlabel{fig:4-city-graphic-4@cref}{{[figure][3][4]4.3}{[1][21][]24}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.4}{\ignorespaces 5-qubit phase estimation for the 4-city graph\relax }}{25}{figure.caption.19}\protected@file@percent }
+\newlabel{fig:4-city-graphic-5}{{4.4}{25}{5-qubit phase estimation for the 4-city graph\relax }{figure.caption.19}{}}
+\newlabel{fig:4-city-graphic-5@cref}{{[figure][4][4]4.4}{[1][21][]25}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}{An Undirected 5-City Graph}}{26}{section.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}{Algorithm Construction}}{26}{subsection.4.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.2}{Results: Simulations with Qiskit}}{31}{subsection.4.2.2}\protected@file@percent }
+\newlabel{5-city-sim}{{4.2.2}{31}{\@fmttocentry {Results: Simulations with Qiskit}}{subsection.4.2.2}{}}
+\newlabel{5-city-sim@cref}{{[subsection][2][4,2]4.2.2}{[1][30][]31}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.5}{\ignorespaces the quantum circuit for the BTSP: 3 qubit phase estimation is performed measuring the hamiltonian cycle $A \rightarrow B \rightarrow C \rightarrow D \rightarrow E \rightarrow A$, using the corresponding eigenstate is $|970\rangle = |001111001010\rangle $. Due to Qiskit convention on qubit ordering, the eigentate is initialized in reverse. The CU gate denotes the control unitary matrix containing all the hamiltonian cycles. The CU' gate inhabits the same cycles but before it was constructed, all edgeweights not satisfying the constraint, $\geq \alpha $, were set to zero. We have two sets of 3 qubits to be measured and stored in to classical registers labelled 'output' and 'output c'.\relax }}{31}{figure.caption.21}\protected@file@percent }
+\newlabel{fig:5-city-circuit}{{4.5}{31}{the quantum circuit for the BTSP: 3 qubit phase estimation is performed measuring the hamiltonian cycle $A \rightarrow B \rightarrow C \rightarrow D \rightarrow E \rightarrow A$, using the corresponding eigenstate is $|970\rangle = |001111001010\rangle $. Due to Qiskit convention on qubit ordering, the eigentate is initialized in reverse. The CU gate denotes the control unitary matrix containing all the hamiltonian cycles. The CU' gate inhabits the same cycles but before it was constructed, all edgeweights not satisfying the constraint, $\geq \alpha $, were set to zero. We have two sets of 3 qubits to be measured and stored in to classical registers labelled 'output' and 'output c'.\relax }{figure.caption.21}{}}
+\newlabel{fig:5-city-circuit@cref}{{[figure][5][4]4.5}{[1][31][]31}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.6}{\ignorespaces 3 qubit (left column) \& 4 qubit (right column) phase estimation for the 5-city graph. Hamiltonian cycles: 1 to 3\relax }}{32}{figure.caption.22}\protected@file@percent }
+\newlabel{fig:5-city-1-3}{{4.6}{32}{3 qubit (left column) \& 4 qubit (right column) phase estimation for the 5-city graph. Hamiltonian cycles: 1 to 3\relax }{figure.caption.22}{}}
+\newlabel{fig:5-city-1-3@cref}{{[figure][6][4]4.6}{[1][31][]32}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.7}{\ignorespaces 3 qubit (left column) \& 4 qubit (right column) phase estimation for the 5-city graph. Hamiltonian cycles: 4 to 6\relax }}{33}{figure.caption.23}\protected@file@percent }
+\newlabel{fig:5-city-4-6}{{4.7}{33}{3 qubit (left column) \& 4 qubit (right column) phase estimation for the 5-city graph. Hamiltonian cycles: 4 to 6\relax }{figure.caption.23}{}}
+\newlabel{fig:5-city-4-6@cref}{{[figure][7][4]4.7}{[1][31][]33}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.8}{\ignorespaces 3 qubit (left column) \& 4 qubit (right column) phase estimation for the 5-city graph. Hamiltonian cycles: 7 to 9\relax }}{34}{figure.caption.24}\protected@file@percent }
+\newlabel{fig:5-city-7-9}{{4.8}{34}{3 qubit (left column) \& 4 qubit (right column) phase estimation for the 5-city graph. Hamiltonian cycles: 7 to 9\relax }{figure.caption.24}{}}
+\newlabel{fig:5-city-7-9@cref}{{[figure][8][4]4.8}{[1][31][]34}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.9}{\ignorespaces 3 qubit (left column) \& 4 qubit (right column) phase estimation for the 5-city graph. Hamiltonian cycles: 10 to 12\relax }}{35}{figure.caption.25}\protected@file@percent }
+\newlabel{fig:5-city-10-12}{{4.9}{35}{3 qubit (left column) \& 4 qubit (right column) phase estimation for the 5-city graph. Hamiltonian cycles: 10 to 12\relax }{figure.caption.25}{}}
+\newlabel{fig:5-city-10-12@cref}{{[figure][9][4]4.9}{[1][31][]35}}
+\newlabel{your-table-label}{{\caption@xref {your-table-label}{ on input line 2695}}{36}{\@fmttocentry {Results: Simulations with Qiskit}}{table.caption.26}{}}
+\newlabel{your-table-label@cref}{{[subsection][2][4,2]4.2.2}{[1][31][]36}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.2}{\ignorespaces Simulation results for the 5-city graph. $N$ refers to the number of phase qubits, 1st and 2nd refer to the most probable and second most probable measurement, along with their associated probabilities on their right.\relax }}{36}{table.caption.26}\protected@file@percent }
+\newlabel{table:sim-results-5-city}{{4.2}{36}{Simulation results for the 5-city graph. $N$ refers to the number of phase qubits, 1st and 2nd refer to the most probable and second most probable measurement, along with their associated probabilities on their right.\relax }{table.caption.26}{}}
+\newlabel{table:sim-results-5-city@cref}{{[table][2][4]4.2}{[1][31][]36}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}{Discussion}}{37}{chapter.5}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{lop}{\addvspace {10\p@ }}
 \bibstyle{unsrt}
 \bibdata{ref}
-\@writefile{toc}{\contentsline {chapter}{\numberline {5}{Discussion}}{38}{chapter.5}\protected@file@percent }
-\@writefile{lof}{\addvspace {10\p@ }}
-\@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{lop}{\addvspace {10\p@ }}
 \bibcite{Shor}{{1}{}{{}}{{}}}
 \bibcite{grover1996fast}{{2}{}{{}}{{}}}
 \bibcite{heuristicthesis}{{3}{}{{}}{{}}}
 \bibcite{heuristic}{{4}{}{{}}{{}}}
 \bibcite{kitaev1995quantum}{{5}{}{{}}{{}}}
 \bibcite{nielsen00}{{6}{}{{}}{{}}}
-\bibcite{srinivasan2018efficient}{{7}{}{{}}{{}}}
-\@writefile{toc}{\contentsline {chapter}{{Bibliography}}{40}{chapter*.28}\protected@file@percent }
+\bibcite{Phase-estimation}{{7}{}{{}}{{}}}
+\bibcite{srinivasan2018efficient}{{8}{}{{}}{{}}}
+\@writefile{toc}{\contentsline {chapter}{{Bibliography}}{39}{chapter*.27}\protected@file@percent }
 \@writefile{toc}{\contentsline {part}{{Appendices}}{}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {A}{Hamiltonian Cycles and Locating Eigenstates Code}}{41}{appendix.A}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {A}{Hamiltonian Cycles and Locating Eigenstates Code}}{40}{appendix.A}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{lop}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {chapter}{\numberline {B}{Simulation Code with Qiskit}}{45}{appendix.B}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {B}{Simulation Code with Qiskit}}{44}{appendix.B}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{lop}{\addvspace {10\p@ }}
 \providecommand\NAT@force@numbers{}\NAT@force@numbers
-\gdef \@abspage@last{61}
+\gdef \@abspage@last{60}

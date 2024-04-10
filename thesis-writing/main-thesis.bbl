@@ -33,6 +33,9 @@ Michael~A. Nielsen and Isaac~L. Chuang.
 \newblock {\em Quantum Computation and Quantum Information}.
 \newblock Cambridge University Press, 2000.
 
+\bibitem{Phase-estimation}
+Phase-estimation and factoring: Ibm quantum learning.
+
 \bibitem{srinivasan2018efficient}
 Karthik Srinivasan, Saipriya Satyajit, Bikash~K. Behera, and Prasanta~K.
   Panigrahi.
