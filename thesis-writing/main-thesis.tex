@@ -120,6 +120,9 @@ bottom=2.5cm,
 \usepackage{dsfont}
 \usepackage{booktabs} % For professional looking tables
 \usepackage{multirow} % Required for combining rows
+\usepackage{amsfonts}
+\usepackage{caption}
+\usepackage{subcaption}
 \usetikzlibrary{shapes.geometric}
 \usetikzlibrary{arrows.meta} % For arrow tips
 \usepackage{xcolor} % For colors
@@ -351,74 +354,11 @@ linkcolor=blue]{hyperref}
 \begin{document}
 	
 	
-	%% This starts numbering in Roman numerals as required for the thesis
-	%% style and is mandatory.
 	\frontmatter
+
+	\maketitle               
 	
-	%%% The order of the following components should be preserved.  The order
-	%%% listed here is the order currently required by FoGS:        \\
-	%%% Title (Mandatory)                                           \\
-	%%% Preface (Manditory if any collaborator contributions)       \\
-	%%% Abstract (Mandatory)                                        \\
-	%%% List of Contents, Tables, Figures, etc. (As appropriate)    \\
-	%%% Acknowledgements (Optional)                                 \\
-	%%% Dedication (Optional)                                       \\
-	
-	\maketitle                      %% Mandatory
-	
-	%\clearpage
-	
-	%%%THESIS APPROVAL PAGE - REQUIRED AS PART OF YOUR COMPLETED THESIS
-	
-	%%%%%%% UBC FoGPS Requires the following statements at the beginning of the thesis. There is a (separate) thesis approval form that has to be signed and dated by the same individuals listed here as approving the thesis. You will have to get ensure that your department submits that approval form before you will be able to create an account and upload your thesis onto ciRCle. 
-	%\noindent
-	%The following individuals certify that they have read, and recommend to the Faculty of Graduate and Postdoctoral Studies for acceptance, the thesis entitled:
-	
-	%\bigskip\noindent
-	%\textbf{Title}
-	
-	
-	
-	%\bigskip\noindent
-	%submitted by 
-	%\textbf{Author}
-	%in partial fulfillment of the requirements for
-	%the degree of 
-	%\textbf{program}
-	%\bigskip\noindent
-	%in	\textbf{Physics}
-	
-	
-	%\bigskip\noindent
-	%\textbf{[Include titles, departments, and universities, or titles and organizations. Remember to remove ALL material in square brackets [  ] before adding the page to your thesis.] Modify the examining committee to adapt to your case.}
-	
-	%\bigskip\noindent
-	%\textbf{Examining Committee:}
-	
-	%\bigskip\noindent
-	%Supervisor: 
-	
-	%\bigskip\noindent
-	%Co-supervisor: \hrulefill
-	
-	%\bigskip\noindent
-	%Supervisory Committee Member: \hrulefill
-	
-	%\bigskip\noindent
-	%Additional Examiner: 
-	
-	%\bigskip\noindent
-	%Additional Supervisory Committee Members: 
-	
-	%\bigskip\noindent
-	%Supervisory Committee Member:\hrulefill
-	
-	
-	
-	
-	
-	
-	
+
 	\clearpage
 	\begin{abstract}                %% Mandatory -  maximum 350 words
 %		The \texttt{genthesis.cls} \LaTeX{} class file and accompanying
@@ -430,163 +370,96 @@ linkcolor=blue]{hyperref}
 %		
 		%We present  a constraint and full solution to the bottleneck travelling salesman problem based on the quantum phase estimation algorithm.
 		
-		\textbf{chapter not complete.}
+		We develop a quantum algorithm leveraging quantum phase estimation to address the decision problem variant of the Bottleneck Travelling Salesman Problem. This algorithm's efficacy is evaluated through diverse orders of phase estimation applied to both 4-city and 5-city graphs. While the algorithm preserves the original complexity of the problem, $O((N-1)!)$, we introduce a strategy for parallelization, enabling simultaneous execution across all Hamiltonian cycles.
 		
-		
+		\textbf{probably need more text here.}
 	\end{abstract}
 	
-%	\chapter{Lay Summary}
-%	
-%	%[Required, Maximum 150 words]
-%	
-%	%This is a simple summary of your thesis, written so that members of the public will get some idea about what you have done.
-%	
-%	%Full-sky simulations of the foreground radiation of the cosmic microwave background are computationally expensive and it is challenging to measure if they can replicate the same statistical properties as the real data. 
-%	%In this thesis, I advocate for the use of a method called the ``hierarchical wavelet coefficients" for characterizing non-Gaussianities in a spherical field. This method is also known as the ``wavelet scattering transform" method and so far it has been mostly used for analysing flat (cutsky) maps. I demonstrate that the full-sky implementation introduced in this thesis is also capable of characterizing non-Gaussianities using a small set of coefficients.  
-%	
-%	%The algorithm for this method is based on the  \textsc{Healpy} package. 
-%	
-%	%I demonstrate that we can check the non-Gaussianity in simulated maps. I propose that this method can potentially serve as a tool for measuring and controlling the amount of non-Gaussianity in future simulations. 
-%	[Required, Maximum 150 words]
-%	
-%	This is a simple summary of your thesis, written so that members of the public will get some idea about what you have done. 
-%	
-%	\chapter{Preface}
-%	% Manditory if any of the conditions are met
-%	
-%	You must include a preface if any part of your research was partly or
-%	wholly published in articles, was part of a collaboration, or required
-%	the approval of UBC Research Ethics Boards.
-%	
-%	The Preface must include the following:
-%	
-%	\begin{itemize}
-%		\item A statement indicating the relative contributions of all
-%		collaborators and co-authors of publications (if any), emphasizing
-%		details of your contribution, and stating the proportion of research
-%		and writing conducted by you.
-%		\item A list of any publications arising from work presented in the
-%		dissertation, and the chapter(s) in which the work is located.
-%		\item The name of the particular UBC Research Ethics Board, and the
-%		Certificate Number(s) of the Ethics Certificate(s) obtained, if
-%		ethics approval was required for the research.
-%	\end{itemize}
-%	
-%	Thats's what I wrote:
-%	
-%	The content of this thesis is original unpublished work by the author. The idea for this study came about through discussions with author's supervisor, Dr. supervisor. All necessary python scripts, as well as the resulting plots and data were created by the author. Individual techniques and methods used but not developed by the author have been cited where appropriate.
-%	
 	
 	\tableofcontents %% Mandatory
 	\listoftables                   %% Mandatory if thesis has tables
 	\listoffigures                  %% Mandatory if thesis has figures
-	%\listof{Program}{List of Programs} %% Optional
-	%% Any other lists should come here, i.e.
-	%% Abbreviation schemes, definitions, lists of formulae, list of
-	%% schemes, glossary, list of symbols etc.
+
 	
-	\chapter{Acknowledgements}      %% Optional
-	
-	%This is the place to thank professional colleagues and people who have
-	%given you the most help during the course of your graduate work.
-	\vspace{0.5cm}
-	\textbf{chapter not complete.}
+	\chapter{Acknowledgements} 
 	
 	
-	%\chapter{Dedication} %% Optional
-	%The dedication is usually quite short, and is a personal rather than
-	%an academic recognition.  The \emph{Dedication} does not have to be
-	%titled, but it must appear in the table of contents.  If you want to
-	%skip the chapter title but still enter it into the Table of Contents,
-	%use this command \verb|\chapter[Dedication]{}|.
+	I want to express my gratitude to Prof. Matthew Choptuik for not only his supervision but also for the encouragement and support to pursue a topic that truly captivates my interest. I would like to thank Erin Bennett and Jason Li, my fellow physics undergrads for getting me through school. I would also like to thank Stefan Grahovac for keeping me motivated  and cheering me on through my degree. Finally, I would like to thank my parents for their support and my sister, Mehak Tejani, for enjouraging me to pursue physics.
 	
-	%Note that this section is the last of the preliminary pages (with
-	%lowercase Roman numeral page numbers).  It must be placed
-	%\emph{before} the \verb|\mainmatter| command.  After that, Arabic
-	%numbered pages will begin.
 	
-	% Any other unusual prefactory material should come here before the
-	% main body.
-	
-	% Now regular page numbering begins.
 	\mainmatter
 	
-	% Parts are the largest structural units, but are optional.
-	%\part{Thesis}
-	
-	% Chapters are the next main unit.
-	%\chapter{Contents}
-	%\input{fehrest}
-	
-	
 	\chapter{Introduction}
-	%input{Introduction/INTRO01}
-	%\input{Introduction/INTRO02}
+
 	
 	
-	
-	Continuous advancements in quantum computing have opened new ways to solve complex computational problems that were previously considered intractable using classical methods. Well known examples of these advancements include Shor's \cite{Shor} and Grover's \cite{grover1996fast} algorithm for factoring and unstructured search respectively. The Bottleneck Traveling Salesman Problem (BTSP) serves as a challenging optimization problem in the field of logistics and operations research. Its practical applications range from optimizing vehicle routes to circuit design. Consequently, achieving an efficient solution is highly sought after. However, the BTSP is classified as an NP-hard problem, indicating it is at least as difficult as the hardest problems in the NP class. For reference, an NP problem must satisfy two conditions: no known solution in polynomial time, and a solution can be verified in polynomial time. An NP-hard problem does not need to satisfy the verification condition. To address this problem, many heuristic approaches are explored \cite{heuristicthesis}\cite{heuristic}. However, inherent to such methods is a trade-off between precision and efficiency.
-	
-%	We embark on a journey at the intersection of quantum computing and optimization by introducing a quantum algorithm tailored to address the BTSP. It requires finding the shortest closed tour through a set of cities while minimizing the largest cost, the "bottleneck", along any route. Its computational complexity grows exponentially with the number of cities, rendering classical solutions impractical for large-scale instances. Our approach is to capitalize on the inherent quantum parallelism, as well as the unique feature of phase encoding in quantum computing. By exploiting these phenomena, we aim to encode and manipulate the costs associated with various routes efficiently. Additionally, the utilization of Grover's search algorithm as a central component of our quantum approach significantly expedites the search for the optimal solution.  Quantum searching, in general, may be useful for obtaining solutions faster for problems belonging to the complexity class NP \cite{nielsen00}. In this proposal, our primary objective is to shed light on the theoretical foundation of the quantum algorithm, its potential computational advantages over classical methods. Through this research, we aim to work towards a clear understanding of these aspects. The following sections will detail the BTSP, Grover's algorithm, quantum phase estimation and their respective significance and complexity. 
-	
-	\vspace{0.5cm}
-	\textbf{chapter not complete.}
-%	
-%	\begin{enumerate}
-%		\item discussion of the current state of quantum computation
-%		\item discussion of why we should consider quantum algorithms over classical computation
-%		\item discussion of why the bottleneck travelling salesman problem is interesting to consider
-%	\end{enumerate}
+Continuous advancements in quantum computing have allowed for contemporary approaches to solve complex computational problems that were previously considered intractable using classical methods. Well known examples of these advancements include Shor's \cite{Shor} and Grover's \cite{grover1996fast} algorithms for factoring and unstructured search respectively. The Bottleneck Traveling Salesman Problem (BTSP) serves as a challenging optimization problem in the field of logistics and operations research. Its practical applications range from optimizing vehicle routes, to circuit design. Consequently, the achievement of an efficient solution is highly sought after. However, the BTSP is classified as an NP-hard problem, indicating it is at least as difficult as the hardest problems in the NP class. For reference, an NP problem must satisfy two conditions: no known solution in polynomial time, and the verification of a solution in polynomial time. An NP-hard problem does not need to satisfy the verification condition. To address this problem, many heuristic approaches are explored \cite{heuristicthesis}\cite{heuristic}. However, inherent to such methods is a trade-off between precision and efficiency.
+
+We embark on a journey at the intersection of quantum computing and optimization by introducing a quantum algorithm tailored to address the BTSP. It requires finding a closed tour through a set of cities while minimizing the largest cost, the "bottleneck", along any route. Its computational complexity grows exponentially with the number of cities, rendering classical solutions impractical for large-scale instances. Our approach is to capitalize on the inherent quantum parallelism, as well as the unique feature of phase encoding in quantum computing. By exploiting these phenomena, we aim to encode and manipulate the costs associated with various routes efficiently. 
+
+In the upcoming chapter, we delve into the complexities of the BTSP. We will then explore quantum computing fundamentals and progress to an in-depth discussion on quantum phase estimation. We follow this with a detailed explanation of our proposed algorithm as well as run various simulations. Finally, we will discuss the benefits and drawbacks of our algorithm in the context of the results from the simulations.
 	
 	\chapter{Theory}
 	\section{The Bottleneck Travelling Salesman Problem}
+
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[trim={0 0 21.9cm 0},clip, width=0.4 \linewidth]{"graphics/4-city"}
+	\caption{An undirected weighted graph represention of a  symmetric 4-city system.  The vertices represent cities and the edge weights represent the cost of travel. }
+	\label{fig:4-city-graphic}
+\end{figure}		
+
+We start with a graph, whose vertices are labelled A through D, representing a 4-city system. We define movement from one vertex to another as a walk, done through the edges connecting our vertices. We are interested in a particular walk known as a Hamiltonian cycle that contains every vertex exactly once before returning to the start. Our graph also includes edge weights, we define as $ \gamma_i $.
+The BTSP is to find the Hamiltonian cycle in a graph, where the largest edge weight (bottleneck) is minimized. This is distinct from the Travelling Salesman Problem (TSP) where the combined edge weights in a given cycle is minimized. The total possible Hamiltonian cycles is given by $(N-1)!$, where N is the number of nodes. We present a symmetric case in FIG .\ref{fig:4-city-graphic},  $N_k \rightarrow N_{k+1} = N_{k+1} \rightarrow N_{k} = \gamma_i$. Thus the total possible cycles is  $(N-1)!/2$.  It is important to note that a solution to either BTSP or TSP is not unique. Moreover, BTSP solutions do not necessarily equate to the TSP solutions. We can illustrate an example below. Consider all the Hamiltonian cycles for a symmetric 4-city system:
+
+\begin{center}
+	$ A \rightarrow B \rightarrow C \rightarrow D \rightarrow A $
 	
-	\begin{figure}[!h]
-		\centering
-		\includegraphics[trim={0 0 21.9cm 0},clip, width=0.5 \linewidth]{"graphics/4-city"}
-		\caption{An undirected weighted graph represention of a  symmetric 4-city system.  The vertices represent cities and the edge weights represent the cost of travel. }
-		\label{fig:4-city-graphic}
-	\end{figure}		
+	$ A \rightarrow B \rightarrow D \rightarrow C \rightarrow A $ 
 	
-	The BTSP can be represented as a graph problem.  We start with a graph, whose vertices are labelled A through D, representing a 4-city system. We define movement from one vertex to another as a walk, done through the edges connecting our vertices. We are interested in a particular walk known as a Hamiltonian cycle that contains every vertex exactly once before returning to the start. Our graph also includes edge weights, we define as $ \gamma_i $.
-	The BTSP is to find the Hamiltonian cycle in a graph, where the largest edge weight (bottleneck) is minimized. This is distinct from the Travelling Salesman Problem (TSP) where the combined edge weights in a given cycle is minimized. The total possible Hamiltonian cycles is given by $(N-1)!$, where N is the number of nodes. We present a symmetric case in FIG .\ref{fig:4-city-graphic},  $N_k \rightarrow N_{k+1} = N_{k+1} \rightarrow N_{k} = \gamma_i$. Thus the total possible cycles is  $(N-1)!/2$.  It is important to note that a solution to either BTSP or TSP is not unique. BTSP solutions also do not necessarily equate to the TSP solutions. We can illustrate an example below. Consider all the Hamiltonian cycles for a symmetric 4-city system:
+	$ A \rightarrow C \rightarrow B \rightarrow D \rightarrow A $
+\end{center}
+
+Assigning some arbitrary weights, we can see the total costs of the cycles below. The first cycle is the solution to the BTSP as its largest edge weight at $5$ is the smallest among all three. The last cycle is a solution to the TSP as its combined edge weight is the smallest.
+\begin{center}
+	$\gamma_1 + \gamma_4 + \gamma_5 + \gamma_3 = 4 + 4 + 5 + 4 = 17$
 	
-	\begin{center}
-		$ A \rightarrow B \rightarrow C \rightarrow D \rightarrow A $
+	$ \gamma_1 + \gamma_6 + \gamma_5 + \gamma_2 = 4 + 6 + 5 + 2 = 17$
+	
+	$  \gamma_2 + \gamma_4 + \gamma_6 + \gamma_3 = 2 + 4 + 6 + 4 = 16$
+\end{center}
+
+
+By simply changing the weight of $\gamma_6$ to $5$, we can illustrate that all cycles are solutions to the BTSP. 
+
+\begin{center}
+	
+	$\gamma_1 + \gamma_4 + \gamma_5 + \gamma_3 = 4 + 4 + 5 + 4 = 17$
+	
+	$ \gamma_1 + \gamma_6 + \gamma_5 + \gamma_2 = 4 + 5 + 5 + 2 = 16$
+	
+	$  \gamma_2 + \gamma_4 + \gamma_6 + \gamma_3 = 2 + 4 + 5 + 4 = 15$
+\end{center}
+
+The computational complexity of the BTSP is known to be NP-hard, implying there is no algorithm for a solution in polynomial time. A brute-force approach would imply that we can run an algorithm in $\mathcal{O}((N-1)!)$ time.
+	
+	\section{An Introduction to Quantum Computing}
+	
+	Quantum computing represents a fundamentally different approach to computation compared to  it's classical counterpart. At its core, quantum computing leverages principles of quantum physics to process information in ways that classical computers can't. Let us look at some key differences:
+	\begin{enumerate}
+		\item 	Information Representation: Classical bits are binary and can only be in one state at a time (0 or 1). Qubits, however, can be in a superposition of the basis states.
+
+		\item 	Determinism: Classical computing is deterministic, implying the output of a computation is predictable if you know the input and the algorithm. Quantum computing, however, is probabilistic. Only after measurement we achieve a deterministic reading. This means that quantum algorithms can give different outcomes with each run with respect to their probabilites.
 		
-		$ A \rightarrow B \rightarrow D \rightarrow C \rightarrow A $ 
+		\item Operations: Classical computers perform operations using logical gates (AND, OR, NOT). In quantum computers perform operations using unitary operators that define quantum logic gates. Unitary operators satisfy the condition $U^{\dagger}U = \mathbb{I}$. This implies all quantum operations are reversible, which is not generally the case in classical computation.
 		
-		$ A \rightarrow C \rightarrow B \rightarrow D \rightarrow A $
-	\end{center}
+	\end{enumerate}
 	
-	Assigning some arbitrary weights, we can see the total costs of the cycles below. The first cycle is the solution to BTSP as its largest edge weight at $5$ is the smallest among all three. The last cycle is a solution to the TSP as its combined edge weight is the smallest.
-	\begin{center}
-		$\gamma_1 + \gamma_4 + \gamma_5 + \gamma_3 = 4 + 4 + 5 + 4 = 17$
-		
-		$ \gamma_1 + \gamma_6 + \gamma_5 + \gamma_2 = 4 + 6 + 5 + 2 = 17$
-		
-		$  \gamma_2 + \gamma_4 + \gamma_6 + \gamma_3 = 2 + 4 + 6 + 4 = 16$
-	\end{center}
-	
-	
-	By simply changing the weight of $\gamma_6$ to $5$, we can illustrate all cycles are solutions to the BTSP. 
-	
-	\begin{center}
-		
-		$\gamma_1 + \gamma_4 + \gamma_5 + \gamma_3 = 4 + 4 + 5 + 4 = 17$
-		
-		$ \gamma_1 + \gamma_6 + \gamma_5 + \gamma_2 = 4 + 5 + 5 + 2 = 16$
-		
-		$  \gamma_2 + \gamma_4 + \gamma_6 + \gamma_3 = 2 + 4 + 5 + 4 = 15$
-	\end{center}
-	
-	The computational complexity of the BTSP is known to be NP-hard. Implying there is no algorithm for a solution in polynomial time. A brute-force approach would imply that we can run an algorithm in $O((N-1)!)$ time.
-	%\input{Chapter2/CHAP02SEC001}
-	
-	\section{Quantum Computing Basics}
 	
 	\subsection{Frequently Used Notation}
-	Single qubit states: 
+	
+	Let us start by looking at single qubit states, these are, by convention, in the computational basis: 
 	\begin{align*}	
 		|0\rangle &= \begin{bmatrix}
 			1 \\
@@ -598,7 +471,47 @@ linkcolor=blue]{hyperref}
 		\end{bmatrix}
 	\end{align*}
 	
-	2-qubit states: 
+	We can have a superposition of basis states:
+	
+	$$|s\rangle = \alpha|0\rangle + \beta|1\rangle$$
+	
+	Were: $|\alpha|^2$ represents the probability of measuring state $|0\rangle$,  and $|\beta|^2 $ represents the probability of measuring state $|1\rangle$. Thus our amplitudes should satisfy the condition:
+	
+	$$|\alpha|^2 + |\beta|^2 = 1$$
+	
+	Below we can see the Pauli-X gate, and we can see the result on the single qubit states is analogous to the NOT gate in classical computation.
+	
+		\begin{align*}	
+		X &= \begin{bmatrix}
+			0 & 1 \\
+			1 &0 \\
+		\end{bmatrix}
+	\end{align*}
+	
+	\begin{align*}	
+		X|0\rangle = |1\rangle\\
+		X|1\rangle = |0\rangle
+	\end{align*}
+	
+	
+	Below we can see the Hadamard gate and the result of its application to single qubit states, frequently employed to establish a uniform superposition.
+
+	
+	\begin{align*}	
+		H &=\frac{1}{\sqrt{2}} \begin{bmatrix}
+			1 & 1 \\
+			1 &-1 \\
+		\end{bmatrix}
+	\end{align*}
+	
+	\begin{align*}	
+		H|0\rangle = \frac{1}{\sqrt{2}} (|0\rangle + |1\rangle) = |+\rangle\\
+		H|1\rangle = \frac{1}{\sqrt{2}} (|0\rangle - |1\rangle) = |-\rangle
+	\end{align*}
+	
+	
+	Multiple qubit states are achieved through tensor products of single states. An $n$-qubit system will span a Hilbert space $N = 2^n $. We can see with the $2$-qubit system we have $4$ states. 
+	
 	\begin{align*}	
 		|00\rangle &= |0\rangle \otimes |0\rangle = \begin{bmatrix}
 			1 \\
@@ -629,22 +542,7 @@ linkcolor=blue]{hyperref}
 		\end{bmatrix}		
 	\end{align*}
 	
-	
-	Multiple qubit states are achieved through tensor products of single states. An $n$-qubit system will span a Hilbert space $N = 2^n $. We can see with the $2$-qubit system we have $4$ states. Quantum logic gates serve as the quantum computing counterparts to classical logic gates, performing operations on qubits instead of classical bits. Represented as unitary matrices, these operations must be reversible. Below we can see the Hadamard gate and the result of its application to single qubit states, frequently employed to establish a uniform superposition.
-	
-	\begin{align*}	
-		H &=\frac{1}{\sqrt{2}} \begin{bmatrix}
-			1 & 1 \\
-			1 &-1 \\
-		\end{bmatrix}
-	\end{align*}
-	
-	\begin{align*}	
-		H|0\rangle = \frac{1}{\sqrt{2}} (|0\rangle + |1\rangle) = |+\rangle\\
-		H|1\rangle = \frac{1}{\sqrt{2}} (|0\rangle - |1\rangle) = |-\rangle
-	\end{align*}
-	
-	We can refer to equation 1 to see the result of Hadamard on an $n$-qubit system. Let's have a look at the Hadamard gate applied to $|00\rangle$:
+ The Hadamard gate can also be extended to multiple qubit states. Let us see it applied to $|00\rangle$:
 	
 	\begin{align*}	
 		H^{\otimes 2}|00\rangle &= H|0\rangle H|0\rangle\\
@@ -654,9 +552,9 @@ linkcolor=blue]{hyperref}
 		&= \frac{1}{2} (|00\rangle + |01\rangle + |10\rangle + |11\rangle)\\
 	\end{align*}
 	
-	Here we can see why Dirac notation is powerful as it simplifies tensor products and removes need for matrix representation.
-	
 	\subsection{Quantum Circuit Components}
+	
+	We can represent unitary operations on qubits through quantum circuit diagrams similiar to classical circuits. Frequently used circuit components are listed below:
 	
 	\begin{figure}[!h]
 		\centering
@@ -704,27 +602,142 @@ linkcolor=blue]{hyperref}
 		\end{tikzpicture}
 	\end{figure}	
 	
-	\subsection{Controlled Gates and Phase Kickback}
+	\subsection{Controlled Gates}
 	
-	\textbf{section not complete}
+	A controlled gate operates on two or more qubits, where one or more qubits act as the "control" qubits, and the others as the "target" qubit. For the context of this thesis, we will discuss controlled operations in the context of a single control qubit.
 	
-	\begin{enumerate}
-		\item We will describe the use of control gates.
-		\item We will describe the emergence of phase kickback with the use of hadamard gates discussed in the previous section. This will be important to know going into the next section.
-	\end{enumerate}
+	Let us start with the controlled-$X$ gate. Below we can see the quantum circuit and matrix representation as well as its affect on all 2-qubit states:
+	
+	\begin{figure}[!h]
+		\centering
+		\begin{tikzpicture}[thick]
+			
+			\tikzstyle{operator} = [draw,fill=white,minimum size=1.5em] 
+			
+			%\draw (3,3) -- (3,0) ;
+			
+			\draw (0,2) -- (2,2) ;
+			\node at (4.30,2) {control qubit};
+			
+			\draw[black,fill=black] (1,2) circle (.5ex);
+			\draw (1, 1.1) -- (1, 2);
+			
+			\draw (0,1.1) -- (2,1.1) ;
+			\node[operator] (op11) at (1,1.1) {X};
+			\node at (4.28,1.1) {target qubit};
+		\end{tikzpicture}
+	\end{figure}	
+
+	
+	\begin{align*}	
+		CX &= 	\begin{bmatrix}
+			\mathbb{I}_2 & 0 \\
+			0 & X \\
+		\end{bmatrix}= \begin{bmatrix}
+		1 & 0 & 0 & 0  \\
+		0 &1 & 0 &0 \\
+		0 &0 & 0 & 1 \\
+		0 &0 & 1 & 0 \\
+		\end{bmatrix}
+	\end{align*}
+	
+	\begin{align*}	
+		X|00\rangle &= |00\rangle\\
+		X|01\rangle &= |01\rangle\\
+		X|10\rangle &= |11\rangle\\
+		X|11\rangle &= |10\rangle
+	\end{align*}
+	
+	In this operation, only the only the states $|10\rangle$ and $|11\rangle$ undergo any change. The first qubit, positioned on the left, serves as the control qubit, determining whether the operation is applied. The second qubit, on the right, is the target qubit that is only affected if the control qubit is in state $|1\rangle$.
+	
+	Let us now look at the controlled-$Z$ gate. Again, we can look at the quantum circuit and matrix representation as well as its affect on all 2-qubit states.
+	
+	
+		\begin{figure}[!h]
+		\centering
+		\begin{tikzpicture}[thick]
+			
+			\tikzstyle{operator} = [draw,fill=white,minimum size=1.5em] 
+			
+			%\draw (3,3) -- (3,0) ;
+			
+			\draw (0,2) -- (2,2) ;
+			\node at (4.30,2) {control qubit};
+			
+			\draw[black,fill=black] (1,2) circle (.5ex);
+			\draw (1, 1.1) -- (1, 2);
+			
+			\draw (0,1.1) -- (2,1.1) ;
+			\node[operator] (op11) at (1,1.1) {Z};
+			\node at (4.28,1.1) {target qubit};
+		\end{tikzpicture}
+	\end{figure}	
+	
+	
+	\begin{align*}	
+		CZ &= 	\begin{bmatrix}
+			\mathbb{I}_2 & 0 \\
+			0 & Z \\
+		\end{bmatrix}= \begin{bmatrix}
+			1 & 0 & 0 & 0  \\
+			0 &1 & 0 &0 \\
+			0 &0 & 1 & 0 \\
+			0 &0 & 0 & -1 \\
+		\end{bmatrix}
+	\end{align*}
+	
+	\begin{align*}	
+		Z|00\rangle &= |00\rangle\\
+		Z|01\rangle &= |01\rangle\\
+		Z|10\rangle &= |10\rangle\\
+		Z|11\rangle &= -|11\rangle
+	\end{align*}
+	
+	We can see in this case, only the final state, $|11\rangle$ was affected and it specifically altered the state's phase.  We can construct our own controlled gates with any unitary matrix $U$. A controlled-$U$ designed to act on $n$ target qubits,  can be represented in block matrix notation. In this framework, $\mathbb{I}_n$ refers to the identity matrix with $2^{n}$ diagonal elements:
+	
+		\begin{figure}[!h]
+		\centering
+		\begin{tikzpicture}[thick]
+			
+			\tikzstyle{operator} = [draw,fill=white,minimum size=1.5em] 
+			
+			%\draw (3,3) -- (3,0) ;
+			
+			\draw (0,2) -- (2,2) ;
+			\node at (4.30,2) {control qubit};
+			
+			\draw[black,fill=black] (1,2) circle (.5ex);
+			\draw (1, 1.1) -- (1, 2);
+			
+			\draw (0,1.1) -- (2,1.1) ;
+			\node[operator] (op11) at (1,1.1) {U};
+			\node at (4.28,1.1) {$n$ target qubits};
+			
+			\draw (0.1,0.9) -- (0.4,1.3) ;
+			\node at (0.45,1.4) {$n$};
+		\end{tikzpicture}
+	\end{figure}	
+	
+	
+	\begin{equation}\label{control-u-matrix}
+	CU = \begin{bmatrix}
+		\mathbb{I}_n & 0 \\
+		0 & U \\
+	\end{bmatrix}
+	\end{equation}
+
 	
 	\section{Quantum Phase Estimation}
-	
-	The phase estimation algorithm initially proposed by Alexey Kitaev \cite{kitaev1995quantum} plays an important role as a subroutine for the more widely known factoring algorithm by Peter Shor \cite{Shor}. We first must briefly discuss the Quantum Fourier Transform (QFT) as it is key to understanding phase estimation \cite{nielsen00}. Given a computational basis state $|x\rangle$, applying the QFT ($F_N$) results in:
+			The phase estimation algorithm initially proposed by Alexey Kitaev \cite{kitaev1995quantum} plays an important role as a subroutine for the more widely known factoring algorithm by Peter Shor \cite{Shor}. We first must briefly discuss the Quantum Fourier Transform (QFT) as it is key to understanding phase estimation \cite{nielsen00}. Given a computational basis state $|x\rangle$, applying the QFT ($F_N$) results in:
 	
 	$$ F_N |x \rangle = \frac{1}{\sqrt{N}} \sum_{k=0}^{N-1} e^{2\pi i x k N^{-1}} |k\rangle $$
 	
-	Let's represent this in binary notation and decompose it into a tensor product. We can represent $|x\rangle$ as a string of bits, and the QFT as a tensor product of single qubit basis states:
+	Let us represent this in binary notation and decompose it into a tensor product. We can represent $|x\rangle$ as a string of bits, and the QFT as a tensor product of single qubit basis states:
 	
 	$$|x\rangle = |x_1x_2 ... x_n\rangle =  |x_1\rangle \otimes |x_2\rangle \otimes ... \otimes |x_n\rangle$$
 	
 	\begin{eqnarray}
-		F_N |x \rangle = \frac{1}{\sqrt{2^n}} \bigotimes_{j=1}^n (|0\rangle +  e^{2\pi i x 2^{-j}} |1\rangle)
+		F_N |x \rangle = \frac{1}{\sqrt{2^n}} \bigotimes_{j=1}^n (|0\rangle +  e^{2\pi i x  2^{-j}} |1\rangle)
 	\end{eqnarray}
 	
 	$$= \frac{1}{\sqrt{2^n}} ((|0\rangle + \omega_1|1\rangle)  \otimes(|0\rangle + \omega_2|1\rangle)\otimes ... \otimes(|0\rangle + \omega_n|1\rangle))$$
@@ -738,11 +751,11 @@ linkcolor=blue]{hyperref}
 	\end{eqnarray*}
 	
 	
-	An important characteristic of the $w_j$ is the bit shift occurring in the exponent. If we look at $w_1$, the exponent has a factor $x 2^{-1}$, which is equivalent to one right bit shift: $x_1...x_{n-1}.x_n$. Integer multiples of the exponent would imply full rotations returning to the same point thus we can ignore all the values on the left of the decimal and what remains is $0.x_n$. 
+	An important characteristic of the $w_j$ is the bit shift occurring in the exponent. If we look at $w_1$, the exponent has a factor $x 2^{-1}$, which is equivalent to one right bit shift: $x_1...x_{n-1}.x_n$. Integer multiples of the exponent would imply full rotations returning to the same point. Thus we can ignore all the values on the left of the decimal and what remains is $0.x_n$. 
 	
 	
 	
-	Let's discuss the phase estimation problem. Given an eigenstate $|\lambda \rangle$ of a unitary operator $U$, we want to calculate a good approximation  for $\phi \in [0,1)$ satisfying:
+	Let us discuss the phase estimation problem. Given an eigenstate $|\lambda \rangle$ of a unitary operator $U$, we want to calculate a good approximation  for $\phi \in [0,1)$ satisfying:
 	
 	\begin{equation}
 		U |\lambda \rangle = e^{2\pi i \phi} |\lambda \rangle
@@ -754,12 +767,12 @@ linkcolor=blue]{hyperref}
 	\begin{figure}[!h]
 		\centering
 		\includegraphics[trim={1cm 12cm 11cm 0},clip, width=0.8 \linewidth]{"graphics/phase_circ"}
-		\caption{A quantum circuit representation of the phase estimation algorithm. Given, $ U |\lambda \rangle = e^{2\pi i \phi} |\lambda \rangle $, this algorithm allows us to generate an  approximation for $\phi \in [0,1)$ . The circuit consists of two registers of qubits, the first $n$-qubits are initialized to $|0\rangle$ and contribute to the precision of the $\phi$ value obtained. The second register of $m$-qubits is initialized to the eigenstate of $U$.  The Hadamard gates, $H$, are used to create a uniform superposition in the first register. The control gates based on $U$ are responsible for encoding phase to the qubits in the first register. Finally, a $QFT^\dagger$ is performed on the first register to extract the encoded phase. Each subsequent qubit in the first register would require double the control gates. Thus, with a large $n$ we obtain a more precise value for $\phi$, but also exponentially increase our computation time.}
+		\caption{A quantum circuit representation of the phase estimation algorithm. Given $ U |\lambda \rangle = e^{2\pi i \phi} |\lambda \rangle $, this algorithm allows us to generate an  approximation for $\phi \in [0,1)$ . The circuit consists of two registers of qubits. The first $n$-qubits are initialized to $|0\rangle$ and contribute to the precision of the $\phi$ value obtained. The second register of $m$-qubits is initialized to the eigenstate of $U$.  The Hadamard gates, $H$, are used to create a uniform superposition in the first register. The control gates based on $U$ are responsible for encoding phase to the qubits in the first register. Finally, a $QFT^\dagger$ is performed on the first register to extract the encoded phase. Each subsequent qubit in the first register would require double the control gates. Thus, with a large $n$ we obtain a more precise value for $\phi$, but also exponentially increase our computation time.}
 		\label{fig:phasrcircuit}
 	\end{figure}
 	
 	
-	Let's walk through the quantum circuit in FIG. \ref{fig:phasrcircuit}, to understand the inner workings of this algorithm.	 Our initialized state is $|0^{\otimes n} \lambda\rangle$. From here we perform the same operation we find in equation 1, where all the qubits in the first register are set to a uniform superposition on all states $2^n$. The next portion of the algorithm involves applying controlled gates based on the unitary operator $U$. The function of these $CU$ gates is to apply the operator $U$ on $|\lambda\rangle$ if the control qubit is in the state $|1\rangle$. We can have a look at the effect on the n\textsuperscript{th} qubit, after it has been prepared in a superposition by the Hadamard gate:
+	Let us walk through the quantum circuit in FIG. \ref{fig:phasrcircuit}, to understand the inner workings of this algorithm.	 Our initialized state is $|0^{\otimes n} \lambda\rangle$. From here we perform the same operation we find in (1), where all the qubits in the first register are set to a uniform superposition on all states $2^n$. The next portion of the algorithm involves applying controlled gates based on the unitary operator $U$. The function of these $CU$ gates is to apply the operator $U$ on $|\lambda\rangle$ if the control qubit is in the state $|1\rangle$. We can have a look at the effect on the n\textsuperscript{th} qubit, after it has been prepared in a superposition by the Hadamard gate:
 	
 	$$ \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) \otimes |\lambda\rangle = |0 \lambda \rangle + |1 \lambda\rangle$$
 	
@@ -771,7 +784,7 @@ linkcolor=blue]{hyperref}
 		&=&\frac{1}{\sqrt{2}}( |0 \rangle + e^{2\pi i \phi}|1 \rangle)\otimes |\lambda\rangle
 	\end{eqnarray*}
 	
-	We can see the eigenstate after the $CU$ operation is left unchanged. the phase has been encoded into the control qubit instead, a result is due to the phase kickback. Thus, we can reuse our eigenstate for the next qubit. Consecutive qubits have double the amount of $CU$ operators as the previous, thus squaring the eigenvalue each time:
+	We can see that the eigenstate after the $CU$ operation is left unchanged. The phase has been encoded into the control qubit instead, a result that is due to the phase kickback. Thus, we can reuse our eigenstate for the next qubit. Consecutive qubits have double the number of $CU$ operators as the previous, thus squaring the eigenvalue each time:
 	
 	\begin{eqnarray*}
 		\text{qubit\textsubscript{n-1}} &:&   |0 \rangle + e^{2\pi i \phi 2}|1 \rangle \\
@@ -793,7 +806,7 @@ linkcolor=blue]{hyperref}
 		\text{qubit\textsubscript{1}} &:&   |0 \rangle + e^{2\pi i (0.\phi_n)}|1 \rangle
 	\end{eqnarray*}
 	
-	If we look at the form of first register after all the $CU$ operations in the state $|\alpha\rangle$, it will resemble the result of performing the QFT we saw in equation 5. Where our $\omega_j$ are:
+	If we look at the form of the first register after all the $CU$ operations in the state $|\alpha\rangle$, it will resemble the result of performing the QFT we saw in equation 5. Here, our $\omega_j$ are:
 	
 	\begin{eqnarray*}
 		\omega_1 &=& e^{2\pi i x 2^{-1}} =  e^{2\pi i (0.\phi_n)}\\
@@ -801,11 +814,45 @@ linkcolor=blue]{hyperref}
 		...\\
 		\omega_n &=& e^{2\pi i x 2^{-n}} =  e^{2\pi i (0.\phi_1...\phi_n)}
 	\end{eqnarray*}
-	
-	simply performing the inverse QFT will give us $|\phi\rangle =  |\phi_1\phi_2 ... \phi_n\rangle$.  We can immediately see the approximation is limited by the number of qubits in the first register. A simple strategy would be to increase the number of qubits; however this would also increase computational cost as we double our use of $CU$ gates for each additional qubit.
-	
+	Simply performing the inverse QFT will give us $|\phi\rangle =  |\phi_1\phi_2 ... \phi_n\rangle$.  We can immediately see the approximation is limited by the number of qubits in the first register. A simple strategy would be to increase the number of qubits; however this would also increase the computational cost as we double our use of $CU$ gates for each additional qubit.
 	
 	
+	
+	
+	
+	%18_Phase-estimation-lecture-slides
+	
+	
+	\begin{figure}[ht]
+		\centering
+		% First row
+		\begin{subfigure}[b]{0.5\linewidth}
+			\centering
+			\includegraphics[trim={2.9cm 0.4cm 6.9cm 5.2cm},clip, height=0.5\linewidth]{phase-lecture/18_Phase-estimation-lecture-slides}
+			\caption{First Image}
+			\label{fig:image1}
+		\end{subfigure}
+		\begin{subfigure}[b]{0.5\linewidth}
+			\centering
+			\includegraphics[trim={2.9cm 0.15cm 6.9cm 5.95cm},clip,height=0.5\linewidth]{phase-lecture/27_Phase-estimation-lecture-slides}
+			\caption{Second Image}
+			\label{fig:image2}
+		\end{subfigure}
+
+		\begin{subfigure}[b]{0.5\linewidth}
+			\includegraphics[trim={2.4cm 0.15cm 6.4cm 5.95cm},clip,height=0.5\linewidth]{phase-lecture/28_Phase-estimation-lecture-slides}
+			\caption{Third Image}
+			\label{fig:image3}
+		\end{subfigure}
+		\begin{subfigure}[b]{0.5\linewidth}
+			\includegraphics[trim={2.4cm 0.15cm 6.4cm 5.95cm},clip,height=0.5\linewidth]{phase-lecture/29_Phase-estimation-lecture-slides}
+			\caption{Fourth Image}
+			\label{fig:image4}
+		\end{subfigure}
+		
+		\caption{A 2x2 grid of images.}
+		\label{fig:2x2grid}
+	\end{figure}
 	
 	
 	%A simple example of minimizing the bottleneck travelling salesman problem (maybe with images):
@@ -821,11 +868,11 @@ The Decision problem of the BTSP asks whether there exists a Hamiltonian cycle i
 	We will construct the algorithm in the following steps:
 	\begin{enumerate}
 		\item Normalize edge weights so no single hamiltonian cycle is greater than or equal to 1. This is to ensure we can appropriately use the phase estimation algorithm.\\
-		\item Construct a unitary operator that holds information regarding the hamiltonian cyles as phases in the diagonal. The approach will follow inline with what was found  the paper: \cite{srinivasan2018efficient} \\
-		\item Set all edgeweights $> \alpha$ to zero and construct a secondary unitary operator similiar to step 2.\\
+		\item Construct a unitary operator that holds information regarding the hamiltonian cyles as phases in the diagonal. Our approach aligns with the findings presented in the paper: \cite{srinivasan2018efficient}\\
+		\item Set all edgeweights $\geq \alpha$ to zero and construct a secondary unitary operator similiar to step 2.\\
 		\item Create controlled gates using the unitary operators constructed in Step 2 and 3.\\
 		\item Identify all the eigenstates of the unitary operators that map to the phases associated with the hamiltonian cycles.\\
-		\item Perform phase estimation twice with an eigenstate using the control gates to evaluate the hamiltonian cycle before and after the edgeweights $> \alpha$ are set to zero.\\
+		\item Perform phase estimation twice with an eigenstate using the control gates to evaluate the hamiltonian cycle before and after the edgeweights $\geq \alpha$ are set to zero.\\
 		\item Compare the two phases achieved. If they are equal, the corresponding hamiltonian cycle is a solution that satisfies the constraint.\\
 		
 	\end{enumerate}
@@ -844,7 +891,7 @@ The Decision problem of the BTSP asks whether there exists a Hamiltonian cycle i
 	
 	Where: $w'_1 \geq w'_2 \geq \ldots \geq w'_m$
 	
-	\vspace{0.5cm}
+
 	
 The sum $S$ of the largest $N$ items in $w$ can be described as:
 
@@ -869,11 +916,12 @@ S = \sum_{i=1}^{N} w'_i
 	\left[U_j \right]_{kk} = e^{2\pi i\gamma_{jk} (1 - \delta_{jk})}
 	\end{equation}
 	
-	Where:	$ 1 \leq j, k \leq N$
-	$N$ denotes the total number of nodes.
-	$\gamma_{jk}$ represents the edgeweight connecting node $j\rightarrow k$
+	Where:	\begin{itemize}
+		\item[]  $ 1 \leq j, k \leq N$
+		\item[]  $N$ denotes the total number of nodes.
+		\item[]  $\gamma_{jk}$ represents the edgeweight connecting node $j\rightarrow k$.
+	\end{itemize}
 	
-	\vspace{0.5cm}
 	
 	Then we construct $U$, a tensor product of all the diagonal matrices:
 	\begin{equation}\label{U-tensor}
@@ -904,27 +952,21 @@ S = \sum_{i=1}^{N} w'_i
 	&  \vdots\\
 	[U]_{N^3- 1} & = [U_1]_{0}\cdot [U_2] _{0}\cdot \ldots \cdot [U_{N-2}]_{N-1} \cdot [U_{N-1}]_{N-1}\cdot [U_N]_{N-1}
 	\end{flalign*}
-	\vspace{0.5cm}
 	This pattern indicates:
 	\begin{equation}\label{U-matrix-eq}
 	[U]_{k} = [U_1]_{\alpha_{N-1}}\cdot [U_2] _{\alpha_{N-2}}\cdot \ldots \cdot [U_{N-2}]_{\alpha_2} \cdot [U_{2}]_{\alpha_{1}}\cdot [U_N]_{\alpha_{0}}
 	\end{equation}
 	
-	With: $$\alpha_i = \left(k//\left(N^{i}\right)\right) \% N$$
-	
-	\vspace{0.5cm}
-	
-	Where:
-	
-	$//$ denotes integer division
-	
-	$\%$ is the modulus operation
-	
-	\vspace{0.5cm}
+	Where: \begin{itemize}
+		\item[] $$\alpha_i = \left(k//\left(N^{i}\right)\right) \% N$$
+		\item[] $//$ denotes integer division
+	    \item[] $\%$ is the modulus operation
+	    \end{itemize}
 	
  	We can see the pattern follows base-$N$ counting where $N$ is the total number of nodes. Simply converting $k$ into base-$N$, will give us the indices of our original diagonal matrices. To locate the relevent eigenstates, we start by identifying the elements in $U_j$ associated  with a hamiltonian cycle, retrieve their respective indices, convert this string of indices from Base-$N$ to $k$.  and we would have identified our eigenstate $|k\rangle$. 
 	
 	\subsection{The Four City Graph}
+	
 	
 	\begin{center}	
 	\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=4.5cm, thick,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
@@ -953,6 +995,7 @@ S = \sum_{i=1}^{N} w'_i
 	\end{tikzpicture}
 	
 	\end{center}
+	
 	
 	
 	For the 4 city problem we will start with four matrices to represent the $12$ edgeweights from each node. Using \ref{Uj-elements}, Where:	$ j, k \in \{A,B,C,D\}$.  we can construct matrix $A$:
@@ -1304,14 +1347,16 @@ $A \rightarrow E \rightarrow D \rightarrow C \rightarrow B \rightarrow A$ & $ \g
 	\end{table}
 	
 	
-	\vspace{0.5cm}
+
 
 	
 	\chapter{Simulations}
 	
-	Lets consider the following example of a symmetric 4-city system we are considering the symmetric case thus we only need to look at three hamiltonian cycles. The constraint for our BTSP in this case will involve $\gamma < 6$:
+
 	
 	\section{An Undirected 4-City Graph}
+	
+		Lets consider the following example of a symmetric 4-city system.  In this undirected graph we need to look at $(4-1)!/2 = 3$ hamiltonian cycles. The constraint for our BTSP in this case will involve $\gamma < 6$:
 	\begin{center}	
 		\begin{tikzpicture}[scale=3, every node/.style={circle, draw, fill=blue!20}]
 			% Nodes
@@ -1432,6 +1477,19 @@ $A \rightarrow E \rightarrow D \rightarrow C \rightarrow B \rightarrow A$ & $ \g
 		\end{bmatrix} 						 			
 	\end{align*}
 	
+	To construct our controlled matrices we can use the block matrix structure shown in \ref{control-u-matrix}. the number of diagonal elements in $U$ and $U'$ is $4^4$ thus we need $8$ eigenstate qubits to represent all $256$ states:
+	
+	\begin{equation*}
+		CU = \begin{bmatrix}
+			\mathbb{I}_8 & 0 \\
+			0 & U \\
+		\end{bmatrix},\;\;\;
+		CU' = \begin{bmatrix}
+			\mathbb{I}_8 & 0 \\
+			0 & U' \\
+		\end{bmatrix}
+	\end{equation*}
+	
 	
 	Because we are dealing with the symmetric case. Based on Table \ref{table:ham-cycle-details-4-city} we can simply use the results and conversions from the first three cycles. Thus we will be estimating phases using the following eigenstates:
 	
@@ -1440,7 +1498,6 @@ $A \rightarrow E \rightarrow D \rightarrow C \rightarrow B \rightarrow A$ & $ \g
 	$$|180\rangle = |10110100\rangle$$
 	And expect the following phases:
 	
-	\vspace{1cm}
 	Cycle 1: $A \rightarrow B \rightarrow C \rightarrow D \rightarrow A$
 	
 	\begin{center}	
@@ -1482,7 +1539,6 @@ $A \rightarrow E \rightarrow D \rightarrow C \rightarrow B \rightarrow A$ & $ \g
 	 $$u_{108} = e^{i2\pi (\gamma_{AB} + \gamma_{BC} + \gamma_{CD} + \gamma_{DA})} = e^{i2\pi(0.85)}$$
 	 $$u'_{108} = e^{i2\pi (\gamma_{AB} + \gamma_{BC} + \gamma_{CD} + \gamma_{DA})} = e^{i2\pi(0.85)}$$
 	 
-	  \vspace{1cm}
 	 
 	 Cycle 2: $A \rightarrow B \rightarrow D \rightarrow C \rightarrow A$
 	 
@@ -1524,7 +1580,6 @@ $A \rightarrow E \rightarrow D \rightarrow C \rightarrow B \rightarrow A$ & $ \g
 	 $$ u_{114} = e^{i2\pi (\gamma_{AB} + \gamma_{BD} + \gamma_{DC} + \gamma_{CA})} = e^{i2\pi(0.85)}$$
 	 $$ u'_{114} = e^{i2\pi (\gamma_{AB} + \gamma_{BD} + \gamma_{DC} + \gamma_{CA})} = e^{i2\pi(0.55)}$$
 	 
-	 \vspace{1cm}
 	 
 	 Cycle 3: $A \rightarrow C \rightarrow B \rightarrow D \rightarrow A$
 	 
@@ -1565,11 +1620,11 @@ $A \rightarrow E \rightarrow D \rightarrow C \rightarrow B \rightarrow A$ & $ \g
 	 $$ u_{180} = e^{i2\pi (\gamma_{AC} + \gamma_{CB} + \gamma_{BD} + \gamma_{DA})} = e^{i2\pi(0.80)}$$
 	$$ u'_{180} = e^{i2\pi (\gamma_{AC} + \gamma_{CB} + \gamma_{BD} + \gamma_{DA})} = e^{i2\pi(0.50)}$$
 	
-	\subsection{Results: Simulations with Qiskit}
+	\subsection{Results: Simulations with Qiskit} \label{4-city-sim}
 	
-	Fig. \ref{fig:4-city-circuit} shows us the circuit for our first hamiltonian cycle initialized in eigenstate $|01101100\rangle$. We will run a similiar circuit for the other two hamiltonian cycles with the only change being the eigenstate initialization. 
+	We use Qiskit, an open source framework for quantum circuits to run simulations. Fig. \ref{fig:4-city-circuit} shows us the circuit for our first hamiltonian cycle initialized in eigenstate $|01101100\rangle$. We will run a similiar circuit for the other two hamiltonian cycles with the only change being the eigenstate initialization. We conduct an ideal simulation implying our results are not impacted by noise. Each circuit by default is run $1024$ times which we can use as a quasi-probability distribution. 
 	
-\vspace{0.5cm}
+
 
  \begin{figure}[!h]
 		\centering
@@ -1577,8 +1632,6 @@ $A \rightarrow E \rightarrow D \rightarrow C \rightarrow B \rightarrow A$ & $ \g
 		\caption{the quantum circuit for the BTSP: 3 qubit phase estimation is performed measuring the hamiltonian cycle $A \rightarrow B \rightarrow C \rightarrow D \rightarrow A$, using the corresponding eigenstate is $|01101100\rangle$. Due to Qiskit convention on qubit ordering, the eigentate is initialized in reverse. The CU gate denotes the control unitary matrix containing all the hamiltonian cycles. The CU' gate inhabits the same cycles but before it was constructed, all edgeweights not satisfying the constraint, $\geq \alpha$, were set to zero. We have two sets of 3 qubits to be measured and stored in to classical registers labelled 'output' and 'output c'.}
 		\label{fig:4-city-circuit}
 	\end{figure}		
-
-
 
 
 	\begin{figure}[!h]
@@ -1602,19 +1655,22 @@ $A \rightarrow E \rightarrow D \rightarrow C \rightarrow B \rightarrow A$ & $ \g
 		\label{fig:4-city-graphic-5}
 	\end{figure}		
 	
-
- We can see in Fig. \ref{fig:4-city-graphic-3} our estimation for the first cycle with the highest counts is $111\; 111$. The left set of binary digits refer to the phase estimated after our constrained is satisfied and similiarly the right is for estimation before. We can convert these binary digits to their decimal representation: 
+ We can see in Fig. \ref{fig:4-city-graphic-3} our 3-qubit phase estimation for the first cycle with the highest counts is $111\; 111$. The left set of binary digits refer to the phase estimated after our constrained is satisfied and similiarly the right is for estimation before. We can convert these binary digits to their decimal representation: 
  
- $$0.111, \; 0.111 = 0.875, \; 0.875$$
+ $$\mathrm{Cycle}\; 1: \;\; 0.111, \; 0.111 = 0.875, \; 0.875$$
  
- We can summarize the most probable results in a table:
+ We can perform a similiar analysis for the other two cycles:
+ 
+ $$\mathrm{Cycle}\; 2: \;\; 0.100, \; 0.111 = 0.500, \; 0.875$$
+ $$\mathrm{Cycle}\; 3: \;\; 0.110, \; 0.111 = 0.875, \; 0.750$$
+ 
+ From each cycle we can look at the two largest states (counts?) and summarize it in table \ref{table:sim-results-4-city}. This table also shows us higher order qubit estimation, $4$ \& $5$.
  
 \begin{table}[ht!]
 	\centering
-	\label{your-table-label}
 	\begin{tabular}{lllllll} % Updated for 7 columns
 		\toprule
-		Cycle & Expected & N & 1st & Prob. & 2nd & Prob. \\
+		Cycle & Expected & Phase Qubits & Highest Counts & Prob. & 2nd Highest Counts & Prob. \\
 		\midrule
 		\multirow{3}{*}{1} & \multirow{3}{*}{$0.85, \; 0.85$} & 3 & $0.875, \; 0.875$ & $77\%$ &  $0.75, \; 0.875$  & $6\%$ \\
 		&                          & 4& $0.875, \; 0.875$ & $34\%$ &  $0.875, \; 0.8125$  & $16\%$ \\
@@ -1637,6 +1693,8 @@ $A \rightarrow E \rightarrow D \rightarrow C \rightarrow B \rightarrow A$ & $ \g
 
 
 \section{An Undirected 5-City Graph}
+
+	Lets consider the following example of a symmetric 5-city system. In this undirected graph we need to look at $(5-1)!/2 = 12$ hamiltonian cycles. The constraint for our BTSP in this case will involve $\gamma < 9$:
 	
 %	\begin{tikzpicture}[scale=1, every node/.style={circle,draw}, node distance=1cm]
 %	\node (A) at (0, 2) {A};
@@ -1853,8 +1911,22 @@ $A \rightarrow E \rightarrow D \rightarrow C \rightarrow B \rightarrow A$ & $ \g
 	\end{bmatrix} 							 			
 \end{align*}
 	
+	The number of diagonal elements in $U$ and $U'$ is $5^5 = 3125$ thus we need atleast $12$ eigenstate qubits to represent all $3125$ states. We will have left over states ($2^{12} - 5^5 = 971$). Thus to accomodate this issue we need to add $1$s to the end of the diagonal of matrices U and U'. With this method we do not affect the eigenstates. Then we can construct our block matrix structure shown in \ref{control-u-matrix} to create the controlled gates:
 	
-	Because we are dealing with the symmetric case. Based on Table \ref{table:ham-cycle-details-5-city} we can simply use the results and conversions from the first three cycles. Thus we will be estimating phases using the following eigenstates:
+	$$\mathrm{diag}(U) = [u, \mathrm{ones}(971)], \;\; \mathrm{diag}(U') = [u', \mathrm{ones}(971)]$$ 
+
+\begin{equation*}
+	CU = \begin{bmatrix}
+		\mathbb{I}_{12} & 0 \\
+		0 & U \\
+	\end{bmatrix},\;\;\;
+	CU' = \begin{bmatrix}
+		\mathbb{I}_{12} & 0 \\
+		0 & U' \\
+	\end{bmatrix}
+\end{equation*}	
+	
+	Because we are dealing with the symmetric case, we will only use half of the eigenstates listed in Table \ref{table:ham-cycle-details-5-city}:
 	
 	$$|970\rangle  = |001111001010\rangle$$
 	$$|978\rangle  = |001111010010\rangle$$
@@ -1870,8 +1942,7 @@ $A \rightarrow E \rightarrow D \rightarrow C \rightarrow B \rightarrow A$ & $ \g
 	$$|2410\rangle = |100101101010\rangle$$
 	And expect the following phases:
 	
-	\vspace{0.5cm}
-		Cycle 1: $A \rightarrow B \rightarrow C \rightarrow D \rightarrow E \rightarrow A$
+		Cycle 1: $A \rightarrow B \rightarrow C \rightarrow D \rightarrow E \rightarrow A$.\;\;\;\;\;\;\;\;\;\;\;\;\;\; $u_{970}  = e^{i2\pi(0.775)}$, \;\;\;\;\;$u'_{970} = e^{i2\pi(0.3)}$
 		
 	\begin{center}	
 		\begin{tikzpicture}[-,shorten >=1pt,auto,node distance=1.7cm,main node/.style={circle, draw, fill=blue!20}]
@@ -1933,12 +2004,7 @@ $A \rightarrow E \rightarrow D \rightarrow C \rightarrow B \rightarrow A$ & $ \g
 		\end{tikzpicture}
 	\end{center}
 	
-	$$ u_{970}  = e^{i2\pi(0.775)}$$
-	$$ u'_{970} = e^{i2\pi(0.3)}$$
-	
-	\vspace{0.5cm}
-	
-	Cycle 2: $A \rightarrow B \rightarrow C \rightarrow E \rightarrow D \rightarrow A$
+	Cycle 2: $A \rightarrow B \rightarrow C \rightarrow E \rightarrow D \rightarrow A$.\;\;\;\;\;\;\;\;\;\;\;\;\;\; $ u_{978}  = e^{i2\pi(0.55)}$, \;\;\;\;\; $ u'_{978} = e^{i2\pi(0.3)}$
 	\begin{center}	
 		\begin{tikzpicture}[-,shorten >=1pt,auto,node distance=1.7cm,main node/.style={circle, draw, fill=blue!20}]
 			% Nodes
@@ -1998,13 +2064,9 @@ $A \rightarrow E \rightarrow D \rightarrow C \rightarrow B \rightarrow A$ & $ \g
 			
 		\end{tikzpicture}
 	\end{center}
+
 	
-	$$ u_{978}  = e^{i2\pi(0.55)}$$
-	$$ u'_{978} = e^{i2\pi(0.3)}$$
-	
-	\vspace{0.5cm}
-	
-	Cycle 3: $A \rightarrow B \rightarrow D \rightarrow C \rightarrow E \rightarrow A$
+	Cycle 3: $A \rightarrow B \rightarrow D \rightarrow C \rightarrow E \rightarrow A$.\;\;\;\;\;\;\;\;\;\;\;\;\;\; $ u_{1110}  = e^{i2\pi(0.825)}$, \;\;\;\;\; $ u'_{1110} = e^{i2\pi(0.35)}$
 	\begin{center}	
 		\begin{tikzpicture}[-,shorten >=1pt,auto,node distance=1.7cm,main node/.style={circle, draw, fill=blue!20}]
 			% Nodes
@@ -2065,13 +2127,7 @@ $A \rightarrow E \rightarrow D \rightarrow C \rightarrow B \rightarrow A$ & $ \g
 		\end{tikzpicture}
 	\end{center}
 	
-	$$ u_{1110}  = e^{i2\pi(0.825)}$$
-	$$ u'_{1110} = e^{i2\pi(0.35)}$$
-	
-	\vspace{0.5cm}
-	
-	
-		Cycle 4: $A \rightarrow B \rightarrow D \rightarrow E \rightarrow C \rightarrow A$ 
+		Cycle 4: $A \rightarrow B \rightarrow D \rightarrow E \rightarrow C \rightarrow A$.\;\;\;\;\;\;\;\;\;\;\;\;\;\; $ u_{1022}  = e^{i2\pi(0.6)}$, \;\;\;\;\; $ u'_{1022} = e^{i2\pi(0.35)}$
 	\begin{center}	
 		\begin{tikzpicture}[-,shorten >=1pt,auto,node distance=1.7cm,main node/.style={circle, draw, fill=blue!20}]
 			% Nodes
@@ -2132,12 +2188,7 @@ $A \rightarrow E \rightarrow D \rightarrow C \rightarrow B \rightarrow A$ & $ \g
 		\end{tikzpicture}
 	\end{center}
 	
-	$$ u_{1022}  = e^{i2\pi(0.6)}$$
-	$$ u'_{1022} = e^{i2\pi(0.35)}$$
-	
-	\vspace{0.5cm}
-	
-		Cycle 5: $A \rightarrow B \rightarrow E \rightarrow C \rightarrow D \rightarrow A$
+		Cycle 5: $A \rightarrow B \rightarrow E \rightarrow C \rightarrow D \rightarrow A$.\;\;\;\;\;\;\;\;\;\;\;\;\;\; $ u_{1202}  = e^{i2\pi(0.75)}$, \;\;\;\;\; $ u'_{1202} = e^{i2\pi(0.5)}$
 	\begin{center}	
 		\begin{tikzpicture}[-,shorten >=1pt,auto,node distance=1.7cm,main node/.style={circle, draw, fill=blue!20}]
 			% Nodes
@@ -2197,12 +2248,7 @@ $A \rightarrow E \rightarrow D \rightarrow C \rightarrow B \rightarrow A$ & $ \g
 		\end{tikzpicture}
 	\end{center}
 	
-	$$ u_{1202}  = e^{i2\pi(0.75)}$$
-	$$ u'_{1202} = e^{i2\pi(0.5)}$$
-	
-	\vspace{0.5cm}
-	
-		Cycle 6: $A \rightarrow B \rightarrow E \rightarrow D \rightarrow C \rightarrow A$
+		Cycle 6: $A \rightarrow B \rightarrow E \rightarrow D \rightarrow C \rightarrow A$.\;\;\;\;\;\;\;\;\;\;\;\;\;\; $ u_{1138}  = e^{i2\pi(0.75)}$, \;\;\;\;\; $ u'_{1138} = e^{i2\pi(0.5)}$
 	\begin{center}	
 		\begin{tikzpicture}[-,shorten >=1pt,auto,node distance=1.7cm,main node/.style={circle, draw, fill=blue!20}]
 			% Nodes
@@ -2263,12 +2309,7 @@ $A \rightarrow E \rightarrow D \rightarrow C \rightarrow B \rightarrow A$ & $ \g
 		\end{tikzpicture}
 	\end{center}
 	
-	$$ u_{1138}  = e^{i2\pi(0.75)}$$
-	$$ u'_{1138} = e^{i2\pi(0.5)}$$
-	
-	\vspace{0.5cm}
-	
-		Cycle 7: $A \rightarrow C \rightarrow B \rightarrow D \rightarrow E \rightarrow A$
+		Cycle 7: $A \rightarrow C \rightarrow B \rightarrow D \rightarrow E \rightarrow A$.\;\;\;\;\;\;\;\;\;\;\;\;\;\; $ u_{1670}  = e^{i2\pi(0.575)}$, \;\;\;\;\; $ u'_{1670} = e^{i2\pi(0.35)}$
 	\begin{center}	
 		\begin{tikzpicture}[-,shorten >=1pt,auto,node distance=1.7cm,main node/.style={circle, draw, fill=blue!20}]
 			% Nodes
@@ -2329,13 +2370,7 @@ $A \rightarrow E \rightarrow D \rightarrow C \rightarrow B \rightarrow A$ & $ \g
 		\end{tikzpicture}
 	\end{center}
 	
-	$$ u_{1670}  = e^{i2\pi(0.575)}$$
-	$$ u'_{1670} = e^{i2\pi(0.35)}$$
-	
-	\vspace{0.5cm}
-	
-	
-		 Cycle 8: $A \rightarrow C \rightarrow B \rightarrow E \rightarrow D \rightarrow A$
+		 Cycle 8: $A \rightarrow C \rightarrow B \rightarrow E \rightarrow D \rightarrow A$.\;\;\;\;\;\;\;\;\;\;\;\;\;\; $ u_{1778}  = e^{i2\pi(0.5)}$, \;\;\;\;\; $ u'_{1778}  = e^{i2\pi(0.5)}$
 	
 	\begin{center}	
 		\begin{tikzpicture}[-,shorten >=1pt,auto,node distance=1.7cm,main node/.style={circle, draw, fill=blue!20}]
@@ -2400,12 +2435,8 @@ $A \rightarrow E \rightarrow D \rightarrow C \rightarrow B \rightarrow A$ & $ \g
 		\end{tikzpicture}
 	\end{center}
 	
-	$$ u_{1778}  = e^{i2\pi(0.5)}$$
-	$$ u'_{1778}  = e^{i2\pi(0.5)}$$
 	
-	\vspace{0.5cm}
-	
-	Cycle 9: $A \rightarrow C \rightarrow D \rightarrow B \rightarrow E \rightarrow A$
+	Cycle 9: $A \rightarrow C \rightarrow D \rightarrow B \rightarrow E \rightarrow A$.\;\;\;\;\;\;\;\;\;\;\;\;\;\; $ u_{1830} =  e^{i2\pi(0.775)}$, \;\;\;\;\; $ u'_{1830} =  e^{i2\pi(0.55)}$
 	
 		\begin{center}	
 		\begin{tikzpicture}[-,shorten >=1pt,auto,node distance=1.7cm,main node/.style={circle, draw, fill=blue!20}]
@@ -2467,12 +2498,7 @@ $A \rightarrow E \rightarrow D \rightarrow C \rightarrow B \rightarrow A$ & $ \g
 		\end{tikzpicture}
 	\end{center}
 	
-		$$ u_{1830} =  e^{i2\pi(0.775)}$$
-	$$ u'_{1830} =  e^{i2\pi(0.55)}$$
-	
-	\vspace{0.5cm}
-	
-		Cycle 10: $A \rightarrow C \rightarrow E \rightarrow B \rightarrow D \rightarrow A$
+		Cycle 10: $A \rightarrow C \rightarrow E \rightarrow B \rightarrow D \rightarrow A$.\;\;\;\;\;\;\;\;\;\;\;\;\;\; $ u_{1726} =  e^{i2\pi(0.55)}$, \;\;\;\;\; $ u'_{1726} = e^{i2\pi(0.55)}$
 	
 	\begin{center}	
 		\begin{tikzpicture}[-,shorten >=1pt,auto,node distance=1.7cm,main node/.style={circle, draw, fill=blue!20}]
@@ -2533,13 +2559,9 @@ $A \rightarrow E \rightarrow D \rightarrow C \rightarrow B \rightarrow A$ & $ \g
 			
 		\end{tikzpicture}
 	\end{center}
+
 	
-	$$ u_{1726} =  e^{i2\pi(0.55)}$$
-	$$ u'_{1726} = e^{i2\pi(0.55)}$$
-	
-	\vspace{0.5cm}
-	
-		Cycle 11: $A \rightarrow D \rightarrow B \rightarrow C \rightarrow E \rightarrow A$
+		Cycle 11: $A \rightarrow D \rightarrow B \rightarrow C \rightarrow E \rightarrow A$.\;\;\;\;\;\;\;\;\;\;\;\;\;\; $ u_{2230} =  e^{i2\pi(0.575)}$, \;\;\;\;\; $ u'_{2230} = e^{i2\pi(0.35)}$
 	
 	\begin{center}	
 		\begin{tikzpicture}[-,shorten >=1pt,auto,node distance=1.7cm,main node/.style={circle, draw, fill=blue!20}]
@@ -2601,12 +2623,7 @@ $A \rightarrow E \rightarrow D \rightarrow C \rightarrow B \rightarrow A$ & $ \g
 		\end{tikzpicture}
 	\end{center}
 	
-	$$ u_{2230} =  e^{i2\pi(0.575)}$$
-	$$ u'_{2230} = e^{i2\pi(0.35)}$$
-	
-	\vspace{0.5cm}
-	
-		Cycle 12: $A \rightarrow D \rightarrow C \rightarrow B \rightarrow E \rightarrow A$
+		Cycle 12: $A \rightarrow D \rightarrow C \rightarrow B \rightarrow E \rightarrow A$.\;\;\;\;\;\;\;\;\;\;\;\;\;\; $ u_{2410}  = e^{i2\pi(0.725)}$, \;\;\;\;\; $ u'_{2410}  = e^{i2\pi(0.5)}$
 	
 	\begin{center}	
 		\begin{tikzpicture}[-,shorten >=1pt,auto,node distance=1.7cm,main node/.style={circle, draw, fill=blue!20}]
@@ -2668,38 +2685,45 @@ $A \rightarrow E \rightarrow D \rightarrow C \rightarrow B \rightarrow A$ & $ \g
 		\end{tikzpicture}
 	\end{center}
 	
-	$$ u_{2410}  = e^{i2\pi(0.725)}$$
-	$$ u'_{2410}  = e^{i2\pi(0.5)}$$
+		\subsection{Results: Simulations with Qiskit}  \label{5-city-sim}
 	
-	\vspace{0.5cm}
+	Fig. \ref{fig:5-city-circuit} shows us the circuit for our first hamiltonian cycle initialized in eigenstate $|970\rangle  = |001111001010\rangle$. We will run a similiar circuit for the other two hamiltonian cycles with the only change being the eigenstate initialization. We conduct an ideal simulation implying our results are not impacted by noise. Each circuit by default is run $1024$ times which we can use as a quasi-probability distribution. 
 	
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[trim={8.5cm 4.4cm 6cm 4.4cm},clip, width=1 \linewidth]{"graphics/5-city-1-cycle-constrained-barrier"}
+		\caption{the quantum circuit for the BTSP: 3 qubit phase estimation is performed measuring the hamiltonian cycle $A \rightarrow B \rightarrow C \rightarrow D \rightarrow E \rightarrow A$, using the corresponding eigenstate is $|970\rangle  = |001111001010\rangle$. Due to Qiskit convention on qubit ordering, the eigentate is initialized in reverse. The CU gate denotes the control unitary matrix containing all the hamiltonian cycles. The CU' gate inhabits the same cycles but before it was constructed, all edgeweights not satisfying the constraint, $\geq \alpha$, were set to zero. We have two sets of 3 qubits to be measured and stored in to classical registers labelled 'output' and 'output c'.}
+		\label{fig:5-city-circuit}
+	\end{figure}
+	
+	As we did for the 4-city graph, we present the top two counts (states?) for each hamiltonian cycle. 4-qubit estimation was performed as well. This results can be found in table \ref{table:sim-results-5-city}.
 	
 		\begin{figure}[!h]
 		\centering
 		\includegraphics[width=\textwidth,height=0.9\textheight,keepaspectratio]{"graphics/1-3-5city"}
-		\caption{3 \& 4 qubit phase estimation for the 5-city graph. Hamiltonian cycles: 1 to 3}
-		\label{fig:4-city-graphic}
+		\caption{3 qubit (left column) \& 4 qubit (right column) phase estimation for the 5-city graph. Hamiltonian cycles: 1 to 3}
+		\label{fig:5-city-1-3}
 	\end{figure}		
 	
 	\begin{figure}[!h]
 		\centering
 		\includegraphics[ width=\textwidth,height=0.9\textheight,keepaspectratio]{"graphics/4-6-5city"}
-		\caption{3 \& 4 qubit phase estimation for the 5-city graph. Hamiltonian cycles: 4 to 6}
-		\label{fig:4-city-graphic}
+		\caption{3 qubit (left column) \& 4 qubit (right column) phase estimation for the 5-city graph. Hamiltonian cycles: 4 to 6}
+		\label{fig:5-city-4-6}
 	\end{figure}		
 	
 	\begin{figure}[!h]
 		\centering
 		\includegraphics[width=\textwidth,height=0.9\textheight,keepaspectratio]{"graphics/7-9-5city"}
-		\caption{3 \& 4 qubit phase estimation for the 5-city graph. Hamiltonian cycles: 7 to 9}
-		\label{fig:4-city-graphic}
+		\caption{3 qubit (left column) \& 4 qubit (right column) phase estimation for the 5-city graph. Hamiltonian cycles: 7 to 9}
+		\label{fig:5-city-7-9}
 	\end{figure}		
 	
 	\begin{figure}[!h]
 		\centering
 		\includegraphics[width=\textwidth,height=0.9\textheight,keepaspectratio]{"graphics/10-12-5city"}
-		\caption{3 \& 4 qubit phase estimation for the 5-city graph. Hamiltonian cycles: 10 to 12}
-		\label{fig:4-city-graphic}
+		\caption{3 qubit (left column) \& 4 qubit (right column) phase estimation for the 5-city graph. Hamiltonian cycles: 10 to 12}
+		\label{fig:5-city-10-12}
 	\end{figure}		
 	
 	\begin{table}[ht!]
@@ -2707,7 +2731,7 @@ $A \rightarrow E \rightarrow D \rightarrow C \rightarrow B \rightarrow A$ & $ \g
 		\label{your-table-label}
 		\begin{tabular}{lllllll} % Updated for 7 columns
 			\toprule
-			Cycle & Expected & N & 1st & Prob. & 2nd & Prob. \\
+					Cycle & Expected & Phase Qubits & Highest Counts & Prob. & 2nd Highest Counts & Prob. \\
 			\midrule
 			\multirow{2}{*}{1} & \multirow{2}{*}{$0.3, \; 0.775$} & 3 & $0.25, \; 0.75$ & $52\%$ &  $0.375, \; 0.75$  & $23\%$ \\
 			&                          & 4& $0.3125, \; 0.75$ & $50\%$ &  $0.3125, \; 0.8125$  & $21\%$ \\
@@ -2754,13 +2778,64 @@ $A \rightarrow E \rightarrow D \rightarrow C \rightarrow B \rightarrow A$ & $ \g
 	
 	%\input{Results/RSLT01}
 	%\input{Results/RSLT02}
+	
+	
+	
 	\chapter{Discussion}
-	%\input{Discussion/DISC01}
+	
+	%	- analyze the solutions: (talk about them)
+	
+	Let us analyze our results from the 4-city graph. We only have three hamiltonian cycles to check. And we performed $3$, $4$ \& $5$ qubit estimation. referring to table \ref{table:sim-results-4-city}. We can see cycle 1 represents our solution as our expected phase estimation before and after the constraint satisfaction are both equal to $0.85$. With 3-qubit estimation we were able to achieve a $77\%$ quasi-probability of measuring the state: $0.875, 0.875$. Where we can conclude the most probable result indicates the cycle is a solution. An expected result would be that with an increase in the number of phase qubits, we would automatically perform a finer estimate of our values and thus increase the certainty in our solution. We see with 4-qubit estimation our quasi-probability  for the most measured state: 0.875, 0.875, has dropped to $34\%$.  This still is the state with the most counts that indicates our two phases are equal and this a solution. And a further 5-qubit estimation reverts the quasi-probability for the most measured state, in this case: 0.84375, 0.84375, to $77\%$. We can conclude from this that increases the number of phase qubits does not necessarily increase the probability of measuring a single state.To further elaborate on why this is the case, we can look at the representation of $0.85$ in binary:
+	
+	$$0.11011001100110011...$$
+	
+	We can now see the issue with our phase estimation. Because the binary representation of $0.85$ is recurring, there is no point in which our estimation will be able to precisely measure the value. We can only establish a very good approximate value.
+	
+	As we discussed in the theory section,  if $\phi \neq$ to any of the values in the resolution of the phase estimation. The highest probability will be states closest to the original value. 
+	
+	
+	
+	
+	We should clarify why this is the case: given
 	
 	\begin{enumerate}
 		\item this section will dicuss the advantages and drawbacks of the algorithm proposed.
 		\item how the algorithm scales with the number of cities ($2^x = x^x$)
 	\end{enumerate}
+	
+	
+	
+
+	
+	- what would be the recommended beta:
+	
+	Issues with recurring numbers. How larger qubit precision might not help. And why its valid to stay within the four peaks. 
+	
+	Quote the 40\% probability (from nielsen texbook?) and talk about why 16\% is a reasonable approach given the enough phase resolution. Explain why 2x constraint resolution would be appropriate. (cycle 7).
+	
+
+	because we are running the circuit a number of times and creating a quasi-probability distribution. We can guarantee our results with approximately 16 percent are valid.
+	
+	Talk about cycle 7 and showcase the 4 highest probabilities. Show how because we are not more than double away from the resolution of 3 qubit estimation.  Maybe show an instance We can result in . If we want to pick the best peak it would be ideal that our constraint be atleast 2x the resolution of the qubits.
+	
+	
+	Talk about the scaling of the eigenstates.
+	
+	\begin{tikzpicture}
+		% Draw the main line
+		\draw (0,0) -- (8,0);
+		
+		% Draw the discrete intervals
+		\foreach \x in {0,1,...,8} {
+			\draw (\x,0.1) -- (\x,-0.1) node[below] {\small$\frac{\x}{8}$};
+		}
+		
+		% Highlight the specific points (0.5 and 0.8) on the line
+		\node[label=above:{0.5}] at (4,0) {\textbullet};
+		\node[label=above:{0.8}] at (6.4,0) {\textbullet};
+		
+	\end{tikzpicture}
+	
 	
 	
 	%% This file is setup to use a bibtex file sample.bib and uses the
@@ -2784,37 +2859,20 @@ $A \rightarrow E \rightarrow D \rightarrow C \rightarrow B \rightarrow A$ & $ \g
 	%%% If you only have one appendix, please uncomment the following line.
 	% \renewcommand{\appendicesname}{Appendix}
 	\appendix
-	\chapter{Code: Calculating the Hamiltonian Cycles and Locating Eigenstates}
+	\chapter{Hamiltonian Cycles and Locating Eigenstates Code}
+	
+	The code detailed in this section can be used to generate the information found in Tables \ref{table:ham-cycle-details-4-city}, \ref{table:4-city-conversions},  \ref{table:ham-cycle-details-5-city} and \ref{table:5-city-conversions}, which construct the Hamiltonian cycles and locate the eigenstates. 
 	
 	\includepdf[pages=-]{hamiltonian_cycles.pdf}
 	%\input{ham_cycles.tex}
 	%\input{hamiltonian_cycles.tex}
 	\chapter{Simulation Code with Qiskit}
 	
-	The code presented here is simulations for the four city . This code can be further extended to larger graphs.
+	The code detailed in this section demonstrates simulations for the four-city graph, as discussed in Section \ref{4-city-sim}. This code can be extended to model the five-city graph presented in Section \ref{5-city-sim}, and can be further adapted to accommodate even larger city graphs.
 	
 	\includepdf[pages=-]{4-city-code/4-city-code.pdf}
 	
-	
-	%\input{Appendix1}
-	
-	%\chapter{Second Appendix}
-	%Here is the second appendix.
-	
-	%% This changes the headings and chapter titles (no numbers for
-	%% example).
 	\backmatter
-	
-	%% Indices come here if you have them.
-	
-	
-	
-	
-	
-	
-	
-	
-	%\url{http://www.grad.ubc.ca/current-students/dissertation-thesis-preparation}\\
 	
 	
 	\end{document}
