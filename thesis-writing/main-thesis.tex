@@ -824,10 +824,11 @@ The computational complexity of the BTSP is known to be NP-hard, implying there 
 	%grover's search explanation
 	\chapter{Algorithm}
 	
-The Decision problem of the BTSP asks whether there exists a Hamiltonian cycle in which the weight of every edge is less than a specified threshold $\alpha$. In such a cycle, if we denote the weight of any edge as $\gamma_i$, then it must satisfy the condition:
-	 
-	 $$\gamma_i < \alpha$$
+The decision problem of the BTSP asks whether there exists a Hamiltonian cycle in which the weight of every edge is less than a specified threshold $\alpha$. In such a cycle, if we denote the weight of any edge as $\gamma_i$, then it must satisfy the condition:
 	
+	\begin{equation}\label{constraint-alpha} 
+	 \gamma_i < \alpha
+	\end{equation}
 	
 	We will construct the algorithm in the following steps:
 	\begin{enumerate}
@@ -1877,8 +1878,9 @@ $A \rightarrow E \rightarrow D \rightarrow C \rightarrow B \rightarrow A$ & $ \g
 	
 	The number of diagonal elements in $U$ and $U'$ is $5^5 = 3125$ thus we need atleast $12$ eigenstate qubits to represent all $3125$ states. We will have left over states ($2^{12} - 5^5 = 971$). Thus to accomodate this issue we need to add $1$s to the end of the diagonal of matrices U and U'. With this method we do not affect the eigenstates. Then we can construct our block matrix structure shown in \ref{control-u-matrix} to create the controlled gates:
 	
-	$$\mathrm{diag}(U) = [u, \mathrm{ones}(971)], \;\; \mathrm{diag}(U') = [u', \mathrm{ones}(971)]$$ 
-
+	\begin{equation}\label{ones}
+	\mathrm{diag}(U) = [u, \mathrm{ones}(971)], \;\; \mathrm{diag}(U') = [u', \mathrm{ones}(971)]
+	\end{equation}
 \begin{equation*}
 	CU = \begin{bmatrix}
 		\mathbb{I}_{12} & 0 \\
@@ -2749,23 +2751,26 @@ $A \rightarrow E \rightarrow D \rightarrow C \rightarrow B \rightarrow A$ & $ \g
 	
 	%	- analyze the solutions: (talk about them)
 	
-	Let us analyze our results from the 4-city graph. We only have three hamiltonian cycles to check. And we performed $3$, $4$ \& $5$ qubit estimation. referring to table \ref{table:sim-results-4-city}. We can see cycle 1 represents our solution as our expected phase estimation before and after the constraint satisfaction are both equal to $0.85$. With 3-qubit estimation we were able to achieve a $77\%$ quasi-probability of measuring the state: $0.875, 0.875$. Where we can conclude the most probable result indicates the cycle is a solution. One might expect a better quasi-probability as we increase the number of phase qubits, as it should perform a finer estimate of our phases. But as we see with 4-qubit estimation our quasi-probability  or the most measured state: 0.875, 0.875, has dropped to $34\%$.  This still is the state with the most counts that indicates our two phases are equal and this a solution. And a further 5-qubit estimation reverts the quasi-probability for the most measured state, in this case: 0.84375, 0.84375, to $77\%$. We can conclude from this that increases the number of phase qubits does not necessarily increase the probability of measuring a single state.To further elaborate on why this is the case, we can look at the representation of $0.85$ in binary:
+	Referring to table \ref{table:sim-results-4-city}. We can see cycle 1 represents our solution for our 4-city problem, as our expected phase estimation before and after the constraint satisfaction are both equal to $0.85$. With 3-qubit estimation we were able to achieve a $77\%$ quasi-probability of measuring the state: $0.875, 0.875$. Where we can conclude the most probable result indicates the cycle is a solution. One might expect a better quasi-probability as we increase the number of phase qubits, as it should perform a finer estimate of our phases. But as we see with 4-qubit estimation our quasi-probability or the most measured state: 0.875, 0.875, has dropped to $34\%$.  This still is the state with the most counts that indicates our two phases are equal and this a solution. And a further 5-qubit estimation reverts the quasi-probability for the most measured state, in this case: 0.84375, 0.84375, to $77\%$. We can conclude from this that increases the number of phase qubits does not necessarily increase the probability of measuring a single state. To further elaborate on why this is the case, we can look at the representation of $0.85$ in binary:
 	
 	$$0.11011001100110011...$$
 	
-	We can now see the issue with our phase estimation. Because the binary representation of $0.85$ is recurring, there is no point in which our estimation will be able to precisely measure the value. We can only establish a very good approximate value. We can further illustrate this by looking at the resolution of 3,4, \& 5 qubit estimation below and refer to FIG. \ref{fig:phase-precision} to understand the probabilities.
+	Because the binary representation of $0.85$ is recurring, there is no point in which our estimation will be able to measure the value with perfect accuracy. We face a similiar issue with our 5-city simulation where cycle 10 represents our solution. The phase we try to estimate is $0.55$, which is also recurring in binary. In both cases, we can only establish a very good approximate value. We can further illustrate this by looking at the resolution of 3,4, \& 5 qubit estimation below and refer to FIG. \ref{fig:phase-precision} to understand the probabilities.
 	
 \begin{tikzpicture}
 	\pgfmathsetmacro{\lineLength}{14}
 	
 	% First line - 1/8 steps
-	\node[label=above:{0.85}] at (0.85*\lineLength,0) {\textbullet};
+	%\node[label=above :{0.5}] at (0.5*\lineLength,0) {\textbullet};
+	\node[label=above:{5-city solution: 0.55}] at (0.55*\lineLength,0) {\textbullet};
+	\node[label=above:{4-city solution: 0.85}] at (0.85*\lineLength,0) {\textbullet};
 	\draw (0,0) -- (\lineLength,0);
 	\foreach \x in {0,1,...,8} { 
 		\draw (\x/8*\lineLength ,0.1) -- (\x/8*\lineLength ,-0.1) node[below] {\tiny$\frac{\x}{8}$};
 	}
 	
 	% Second line - 1/16 steps
+	\node[label=above:{0.55}] at (0.55*\lineLength,-2) {\textbullet};
 	\node[label=above:{0.85}] at (0.85*\lineLength,-2) {\textbullet};
 	\draw (0,-2) -- (\lineLength,-2);
 	\foreach \x in {0,1,...,16} { 
@@ -2773,6 +2778,7 @@ $A \rightarrow E \rightarrow D \rightarrow C \rightarrow B \rightarrow A$ & $ \g
 	}
 	
 	% Third line - 1/32 steps
+	\node[label=above:{0.55}] at (0.55*\lineLength,-4) {\textbullet};
 	\node[label=above:{0.85}] at (0.85*\lineLength,-4) {\textbullet};
 	\draw (0,-4) -- (\lineLength,-4);
 	\foreach \x in {0,1,...,32} {
@@ -2781,48 +2787,102 @@ $A \rightarrow E \rightarrow D \rightarrow C \rightarrow B \rightarrow A$ & $ \g
 	
 \end{tikzpicture}
 	
-	An easy way to interpret the number lines is that when the value is close to a specific step, that step is more likely to be measured. If it is perfectly inbetween two steps, we get the best possible approximation is either the lower bound or the upper bound both with the exact same probability of roughly $\approx 40\%$. We can see for the four qubit estimation, the introduction of a more precise value of 13/16 increased its probability of being measured and in turn decreased the probabiliy of 7/8 or 14/16 being measured. Performing 5-qubit estimation does improve our results but does not justify the computational cost considering we achieved similiar results with 3-qubit phase.
+	An easy way to interpret the number lines is that when the value is close to a specific step, that step is more likely to be measured. If it is perfectly inbetween two steps, we get the best possible approximation is either the lower bound or the upper bound both with the exact same probability, $P_b \approx 40\%$. It is important to note, that we are measuring two independent phases for each hamiltonian cycle, thus our best approximation will be $P_b^2 \approx 16\%$. 
+	
+	We can see for the 4-qubit estimation, the introduction of a more precise value of $13/16$ increased its probability of being measured as a good approximation for $0.85$ and in turn decreased the probabiliy of $7/8  = 14/16$ being measured. Performing 5-qubit estimation does improve our results but does not justify the computational cost considering we achieved similiar results with 3-qubit estimation. We see a similiar issue with our results for the 5-city problem, we only simulated 3 and 4-qubit estimation but had we done 5, our confidence in the result would have decreased.
+	
+	Unless we obtain a fortunate solution as in cycle 8 of the 5-city problem (FIG. \ref{fig:5-city-7-9}), where our phase ($0.5$) can be respresented exactly, we need to run phase estimation a number of times from which we can use the mode of our results as the solution. And as we've discussed earlier, using a larger number of phase qubits does not neccesarily improve your confidence in the result. If we only consider the states with the highest counts in Tables \ref{table:sim-results-4-city},  \ref{table:sim-results-4-city}, then our results perfectly predict the solutions and non-solutions.
+	
+	The question we need to ask is now is how many phase qubits are needed correctly identify a solution or non-solution based on the most frequent state measured? And the answer is we need to make sure the resolution of our phase qubits is larger than the constraint value, $\alpha$, of the problem (Eq. \ref{constraint-alpha}). Lets consider a non-solution where the reduction to the phase is exactly the resolution of 3-qubit estimation, 0.125:
+	
 	
 	\begin{tikzpicture}
 		\pgfmathsetmacro{\lineLength}{14}
 		
 		% First line - 1/8 steps
-		\node[label=above:{0.55}] at (0.55*\lineLength,0) {\textbullet};
-		\node[label=above:{0.85}] at (0.85*\lineLength,0) {\textbullet};
+		%\node[label=above :{0.5}] at (0.5*\lineLength,0) {\textbullet};
+		\node[label=above:{after: 0.5625}] at (0.5625*\lineLength,0) {\textbullet};
+		\node[label=above right :{before: 0.6875}] at (0.6875*\lineLength,0) {\textbullet};
 		\draw (0,0) -- (\lineLength,0);
 		\foreach \x in {0,1,...,8} { 
 			\draw (\x/8*\lineLength ,0.1) -- (\x/8*\lineLength ,-0.1) node[below] {\tiny$\frac{\x}{8}$};
 		}
-		
-		% Second line - 1/16 steps
-		\node[label=above:{0.55}] at (0.55*\lineLength,-2) {\textbullet};
-		\node[label=above:{0.85}] at (0.85*\lineLength,-2) {\textbullet};
-		\draw (0,-2) -- (\lineLength,-2);
-		\foreach \x in {0,1,...,16} { 
-			\draw (\x/16*\lineLength,-1.9) -- (\x/16*\lineLength,-2.1) node[below] {\tiny$\frac{\x}{16}$};
-		}
-		
-		% Third line - 1/32 steps
-		\node[label=above:{0.55}] at (0.55*\lineLength,-4) {\textbullet};
-		\node[label=above:{0.85}] at (0.85*\lineLength,-4) {\textbullet};
-		\draw (0,-4) -- (\lineLength,-4);
-		\foreach \x in {0,1,...,32} {
-			\draw (\x/32*\lineLength,-3.9) -- (\x/32*\lineLength,-4.1) node[below] {\tiny$\frac{\x}{32}$};
-		}
-		
 	\end{tikzpicture}
 	
+	
+	Based on our best approximation, we are likely to obtain any of the four following results most frequently with $P^2_b  \approx 16\%$:
 
-	\begin{itemize}
-	\item Issues with recurring numbers. How larger qubit precision might not help. And why its valid to stay within the four peaks. 
-	\item Explain why 2x constraint resolution would be appropriate. (cycle 7).
+	$$P_1: 0.625, 0.625$$
+	$$P_2: 0.500, 0.625$$
+	$$P_3: 0.625, 0.750$$
+	$$P_4: 0.500, 0.750$$
 	
-	\item because we are running the circuit a number of times and creating a quasi-probability distribution. We can guarantee our results with approximately 16 percent are valid.
+	Here we can see we run a risk of selecting $P_1$. By extending the distance between our phases, we reduce the probability of measuring $0.625$ and we can qualitatively predict how probable our four results above will be:
 	
-	\item Talk about cycle 7 and showcase the 4 highest probabilities. Show how because we are not more than double away from the resolution of 3 qubit estimation.  Maybe show an instance We can result in . If we want to pick the best peak it would be ideal that our constraint be atleast 2x the resolution of the qubits.
+		\begin{tikzpicture}
+		\pgfmathsetmacro{\lineLength}{14}
+		
+		% First line - 1/8 steps
+		%\node[label=above :{0.5}] at (0.5*\lineLength,0) {\textbullet};
+		\node[label=above:{$0.5625-\delta$}] at (0.53*\lineLength,0) {\textbullet};
+		\node[label=above right :{$0.6875 + \delta$}] at (0.72*\lineLength,0) {\textbullet};
+		\draw (0,0) -- (\lineLength,0);
+		\foreach \x in {0,1,...,8} { 
+			\draw (\x/8*\lineLength ,0.1) -- (\x/8*\lineLength ,-0.1) node[below] {\tiny$\frac{\x}{8}$};
+		}
+	\end{tikzpicture}
 	
-	\item Talk about the scaling of the eigenstates.  ($2^x = x^x$)
-	\end{itemize}
+ $$P_1 < P_2 = P_3 < P_4$$
+ 
+ We actually simulated a similiar case in cycle 7 of our 5-city problem (FIG. \ref{fig:5-city-7-9}), where the least probable result of the top 4 states, indicated the cycle was a solution.  If $\delta << 1$, we would have to run our circuit many times over to appropriately measure the non-solution as the most frequent result. Otherwise we run the risk again of predicting a solution with $P_1$ as it would be very close to $P_4$. A safe bet would be to have a phase resolution atleast twice the constraint value. Lets illustrate this again by inconveniently placing the phases we hope to estimate perfecly inbetween steps:
+ 
+ \begin{tikzpicture}
+ 	\pgfmathsetmacro{\lineLength}{14}
+ 	
+	% Second line - 1/16 steps
+\node[label=above:{0.53125}] at (0.53125*\lineLength,-2) {\textbullet};
+\node[label=above:{0.65625}] at (0.65625*\lineLength,-2) {\textbullet};
+\draw (0,-2) -- (\lineLength,-2);
+\foreach \x in {0,1,...,16} { 
+	\draw (\x/16*\lineLength,-1.9) -- (\x/16*\lineLength,-2.1) node[below] {\tiny$\frac{\x}{16}$};
+}
+ \end{tikzpicture}
+ 
+ We now run zero risk of the four most probable states indicating a solution. As our measurement will likely collapse to any of these four options with $P^2_b  \approx 16\%$:
+ 
+ $$P_1: 0.5000, 0.6250$$
+ $$P_2: 0.5000, 0.6875$$
+ $$P_3: 0.5625, 0.6250$$
+ $$P_4: 0.5625, 0.6875$$
+ 
+And we can also show in the case of a solution, two of the four states will show it is a solution and the other two will not, but we can confidently say it is simply a rounding error since our constraint value would reduce a phase by much more. We can illustrate this considering the phase $0.65625$:
+
+
+ \begin{tikzpicture}
+	\pgfmathsetmacro{\lineLength}{14}
+	
+	% Second line - 1/16 steps
+	\node[label=above left :{before \& after: 0.65625}] at (0.65625*\lineLength,-2) {\textbullet};
+	\draw (0,-2) -- (\lineLength,-2);
+	\foreach \x in {0,1,...,16} { 
+		\draw (\x/16*\lineLength,-1.9) -- (\x/16*\lineLength,-2.1) node[below] {\tiny$\frac{\x}{16}$};
+	}
+\end{tikzpicture}
+
+$$P_1: 0.6250, 0.6250$$
+$$P_2: 0.6250, 0.6875$$
+$$P_3: 0.6875, 0.6250$$
+$$P_4: 0.6875, 0.6875$$
+
+
+We can also discuss the number of eigenstate qubits needed. Our method asks us to construct a matrix of size $N^N \times N^N$, where $N$ represents the number of cities. This does result in a unitary matrix however, it cannot be neccesarily represented by an exact number of qubits.We saw this issue in our 5-city problem, where we introduced ones at the end of the matrix (Eq.\ref{ones}). If $n$ represents the number of qubits we need and $m$ represents the number of cities, we need to solve the equation:
+
+$$2^n = m^m$$
+$$n = m\mathrm{log}_2(m)$$
+
+With this we can conclude the number of eigenstate qubits needed will scale polynomially where it $<m^2$. For example in the case of 5 cities, $n \approx 11.6$ and we round up to $12$ qubits. 
+
+Because we run through all hamiltonian cycles to solve this problem our time complexity remains $O((N-1)!)$. We can however solve this decision problem by running all hamiltonian cycles in parallel reducing our  execution time but the tradeoff would be introducing exponential space complexity, $O((N-1)!)$ .
 	
 	\bibliographystyle{unsrt}
 	%\bibliography{references,refs}

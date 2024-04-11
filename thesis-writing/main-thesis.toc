@@ -24,7 +24,7 @@
 \contentsline {subsection}{\numberline {4.2.1}{Algorithm Construction}}{26}{subsection.4.2.1}%
 \contentsline {subsection}{\numberline {4.2.2}{Results: Simulations with Qiskit}}{31}{subsection.4.2.2}%
 \contentsline {chapter}{\numberline {5}{Discussion}}{37}{chapter.5}%
-\contentsline {chapter}{{Bibliography}}{39}{chapter*.27}%
+\contentsline {chapter}{{Bibliography}}{40}{chapter*.27}%
 \contentsline {part}{{Appendices}}{}{}
-\contentsline {chapter}{\numberline {A}{Hamiltonian Cycles and Locating Eigenstates Code}}{40}{appendix.A}%
-\contentsline {chapter}{\numberline {B}{Simulation Code with Qiskit}}{44}{appendix.B}%
+\contentsline {chapter}{\numberline {A}{Hamiltonian Cycles and Locating Eigenstates Code}}{41}{appendix.A}%
+\contentsline {chapter}{\numberline {B}{Simulation Code with Qiskit}}{45}{appendix.B}%
