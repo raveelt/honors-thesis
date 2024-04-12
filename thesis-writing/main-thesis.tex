@@ -91,7 +91,7 @@ linkcolor=blue]{hyperref}
 	\clearpage
 	\begin{abstract}
 		
-		This thesis presents the development and analysis of a quantum algorithm tailored for solving the decision problem variant of the Bottleneck Travelling Salesman Problem (BTSP). The decision problem asks whether there exists a Hamiltonian cycle such that no edge weight within the cycle is less than a specified value ($\alpha$). We construct two unitary matrices, both of whose eigenvalues are phases corresponding to the total cost associated with the Hamiltonian cycle. One matrix applies after all edge weights $\geq \alpha$ are set to zero. Utilizing quantum phase estimation, we construct an algorithm to evaluate a Hamiltonian cycle of a graph before and after removing edge weights that do not satisfy the constraint. If the total cost remains unaffected, we can conclude it is a solution. The proposed quantum algorithm maintains the inherent computational complexity of the classical BTSP, $O((N-1)!)$, yet introduces the potential for parallelization. We thoroughly examine the algorithm's performance by applying it to both a 4-city and 5-city graph, simulating the quantum operations using Qiskit, an open-source quantum computing framework. Results from the simulations affirm that the algorithm effectively identifies minimized bottleneck paths. Notably, the thesis also delves into the potential scalability of the algorithm, assessing its applicability to larger graphs and more complex datasets. By analyzing various outcomes, we establish insights into the practical implementation of this quantum algorithm.
+		This thesis presents the development and analysis of a quantum algorithm tailored for solving the decision problem variant of the Bottleneck Travelling Salesman Problem (BTSP). The decision problem asks whether there exists a Hamiltonian cycle such that no edge weight within the cycle is less than a specified value ($\alpha$). We construct two unitary matrices, both of whose eigenvalues are phases corresponding to the total cost associated with the Hamiltonian cycle. One matrix applies after all edge weights $\geq \alpha$ are set to zero. Utilizing quantum phase estimation, we construct an algorithm to evaluate a Hamiltonian cycle of a graph before and after removing edge weights that do not satisfy the condition. If the total cost remains unaffected, we can conclude it is a solution. The proposed quantum algorithm maintains the inherent computational complexity of the classical BTSP, $O((N-1)!)$, yet introduces the potential for parallelization. We thoroughly examine the algorithm's performance by applying it to both a 4-city and 5-city graph, simulating the quantum operations using Qiskit, an open-source quantum computing framework. Results from the simulations affirm that the algorithm effectively identifies minimized bottleneck paths. Notably, the thesis also delves into the potential scalability of the algorithm, assessing its applicability to larger graphs and more complex datasets. By analyzing various outcomes, we establish insights into the practical implementation of this quantum algorithm.
 		
 		
 	\end{abstract}
@@ -132,7 +132,7 @@ In the upcoming chapter, we delve into the complexities of the BTSP. We will exp
 \end{figure}		
 
 We start with a graph, whose vertices are labelled A through D, representing a 4-city system. We define movement from one vertex to another as a walk, done through the edges connecting our vertices. We are interested in a particular walk known as a Hamiltonian cycle that contains every vertex exactly once before returning to the start. The graph also includes edge weights, which we define as $ \gamma_i $.
-The goal of the BTSP is to find a Hamiltonian cycle in a graph where the largest edge weight (bottleneck) is minimized. This is distinct from the Travelling Salesman Problem (TSP) where the total cost of a given cycle is minimized. The total number of Hamiltonian cycles is given by $(N-1)!$, where N is the number of nodes. We present a symmetric case in figure .\ref{fig:4-city-graphic}, which implies:
+The goal of the BTSP is to find a Hamiltonian cycle in a graph where the largest edge weight (bottleneck) is minimized. This is distinct from the Travelling Salesman Problem (TSP) where the total cost of a given cycle is minimized. The total number of Hamiltonian cycles is given by $(N-1)!$, where N is the number of nodes. We present a symmetric case in figure \ref{fig:4-city-graphic}, which implies:
 
  $$N_k \rightarrow N_{k+1} = N_{k+1} \rightarrow N_{k} = \gamma_i$$
  
@@ -496,7 +496,7 @@ Multiple qubit states are created through the tensor product of single states. A
 	
 	Let us walk through the quantum circuit in figure \ref{fig:phasrcircuit}, to understand the inner workings of this algorithm.	 Our initialized state is $|0^{\otimes n} \lambda\rangle$. From here we perform the same operation we find in (1), where all the qubits in the first register are set to a uniform superposition on all states $2^n$. The next portion of the algorithm involves applying controlled gates based on the unitary operator $U$. The function of these $CU$ gates is to apply the operator $U$ on $|\lambda\rangle$ if the control qubit is in the state $|1\rangle$. We can have a look at the effect on the n\textsuperscript{th} qubit, after it has been prepared in a superposition by the Hadamard gate:
 	
-	$$ \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) \otimes |\lambda\rangle = |0 \lambda \rangle + |1 \lambda\rangle$$
+	$$ \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) \otimes |\lambda\rangle =  \frac{1}{\sqrt{2}}(|0 \lambda \rangle + |1 \lambda\rangle)$$
 	
 	Applying $CU$ and factoring out the eigenstate:
 	
@@ -538,7 +538,7 @@ Multiple qubit states are created through the tensor product of single states. A
 	\end{eqnarray*}
 	Simply performing the inverse QFT will give us $|\phi\rangle =  |\phi_1\phi_2 ... \phi_n\rangle$.  We can immediately see the approximation is limited by the number of qubits in the first register. A simple strategy would be to increase the number of qubits; however this would also increase the computational cost as we double our use of $CU$ gates for each additional qubit.
 	
-	It is possible that $\phi$ is not a discrete value that can be exactly represented by $n$ qubits, i.e., $|\phi\rangle \neq |\phi_1\phi_2 ... \phi_n\rangle$. Fortunately, this algorithm still provides a good approximation, with the best outcome occurring with a probability of at least $4/{\pi^2} \approx 40\%$. Should the approximation deviate by more than $2^{-n}$, the probability of measuring this less favorable outcome is at most $25\%$ \cite{Phase-estimation}. This concept is further illustrated in FIG. \ref{fig:phase-precision}
+	It is possible that $\phi$ is not a discrete value that can be exactly represented by $n$ qubits, i.e., $|\phi\rangle \neq |\phi_1\phi_2 ... \phi_n\rangle$. Fortunately, this algorithm still provides a good approximation, with the best outcome occurring with a probability of at least $4/{\pi^2} \approx 40\%$. Should the approximation deviate by more than $2^{-n}$, the probability of measuring this less favorable outcome is at most $25\%$ \cite{Phase-estimation}. This concept is further illustrated in figure \ref{fig:phase-precision}.
 	
 \begin{figure}[ht]
 	\centering
@@ -601,7 +601,7 @@ The decision problem of the BTSP seeks to determine if there exists a Hamiltonia
 		\item Create controlled gates using the unitary operators constructed in Step 2 and 3.\\
 		\item Identify all the eigenstates of the unitary operators that map to the phases associated with the hamiltonian cycles.\\
 		\item Perform phase estimation twice, using the same eigenstate and controlled gates, to evaluate the Hamiltonian cycle both before and after setting edge weights $\geq \alpha$ to zero.\\
-		\item Compare the two resulting phases; if they match, the Hamiltonian cycle under examination satisfies the constraint and is a viable solution.\\
+		\item Compare the two resulting phases; if they match, the Hamiltonian cycle under examination satisfies the condition and is a viable solution.\\
 		
 	\end{enumerate}
 		
@@ -2551,7 +2551,7 @@ The question we need to ask now is how many phase qubits are needed to correctly
 	
  $$P_1 < P_2 = P_3 < P_4$$
  
-We actually simulated a similar case in cycle 7 of our 5-city problem (FIG. \ref{fig:5-city-7-9}), where the least probable result of the top four states indicated the cycle was a solution. If $\delta << 1$, we would have to run our circuit many times over to appropriately measure the non-solution as the most frequent result. Otherwise, we run the risk again of predicting a solution with $P_1$ as it would be very close to $P_4$. A safe bet would be to have a phase resolution at least twice the constraint value. Let's illustrate this again by inconveniently placing the phases we hope to estimate perfectly in between steps:
+We actually simulated a similar case in cycle 7 of our 5-city problem (FIG. \ref{fig:5-city-7-9}), where the least probable result of the top four states indicated the cycle was a solution. If $\delta << 1$, we would have to run our circuit many times over to appropriately measure the non-solution as the most frequent result. Otherwise, we run the risk again of predicting a solution with $P_1$ as it would be very close to $P_4$. A safe bet would be to have a phase resolution at least twice the condition value. Let's illustrate this again by inconveniently placing the phases we hope to estimate perfectly in between steps:
  
  \begin{tikzpicture}
  	\pgfmathsetmacro{\lineLength}{14}
@@ -2592,7 +2592,7 @@ $$P_3: 0.6875, 0.6250$$
 $$P_4: 0.6875, 0.6875$$
 
 
-We can also discuss the number of eigenstate qubits needed. Our method asks us to construct a matrix of size $N^N \times N^N$, where $N$ represents the number of cities. This does result in a unitary matrix however, it cannot be neccesarily represented by an exact number of qubits.We encountered this issue in our 5-city graph, where we introduced ones at the end of the matrix (Eq. \ref{ones}). If $n$ represents the number of qubits we need and $m$ represents the number of cities, we need to solve the equation::
+We can also discuss the number of eigenstate qubits needed. Our method asks us to construct a matrix of size $N^N \times N^N$, where $N$ represents the number of cities. This does result in a unitary matrix however, it cannot be neccesarily represented by an exact number of qubits.We encountered this issue in our 5-city graph, where we introduced ones at the end of the matrix (equation \ref{ones}). If $n$ represents the number of qubits we need and $m$ represents the number of cities, we need to solve the equation:
 
 $$2^n = m^m$$
 $$n = m\mathrm{log}_2(m)$$
