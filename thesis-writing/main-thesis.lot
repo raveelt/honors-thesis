@@ -8,7 +8,7 @@
 \addvspace {10\p@ }
 \contentsline {table}{\numberline {3.1}{\ignorespaces Hamiltonian cycles of the directed 4-city graph with their total cost and diagonal element products (\ref {4-city-tensor}).\relax }}{15}{table.caption.12}%
 \contentsline {table}{\numberline {3.2}{\ignorespaces Eigenstates of matrix $U$ (\ref {4-city-matrix-tensor}), containing the total cost of a Hamiltonian cycle after normalization of the directed 4-city graph.\relax }}{16}{table.caption.13}%
-\contentsline {table}{\numberline {3.3}{\ignorespaces Hamiltonian cycles of the directed 4-city graph with their total cost and diagonal element products (\ref {5-city-tensor}).\relax }}{18}{table.caption.14}%
+\contentsline {table}{\numberline {3.3}{\ignorespaces Hamiltonian cycles of the directed 5-city graph with their total cost and diagonal element products (\ref {5-city-tensor}).\relax }}{18}{table.caption.14}%
 \contentsline {table}{\numberline {3.4}{\ignorespaces Eigenstates of matrix $U$ (\ref {5-city-matrix-tensor}), containing the total cost of a Hamiltonian cycle after normalization of the directed 5-city graph.\relax }}{19}{table.caption.15}%
 \addvspace {10\p@ }
 \contentsline {table}{\numberline {4.1}{\ignorespaces Simulation results for the 4-city graph.\relax }}{27}{table.caption.20}%

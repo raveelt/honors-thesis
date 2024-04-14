@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.28)  11 APR 2024 22:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.28)  14 APR 2024 13:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1253,7 +1253,7 @@ Package pdftex.def Info: graphics/phase_circ.pdf  used on input line 491.
 (pdftex.def)             Requested size: 361.69289pt x 169.38188pt.
  [7 <./graphics/phase_circ.pdf>]
 [8]
-<phase-lecture/18_Phase-estimation-lecture-slides.pdf, id=350, 455.24078pt x 25
+<phase-lecture/18_Phase-estimation-lecture-slides.pdf, id=351, 455.24078pt x 25
 6.07669pt>
 File: phase-lecture/18_Phase-estimation-lecture-slides.pdf Graphic file (type p
 df)
@@ -1261,7 +1261,7 @@ df)
 Package pdftex.def Info: phase-lecture/18_Phase-estimation-lecture-slides.pdf  
 used on input line 548.
 (pdftex.def)             Requested size: 233.48674pt x 128.0374pt.
-<phase-lecture/27_Phase-estimation-lecture-slides.pdf, id=352, 455.24078pt x 25
+<phase-lecture/27_Phase-estimation-lecture-slides.pdf, id=353, 455.24078pt x 25
 6.07669pt>
 File: phase-lecture/27_Phase-estimation-lecture-slides.pdf Graphic file (type p
 df)
@@ -1269,7 +1269,7 @@ df)
 Package pdftex.def Info: phase-lecture/27_Phase-estimation-lecture-slides.pdf  
 used on input line 558.
 (pdftex.def)             Requested size: 273.77083pt x 128.0374pt.
-<phase-lecture/28_Phase-estimation-lecture-slides.pdf, id=354, 455.24078pt x 25
+<phase-lecture/28_Phase-estimation-lecture-slides.pdf, id=355, 455.24078pt x 25
 6.07669pt>
 File: phase-lecture/28_Phase-estimation-lecture-slides.pdf Graphic file (type p
 df)
@@ -1277,7 +1277,7 @@ df)
 Package pdftex.def Info: phase-lecture/28_Phase-estimation-lecture-slides.pdf  
 used on input line 567.
 (pdftex.def)             Requested size: 317.92815pt x 128.0374pt.
-<phase-lecture/29_Phase-estimation-lecture-slides.pdf, id=356, 455.24078pt x 25
+<phase-lecture/29_Phase-estimation-lecture-slides.pdf, id=357, 455.24078pt x 25
 6.07669pt>
 File: phase-lecture/29_Phase-estimation-lecture-slides.pdf Graphic file (type p
 df)
@@ -1329,32 +1329,32 @@ Underfull \hbox (badness 10000) in paragraph at lines 604--605
 
 ]
 LaTeX Font Info:    Trying to load font information for U+dsrom on input line 6
-60.
+63.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/doublestroke/Udsrom.fd
 File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
 )
 [12] [13] [14]
 
-LaTeX Font Warning: Command \Large invalid in math mode on input line 810.
+LaTeX Font Warning: Command \Large invalid in math mode on input line 813.
 
 
-LaTeX Font Warning: Command \Large invalid in math mode on input line 817.
+LaTeX Font Warning: Command \Large invalid in math mode on input line 820.
 
 
-LaTeX Font Warning: Command \Large invalid in math mode on input line 817.
+LaTeX Font Warning: Command \Large invalid in math mode on input line 820.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [15] [16]
 
-LaTeX Font Warning: Command \Large invalid in math mode on input line 992.
+LaTeX Font Warning: Command \Large invalid in math mode on input line 995.
 
 
-LaTeX Font Warning: Command \Large invalid in math mode on input line 999.
+LaTeX Font Warning: Command \Large invalid in math mode on input line 1002.
 
 
-Overfull \hbox (14.71075pt too wide) in paragraph at lines 1015--1045
+Overfull \hbox (14.71075pt too wide) in paragraph at lines 1018--1048
  [][] 
  []
 
@@ -1369,37 +1369,37 @@ Chapter 4.
 [20
 
 ] [21]
-<graphics/4-city-1-cycle-constrained-barrier.pdf, id=640, 1695.28217pt x 990.98
+<graphics/4-city-1-cycle-constrained-barrier.pdf, id=641, 1695.28217pt x 990.98
 227pt>
 File: graphics/4-city-1-cycle-constrained-barrier.pdf Graphic file (type pdf)
 <use graphics/4-city-1-cycle-constrained-barrier.pdf>
 Package pdftex.def Info: graphics/4-city-1-cycle-constrained-barrier.pdf  used 
-on input line 1368.
+on input line 1371.
 (pdftex.def)             Requested size: 452.1144pt x 261.03273pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<graphics/3qubit-4city.pdf, id=642, 722.7pt x 1084.05pt>
+<graphics/3qubit-4city.pdf, id=643, 722.7pt x 1084.05pt>
 File: graphics/3qubit-4city.pdf Graphic file (type pdf)
 <use graphics/3qubit-4city.pdf>
-Package pdftex.def Info: graphics/3qubit-4city.pdf  used on input line 1376.
+Package pdftex.def Info: graphics/3qubit-4city.pdf  used on input line 1379.
 (pdftex.def)             Requested size: 391.63062pt x 587.44595pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<graphics/4qubit-4city.pdf, id=643, 722.7pt x 1084.05pt>
+<graphics/4qubit-4city.pdf, id=644, 722.7pt x 1084.05pt>
 File: graphics/4qubit-4city.pdf Graphic file (type pdf)
 <use graphics/4qubit-4city.pdf>
-Package pdftex.def Info: graphics/4qubit-4city.pdf  used on input line 1383.
+Package pdftex.def Info: graphics/4qubit-4city.pdf  used on input line 1386.
 (pdftex.def)             Requested size: 391.63062pt x 587.44595pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<graphics/5qubit-4city.pdf, id=644, 722.7pt x 1228.59pt>
+<graphics/5qubit-4city.pdf, id=645, 722.7pt x 1228.59pt>
 File: graphics/5qubit-4city.pdf Graphic file (type pdf)
 <use graphics/5qubit-4city.pdf>
-Package pdftex.def Info: graphics/5qubit-4city.pdf  used on input line 1390.
+Package pdftex.def Info: graphics/5qubit-4city.pdf  used on input line 1393.
 (pdftex.def)             Requested size: 345.54669pt x 587.4294pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -1410,50 +1410,43 @@ ty.pdf>] [27] [28
 
 ] [29] [30
 
-] [31]
-Overfull \hbox (1.67245pt too wide) in paragraph at lines 2379--2380
-\OT1/cmr/m/n/10.95 Figure [][]4.1[][] il-lus-trates the cir-cuit for our first 
-Hamil-to-nian cy-cle ini-tial-ized in the eigenstate$\OMS/cmsy/m/n/10.95 j\OT1/
-cmr/m/n/10.95 970\OMS/cmsy/m/n/10.95 i \OT1/cmr/m/n/10.95 =
- []
-
-[32]
-<graphics/5-city-1-cycle-constrained-barrier.pdf, id=844, 1708.31143pt x 1232.6
+] [31] [32]
+<graphics/5-city-1-cycle-constrained-barrier.pdf, id=845, 1708.31143pt x 1232.6
 8526pt>
 File: graphics/5-city-1-cycle-constrained-barrier.pdf Graphic file (type pdf)
 <use graphics/5-city-1-cycle-constrained-barrier.pdf>
 Package pdftex.def Info: graphics/5-city-1-cycle-constrained-barrier.pdf  used 
-on input line 2383.
+on input line 2386.
 (pdftex.def)             Requested size: 452.1144pt x 342.74644pt.
-<graphics/1-3-5city.pdf, id=847, 1183.05992pt x 1605.7346pt>
+<graphics/1-3-5city.pdf, id=848, 1183.05992pt x 1605.7346pt>
 File: graphics/1-3-5city.pdf Graphic file (type pdf)
 <use graphics/1-3-5city.pdf>
-Package pdftex.def Info: graphics/1-3-5city.pdf  used on input line 2393.
+Package pdftex.def Info: graphics/1-3-5city.pdf  used on input line 2396.
 (pdftex.def)             Requested size: 432.79712pt x 587.4236pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<graphics/4-6-5city.pdf, id=848, 1183.05992pt x 1605.64969pt>
+<graphics/4-6-5city.pdf, id=849, 1183.05992pt x 1605.64969pt>
 File: graphics/4-6-5city.pdf Graphic file (type pdf)
 <use graphics/4-6-5city.pdf>
-Package pdftex.def Info: graphics/4-6-5city.pdf  used on input line 2400.
+Package pdftex.def Info: graphics/4-6-5city.pdf  used on input line 2403.
 (pdftex.def)             Requested size: 432.81517pt x 587.41704pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<graphics/7-9-5city.pdf, id=849, 1183.05992pt x 1605.64969pt>
+<graphics/7-9-5city.pdf, id=850, 1183.05992pt x 1605.64969pt>
 File: graphics/7-9-5city.pdf Graphic file (type pdf)
 <use graphics/7-9-5city.pdf>
-Package pdftex.def Info: graphics/7-9-5city.pdf  used on input line 2407.
+Package pdftex.def Info: graphics/7-9-5city.pdf  used on input line 2410.
 (pdftex.def)             Requested size: 432.81517pt x 587.41704pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<graphics/10-12-5city.pdf, id=850, 1183.05992pt x 1602.11194pt>
+<graphics/10-12-5city.pdf, id=851, 1183.05992pt x 1602.11194pt>
 File: graphics/10-12-5city.pdf Graphic file (type pdf)
 <use graphics/10-12-5city.pdf>
-Package pdftex.def Info: graphics/10-12-5city.pdf  used on input line 2414.
+Package pdftex.def Info: graphics/10-12-5city.pdf  used on input line 2417.
 (pdftex.def)             Requested size: 433.78998pt x 587.44287pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -1482,24 +1475,24 @@ Chapter 5.
 
 ]
 Appendix A.
-<hamiltonian_cycles.pdf, id=1088, 614.295pt x 794.97pt>
+<hamiltonian_cycles.pdf, id=1090, 614.295pt x 794.97pt>
 File: hamiltonian_cycles.pdf Graphic file (type pdf)
 <use hamiltonian_cycles.pdf>
-Package pdftex.def Info: hamiltonian_cycles.pdf  used on input line 2613.
+Package pdftex.def Info: hamiltonian_cycles.pdf  used on input line 2615.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
 File: hamiltonian_cycles.pdf Graphic file (type pdf)
 <use hamiltonian_cycles.pdf>
-Package pdftex.def Info: hamiltonian_cycles.pdf  used on input line 2613.
+Package pdftex.def Info: hamiltonian_cycles.pdf  used on input line 2615.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
-<hamiltonian_cycles.pdf, id=1091, page=1, 614.295pt x 794.97pt>
+<hamiltonian_cycles.pdf, id=1093, page=1, 614.295pt x 794.97pt>
 File: hamiltonian_cycles.pdf Graphic file (type pdf)
 <use hamiltonian_cycles.pdf, page 1>
-Package pdftex.def Info: hamiltonian_cycles.pdf , page1 used on input line 2613
+Package pdftex.def Info: hamiltonian_cycles.pdf , page1 used on input line 2615
 .
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
 File: hamiltonian_cycles.pdf Graphic file (type pdf)
 <use hamiltonian_cycles.pdf, page 1>
-Package pdftex.def Info: hamiltonian_cycles.pdf , page1 used on input line 2613
+Package pdftex.def Info: hamiltonian_cycles.pdf , page1 used on input line 2615
 .
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 [43
@@ -1508,74 +1501,74 @@ Package pdftex.def Info: hamiltonian_cycles.pdf , page1 used on input line 2613
 ]
 File: hamiltonian_cycles.pdf Graphic file (type pdf)
 <use hamiltonian_cycles.pdf, page 1>
-Package pdftex.def Info: hamiltonian_cycles.pdf , page1 used on input line 2613
+Package pdftex.def Info: hamiltonian_cycles.pdf , page1 used on input line 2615
 .
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 File: hamiltonian_cycles.pdf Graphic file (type pdf)
 <use hamiltonian_cycles.pdf, page 1>
-Package pdftex.def Info: hamiltonian_cycles.pdf , page1 used on input line 2613
+Package pdftex.def Info: hamiltonian_cycles.pdf , page1 used on input line 2615
 .
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 File: hamiltonian_cycles.pdf Graphic file (type pdf)
 <use hamiltonian_cycles.pdf, page 1>
-Package pdftex.def Info: hamiltonian_cycles.pdf , page1 used on input line 2613
+Package pdftex.def Info: hamiltonian_cycles.pdf , page1 used on input line 2615
 .
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
  [44 <./hamiltonian_cycles.pdf>]
-<hamiltonian_cycles.pdf, id=1117, page=2, 614.295pt x 794.97pt>
+<hamiltonian_cycles.pdf, id=1119, page=2, 614.295pt x 794.97pt>
 File: hamiltonian_cycles.pdf Graphic file (type pdf)
 <use hamiltonian_cycles.pdf, page 2>
-Package pdftex.def Info: hamiltonian_cycles.pdf , page2 used on input line 2613
+Package pdftex.def Info: hamiltonian_cycles.pdf , page2 used on input line 2615
 .
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 File: hamiltonian_cycles.pdf Graphic file (type pdf)
 <use hamiltonian_cycles.pdf, page 2>
-Package pdftex.def Info: hamiltonian_cycles.pdf , page2 used on input line 2613
+Package pdftex.def Info: hamiltonian_cycles.pdf , page2 used on input line 2615
 .
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 File: hamiltonian_cycles.pdf Graphic file (type pdf)
 <use hamiltonian_cycles.pdf, page 2>
-Package pdftex.def Info: hamiltonian_cycles.pdf , page2 used on input line 2613
+Package pdftex.def Info: hamiltonian_cycles.pdf , page2 used on input line 2615
 .
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
  [45 <./hamiltonian_cycles.pdf>]
-<hamiltonian_cycles.pdf, id=1122, page=3, 614.295pt x 794.97pt>
+<hamiltonian_cycles.pdf, id=1124, page=3, 614.295pt x 794.97pt>
 File: hamiltonian_cycles.pdf Graphic file (type pdf)
 <use hamiltonian_cycles.pdf, page 3>
-Package pdftex.def Info: hamiltonian_cycles.pdf , page3 used on input line 2613
+Package pdftex.def Info: hamiltonian_cycles.pdf , page3 used on input line 2615
 .
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 File: hamiltonian_cycles.pdf Graphic file (type pdf)
 <use hamiltonian_cycles.pdf, page 3>
-Package pdftex.def Info: hamiltonian_cycles.pdf , page3 used on input line 2613
+Package pdftex.def Info: hamiltonian_cycles.pdf , page3 used on input line 2615
 .
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 File: hamiltonian_cycles.pdf Graphic file (type pdf)
 <use hamiltonian_cycles.pdf, page 3>
-Package pdftex.def Info: hamiltonian_cycles.pdf , page3 used on input line 2613
+Package pdftex.def Info: hamiltonian_cycles.pdf , page3 used on input line 2615
 .
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
  [46 <./hamiltonian_cycles.pdf>]
 Appendix B.
-<4-city-code/4-city-code.pdf, id=1129, 614.295pt x 794.97pt>
+<4-city-code/4-city-code.pdf, id=1131, 614.295pt x 794.97pt>
 File: 4-city-code/4-city-code.pdf Graphic file (type pdf)
 <use 4-city-code/4-city-code.pdf>
-Package pdftex.def Info: 4-city-code/4-city-code.pdf  used on input line 2618.
+Package pdftex.def Info: 4-city-code/4-city-code.pdf  used on input line 2620.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
 File: 4-city-code/4-city-code.pdf Graphic file (type pdf)
 <use 4-city-code/4-city-code.pdf>
-Package pdftex.def Info: 4-city-code/4-city-code.pdf  used on input line 2618.
+Package pdftex.def Info: 4-city-code/4-city-code.pdf  used on input line 2620.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
-<4-city-code/4-city-code.pdf, id=1132, page=1, 614.295pt x 794.97pt>
+<4-city-code/4-city-code.pdf, id=1134, page=1, 614.295pt x 794.97pt>
 File: 4-city-code/4-city-code.pdf Graphic file (type pdf)
 <use 4-city-code/4-city-code.pdf, page 1>
 Package pdftex.def Info: 4-city-code/4-city-code.pdf , page1 used on input line
- 2618.
+ 2620.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
 File: 4-city-code/4-city-code.pdf Graphic file (type pdf)
 <use 4-city-code/4-city-code.pdf, page 1>
 Package pdftex.def Info: 4-city-code/4-city-code.pdf , page1 used on input line
- 2618.
+ 2620.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 [47
 
@@ -1583,139 +1576,139 @@ Package pdftex.def Info: 4-city-code/4-city-code.pdf , page1 used on input line
 File: 4-city-code/4-city-code.pdf Graphic file (type pdf)
 <use 4-city-code/4-city-code.pdf, page 1>
 Package pdftex.def Info: 4-city-code/4-city-code.pdf , page1 used on input line
- 2618.
+ 2620.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 File: 4-city-code/4-city-code.pdf Graphic file (type pdf)
 <use 4-city-code/4-city-code.pdf, page 1>
 Package pdftex.def Info: 4-city-code/4-city-code.pdf , page1 used on input line
- 2618.
+ 2620.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 File: 4-city-code/4-city-code.pdf Graphic file (type pdf)
 <use 4-city-code/4-city-code.pdf, page 1>
 Package pdftex.def Info: 4-city-code/4-city-code.pdf , page1 used on input line
- 2618.
+ 2620.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
  [48 <./4-city-code/4-city-code.pdf>]
-<4-city-code/4-city-code.pdf, id=1151, page=2, 614.295pt x 794.97pt>
+<4-city-code/4-city-code.pdf, id=1153, page=2, 614.295pt x 794.97pt>
 File: 4-city-code/4-city-code.pdf Graphic file (type pdf)
 <use 4-city-code/4-city-code.pdf, page 2>
 Package pdftex.def Info: 4-city-code/4-city-code.pdf , page2 used on input line
- 2618.
+ 2620.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 File: 4-city-code/4-city-code.pdf Graphic file (type pdf)
 <use 4-city-code/4-city-code.pdf, page 2>
 Package pdftex.def Info: 4-city-code/4-city-code.pdf , page2 used on input line
- 2618.
+ 2620.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 File: 4-city-code/4-city-code.pdf Graphic file (type pdf)
 <use 4-city-code/4-city-code.pdf, page 2>
 Package pdftex.def Info: 4-city-code/4-city-code.pdf , page2 used on input line
- 2618.
+ 2620.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
  [49 <./4-city-code/4-city-code.pdf>]
-<4-city-code/4-city-code.pdf, id=1160, page=3, 614.295pt x 794.97pt>
+<4-city-code/4-city-code.pdf, id=1162, page=3, 614.295pt x 794.97pt>
 File: 4-city-code/4-city-code.pdf Graphic file (type pdf)
 <use 4-city-code/4-city-code.pdf, page 3>
 Package pdftex.def Info: 4-city-code/4-city-code.pdf , page3 used on input line
- 2618.
+ 2620.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 File: 4-city-code/4-city-code.pdf Graphic file (type pdf)
 <use 4-city-code/4-city-code.pdf, page 3>
 Package pdftex.def Info: 4-city-code/4-city-code.pdf , page3 used on input line
- 2618.
+ 2620.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 File: 4-city-code/4-city-code.pdf Graphic file (type pdf)
 <use 4-city-code/4-city-code.pdf, page 3>
 Package pdftex.def Info: 4-city-code/4-city-code.pdf , page3 used on input line
- 2618.
+ 2620.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 
 [50 <./4-city-code/4-city-code.pdf>]
-<4-city-code/4-city-code.pdf, id=1169, page=4, 614.295pt x 794.97pt>
+<4-city-code/4-city-code.pdf, id=1171, page=4, 614.295pt x 794.97pt>
 File: 4-city-code/4-city-code.pdf Graphic file (type pdf)
 <use 4-city-code/4-city-code.pdf, page 4>
 Package pdftex.def Info: 4-city-code/4-city-code.pdf , page4 used on input line
- 2618.
+ 2620.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 File: 4-city-code/4-city-code.pdf Graphic file (type pdf)
 <use 4-city-code/4-city-code.pdf, page 4>
 Package pdftex.def Info: 4-city-code/4-city-code.pdf , page4 used on input line
- 2618.
+ 2620.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 File: 4-city-code/4-city-code.pdf Graphic file (type pdf)
 <use 4-city-code/4-city-code.pdf, page 4>
 Package pdftex.def Info: 4-city-code/4-city-code.pdf , page4 used on input line
- 2618.
+ 2620.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
  [51 <./4-city-code/4-city-code.pdf>]
-<4-city-code/4-city-code.pdf, id=1174, page=5, 614.295pt x 794.97pt>
+<4-city-code/4-city-code.pdf, id=1176, page=5, 614.295pt x 794.97pt>
 File: 4-city-code/4-city-code.pdf Graphic file (type pdf)
 <use 4-city-code/4-city-code.pdf, page 5>
 Package pdftex.def Info: 4-city-code/4-city-code.pdf , page5 used on input line
- 2618.
+ 2620.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 File: 4-city-code/4-city-code.pdf Graphic file (type pdf)
 <use 4-city-code/4-city-code.pdf, page 5>
 Package pdftex.def Info: 4-city-code/4-city-code.pdf , page5 used on input line
- 2618.
+ 2620.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 File: 4-city-code/4-city-code.pdf Graphic file (type pdf)
 <use 4-city-code/4-city-code.pdf, page 5>
 Package pdftex.def Info: 4-city-code/4-city-code.pdf , page5 used on input line
- 2618.
+ 2620.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 
 [52 <./4-city-code/4-city-code.pdf>]
-<4-city-code/4-city-code.pdf, id=1182, page=6, 614.295pt x 794.97pt>
+<4-city-code/4-city-code.pdf, id=1184, page=6, 614.295pt x 794.97pt>
 File: 4-city-code/4-city-code.pdf Graphic file (type pdf)
 <use 4-city-code/4-city-code.pdf, page 6>
 Package pdftex.def Info: 4-city-code/4-city-code.pdf , page6 used on input line
- 2618.
+ 2620.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 File: 4-city-code/4-city-code.pdf Graphic file (type pdf)
 <use 4-city-code/4-city-code.pdf, page 6>
 Package pdftex.def Info: 4-city-code/4-city-code.pdf , page6 used on input line
- 2618.
+ 2620.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 File: 4-city-code/4-city-code.pdf Graphic file (type pdf)
 <use 4-city-code/4-city-code.pdf, page 6>
 Package pdftex.def Info: 4-city-code/4-city-code.pdf , page6 used on input line
- 2618.
+ 2620.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
  [53 <./4-city-code/4-city-code.pdf>]
-<4-city-code/4-city-code.pdf, id=1191, page=7, 614.295pt x 794.97pt>
+<4-city-code/4-city-code.pdf, id=1193, page=7, 614.295pt x 794.97pt>
 File: 4-city-code/4-city-code.pdf Graphic file (type pdf)
 <use 4-city-code/4-city-code.pdf, page 7>
 Package pdftex.def Info: 4-city-code/4-city-code.pdf , page7 used on input line
- 2618.
+ 2620.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 File: 4-city-code/4-city-code.pdf Graphic file (type pdf)
 <use 4-city-code/4-city-code.pdf, page 7>
 Package pdftex.def Info: 4-city-code/4-city-code.pdf , page7 used on input line
- 2618.
+ 2620.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 File: 4-city-code/4-city-code.pdf Graphic file (type pdf)
 <use 4-city-code/4-city-code.pdf, page 7>
 Package pdftex.def Info: 4-city-code/4-city-code.pdf , page7 used on input line
- 2618.
+ 2620.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 
 [54 <./4-city-code/4-city-code.pdf>]
-<4-city-code/4-city-code.pdf, id=1212, page=8, 614.295pt x 794.97pt>
+<4-city-code/4-city-code.pdf, id=1214, page=8, 614.295pt x 794.97pt>
 File: 4-city-code/4-city-code.pdf Graphic file (type pdf)
 <use 4-city-code/4-city-code.pdf, page 8>
 Package pdftex.def Info: 4-city-code/4-city-code.pdf , page8 used on input line
- 2618.
+ 2620.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 File: 4-city-code/4-city-code.pdf Graphic file (type pdf)
 <use 4-city-code/4-city-code.pdf, page 8>
 Package pdftex.def Info: 4-city-code/4-city-code.pdf , page8 used on input line
- 2618.
+ 2620.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 File: 4-city-code/4-city-code.pdf Graphic file (type pdf)
 <use 4-city-code/4-city-code.pdf, page 8>
 Package pdftex.def Info: 4-city-code/4-city-code.pdf , page8 used on input line
- 2618.
+ 2620.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
  [55 <./4-city-code/4-city-code.pdf>]
 (./main-thesis.aux)
@@ -1724,7 +1717,7 @@ Package rerunfilecheck Info: File `main-thesis.out' has not changed.
  ) 
 Here is how much of TeX's memory you used:
  33558 strings out of 476025
- 680783 string characters out of 5790016
+ 680779 string characters out of 5790016
  1910388 words of memory out of 5000000
  53261 multiletter control sequences out of 15000+600000
  529578 words of font info for 98 fonts, out of 8000000 for 9000
@@ -1762,10 +1755,10 @@ cal/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></us
 r/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfit1000.pfb></usr/
 local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/lo
 cal/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb>
-Output written on main-thesis.pdf (63 pages, 1919092 bytes).
+Output written on main-thesis.pdf (63 pages, 1919216 bytes).
 PDF statistics:
- 1358 PDF objects out of 1440 (max. 8388607)
- 875 compressed objects within 9 object streams
+ 1360 PDF objects out of 1440 (max. 8388607)
+ 877 compressed objects within 9 object streams
  149 named destinations out of 1000 (max. 500000)
  453 words of extra memory for PDF output out of 10000 (max. 10000000)
 

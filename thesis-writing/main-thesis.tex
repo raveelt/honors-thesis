@@ -105,7 +105,7 @@ linkcolor=blue]{hyperref}
 	\chapter{Acknowledgements} 
 	
 	
-I want to express my gratitude to Prof. Matthew Choptuik for not only his supervision but also for the encouragement and support to pursue a topic that truly captivates my interest. I would like to thank Erin Bennett and Jason Li, my fellow physics undergraduates, for helping me get through school. I would also like to thank Stefan Grahovac for keeping me motivated and cheering me on throughout my degree. Finally, I would like to thank my parents for their support and my sister, Mehak Tejani, for encouraging me to pursue physics.
+I want to express my gratitude to Prof. Matthew Choptuik for not only his supervision but also for the encouragement and support to pursue a topic that truly captivates my interest. I would like to thank Erin Bennett and Jason Li, my fellow physics undergraduates, for helping me get through school. I would also like to thank Stefan Grahovac for keeping me motivated and cheering me on throughout my degree. Finally, I would like to thank my family for their support and my sister, Mehak Tejani, for encouraging me to pursue physics.
 	
 	
 	\mainmatter
@@ -114,7 +114,7 @@ I want to express my gratitude to Prof. Matthew Choptuik for not only his superv
 
 	
 	
-Continuous advancements in quantum computing have enabledcontemporary approaches to solve complex computational problems that were previously considered intractable using classical methods. Well known examples include Shor's \cite{Shor} and Grover's \cite{grover1996fast} algorithms for factoring and unstructured search, respectively. The Bottleneck Traveling Salesman Problem (BTSP) serves as a challenging optimization problem in the field of logistics and operations research, with practical applications ranging from optimizing vehicle routes, to circuit design. Thus, finding an efficient solution is highly sought after. However, the BTSP is classified as an NP-hard problem, indicating it is at least as difficult as the hardest problems in the NP class. For reference, an NP problem must satisfy two conditions: it has no known solution in polynomial time, yet its solution can be verified in polynomial time. An NP-hard problem does not need to satisfy the verification condition. To address this problem, many heuristic approaches are explored \cite{heuristicthesis}\cite{heuristic}. However, inherent to such methods is a trade-off between precision and efficiency.
+Continuous advancements in quantum computing have enabled contemporary approaches to solve complex computational problems that were previously considered intractable using classical methods. Well known examples include Shor's \cite{Shor} and Grover's \cite{grover1996fast} algorithms for factoring and unstructured search, respectively. The Bottleneck Traveling Salesman Problem (BTSP) serves as a challenging optimization problem in the field of logistics and operations research, with practical applications ranging from optimizing vehicle routes, to circuit design. Thus, finding an efficient solution is highly sought after. However, the BTSP is classified as an NP-hard problem, indicating it is at least as difficult as the hardest problems in the NP class. For reference, an NP problem must satisfy two conditions: it has no known solution in polynomial time, yet its solution can be verified in polynomial time. An NP-hard problem does not need to satisfy the verification condition. To address this problem, many heuristic approaches are explored \cite{heuristicthesis}\cite{heuristic}. However, inherent to such methods is a trade-off between precision and efficiency.
 
 In this work, we explore the intersection of quantum computing and optimization by introducing a quantum algorithm tailored for the BTSP. It requires finding a closed tour through a set of cities while minimizing the largest cost, the "bottleneck", along any route. Its computational complexity grows exponentially with the number of cities, rendering classical solutions impractical for large-scale instances. Our approach is to capitalize on the inherent quantum parallelism, as well as the unique feature of phase encoding in quantum computing. By exploiting these phenomena, we aim to encode and manipulate the costs associated with various routes efficiently. 
 
@@ -132,7 +132,7 @@ In the upcoming chapter, we delve into the complexities of the BTSP. We will exp
 \end{figure}		
 
 We start with a graph, whose vertices are labelled A through D, representing a 4-city system. We define movement from one vertex to another as a walk, done through the edges connecting our vertices. We are interested in a particular walk known as a Hamiltonian cycle that contains every vertex exactly once before returning to the start. The graph also includes edge weights, which we define as $ \gamma_i $.
-The goal of the BTSP is to find a Hamiltonian cycle in a graph where the largest edge weight (bottleneck) is minimized. This is distinct from the Travelling Salesman Problem (TSP) where the total cost of a given cycle is minimized. The total number of Hamiltonian cycles is given by $(N-1)!$, where N is the number of nodes. We present a symmetric case in figure \ref{fig:4-city-graphic}, which implies:
+The goal of the BTSP is to find a Hamiltonian cycle in a graph where the largest edge weight (bottleneck) is minimized. This is distinct from the Travelling Salesman Problem (TSP) where the total cost of a given cycle is minimized. The total number of Hamiltonian cycles is given by $(N-1)!$, where N is the number of nodes. We present a symmetric case in Fig. \ref{fig:4-city-graphic}, which implies:
 
  $$N_k \rightarrow N_{k+1} = N_{k+1} \rightarrow N_{k} = \gamma_i$$
  
@@ -177,7 +177,7 @@ The computational complexity of the BTSP is known to be NP-hard, which implies t
 
 		\item 	Determinism: Classical computing is deterministic, meaning the output of a computation is predictable if you know the input and the algorithm. Quantum computing, however, is probabilistic; only after measurement do we achieve a deterministic reading. This means that quantum algorithms can produce different outcomes with each run with respect to their probabilities.
 		
-		\item Operations: Classical computers perform operations using logical gates (\texttt{AND}, \texttt{OR}, \texttt{NOT}), whereas quantum computers use unitary operators to define quantum logic gates. Unitary operators satisfy the condition $U^{\dagger}U = \mathbb{I}$, implying that all quantum operations are reversible, which is not generally the case in classical computation.
+		\item Operations: Classical computers perform operations using logical gates (\texttt{AND}, \texttt{OR}, \texttt{NOT}), whereas quantum computers use unitary operators to define quantum logic gates. Unitary operators satisfy the condition: $U^{\dagger}U = \mathbb{I}$, implying that all quantum operations are reversible, which is not generally the case in classical computation.
 		
 	\end{enumerate}
 	
@@ -458,7 +458,7 @@ Multiple qubit states are created through the tensor product of single states. A
 	
 	$$|x\rangle = |x_1x_2 ... x_n\rangle =  |x_1\rangle \otimes |x_2\rangle \otimes ... \otimes |x_n\rangle$$
 	
-	\begin{eqnarray}
+	\begin{eqnarray}\label{phase-equation}
 		F_N |x \rangle = \frac{1}{\sqrt{2^n}} \bigotimes_{j=1}^n (|0\rangle +  e^{2\pi i x  2^{-j}} |1\rangle)
 	\end{eqnarray}
 	
@@ -494,7 +494,7 @@ Multiple qubit states are created through the tensor product of single states. A
 	\end{figure}
 	
 	
-	Let us walk through the quantum circuit in figure \ref{fig:phasrcircuit}, to understand the inner workings of this algorithm.	 Our initialized state is $|0^{\otimes n} \lambda\rangle$. From here we perform the same operation we find in (1), where all the qubits in the first register are set to a uniform superposition on all states $2^n$. The next portion of the algorithm involves applying controlled gates based on the unitary operator $U$. The function of these $CU$ gates is to apply the operator $U$ on $|\lambda\rangle$ if the control qubit is in the state $|1\rangle$. We can have a look at the effect on the n\textsuperscript{th} qubit, after it has been prepared in a superposition by the Hadamard gate:
+	Let us walk through the quantum circuit in Fig. \ref{fig:phasrcircuit}, to understand the inner workings of this algorithm.	 Our initialized state is $|0^{\otimes n} \lambda\rangle$. From here we perform the same operation we find in (1), where all the qubits in the first register are set to a uniform superposition on all states $2^n$. The next portion of the algorithm involves applying controlled gates based on the unitary operator $U$. The function of these $CU$ gates is to apply the operator $U$ on $|\lambda\rangle$ if the control qubit is in the state $|1\rangle$. We can have a look at the effect on the n\textsuperscript{th} qubit, after it has been prepared in a superposition by the Hadamard gate:
 	
 	$$ \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) \otimes |\lambda\rangle =  \frac{1}{\sqrt{2}}(|0 \lambda \rangle + |1 \lambda\rangle)$$
 	
@@ -528,7 +528,7 @@ Multiple qubit states are created through the tensor product of single states. A
 		\text{qubit\textsubscript{1}} &:&   |0 \rangle + e^{2\pi i (0.\phi_n)}|1 \rangle
 	\end{eqnarray*}
 	
-	If we look at the form of the first register after all the $CU$ operations in the state $|\alpha\rangle$, it will resemble the result of performing the QFT we saw in equation 5. Here, our $\omega_j$ are:
+	 After all the $CU$ operations, we look at the form of the first register in the state $|\alpha\rangle$ and it will resemble the result of performing the QFT we saw in Equation \eqref{phase-equation}. Here, our $\omega_j$ are:
 	
 	\begin{eqnarray*}
 		\omega_1 &=& e^{2\pi i x 2^{-1}} =  e^{2\pi i (0.\phi_n)}\\
@@ -538,7 +538,7 @@ Multiple qubit states are created through the tensor product of single states. A
 	\end{eqnarray*}
 	Simply performing the inverse QFT will give us $|\phi\rangle =  |\phi_1\phi_2 ... \phi_n\rangle$.  We can immediately see the approximation is limited by the number of qubits in the first register. A simple strategy would be to increase the number of qubits; however this would also increase the computational cost as we double our use of $CU$ gates for each additional qubit.
 	
-	It is possible that $\phi$ is not a discrete value that can be exactly represented by $n$ qubits, i.e., $|\phi\rangle \neq |\phi_1\phi_2 ... \phi_n\rangle$. Fortunately, this algorithm still provides a good approximation, with the best outcome occurring with a probability of at least $4/{\pi^2} \approx 40\%$. Should the approximation deviate by more than $2^{-n}$, the probability of measuring this less favorable outcome is at most $25\%$ \cite{Phase-estimation}. This concept is further illustrated in figure \ref{fig:phase-precision}.
+	It is possible that $\phi$ is not a discrete value that can be exactly represented by $n$ qubits, i.e., $|\phi\rangle \neq |\phi_1\phi_2 ... \phi_n\rangle$. Fortunately, this algorithm still provides a good approximation, with the best outcome occurring with a probability of at least $4/{\pi^2} \approx 40\%$. Should the approximation deviate by more than $2^{-n}$, the probability of measuring this less favorable outcome is at most $25\%$ \cite{Phase-estimation}. This concept is further illustrated in Fig. \ref{fig:phase-precision}.
 	
 \begin{figure}[ht]
 	\centering
@@ -596,10 +596,10 @@ The decision problem of the BTSP seeks to determine if there exists a Hamiltonia
 	We will construct the algorithm in the following steps:
 	\begin{enumerate}
 		\item Normalize edge weights to ensure that no single Hamiltonian cycle's total weight is greater than or equal to 1, allowing for effective use of the phase estimation algorithm.\\
-		\item Construct a unitary operator that encodes information about the Hamiltonian cycles, representing these as phases along its diagonal. Our approach aligns with the findings presented by Ramakrishnan, Sharma, and Punnen: \cite{srinivasan2018efficient}\\
+		\item Construct a unitary operator that encodes information about the Hamiltonian cycles, representing these as phases along its diagonal. Our approach aligns with the findings presented by Ramakrishnan, Sharma, and Punnen \cite{srinivasan2018efficient}.\\
 		\item Set all edge weights $\geq \alpha$ to zero and construct a secondary unitary operator similar to the one described in Step 2.\\
 		\item Create controlled gates using the unitary operators constructed in Step 2 and 3.\\
-		\item Identify all the eigenstates of the unitary operators that map to the phases associated with the hamiltonian cycles.\\
+		\item Identify all the eigenstates of the unitary operators that map to the phases associated with the Hamiltonian cycles.\\
 		\item Perform phase estimation twice, using the same eigenstate and controlled gates, to evaluate the Hamiltonian cycle both before and after setting edge weights $\geq \alpha$ to zero.\\
 		\item Compare the two resulting phases; if they match, the Hamiltonian cycle under examination satisfies the condition and is a viable solution.\\
 		
@@ -633,7 +633,10 @@ S = \sum_{i=1}^{N} w'_i
   	\tilde{w} = (S + \epsilon)^{-1}w
 \end{equation}
 
-		Where $\epsilon > 0$. The purpose of $\epsilon$ is to ensure that if any normalized Hamiltonian cycle's weight is exactly equal to $S$, it does not result in a zero phase.
+Where: \begin{itemize}
+	\item[] $\epsilon > 0$
+\end{itemize}
+The purpose of $\epsilon$ is to ensure that if any normalized Hamiltonian cycle's weight is exactly equal to $S$, it does not result in a zero phase.
 	
 	
 	\section{Unitary Operator and Eigenstates associated with the Hamiltonian Cycles}
@@ -657,7 +660,7 @@ S = \sum_{i=1}^{N} w'_i
 	 \end{equation}
 	
 	
-	$U$ will be a $N^N \times N^N$ matrix with only the diagonal elements populated. Because the diagonal elements will entirely consist of phases $\left[U \right]_{kk} = e^{i\alpha_{kk}} $. We can confirm the unitary operator condition is satisfied: $U^\dagger U = \mathds{1}$. 
+	$U$ will be a $N^N \times N^N$ matrix with only the diagonal elements populated. Because the diagonal elements consist entirely of phases, $\left[U \right]_{kk} = e^{i\alpha_{kk}} $, we can confirm the unitary operator condition, $U^\dagger U = \mathds{1}$, is satisfied.
 	
 	
 	Given $U$'s diagonal nature, its eigenstates align with the basis computational states. We specifically focus on eigenstates that correspond to Hamiltonian cycles, which are determined by their phases. To understand how the diagonal elements of $U$ are derived from the individual $U_j$ matrices, we examine the tensor product construction. This process fills the diagonal elements of $U$, thus simplifying our approach by allowing us to directly consider these elements.
@@ -729,7 +732,7 @@ S = \sum_{i=1}^{N} w'_i
 	
 	
 	
-	For the 4-city graph, we will begin with four matrices to represent the 12 edge weights. Utilizing equation \ref{Uj-elements}, where $j, k \in \{A, B, C, D\}$, we can construct matrix $A$:
+	For the 4-city graph, we will begin with four matrices to represent the 12 edge weights. Utilizing Equation \eqref{Uj-elements}, where $j, k \in \{A, B, C, D\}$, we can construct matrix $A$:
 
 	$$
 	A = \begin{bmatrix}
@@ -770,7 +773,7 @@ S = \sum_{i=1}^{N} w'_i
 	\end{align*}
 	
 	
-	Next, we construct the tensor product with equation \ref{U-tensor}:
+	Next, we construct the tensor product with Equation \eqref{U-tensor}:
 	
 	\begin{equation}\label{4-city-matrix-tensor}
 	 U = A \otimes B \otimes C \otimes D
@@ -781,7 +784,7 @@ S = \sum_{i=1}^{N} w'_i
 	$$ u = a \otimes b \otimes c \otimes d$$
 	
 	
-	Referring to equation \ref{U-matrix-eq} concerning the matrix elements for $U$,  the diagonal elements for the 4-city graph will simplify to:
+	Referring to Equation \eqref{U-matrix-eq} concerning the matrix elements for $U$,  the diagonal elements for the 4-city graph will simplify to:
 	
 	\begin{equation}\label{4-city-tensor}
 		u_{k} = a_{\alpha_{3}}\cdot b _{\alpha_{2}} \cdot c_{\alpha_1} \cdot d_{\alpha_{0}}
@@ -811,20 +814,20 @@ S = \sum_{i=1}^{N} w'_i
 	\end{equation*}
 	
 	
-	To correctly identify the eigenstate, we need to rearrange the product to match the form of equation \ref{4-city-tensor}:
+	To correctly identify the eigenstate, we need to rearrange the product to match the form of Equation \eqref{4-city-tensor}:
 	
 	\begin{equation*}
 		\Large{a_{3} \cdot d_{1} \cdot b_{2} \cdot c_{0} = \Large{a_{3}} \cdot b_{2} \cdot c_{0}  \cdot d_{1}}
 	\end{equation*}
 	
-	From here, we simply read out the indices. Based on our discussion under equation \ref{U-matrix-eq}, we can infer that we are working in base 4. Thus, we simply need to convert to base 10 to understand the exact column number and to base 2 to be used as the initialized eigenstate.
+	From here, we simply read out the indices. Based on our discussion under Equation \eqref{U-matrix-eq}, we can infer that we are working in base 4. Thus, we simply need to convert to base 10 to understand the exact column number and to base 2 to be used as the initialized eigenstate.
 	
 	\begin{equation*}
 		\text{base } 4 = 3201 \leftrightarrow \text{base } 10 = 225 \leftrightarrow  \text{base } 2 = 11100001
 	\end{equation*}
 	
 
-Thus, our eigenstate for Equation \ref{one-ham-cycle-4-city} will be $|225\rangle$ or $|11100001\rangle$. We can perform an identical process for all the Hamiltonian cycles to find their corresponding eigenstates. These are all listed in Table \ref{table:ham-cycle-details-4-city} and Table \ref{table:4-city-conversions}.
+Thus, our eigenstate for Hamiltonian cycle \eqref{one-ham-cycle-4-city} will be $|225\rangle$ or $|11100001\rangle$. We can perform an identical process for all the Hamiltonian cycles to find their corresponding eigenstates. These are all listed in Table \ref{table:ham-cycle-details-4-city} and Table \ref{table:4-city-conversions}.
 	
 	
 	\begin{table}[h]
@@ -907,7 +910,7 @@ Thus, our eigenstate for Equation \ref{one-ham-cycle-4-city} will be $|225\rangl
 	\end{center}
 	
 	
-		For the 5-city graph, we will begin with five matrices to represent the 20 edge weights. Utilizing equation \ref{Uj-elements}, where $j, k \in \{A, B, C, D, E\}$, we can construct matrix $A$:
+		For the 5-city graph, we will begin with five matrices to represent the 20 edge weights. Utilizing Equation \eqref{Uj-elements}, where $j, k \in \{A, B, C, D, E\}$, we can construct matrix $A$:
 	
 	\begin{equation}\label{5-city-matrix-tensor}
 		U = A \otimes B \otimes C \otimes D \otimes E
@@ -960,7 +963,7 @@ Thus, our eigenstate for Equation \ref{one-ham-cycle-4-city} will be $|225\rangl
 	$$ u = a \otimes b \otimes c \otimes d \otimes e$$
 	
 	
-	Referring to equation \ref{U-matrix-eq} concerning the matrix elements for U,  the diagonal elements for the 5-city graph will simplify to:
+	Referring to Equation \eqref{U-matrix-eq} concerning the matrix elements for U,  the diagonal elements for the 5-city graph will simplify to:
 	
 	\begin{equation}\label{5-city-tensor}
 		u_{k} = a_{\alpha_{4}}\cdot b _{\alpha_{3}} \cdot c_{\alpha_2} \cdot d_{\alpha_{1}}\cdot e_{\alpha_{0}}
@@ -993,19 +996,19 @@ Thus, our eigenstate for Equation \ref{one-ham-cycle-4-city} will be $|225\rangl
 	\end{equation*}
 	
 	
-	To correctly identify the eigenstate, we need to rearrange the product to match the form of equation \ref{5-city-tensor}:
+	To correctly identify the eigenstate, we need to rearrange the product to match the form of Equation \eqref{5-city-tensor}:
 	
 	\begin{equation*}
 		\Large{a_{4} \cdot e_{3} \cdot d_{2} \cdot c_{1} \cdot b_{0}= a_{4} \cdot b_{0}  \cdot c_{1}\cdot d_{2} \cdot e_{3}}
 	\end{equation*}
 	
-	From here, we simply read out the indices. Based on our discussion under equation \ref{U-matrix-eq}, we can infer that we are working in base 5. Thus, we simply need to convert to base 10 to understand the exact column number and to base 2 to be used as the initialized eigenstate.
+	From here, we simply read out the indices. Based on our discussion under Equation \eqref{U-matrix-eq}, we can infer that we are working in base 5. Thus, we simply need to convert to base 10 to understand the exact column number and to base 2 to be used as the initialized eigenstate.
 	
 	\begin{equation*}
 		\text{base } 5 = 40123 \leftrightarrow \text{base } 10 = 2538 \leftrightarrow  \text{base } 2 = 100111101010
 	\end{equation*}
 	
-	Thus, our eigenstate for Equation \ref{one-ham-cycle-5-city} will be $|2538\rangle$ or $|100111101010\rangle$. We can perform an identical process for all the Hamiltonian cycles to find their corresponding eigenstates. These are all listed in Table \ref{table:ham-cycle-details-5-city} and Table \ref{table:5-city-conversions}.
+	Thus, our eigenstate for Hamiltonian cycle \eqref{one-ham-cycle-5-city} will be $|2538\rangle$ or $|100111101010\rangle$. We can perform an identical process for all the Hamiltonian cycles to find their corresponding eigenstates. These are all listed in Table \ref{table:ham-cycle-details-5-city} and Table \ref{table:5-city-conversions}.
 	
 	
 	
@@ -1042,7 +1045,7 @@ $A \rightarrow E \rightarrow D \rightarrow B \rightarrow C \rightarrow A$ & $ \g
 $A \rightarrow E \rightarrow D \rightarrow C \rightarrow B \rightarrow A$ & $ \gamma_{AE} + \gamma_{ED} + \gamma_{DC} + \gamma_{CB} + \gamma_{BA}$ & $a_4  \cdot e_3 \cdot d_2 \cdot c_1 \cdot b_0$ \\
 			\hline
 			\end{tabular}
-\caption{Hamiltonian cycles of the directed 4-city graph with their total cost and diagonal element products (\ref{5-city-tensor}).}
+\caption{Hamiltonian cycles of the directed 5-city graph with their total cost and diagonal element products (\ref{5-city-tensor}).}
 \label{table:ham-cycle-details-5-city}
 \end{table}
 \begin{table}[h]
@@ -1117,19 +1120,19 @@ $A \rightarrow E \rightarrow D \rightarrow C \rightarrow B \rightarrow A$ & $ \g
 	
 	\subsection{Algorithm Construction}
 	
-	We will follow the instructions highlighted at the beginning of Chapter 3. Step 1 requires normalizing the edge weights. This involves sorting the edge weights in descending order, as specified in equation \ref{sorted-weights}:	
+	We will follow the instructions highlighted at the beginning of Chapter 3. Step 1 requires normalizing the edge weights. This involves sorting the edge weights in descending order, as specified in Equation \eqref{sorted-weights}:	
 	
 	\begin{equation*}
 	w' = \{6,5,4,4,4,2\}
 	\end{equation*}
 	
 	
-	Next, we retrieve the sum $S$, as specified in equationn \ref{sum-S}:
+	Next, we retrieve the sum $S$, as specified in Equation \eqref{sum-S}:
 	\begin{equation*}
 	S = \sum_{i=1}^{4} w'_i = 6 + 5  + 4 + 4 = 19
 	\end{equation*}
 	
-	 We proceed to normalize our edge weights as described in equation \ref{normalization}, where we set $\epsilon = 1$.
+	 We proceed to normalize our edge weights as described in Equation \eqref{normalization}, where we set $\epsilon = 1$.
 	
 	\begin{equation*}
 		\tilde{w} = \frac{ \{4,2,4,4,5,6\}}{20} = \{0.2 , 0.1 , 0.2 , 0.2 , 0.25, 0.3\} 
@@ -1359,7 +1362,7 @@ To create our controlled matrices, we employ the block matrix structure illustra
 	
 	\subsection{Results: Simulations with Qiskit} \label{4-city-sim}
 	
-	We use Qiskit, an open-source quantum computing framework, for running simulations. Figure \ref{fig:4-city-circuit} illustrates the circuit for our first Hamiltonian cycle initialized in the eigenstate $|01101100\rangle$. Similar circuits will be executed for the other two Hamiltonian cycles, with the only variation being the eigenstate initialization. Our simulations are ideal, implying that our results are not affected by noise. Each circuit is executed 1024 times by default, providing us with a quasi-probability distribution.
+	We use Qiskit, an open-source quantum computing framework, for running simulations. Fig. \ref{fig:4-city-circuit} illustrates the circuit for our first Hamiltonian cycle initialized in the eigenstate $|01101100\rangle$. Similar circuits will be executed for the other two Hamiltonian cycles, with the only variation being the eigenstate initialization. Our simulations are ideal, implying that our results are not affected by noise. Each circuit is executed 1024 times by default, providing us with a quasi-probability distribution.
 	
 
 
@@ -1392,7 +1395,7 @@ To create our controlled matrices, we employ the block matrix structure illustra
 		\label{fig:4-city-graphic-5}
 	\end{figure}		
 	
- We observe in figure \ref{fig:4-city-graphic-3} that our 3-qubit phase estimation for the first cycle with the highest counts yields $111\; 111$. The binary digits on the left correspond to the phase estimated after our condition is satisfied, while those on the right represent the estimation before. These binary digits can be converted to their decimal representation: 
+ We observe in Fig. \ref{fig:4-city-graphic-3} that our 3-qubit phase estimation for the first cycle with the highest counts yields $111\; 111$. The binary digits on the left correspond to the phase estimated after our condition is satisfied, while those on the right represent the estimation before. These binary digits can be converted to their decimal representation: 
  
  $$\mathrm{Cycle}\; 1: \;\; 0.111, \; 0.111 = 0.875, \; 0.875$$
  
@@ -1470,19 +1473,19 @@ To create our controlled matrices, we employ the block matrix structure illustra
 	
 		\subsection{Algorithm Construction}
 	
-	We will follow the instructions highlighted at the beginning of Chapter 3. Step 1 requires normalizing the edge weights. This involves sorting the edge weights in descending order, as specified in equation \ref{sorted-weights}:	
+	We will follow the instructions highlighted at the beginning of Chapter 3. Step 1 requires normalizing the edge weights. This involves sorting the edge weights in descending order, as specified in Equation \eqref{sorted-weights}:	
 	
 	\begin{equation*}
 		w' = \{10,9,8,7,5,5,4,3,1,1\}
 	\end{equation*}
 	
 	
-	Next, we retrieve the sum $S$, as specified in equationn \ref{sum-S}:
+	Next, we retrieve the sum $S$, as specified in Equation \eqref{sum-S}:
 	\begin{equation*}
 		S = \sum_{i=1}^{5} w'_i = 10 + 9  + 8 + 7 + 5 = 39
 	\end{equation*}
 	
-	 We proceed to normalize our edge weights as described in equation \ref{normalization}, where we set $\epsilon = 1$.
+	 We proceed to normalize our edge weights as described in Equation \eqref{normalization}, where we set $\epsilon = 1$.
 	
 	\begin{equation*}
 		\tilde{w} = \frac{  \{10,9,8,7,5,5,4,3,1,1\}}{40} = \{0.25 , 0.225 , 0.2 , 0.175 , 0.125, 0.125, 0.1, 0.075, 0.025, 0.025\} 
@@ -1603,7 +1606,7 @@ To create our controlled matrices, we employ the block matrix structure illustra
 	
 
 	
-	The number of diagonal elements in $U$ and $U'$ is $5^5 = 3125$, thus we need atleast $12$ eigenstate qubits to represent all $3125$ states. We will have left over states ($2^{12} - 5^5 = 971$). To accomodate this issue we need to add $1$'s to the end of the diagonal of matrices $U$ and $U'$. With this method, we do not affect the eigenstates.
+	The number of diagonal elements in $U$ and $U'$ is $5^5 = 3125$, thus we need at least $12$ eigenstate qubits to represent all $3125$ states. We will have left over states ($2^{12} - 5^5 = 971$). To accomodate this issue we need to add $1$'s to the end of the diagonal of matrices $U$ and $U'$. With this method, we do not affect the eigenstates.
 	
 
 	
@@ -2376,7 +2379,7 @@ To create our controlled matrices, we employ the block matrix structure illustra
 	
 		\subsection{Results: Simulations with Qiskit}  \label{5-city-sim}
 	
-	Figure \ref{fig:4-city-circuit} illustrates the circuit for our first Hamiltonian cycle initialized in the eigenstate$|970\rangle  = |001111001010\rangle$. Similar circuits will be executed for the other eleven Hamiltonian cycles, with the only variation being the eigenstate initialization. Our simulations are ideal, implying that our results are not affected by noise. Each circuit is executed 1024 times by default, providing us with a quasi-probability distribution.
+	Fig. \ref{fig:5-city-circuit} illustrates the circuit for our first Hamiltonian cycle initialized in the eigenstate$|970\rangle  = |001111001010\rangle$. Similar circuits will be executed for the other eleven Hamiltonian cycles, with the only variation being the eigenstate initialization. Our simulations are ideal, implying that our results are not affected by noise. Each circuit is executed 1024 times by default, providing us with a quasi-probability distribution.
 	
 	\begin{figure}[!h]
 		\centering
@@ -2418,7 +2421,6 @@ To create our controlled matrices, we employ the block matrix structure illustra
 	
 	\begin{table}[ht!]
 		\centering
-		\label{your-table-label}
 		\begin{tabular}{lllllll} 
 			\toprule
 					Cycle & Expected & Phase Qubits & Highest Counts & Prob. & 2nd Highest Counts & Prob. \\
@@ -2471,11 +2473,11 @@ To create our controlled matrices, we employ the block matrix structure illustra
 	
 	\chapter{Discussion}
 	
-Referring to Table \ref{table:sim-results-4-city}, we observe that cycle 1 represents the solution for our 4-city problem, as our expected phase estimation before and after satisfying the condition is both equal to $0.85$. With 3-qubit estimation, we achieved a $77\%$ quasi-probability of measuring the state $0.875, 0.875$. This suggests that the most probable result indicates the cycle as a solution. One might expect a better quasi-probability as we increase the number of phase qubits, as it should provide a finer estimate of our phases. However, with 4-qubit estimation, our quasi-probability for the most measured state, $0.875, 0.875$, drops to $34\%$. Despite this decrease, it remains the state with the most counts, indicating equality of our two phases and thus a solution. Further, 5-qubit estimation restores the quasi-probability for the most measured state, in this case, $0.84375, 0.84375$, to $77\%$. This suggests that increasing the number of phase qubits does not necessarily increase the probability of measuring a single state. To further elaborate on why this is the case, we can examine the representation of $0.85$ in binary:"
+Referring to Table \ref{table:sim-results-4-city}, we observe that cycle 1 represents the solution for our 4-city problem, as our expected phase estimation before and after satisfying the condition is both equal to $0.85$. With 3-qubit estimation, we achieved a $77\%$ quasi-probability of measuring the state $0.875, 0.875$. This suggests that the most probable result indicates the cycle as a solution. One might expect a better quasi-probability as we increase the number of phase qubits, as it should provide a finer estimate of our phases. However, with 4-qubit estimation, our quasi-probability for the most measured state, $0.875, 0.875$, drops to $34\%$. Despite this decrease, it remains the state with the most counts, indicating equality of our two phases and thus a solution. Further, 5-qubit estimation restores the quasi-probability for the most measured state, in this case, $0.84375, 0.84375$, to $77\%$. This suggests that increasing the number of phase qubits does not necessarily increase the probability of measuring a single state. To further elaborate on why this is the case, we can examine the representation of $0.85$ in binary:
 	
 	$$0.11011001100110011...$$
 	
-Since the binary representation of $0.85$ is recurring, perfect accuracy with phase estimation is unattainable. This same challenge arises in our 5-city simulation, where cycle 10 represents our solution, and the phase we aim to estimate is $0.55$, which also recurs in binary. In both cases, we can only establish a very good approximate value. To illustrate this further, let's examine the resolution of 3, 4, and 5 qubit estimation below and refer to Figure \ref{fig:phase-precision} to understand the probabilities.
+Since the binary representation of $0.85$ is recurring, perfect accuracy with phase estimation is unattainable. This same challenge arises in our 5-city simulation, where cycle 10 (Fig. \ref{fig:5-city-10-12}) represents our solution, and the phase we aim to estimate is $0.55$, which also recurs in binary. In both cases, we can only establish a very good approximate value. To illustrate this further, let's examine the resolution of 3, 4, and 5 qubit estimation below and refer to Fig. \ref{fig:phase-precision} to understand the probabilities.
 	
 \begin{tikzpicture}
 	\pgfmathsetmacro{\lineLength}{14}
@@ -2510,7 +2512,7 @@ An intuitive way to interpret the number lines is that when the value is near a 
 	
 We can see for the 4-qubit estimation, the introduction of a more precise value of $13/16$ increased its probability of being measured as a good approximation for $0.85$, and in turn decreased the probability of $7/8 = 14/16$ being measured. Performing 5-qubit estimation does improve our results but does not justify the computational cost considering we achieved similar results with 3-qubit estimation. We see a similar issue with our results for the 5-city problem; we only simulated 3 and 4-qubit estimation, but had we done 5, our confidence in the result would have decreased.
 	
-Unless we obtain a fortunate solution as in cycle 8 of the 5-city problem (figure \ref{fig:5-city-7-9}), where our $\phi = 0.5$, can be represented exactly, we need to run phase estimation a number of times from which we can use the mode of our results as the solution. And as we've discussed earlier, using a larger number of phase qubits does not necessarily improve your confidence in the result. If we only consider the states with the highest counts in Tables \ref{table:sim-results-4-city}, \ref{table:sim-results-4-city}, then our results perfectly predict the solutions and non-solutions.
+Unless we obtain a fortunate solution as in cycle 8 of the 5-city problem (Fig. \ref{fig:5-city-7-9}), where our $\phi = 0.5$, can be represented exactly, we need to run phase estimation a number of times from which we can use the mode of our results as the solution. And as we've discussed earlier, using a larger number of phase qubits does not necessarily improve your confidence in the result. If we only consider the states with the highest counts in Tables \ref{table:sim-results-4-city} \& \ref{table:sim-results-5-city}, then our results perfectly predict the solutions and non-solutions.
 	
 The question we need to ask now is how many phase qubits are needed to correctly identify a solution or non-solution based on the most frequent state measured? And the answer is we need to make sure the resolution of our phase qubits to be finer than the condition value, $\alpha$. Let's consider a non-solution where the reduction to $\phi$ is exactly the resolution of 3-qubit estimation, $\alpha = 0.125$:
 	
@@ -2551,7 +2553,7 @@ The question we need to ask now is how many phase qubits are needed to correctly
 	
  $$P_1 < P_2 = P_3 < P_4$$
  
-We actually simulated a similar case in cycle 7 of our 5-city problem (FIG. \ref{fig:5-city-7-9}), where the least probable result of the top four states indicated the cycle was a solution. If $\delta << 1$, we would have to run our circuit many times over to appropriately measure the non-solution as the most frequent result. Otherwise, we run the risk again of predicting a solution with $P_1$ as it would be very close to $P_4$. A safe bet would be to have a phase resolution at least twice the condition value. Let's illustrate this again by inconveniently placing the phases we hope to estimate perfectly in between steps:
+We actually simulated a similar case in cycle 7 of our 5-city problem (Fig. \ref{fig:5-city-7-9}), where the least probable result of the top four states indicated the cycle was a solution. If $\delta << 1$, we would have to run our circuit many times over to appropriately measure the non-solution as the most frequent result. Otherwise, we run the risk again of predicting a solution with $P_1$ as it would be very close to $P_4$. A safe bet would be to have a phase resolution at least twice the condition value. Let's illustrate this again by inconveniently placing the phases we hope to estimate perfectly in between steps:
  
  \begin{tikzpicture}
  	\pgfmathsetmacro{\lineLength}{14}
@@ -2592,7 +2594,7 @@ $$P_3: 0.6875, 0.6250$$
 $$P_4: 0.6875, 0.6875$$
 
 
-We can also discuss the number of eigenstate qubits needed. Our method asks us to construct a matrix of size $N^N \times N^N$, where $N$ represents the number of cities. This does result in a unitary matrix however, it cannot be neccesarily represented by an exact number of qubits.We encountered this issue in our 5-city graph, where we introduced ones at the end of the matrix (equation \ref{ones}). If $n$ represents the number of qubits we need and $m$ represents the number of cities, we need to solve the equation:
+We can also discuss the number of eigenstate qubits needed. Our method asks us to construct a matrix of size $N^N \times N^N$, where $N$ represents the number of cities. This does result in a unitary matrix however, it cannot be neccesarily represented by an exact number of qubits. We encountered this issue in our 5-city graph, where we introduced ones at the end of the matrix, Equation \eqref{ones}. If $n$ represents the number of qubits we need and $m$ represents the number of cities, we need to solve the equation:
 
 $$2^n = m^m$$
 $$n = m\mathrm{log}_2(m)$$
