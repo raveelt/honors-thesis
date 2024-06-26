@@ -5,4 +5,4 @@ In the proposal folder you can find the initial idea of using a combination of p
 The tests folder contain jupyter notebooks for solving the BTSP for various cases. More details are contained within each notebook.
 
 The quantum circuit for a single Hamiltonian cycle to solve the decision problem of the BTSP:
-[4-city-1-cycle-constrained-barrier.pdf](https://github.com/user-attachments/files/15996436/4-city-1-cycle-constrained-barrier.pdf)
+![image](https://github.com/raveelt/honors-thesis/assets/64331687/8a6e0144-7ea5-4b98-94dc-ee94456cdf1d)
